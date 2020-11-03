@@ -8,5 +8,11 @@
     <string name="trangchu_phimsapchieu_fragment">Phim Sắp Chiếu</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="Tom_Tat">Luffy và các thành viên băng Mũ Rơm nhận được thư mời đến "Lễ hội Hải tặc" từ người tổ chức Buena Festa. Và vô số Hải tặc khắp nơi trên thế giới cũng đã đến đây để cùng hướng về một vũ đài duy nhất "Tranh đoạt chiếc chìa khóa dẫn đến kho báu Vua Hải Tặc"</string>
+    <string name="xemthem">Xem thêm</string>
+    <string name="rutgon">Rút gọn</string>
 
+    <string name="web">
+        <a href="https://www.youtube.com/watch?v=tD3EKDZcZlk">Youtube</a>
+    </string>
 </resources>

@@ -450,7 +450,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
                 <Button
-                    android:id="@+id/button3"
+                    android:id="@+id/btnChiTiet4"
                     android:layout_width="86dp"
                     android:layout_height="37dp"
                     android:background="#FFF4DB39"

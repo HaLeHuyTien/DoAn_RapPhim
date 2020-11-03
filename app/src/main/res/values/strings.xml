@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">DoAn_RapPhim</string>
+    <string name="button_home">Trang chủ</string>
+    <string name="button_list_movie">Danh sách phim</string>
+    <string name="button_user">Tài Khoản</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="trangchu_phimdangchieu_fragment">Phim Đang Chiếu</string>
+    <string name="trangchu_phimsapchieu_fragment">Phim Sắp Chiếu</string>
+
 </resources>

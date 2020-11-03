@@ -42,7 +42,7 @@ public class TrangChuFragment extends Fragment {
         tabLayout=view.findViewById(R.id.tablayout);
         mviewPager=view.findViewById(R.id.trangchu_viewpager);
 
-        TrangChuDSphim_Adapter trangChuDSphim_adapter = new TrangChuDSphim_Adapter(getActivity().getSupportFragmentManager(), FragmentStatePagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
+        TrangChuDSphim_Adapter trangChuDSphim_adapter = new TrangChuDSphim_Adapter(getChildFragmentManager(), FragmentStatePagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
         mviewPager.setAdapter(trangChuDSphim_adapter);
         tabLayout.setupWithViewPager(mviewPager);
 

@@ -24,6 +24,7 @@ public class ViewPagerAdapter_TrangChu extends FragmentStatePagerAdapter {
             default:
                 return new TrangChuFragment();
 
+
         }
     }
 

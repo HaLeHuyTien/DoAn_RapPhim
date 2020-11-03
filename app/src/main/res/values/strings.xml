@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">DoAn_RapPhim</string>
+    <string name="app_name">Cinema</string>
     <string name="button_home">Trang chủ</string>
     <string name="button_list_movie">Danh sách phim</string>
     <string name="button_user">Tài Khoản</string>

@@ -4,31 +4,40 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/p5"
     android:padding="40dp"
-    tools:context=".MainActivity">
+    android:background="@drawable/p5"
+    tools:context=".DangKyActivity">
+
+    <Button
+        android:id="@+id/btnTaiHinh"
+        android:layout_width="60dp"
+        android:layout_height="41dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginEnd="52dp"
+        android:background="@android:drawable/ic_menu_upload"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/txtEmailDN"
-        android:layout_width="0dp"
+        android:id="@+id/txtEmailDK"
+        android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="250dp"
         android:background="@drawable/custom_input"
         android:drawableStart="@drawable/custom_email_icon"
         android:drawablePadding="12dp"
         android:ems="10"
-        android:hint="Email"
         android:inputType="textEmailAddress"
+        android:hint="Email"
         android:paddingStart="12dp"
         android:paddingEnd="12dp"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.612"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/txtPassDN"
+        android:id="@+id/txtPassDK"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_marginTop="16dp"
@@ -36,55 +45,41 @@
         android:drawableStart="@drawable/custom_lock_icon"
         android:drawablePadding="12dp"
         android:ems="10"
-        android:hint="Password"
         android:inputType="textPassword"
+        android:hint="Password"
         android:paddingStart="12dp"
         android:paddingEnd="12dp"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.8"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtEmailDN" />
+        app:layout_constraintTop_toBottomOf="@+id/txtEmailDK" />
 
     <Button
-        android:id="@+id/btnDK"
+        android:id="@+id/button3"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_marginTop="40dp"
-        android:background="@drawable/custom_button_dk"
-        android:onClick="chuyenTrang"
-        android:text="Đăng ký tài khoản"
-        android:textAllCaps="false"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnDN"
-        tools:ignore="OnClick" />
-
-    <Button
-        android:id="@+id/btnDN"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="144dp"
         android:background="@drawable/custom_button"
-        android:text="Đăng Nhập"
+        android:text="Đăng ký"
         android:textColor="@android:color/white"
         android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtPassDN" />
+        app:layout_constraintHorizontal_bias="0.35"
+        app:layout_constraintStart_toStartOf="parent" />
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="match_parent"
-        android:layout_height="120dp"
-        android:fontFamily="sans-serif-condensed"
-        android:text="Cinema"
-        android:textAlignment="center"
-        android:textColor="@android:color/holo_red_dark"
-        android:textSize="100sp"
-        app:layout_constraintEnd_toEndOf="parent"
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="122dp"
+        android:layout_height="172dp"
+        android:layout_marginStart="52dp"
+        android:layout_marginTop="36dp"
+        app:layout_constraintEnd_toStartOf="@+id/btnTaiHinh"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/anh" />
 </androidx.constraintlayout.widget.ConstraintLayout>

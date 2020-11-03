@@ -6,5 +6,7 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="trangchu_phimdangchieu_fragment">Phim Đang Chiếu</string>
     <string name="trangchu_phimsapchieu_fragment">Phim Sắp Chiếu</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

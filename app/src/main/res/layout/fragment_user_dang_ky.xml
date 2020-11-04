@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:padding="40dp"
     android:background="@drawable/p5"
-    tools:context=".DangKyActivity">
+    tools:context=".DangKyActiviti">
 
     <Button
         android:id="@+id/btnTaiHinh"
@@ -56,13 +56,14 @@
         app:layout_constraintTop_toBottomOf="@+id/txtEmailDK" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/btnDK1"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginStart="30dp"
         android:layout_marginEnd="30dp"
         android:layout_marginBottom="144dp"
         android:background="@drawable/custom_button"
+android:onClick="ChuyenTrang"
         android:text="Đăng ký"
         android:textColor="@android:color/white"
         android:textSize="18sp"

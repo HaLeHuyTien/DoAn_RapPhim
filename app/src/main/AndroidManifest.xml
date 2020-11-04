@@ -9,8 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.DoAn_RapPhim">
-        <activity android:name=".DangKyActiviti"></activity>
-        <activity android:name=".TrangChiTiet"></activity>
+        <activity android:name=".TabTaiKhoan"/>
+        <activity android:name=".DangKyActiviti" />
+        <activity android:name=".TrangChiTiet" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

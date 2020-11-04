@@ -442,8 +442,8 @@
                     android:layout_height="37dp"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="20dp"
-                    android:background="#FFF4DB39"
-                    android:backgroundTint="#FFF4DB39"
+                    android:backgroundTint="#F44336"
+
                     android:text="Mua Vé"
                     android:textSize="10sp"
                     app:layout_constraintStart_toEndOf="@+id/imageView"
@@ -453,8 +453,8 @@
                     android:id="@+id/button3"
                     android:layout_width="86dp"
                     android:layout_height="37dp"
-                    android:background="#FFF4DB39"
-                    android:backgroundTint="#FFF4DB39"
+                    android:backgroundTint="#F44336"
+
                     android:text="Chi Tiết"
                     android:textSize="10sp"
                     app:layout_constraintEnd_toEndOf="parent"

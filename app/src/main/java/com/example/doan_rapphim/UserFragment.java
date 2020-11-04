@@ -25,6 +25,15 @@ private Button button;
                 startActivity(intent);
             }
         });
+
+        button=view.findViewById(R.id.btnDN);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(getActivity() ,TabTaiKhoan.class);
+                startActivity(intent);
+            }
+        });
         return view;
     }
 

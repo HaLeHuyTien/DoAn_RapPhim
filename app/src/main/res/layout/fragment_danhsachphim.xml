@@ -47,7 +47,8 @@
         android:id="@+id/button"
         android:layout_width="79dp"
         android:layout_height="43dp"
-        android:backgroundTint="#FFEB3B"
+        android:backgroundTint="#F44336"
+
         android:text="Tìm"
         android:textColor="#000000"
         app:layout_constraintEnd_toEndOf="parent"

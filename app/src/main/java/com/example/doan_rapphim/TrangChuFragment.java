@@ -58,10 +58,11 @@ public class TrangChuFragment extends Fragment {
 
     private List<Photo> getListPhoto(){
         List<Photo> list = new ArrayList<>();
-        list.add(new Photo(R.drawable.phapsumu));
-        list.add(new Photo(R.drawable.rom));
-        list.add(new Photo(R.drawable.trangquynh));
-        list.add(new Photo(R.drawable.cualaivobau));
+        list.add(new Photo(R.drawable.poster1));
+        list.add(new Photo(R.drawable.poster2));
+        list.add(new Photo(R.drawable.poster3));
+        list.add(new Photo(R.drawable.poster4));
+        list.add(new Photo(R.drawable.poster5));
 
         return list;
 

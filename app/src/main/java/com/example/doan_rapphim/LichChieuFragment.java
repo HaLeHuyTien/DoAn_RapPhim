@@ -17,6 +17,8 @@ import android.widget.Spinner;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.TextView;
+import android.widget.Button;
 
 
 import java.text.DateFormat;
@@ -25,6 +27,8 @@ import java.util.ArrayList;
 
 import java.util.List;
 import java.util.Calendar;
+
+
 
 
 public class LichChieuFragment extends Fragment {
@@ -38,6 +42,10 @@ public class LichChieuFragment extends Fragment {
     private int lastSelectedYear;
     private int lastSelectedMonth;
     private int lastSelectedDayOfMonth;
+
+    private TextView TenRap;
+    private TextView TenTinh;
+    private Button btnGioChieu[] = new Button[8];
 
 
     public static LichChieuFragment getInstance() {
@@ -77,8 +85,35 @@ public class LichChieuFragment extends Fragment {
         addDiaDiem();
         addRap();
 
+        TenRap = view.findViewById(R.id.txtTenRap);
+        TenTinh = view.findViewById(R.id.txtTenTinh);
+        for(int i = 0; i < 8;i++){
+            String buttonID = "btnGioChieu"+(i+1);
+            int resID = getResources().getIdentifier(buttonID,"id", getActivity().getPackageName());
+            btnGioChieu[i] = view.findViewById(resID);
+        }
+
+
+        runExample();
+
+
         return view;
 
+    }
+
+    public void runExample(){
+        try {
+            LichChieu_Json lichChieu_json = ReadLichChieuJson.readLichChieuJsonFile(getActivity());
+            TenRap.setText(lichChieu_json.getTenRap());
+            TenTinh.setText(lichChieu_json.getTenTinh());
+            String a[] = lichChieu_json.getXuatChieu();
+           for(int i =0;i<a.length;i++){
+               btnGioChieu[i].setText(a[i]);
+           }
+
+        }catch (Exception e){
+
+        }
     }
 
     public void addDiaDiem() {

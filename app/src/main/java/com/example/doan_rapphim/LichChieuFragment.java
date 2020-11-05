@@ -10,6 +10,8 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 
 import android.widget.DatePicker;
@@ -25,6 +27,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Calendar;
 
@@ -43,9 +46,16 @@ public class LichChieuFragment extends Fragment {
     private int lastSelectedMonth;
     private int lastSelectedDayOfMonth;
 
+    //Json
     private TextView TenRap;
     private TextView TenTinh;
     private Button btnGioChieu[] = new Button[8];
+
+    //recyclerview
+    private final LinkedList<LichChieu_Json> mWordList = new LinkedList<>();
+    private RecyclerView mRecyclerView;
+    private LichChieuListAdapter mAdapter;
+
 
 
     public static LichChieuFragment getInstance() {
@@ -68,6 +78,12 @@ public class LichChieuFragment extends Fragment {
         EditNgay = view.findViewById(R.id.editNgay);
         imgLich = view.findViewById(R.id.imageLich);
 
+        runExamplev2();
+        mRecyclerView = view.findViewById(R.id.recycler_view_lich_chieu);
+        mAdapter = new LichChieuListAdapter(getActivity(),mWordList);
+        mRecyclerView.setAdapter(mAdapter);
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+
         imgLich.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -85,7 +101,7 @@ public class LichChieuFragment extends Fragment {
         addDiaDiem();
         addRap();
 
-        TenRap = view.findViewById(R.id.txtTenRap);
+       /* TenRap = view.findViewById(R.id.txtTenRap);
         TenTinh = view.findViewById(R.id.txtTenTinh);
         for(int i = 0; i < 8;i++){
             String buttonID = "btnGioChieu"+(i+1);
@@ -94,14 +110,27 @@ public class LichChieuFragment extends Fragment {
         }
 
 
-        runExample();
+        runExample();*/
 
 
         return view;
 
     }
 
-    public void runExample(){
+    public void runExamplev2(){
+        try {
+            LichChieu_Json lichChieu_json = ReadLichChieuJson.readLichChieuJsonFile(getActivity());
+
+                mWordList.addLast(lichChieu_json);
+
+
+
+        }catch (Exception e){
+
+        }
+    }
+
+    /*public void runExample(){
         try {
             LichChieu_Json lichChieu_json = ReadLichChieuJson.readLichChieuJsonFile(getActivity());
             TenRap.setText(lichChieu_json.getTenRap());
@@ -114,7 +143,7 @@ public class LichChieuFragment extends Fragment {
         }catch (Exception e){
 
         }
-    }
+    }*/
 
     public void addDiaDiem() {
         List<String> list = new ArrayList<>();

@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10sp">
+
+
+        <TextView
+            android:id="@+id/txtTenRap"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/txtTenTinh"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtTenRap" />
+
+        <Button
+            android:id="@+id/btnGioChieu1"
+            android:layout_width="80dp"
+            android:layout_height="36dp"
+            android:layout_marginTop="10dp"
+            android:backgroundTint="#FFFFFF"
+            android:gravity="center"
+            android:text="11:30"
+            android:textAlignment="center"
+            android:textColor="#000000"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtTenTinh" />
+
+        <Button
+            android:id="@+id/btnGioChieu2"
+            android:layout_width="80dp"
+            android:layout_height="36dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:backgroundTint="#FFFFFF"
+            android:gravity="center"
+            android:text="12:30"
+            android:textAlignment="center"
+            android:textColor="#000000"
+            app:layout_constraintStart_toEndOf="@+id/btnGioChieu1"
+            app:layout_constraintTop_toBottomOf="@+id/txtTenTinh" />
+
+        <Button
+            android:id="@+id/btnGioChieu3"
+            android:layout_width="80dp"
+            android:layout_height="36dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:backgroundTint="#FFFFFF"
+            android:gravity="center"
+            android:text="13:45"
+            android:textAlignment="center"
+            android:textColor="#000000"
+            app:layout_constraintStart_toEndOf="@+id/btnGioChieu2"
+            app:layout_constraintTop_toBottomOf="@+id/txtTenTinh" />
+
+        <Button
+            android:id="@+id/btnGioChieu4"
+            android:layout_width="80dp"
+            android:layout_height="36dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:backgroundTint="#FFFFFF"
+            android:gravity="center"
+            android:text="14:45"
+            android:textAlignment="center"
+            android:textColor="#000000"
+            app:layout_constraintStart_toEndOf="@+id/btnGioChieu3"
+            app:layout_constraintTop_toBottomOf="@+id/txtTenTinh" />
+
+        <Button
+            android:id="@+id/btnGioChieu5"
+            android:layout_width="80dp"
+            android:layout_height="36dp"
+            android:layout_marginTop="10dp"
+            android:backgroundTint="#FFFFFF"
+            android:gravity="center"
+            android:text="16:00"
+            android:textAlignment="center"
+            android:textColor="#000000"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btnGioChieu1" />
+
+        <Button
+            android:id="@+id/btnGioChieu6"
+            android:layout_width="80dp"
+            android:layout_height="36dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:backgroundTint="#FFFFFF"
+            android:gravity="center"
+            android:text="17:00"
+            android:textAlignment="center"
+            android:textColor="#000000"
+            app:layout_constraintStart_toEndOf="@+id/btnGioChieu5"
+            app:layout_constraintTop_toBottomOf="@+id/btnGioChieu2" />
+
+        <Button
+            android:id="@+id/btnGioChieu7"
+            android:layout_width="80dp"
+            android:layout_height="36dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:backgroundTint="#FFFFFF"
+            android:gravity="center"
+            android:text="17:45"
+            android:textAlignment="center"
+            android:textColor="#000000"
+            app:layout_constraintStart_toEndOf="@+id/btnGioChieu6"
+            app:layout_constraintTop_toBottomOf="@+id/btnGioChieu3" />
+
+        <Button
+            android:id="@+id/btnGioChieu8"
+            android:layout_width="80dp"
+            android:layout_height="36dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:backgroundTint="#FFFFFF"
+            android:gravity="center"
+            android:text="18:15"
+            android:textAlignment="center"
+            android:textColor="#000000"
+            app:layout_constraintStart_toEndOf="@+id/btnGioChieu7"
+            app:layout_constraintTop_toBottomOf="@+id/btnGioChieu4" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

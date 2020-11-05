@@ -16,21 +16,25 @@ public class ReadLichChieuJson {
     public static LichChieu_Json readLichChieuJsonFile(Context context) throws IOException, JSONException{
         String jsonText = readText(context,R.raw.lichchieu);
 
-        JSONObject jsonRoot = new JSONObject(jsonText);
 
-        String TenRap = jsonRoot.getString("TenRap");
-        String TenTinh = jsonRoot.getString("TenTinh");
 
-        JSONArray jsonArray = jsonRoot.getJSONArray("XuatChieu");
-        String[] XuatChieu = new String[jsonArray.length()];
+            JSONObject jsonRoot = new JSONObject(jsonText).getJSONObject("Galaxy1");
 
-        for(int i = 0; i < jsonArray.length();i++){
-            XuatChieu[i] = jsonArray.getString(i);
-        }
+            String TenRap = jsonRoot.getString("TenRap");
+            String TenTinh = jsonRoot.getString("TenTinh");
+
+            JSONArray jsonArray = jsonRoot.getJSONArray("XuatChieu");
+            String[] XuatChieu = new String[jsonArray.length()];
+
+            for (int i = 0; i < jsonArray.length(); i++) {
+                XuatChieu[i] = jsonArray.getString(i);
+            }
+
         LichChieu_Json lichChieu_json = new LichChieu_Json();
-        lichChieu_json.setTenRap(TenRap);
-        lichChieu_json.setTenTinh(TenTinh);
-        lichChieu_json.setXuatChieu(XuatChieu);
+            lichChieu_json.setTenRap(TenRap);
+            lichChieu_json.setTenTinh(TenTinh);
+            lichChieu_json.setXuatChieu(XuatChieu);
+
         return lichChieu_json;
     }
 

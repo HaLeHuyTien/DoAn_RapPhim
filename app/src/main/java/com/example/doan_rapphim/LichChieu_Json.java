@@ -5,6 +5,7 @@ public class LichChieu_Json {
     private String TenTinh;
     private String[] XuatChieu;
 
+
     public String getTenRap() {
         return TenRap;
     }

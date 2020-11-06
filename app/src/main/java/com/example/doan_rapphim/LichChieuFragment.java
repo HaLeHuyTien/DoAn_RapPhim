@@ -78,7 +78,7 @@ public class LichChieuFragment extends Fragment {
         EditNgay = view.findViewById(R.id.editNgay);
         imgLich = view.findViewById(R.id.imageLich);
 
-        runExamplev2();
+
         mRecyclerView = view.findViewById(R.id.recycler_view_lich_chieu);
         mAdapter = new LichChieuListAdapter(getActivity(),mWordList);
         mRecyclerView.setAdapter(mAdapter);
@@ -101,6 +101,7 @@ public class LichChieuFragment extends Fragment {
         addDiaDiem();
         addRap();
 
+        runExamplev2();
        /* TenRap = view.findViewById(R.id.txtTenRap);
         TenTinh = view.findViewById(R.id.txtTenTinh);
         for(int i = 0; i < 8;i++){
@@ -119,13 +120,12 @@ public class LichChieuFragment extends Fragment {
 
     public void runExamplev2(){
         try {
-            LichChieu_Json lichChieu_json = ReadLichChieuJson.readLichChieuJsonFile(getActivity());
-
-                mWordList.addLast(lichChieu_json);
-
-
+            LichChieu_Json[] lichChieu_json = ReadLichChieuJson.readLichChieuJsonFile(getActivity());
+            EditNgay.setText(lichChieu_json[1].getTenRap());
+            //mWordList.addLast(lichChieu_json);
 
         }catch (Exception e){
+            EditNgay.setText("b");
 
         }
     }

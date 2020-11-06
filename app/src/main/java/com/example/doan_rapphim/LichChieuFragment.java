@@ -120,9 +120,13 @@ public class LichChieuFragment extends Fragment {
 
     public void runExamplev2(){
         try {
-            LichChieu_Json[] lichChieu_json = ReadLichChieuJson.readLichChieuJsonFile(getActivity());
-            EditNgay.setText(lichChieu_json[1].getTenRap());
-            //mWordList.addLast(lichChieu_json);
+            LichChieu_Json lichChieu_json = ReadLichChieuJson.readLichChieuJsonFile(getActivity());
+
+
+            mWordList.addLast(lichChieu_json);
+            mWordList.addLast(lichChieu_json);
+
+
 
         }catch (Exception e){
             EditNgay.setText("b");

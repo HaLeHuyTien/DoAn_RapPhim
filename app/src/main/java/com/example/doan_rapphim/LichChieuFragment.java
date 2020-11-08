@@ -57,6 +57,9 @@ public class LichChieuFragment extends Fragment {
     private RecyclerView mRecyclerView;
     private LichChieuListAdapter mAdapter;
 
+    //Loc
+    private  Button Loc;
+
 
 
     public static LichChieuFragment getInstance() {
@@ -78,6 +81,7 @@ public class LichChieuFragment extends Fragment {
         spnRap = view.findViewById(R.id.spinRap);
         EditNgay = view.findViewById(R.id.editNgay);
         imgLich = view.findViewById(R.id.imageLich);
+        Loc = view.findViewById(R.id.btnLoc);
 
 
         mRecyclerView = view.findViewById(R.id.recycler_view_lich_chieu);
@@ -102,24 +106,37 @@ public class LichChieuFragment extends Fragment {
         addDiaDiem();
         addRap();
 
-        runExamplev2();
-       /* TenRap = view.findViewById(R.id.txtTenRap);
-        TenTinh = view.findViewById(R.id.txtTenTinh);
-        for(int i = 0; i < 8;i++){
-            String buttonID = "btnGioChieu"+(i+1);
-            int resID = getResources().getIdentifier(buttonID,"id", getActivity().getPackageName());
-            btnGioChieu[i] = view.findViewById(resID);
-        }
 
 
-        runExample();*/
+        runExamplev();
 
+        Loc.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                LinkedList<LichChieu_Json> result = new LinkedList<>();
+                int count = mWordList.size();
+                Spinner spinner = (Spinner)view.findViewById(R.id.spinDiaDiem);
+                if(spinner.getSelectedItem().toString().equals("Cả nước")){
+                    mAdapter = new LichChieuListAdapter(getActivity(),mWordList);
+                }
+                else{
+                    for(int i =0;i<count;i++){
+                        if(mWordList.get(i).getTenTinh().equals(spinner.getSelectedItem().toString())){
+                            result.add(mWordList.get(i));
+                        }
+                    }
+                    mAdapter = new LichChieuListAdapter(getActivity(),result);
+                }
+                mRecyclerView.setAdapter(mAdapter);
+                mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+            }
+        });
 
         return view;
 
     }
 
-    public void runExamplev2(){
+    public void runExamplev(){
         try {
             Integer soluongXuatChieu = ReadLichChieuJson.SoLuongXuatChieu(getActivity());
             for(Integer i = 0; i < soluongXuatChieu; i++) {
@@ -132,20 +149,6 @@ public class LichChieuFragment extends Fragment {
         }
     }
 
-    /*public void runExample(){
-        try {
-            LichChieu_Json lichChieu_json = ReadLichChieuJson.readLichChieuJsonFile(getActivity());
-            TenRap.setText(lichChieu_json.getTenRap());
-            TenTinh.setText(lichChieu_json.getTenTinh());
-            String a[] = lichChieu_json.getXuatChieu();
-           for(int i =0;i<a.length;i++){
-               btnGioChieu[i].setText(a[i]);
-           }
-
-        }catch (Exception e){
-
-        }
-    }*/
 
     public void addDiaDiem() {
         List<String> list = new ArrayList<>();

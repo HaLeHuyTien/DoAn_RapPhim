@@ -14,7 +14,7 @@ import java.io.InputStreamReader;
 
 public class ReadLichChieuJson {
 
-    public static LichChieu_Json readLichChieuJsonFile(Context context) throws IOException, JSONException {
+    public static LichChieu_Json readLichChieuJsonFile(Context context, Integer ViTriXuatChieu) throws IOException, JSONException {
 
 
         LichChieu_Json lichChieu_json = new LichChieu_Json();
@@ -22,8 +22,8 @@ public class ReadLichChieuJson {
         String jsonText = readText(context, R.raw.lichchieu);
         JSONObject jsonRoot = new JSONObject(jsonText);
         JSONArray jsonArray2 = jsonRoot.getJSONArray("DanhSach");
-        for (int j = 0; j < 2; j++) {
-            JSONObject jsonObject = jsonArray2.getJSONObject(j);
+
+            JSONObject jsonObject = jsonArray2.getJSONObject(ViTriXuatChieu);
             String TenRap = jsonObject.getString("TenRap");
             String TenTinh = jsonObject.getString("TenTinh");
             JSONArray jsonArray = jsonObject.getJSONArray("XuatChieu");
@@ -35,8 +35,15 @@ public class ReadLichChieuJson {
             lichChieu_json.setTenTinh(TenTinh);
             lichChieu_json.setXuatChieu(XuatChieu);
 
-        }
+
         return lichChieu_json;
+    }
+
+     public static Integer SoLuongXuatChieu(Context context) throws IOException, JSONException{
+        String jsonText = readText(context, R.raw.lichchieu);
+        JSONObject jsonRoot = new JSONObject(jsonText);
+        JSONArray jsonArray = jsonRoot.getJSONArray("DanhSach");
+        return jsonArray.length();
     }
 
     private static String readText(Context context,int resId) throws IOException{

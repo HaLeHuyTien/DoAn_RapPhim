@@ -3,6 +3,7 @@ package com.example.doan_rapphim;
 import android.app.DatePickerDialog;
 import android.content.Context;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -120,14 +121,11 @@ public class LichChieuFragment extends Fragment {
 
     public void runExamplev2(){
         try {
-            LichChieu_Json lichChieu_json = ReadLichChieuJson.readLichChieuJsonFile(getActivity());
-
-
-            mWordList.addLast(lichChieu_json);
-            mWordList.addLast(lichChieu_json);
-
-
-
+            Integer soluongXuatChieu = ReadLichChieuJson.SoLuongXuatChieu(getActivity());
+            for(Integer i = 0; i < soluongXuatChieu; i++) {
+                LichChieu_Json lichChieu_json = ReadLichChieuJson.readLichChieuJsonFile(getActivity(), i);
+                mWordList.addLast(lichChieu_json);
+            }
         }catch (Exception e){
             EditNgay.setText("b");
 

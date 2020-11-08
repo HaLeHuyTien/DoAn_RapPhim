@@ -29,4 +29,6 @@ public class LichChieu_Json {
     public void setXuatChieu(String[] xuatChieu) {
         XuatChieu = xuatChieu;
     }
+
+
 }

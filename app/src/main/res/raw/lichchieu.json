@@ -15,8 +15,22 @@
     ]
   },
     {
-      "TenRap": "Galaxy 3",
+      "TenRap": "Galaxy 2",
       "TenTinh": "Hà Nội",
+      "XuatChieu": [
+        "11:00",
+        "12:30",
+        "13:45",
+        "14:45",
+        "16:00",
+        "17:00",
+        "17:45",
+        "18:15"
+      ]
+    },
+    {
+      "TenRap": "Galaxy 3",
+      "TenTinh": "Cà Mau",
       "XuatChieu": [
         "11:00",
         "12:30",

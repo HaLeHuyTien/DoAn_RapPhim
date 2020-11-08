@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 
+import android.widget.AdapterView;
 import android.widget.DatePicker;
 import android.widget.Spinner;
 import android.widget.ArrayAdapter;
@@ -57,10 +58,6 @@ public class LichChieuFragment extends Fragment {
     private RecyclerView mRecyclerView;
     private LichChieuListAdapter mAdapter;
 
-    //Loc
-    private  Button Loc;
-
-
 
     public static LichChieuFragment getInstance() {
         LichChieuFragment lichChieuFragment = new LichChieuFragment();
@@ -81,7 +78,6 @@ public class LichChieuFragment extends Fragment {
         spnRap = view.findViewById(R.id.spinRap);
         EditNgay = view.findViewById(R.id.editNgay);
         imgLich = view.findViewById(R.id.imageLich);
-        Loc = view.findViewById(R.id.btnLoc);
 
 
         mRecyclerView = view.findViewById(R.id.recycler_view_lich_chieu);
@@ -110,31 +106,66 @@ public class LichChieuFragment extends Fragment {
 
         runExamplev();
 
-        Loc.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                LinkedList<LichChieu_Json> result = new LinkedList<>();
-                int count = mWordList.size();
-                Spinner spinner = (Spinner)view.findViewById(R.id.spinDiaDiem);
-                if(spinner.getSelectedItem().toString().equals("Cả nước")){
-                    mAdapter = new LichChieuListAdapter(getActivity(),mWordList);
-                }
-                else{
-                    for(int i =0;i<count;i++){
-                        if(mWordList.get(i).getTenTinh().equals(spinner.getSelectedItem().toString())){
-                            result.add(mWordList.get(i));
-                        }
-                    }
-                    mAdapter = new LichChieuListAdapter(getActivity(),result);
-                }
-                mRecyclerView.setAdapter(mAdapter);
-                mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-            }
-        });
+        spnDiaDiem.setOnItemSelectedListener(myListener);
+        spnRap.setOnItemSelectedListener(myListener);
 
         return view;
 
     }
+
+    AdapterView.OnItemSelectedListener myListener = new AdapterView.OnItemSelectedListener() {
+        @Override
+        public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+            LinkedList<LichChieu_Json> result = new LinkedList<>();
+            LinkedList<LichChieu_Json> KQ = new LinkedList<>();
+            int count = mWordList.size();
+            int diadiemvitri = spnDiaDiem.getSelectedItemPosition();
+            String diadiemgiatri = spnDiaDiem.getSelectedItem().toString();
+            int rapvitri = spnRap.getSelectedItemPosition();
+            String rapgiatri = spnRap.getSelectedItem().toString();
+            if(diadiemvitri == 0){
+                if(rapvitri == 0)
+                {
+                   KQ = mWordList;
+                }
+                else {
+                    for (int i = 0; i < count; i++) {
+                        if (mWordList.get(i).getTenRap().equals(rapgiatri)) {
+                            result.add(mWordList.get(i));
+                        }
+                    }
+                    KQ = result;
+                }
+            }
+            else{
+                if(rapvitri == 0) {
+                    for (int i = 0; i < count; i++) {
+                        if (mWordList.get(i).getTenTinh().equals(diadiemgiatri)) {
+                            result.add(mWordList.get(i));
+                        }
+                    }
+                    KQ = result;
+                }
+                else
+                {
+                    for (int i = 0; i < count; i++) {
+                        if (mWordList.get(i).getTenTinh().equals(diadiemgiatri) && mWordList.get(i).getTenRap().equals(rapgiatri)) {
+                            result.add(mWordList.get(i));
+                        }
+                    }
+                    KQ = result;
+                }
+            }
+            mAdapter = new LichChieuListAdapter(getActivity(),KQ);
+            mRecyclerView.setAdapter(mAdapter);
+            mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        }
+
+        @Override
+        public void onNothingSelected(AdapterView<?> parent) {
+
+        }
+    };
 
     public void runExamplev(){
         try {
@@ -163,6 +194,7 @@ public class LichChieuFragment extends Fragment {
 
     public void addRap() {
         List<String> list = new ArrayList<>();
+        list.add("Tất cả rạp");
         list.add("Galaxy 1");
         list.add("Galaxy 2");
         list.add("Galaxy 3");

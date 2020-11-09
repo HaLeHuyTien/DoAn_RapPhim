@@ -81,9 +81,7 @@ public class LichChieuFragment extends Fragment {
 
 
         mRecyclerView = view.findViewById(R.id.recycler_view_lich_chieu);
-        mAdapter = new LichChieuListAdapter(getActivity(),mWordList);
-        mRecyclerView.setAdapter(mAdapter);
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+
 
         imgLich.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -109,6 +107,7 @@ public class LichChieuFragment extends Fragment {
         spnDiaDiem.setOnItemSelectedListener(myListener);
         spnRap.setOnItemSelectedListener(myListener);
 
+
         return view;
 
     }
@@ -116,49 +115,7 @@ public class LichChieuFragment extends Fragment {
     AdapterView.OnItemSelectedListener myListener = new AdapterView.OnItemSelectedListener() {
         @Override
         public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-            LinkedList<LichChieu_Json> result = new LinkedList<>();
-            LinkedList<LichChieu_Json> KQ = new LinkedList<>();
-            int count = mWordList.size();
-            int diadiemvitri = spnDiaDiem.getSelectedItemPosition();
-            String diadiemgiatri = spnDiaDiem.getSelectedItem().toString();
-            int rapvitri = spnRap.getSelectedItemPosition();
-            String rapgiatri = spnRap.getSelectedItem().toString();
-            if(diadiemvitri == 0){
-                if(rapvitri == 0)
-                {
-                   KQ = mWordList;
-                }
-                else {
-                    for (int i = 0; i < count; i++) {
-                        if (mWordList.get(i).getTenRap().equals(rapgiatri)) {
-                            result.add(mWordList.get(i));
-                        }
-                    }
-                    KQ = result;
-                }
-            }
-            else{
-                if(rapvitri == 0) {
-                    for (int i = 0; i < count; i++) {
-                        if (mWordList.get(i).getTenTinh().equals(diadiemgiatri)) {
-                            result.add(mWordList.get(i));
-                        }
-                    }
-                    KQ = result;
-                }
-                else
-                {
-                    for (int i = 0; i < count; i++) {
-                        if (mWordList.get(i).getTenTinh().equals(diadiemgiatri) && mWordList.get(i).getTenRap().equals(rapgiatri)) {
-                            result.add(mWordList.get(i));
-                        }
-                    }
-                    KQ = result;
-                }
-            }
-            mAdapter = new LichChieuListAdapter(getActivity(),KQ);
-            mRecyclerView.setAdapter(mAdapter);
-            mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+           Loc();
         }
 
         @Override
@@ -167,13 +124,67 @@ public class LichChieuFragment extends Fragment {
         }
     };
 
+    public void Loc(){
+        LinkedList<LichChieu_Json> result = new LinkedList<>();
+        LinkedList<LichChieu_Json> KQ = new LinkedList<>();
+        int count = mWordList.size();
+        int diadiemvitri = spnDiaDiem.getSelectedItemPosition();
+        String diadiemgiatri = spnDiaDiem.getSelectedItem().toString();
+        int rapvitri = spnRap.getSelectedItemPosition();
+        String NgayChieu = EditNgay.getText().toString();
+        String rapgiatri = spnRap.getSelectedItem().toString();
+        if(diadiemvitri == 0){
+            if(rapvitri == 0)
+            {
+                KQ = mWordList;
+            }
+            else {
+                for (int i = 0; i < count; i++) {
+                    if (mWordList.get(i).getTenRap().equals(rapgiatri) && mWordList.get(i).getNgayChieu().equals(NgayChieu)) {
+                        result.add(mWordList.get(i));
+                    }
+                }
+                KQ = result;
+            }
+        }
+        else{
+            if(rapvitri == 0) {
+                for (int i = 0; i < count; i++) {
+                    if (mWordList.get(i).getTenTinh().equals(diadiemgiatri) && mWordList.get(i).getNgayChieu().equals(NgayChieu)) {
+                        result.add(mWordList.get(i));
+                    }
+                }
+                KQ = result;
+            }
+            else
+            {
+                for (int i = 0; i < count; i++) {
+                    if (mWordList.get(i).getTenTinh().equals(diadiemgiatri) && mWordList.get(i).getTenRap().equals(rapgiatri) && mWordList.get(i).getNgayChieu().equals(NgayChieu)) {
+                        result.add(mWordList.get(i));
+                    }
+                }
+                KQ = result;
+            }
+        }
+        mAdapter = new LichChieuListAdapter(getActivity(),KQ);
+        mRecyclerView.setAdapter(mAdapter);
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+    }
+
     public void runExamplev(){
         try {
             Integer soluongXuatChieu = ReadLichChieuJson.SoLuongXuatChieu(getActivity());
+            mWordList.clear();
             for(Integer i = 0; i < soluongXuatChieu; i++) {
                 LichChieu_Json lichChieu_json = ReadLichChieuJson.readLichChieuJsonFile(getActivity(), i);
-                mWordList.addLast(lichChieu_json);
+                if(lichChieu_json.getNgayChieu().equals(EditNgay.getText().toString())) {
+                    mWordList.addLast(lichChieu_json);
+                }
             }
+            mAdapter = new LichChieuListAdapter(getActivity(),mWordList);
+            mRecyclerView.setAdapter(mAdapter);
+            mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+
         }catch (Exception e){
             EditNgay.setText("b");
 
@@ -209,10 +220,16 @@ public class LichChieuFragment extends Fragment {
 
             @Override
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                EditNgay.setText(dayOfMonth+"/" + month + "/" + year);
+                int thang = month + 1;
+                if(dayOfMonth > 9)
+                EditNgay.setText(dayOfMonth +"/" + thang + "/" + year);
+                else
+                    EditNgay.setText("0" + dayOfMonth + "/" + thang+ "/" + year);
                 lastSelectedYear = year;
                 lastSelectedMonth = month;
                 lastSelectedDayOfMonth = dayOfMonth;
+                runExamplev();
+
             }
         };
         DatePickerDialog datePickerDialog = null;

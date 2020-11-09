@@ -26,6 +26,7 @@ public class ReadLichChieuJson {
             JSONObject jsonObject = jsonArray2.getJSONObject(ViTriXuatChieu);
             String TenRap = jsonObject.getString("TenRap");
             String TenTinh = jsonObject.getString("TenTinh");
+            String NgayChieu = jsonObject.getString("NgayChieu");
             JSONArray jsonArray = jsonObject.getJSONArray("XuatChieu");
             String[] XuatChieu = new String[jsonArray.length()];
             for (int i = 0; i < jsonArray.length(); i++) {
@@ -33,6 +34,7 @@ public class ReadLichChieuJson {
             }
             lichChieu_json.setTenRap(TenRap);
             lichChieu_json.setTenTinh(TenTinh);
+            lichChieu_json.setNgayChieu(NgayChieu);
             lichChieu_json.setXuatChieu(XuatChieu);
 
 

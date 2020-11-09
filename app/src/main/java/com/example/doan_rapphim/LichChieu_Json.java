@@ -4,7 +4,15 @@ public class LichChieu_Json {
     private String TenRap;
     private String TenTinh;
     private String[] XuatChieu;
+    private String NgayChieu;
 
+    public String getNgayChieu() {
+        return NgayChieu;
+    }
+
+    public void setNgayChieu(String ngayChieu) {
+        NgayChieu = ngayChieu;
+    }
 
     public String getTenRap() {
         return TenRap;

@@ -103,7 +103,7 @@ public class LichChieuFragment extends Fragment {
 
 
 
-        runExamplev();
+        HienThiDanhSach();
 
         spnDiaDiem.setOnItemSelectedListener(myListener);
         spnRap.setOnItemSelectedListener(myListener);
@@ -172,7 +172,7 @@ public class LichChieuFragment extends Fragment {
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
     }
 
-    public void runExamplev(){
+    public void HienThiDanhSach(){
         try {
             Integer soluongXuatChieu = ReadLichChieuJson.SoLuongXuatChieu(getActivity());
             mWordList.clear();
@@ -229,7 +229,7 @@ public class LichChieuFragment extends Fragment {
                 lastSelectedYear = year;
                 lastSelectedMonth = month;
                 lastSelectedDayOfMonth = dayOfMonth;
-                runExamplev();
+                HienThiDanhSach();
 
             }
         };

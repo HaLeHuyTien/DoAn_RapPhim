@@ -1,0 +1,24 @@
+{
+  "DanhSach":
+  [
+    {
+      "TenNguoiBinhLuan": "Zoro",
+      "NoiDungBinhLuan": "Tao bị lạc rồi !!! ALOOOO !!",
+      "AnhNguoiBinhLuan": "zoro",
+      "NgayBinhLuan": "15/11/2020"
+    },
+    {
+      "TenNguoiBinhLuan": "Sanji",
+      "NoiDungBinhLuan": "Không ưa thằng ở trên !!",
+      "AnhNguoiBinhLuan": "sanji",
+      "NgayBinhLuan": "15/11/2020"
+    },
+    {
+      "TenNguoiBinhLuan": "Luffy",
+      "NoiDungBinhLuan": "Vua hải tặc là ta !!",
+      "AnhNguoiBinhLuan": "luffy",
+      "NgayBinhLuan": "15/11/2020"
+    }
+  ]
+
+}

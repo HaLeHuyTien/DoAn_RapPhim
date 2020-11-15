@@ -10,6 +10,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.example.doan_rapphim.packageTrangChiTiet.TrangChiTiet;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -72,7 +74,7 @@ public class DSPhimDangChieu extends Fragment {
         btnchitiet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(getActivity() ,TrangChiTiet.class);
+                Intent intent=new Intent(getActivity() , TrangChiTiet.class);
                 startActivity(intent);
             }
         });

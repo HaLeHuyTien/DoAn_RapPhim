@@ -1,4 +1,4 @@
-package com.example.doan_rapphim;
+package com.example.doan_rapphim.packageTrangChiTiet;
 
 public class LichChieu_Json {
     private String TenRap;

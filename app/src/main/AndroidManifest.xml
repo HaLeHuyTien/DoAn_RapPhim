@@ -11,7 +11,7 @@
         android:theme="@style/Theme.DoAn_RapPhim">
         <activity android:name=".TabTaiKhoan"/>
         <activity android:name=".DangKyActiviti" />
-        <activity android:name=".TrangChiTiet" />
+        <activity android:name=".packageTrangChiTiet.TrangChiTiet" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -1,7 +1,9 @@
-package com.example.doan_rapphim;
+package com.example.doan_rapphim.packageTrangChiTiet;
 
 import android.content.Context;
-import android.widget.Toast;
+
+import com.example.doan_rapphim.R;
+import com.example.doan_rapphim.packageTrangChiTiet.LichChieu_Json;
 
 import org.json.JSONArray;
 import org.json.JSONException;

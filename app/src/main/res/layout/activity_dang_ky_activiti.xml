@@ -38,7 +38,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <EditText
-                    android:id="@+id/txtHoTen"
+                    android:id="@+id/txtHoTenDK"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:layout_marginTop="8dp"
@@ -73,10 +73,10 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/txtHoTen" />
+                    app:layout_constraintTop_toBottomOf="@+id/txtHoTenDK" />
 
                 <EditText
-                    android:id="@+id/txtSDT"
+                    android:id="@+id/txtSDTDangKy"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:layout_marginTop="8dp"
@@ -102,12 +102,12 @@
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
 
-                    app:layout_constraintTop_toBottomOf="@+id/txtSDT">
+                    app:layout_constraintTop_toBottomOf="@+id/txtSDTDangKy">
 
 
 
                     <EditText
-                        android:id="@+id/txtNgaySinh"
+                        android:id="@+id/txtNgaySinhDK"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
 
@@ -118,19 +118,19 @@
                         android:paddingStart="12dp"
                         android:textSize="18sp" />
                     <ImageButton
-                        android:id="@+id/imgLich"
+                        android:id="@+id/imgLichNgaySinhDK"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_alignTop="@+id/txtNgaySinh"
-                        android:layout_alignRight="@+id/txtNgaySinh"
-                        android:layout_alignBottom="@+id/txtNgaySinh"
+                        android:layout_alignTop="@+id/txtNgaySinhDK"
+                        android:layout_alignRight="@+id/txtNgaySinhDK"
+                        android:layout_alignBottom="@+id/txtNgaySinhDK"
                         android:padding="5dp"
                         android:src="@drawable/ic_baseline_calendar_today_24" />
 
                 </RelativeLayout>
 
                 <EditText
-                    android:id="@+id/txtDiaChi"
+                    android:id="@+id/txtDiaChiDK"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:layout_marginTop="8dp"
@@ -163,11 +163,11 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.562"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/txtDiaChi" />
+                    app:layout_constraintTop_toBottomOf="@+id/txtDiaChiDK" />
 
 
                 <Button
-                    android:id="@+id/btnDangKy"
+                    android:id="@+id/btnDangKyFormDK"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:layout_marginStart="30dp"

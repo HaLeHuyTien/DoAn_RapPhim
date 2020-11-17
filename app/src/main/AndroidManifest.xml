@@ -12,6 +12,8 @@
         <activity android:name=".packageThongTinUser.TabTaiKhoan"/>
         <activity android:name=".packageDangKyDangNhap.DangKyActiviti" />
         <activity android:name=".packageTrangChiTiet.TrangChiTiet" />
+        <activity android:name=".packageThongTinUser.ThayDoiThongTin"/>
+        <activity android:name=".packageThongTinUser.ThayDoiMatKhau"/>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

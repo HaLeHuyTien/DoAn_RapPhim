@@ -1,5 +1,6 @@
 package com.example.doan_rapphim.packageThongTinUser;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -7,17 +8,19 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import com.example.doan_rapphim.R;
 import com.example.doan_rapphim.packageTrangChiTiet.ThongTinFragment;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link ThongTinFragment#newInstance} factory method to
+ * Use the  factory method to
  * create an instance of this fragment.
  */
 public class TaiKhoan_ThongTinFragment extends Fragment {
-
+    private Button ThayDoiThongTin;
+    private Button ThayDoiMatKhau;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -61,7 +64,24 @@ public class TaiKhoan_ThongTinFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_thong_tin_nguoi_dung, container, false);
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_thong_tin_nguoi_dung, container, false);
+        ThayDoiThongTin = view.findViewById(R.id.btnThayDoiTT);
+        ThayDoiThongTin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), com.example.doan_rapphim.packageThongTinUser.ThayDoiThongTin.class);
+                startActivity(intent);
+            }
+        });
+        ThayDoiMatKhau = view.findViewById(R.id.btnThayDoiMK);
+        ThayDoiMatKhau.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), com.example.doan_rapphim.packageThongTinUser.ThayDoiMatKhau.class);
+                startActivity(intent);
+            }
+        });
+        return view;
     }
 }

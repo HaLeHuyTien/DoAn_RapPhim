@@ -70,7 +70,7 @@
                     android:layout_height="50dp"
                     android:layout_marginTop="40dp"
                     android:background="@drawable/custom_button_dk"
-                    android:onClick="chuyenTrang"
+
                     android:text="Đăng ký tài khoản"
                     android:textAllCaps="false"
                     android:textSize="20sp"

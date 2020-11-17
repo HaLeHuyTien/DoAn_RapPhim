@@ -34,7 +34,7 @@ public class ThongTinFragment extends Fragment {
         btnDatVe.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), com.example.doan_rapphim.packageThanhToan.ThanhToan.class);
+                Intent intent = new Intent(getActivity(), com.example.doan_rapphim.packageTrangChiTiet.packageThanhToan.ThanhToan.class);
                 startActivity(intent);
             }
         });

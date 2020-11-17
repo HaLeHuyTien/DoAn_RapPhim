@@ -1,4 +1,4 @@
-package com.example.doan_rapphim.packageThongTinUser;
+package com.example.doan_rapphim.packageDangKyDangNhap.packageDangNhap.packageThongTinUser;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -70,7 +70,7 @@ public class TaiKhoan_ThongTinFragment extends Fragment {
         ThayDoiThongTin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getContext(), com.example.doan_rapphim.packageThongTinUser.ThayDoiThongTin.class);
+                Intent intent = new Intent(getContext(), com.example.doan_rapphim.packageDangKyDangNhap.packageDangNhap.packageThongTinUser.ThayDoiThongTin.class);
                 startActivity(intent);
             }
         });
@@ -78,7 +78,7 @@ public class TaiKhoan_ThongTinFragment extends Fragment {
         ThayDoiMatKhau.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), com.example.doan_rapphim.packageThongTinUser.ThayDoiMatKhau.class);
+                Intent intent = new Intent(getActivity(), com.example.doan_rapphim.packageDangKyDangNhap.packageDangNhap.packageThongTinUser.ThayDoiMatKhau.class);
                 startActivity(intent);
             }
         });

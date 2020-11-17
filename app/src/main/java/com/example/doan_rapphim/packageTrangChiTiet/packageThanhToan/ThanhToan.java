@@ -1,7 +1,6 @@
-package com.example.doan_rapphim.packageThanhToan;
+package com.example.doan_rapphim.packageTrangChiTiet.packageThanhToan;
 
 import android.os.Bundle;
-import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 

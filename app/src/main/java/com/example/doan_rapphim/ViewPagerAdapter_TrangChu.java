@@ -5,7 +5,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 
-import com.example.doan_rapphim.packageDangKyDangNhap.UserFragment;
+import com.example.doan_rapphim.packageDangKyDangNhap.packageDangNhap.UserFragment;
 
 public class ViewPagerAdapter_TrangChu extends FragmentStatePagerAdapter {
     public ViewPagerAdapter_TrangChu(@NonNull FragmentManager fm, int behavior) {

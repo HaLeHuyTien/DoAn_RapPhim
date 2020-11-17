@@ -1,15 +1,13 @@
-package com.example.doan_rapphim.packageDangKyDangNhap;
+package com.example.doan_rapphim.packageDangKyDangNhap.packageDangKy;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
 import com.example.doan_rapphim.R;
-import com.example.doan_rapphim.packageThongTinUser.TabTaiKhoan;
 
 public class DangKyActiviti extends AppCompatActivity {
     private Button button;

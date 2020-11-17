@@ -1,4 +1,4 @@
-package com.example.doan_rapphim.packageThongTinUser;
+package com.example.doan_rapphim.packageDangKyDangNhap.packageDangNhap.packageThongTinUser;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;

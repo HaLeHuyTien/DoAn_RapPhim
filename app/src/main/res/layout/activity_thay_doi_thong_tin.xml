@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@drawable/p5"
-    tools:context=".packageThongTinUser.ThayDoiThongTin">
+    tools:context=".packageDangKyDangNhap.packageDangNhap.packageThongTinUser.ThayDoiThongTin">
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">

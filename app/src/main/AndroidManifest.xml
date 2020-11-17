@@ -5,22 +5,22 @@
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
+        android:label="RẠP PHIM"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.DoAn_RapPhim">
-        <activity android:name=".packageThongTinUser.TabTaiKhoan"
-            android:label="Thong Tin"
-            android:parentActivityName=".packageDangKyDangNhap.DangKyActiviti">
+        <activity android:name=".packageDangKyDangNhap.packageDangNhap.packageThongTinUser.TabTaiKhoan"
+            android:label="THÔNG TIN"
+            android:parentActivityName=".packageDangKyDangNhap.packageDangKy.DangKyActiviti">
             <meta-data android:name="android.support.PARENT_ACTIVITY"
-                android:value=".packageDangKyDangNhap.DangKyActiviti"/>
+                android:value=".packageDangKyDangNhap.packageDangKy.DangKyActiviti"/>
         </activity>
-        <activity android:name=".packageDangKyDangNhap.DangKyActiviti" />
+        <activity android:name=".packageDangKyDangNhap.packageDangKy.DangKyActiviti" />
         <activity android:name=".packageTrangChiTiet.TrangChiTiet" />
-        <activity android:name=".packageThongTinUser.ThayDoiThongTin"/>
-        <activity android:name=".packageThongTinUser.ThayDoiMatKhau"/>
-        <activity android:name=".packageThanhToan.ThanhToan"
-            android:label="Thanh Toan"
+        <activity android:name=".packageDangKyDangNhap.packageDangNhap.packageThongTinUser.ThayDoiThongTin"/>
+        <activity android:name=".packageDangKyDangNhap.packageDangNhap.packageThongTinUser.ThayDoiMatKhau"/>
+        <activity android:name=".packageTrangChiTiet.packageThanhToan.ThanhToan"
+            android:label="THANH TOÁN"
             android:parentActivityName=".packageTrangChiTiet.TrangChiTiet">
             <meta-data android:name="android.support.PARENT_ACTIVITY"
                 android:value=".packageTrangChiTiet.TrangChiTiet"/>

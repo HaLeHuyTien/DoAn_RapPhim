@@ -9,10 +9,24 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.DoAn_RapPhim">
-        <activity android:name=".packageThongTinUser.TabTaiKhoan"/>
+        <activity android:name=".packageThongTinUser.TabTaiKhoan"
+            android:label="Thong Tin"
+            android:parentActivityName=".packageDangKyDangNhap.DangKyActiviti">
+            <meta-data android:name="android.support.PARENT_ACTIVITY"
+                android:value=".packageDangKyDangNhap.DangKyActiviti"/>
+        </activity>
         <activity android:name=".packageDangKyDangNhap.DangKyActiviti" />
         <activity android:name=".packageTrangChiTiet.TrangChiTiet" />
+        <activity android:name=".packageThongTinUser.ThayDoiThongTin"/>
+        <activity android:name=".packageThongTinUser.ThayDoiMatKhau"/>
+        <activity android:name=".packageThanhToan.ThanhToan"
+            android:label="Thanh Toan"
+            android:parentActivityName=".packageTrangChiTiet.TrangChiTiet">
+            <meta-data android:name="android.support.PARENT_ACTIVITY"
+                android:value=".packageTrangChiTiet.TrangChiTiet"/>
+        </activity>
         <activity android:name=".MainActivity">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -3,6 +3,7 @@
     <string name="button_home">Trang chủ</string>
     <string name="button_list_movie">Danh sách phim</string>
     <string name="button_user">Tài Khoản</string>
+    <string name="button_TimPhim">Tìm Kiếm</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="trangchu_phimdangchieu_fragment">Phim Đang Chiếu</string>
     <string name="trangchu_phimsapchieu_fragment">Phim Sắp Chiếu</string>
@@ -11,7 +12,11 @@
     <string name="Tom_Tat">Luffy và các thành viên băng Mũ Rơm nhận được thư mời đến "Lễ hội Hải tặc" từ người tổ chức Buena Festa. Và vô số Hải tặc khắp nơi trên thế giới cũng đã đến đây để cùng hướng về một vũ đài duy nhất "Tranh đoạt chiếc chìa khóa dẫn đến kho báu Vua Hải Tặc"</string>
     <string name="xemthem">Xem thêm</string>
     <string name="rutgon">Rút gọn</string>
+    <string-array name="lables_array">
 
+        <item>Phim Đang Chiếu</item>
+        <item>Phim Sắp Chiếu</item>
+    </string-array>
     <string name="web">
         <a href="https://www.youtube.com/watch?v=tD3EKDZcZlk">Youtube</a>
     </string>

@@ -6,7 +6,11 @@
     <item android:id="@+id/button_list_movie"
         android:title="@string/button_list_movie"
         android:icon="@drawable/baseline_theaters_black_18"/>
+    <item android:id="@+id/button_TimPhim"
+        android:title="@string/button_TimPhim"
+        android:icon="@drawable/baseline_search_24"/>
     <item android:id="@+id/button_user"
         android:title="@string/button_user"
         android:icon="@drawable/baseline_account_circle_black_18"/>
+
 </menu>

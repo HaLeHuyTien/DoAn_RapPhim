@@ -1,0 +1,37 @@
+{
+  "DanhSach": [
+    {
+      "TenPhim": "Ròm",
+      "TheLoai": "Hài",
+      "DoTuoi": "16+",
+      "SoDiem":"9",
+      "HinhAnh": "rom",
+      "TrangThai":"dangchieu"
+    },
+    {
+      "TenPhim": "Trạng Quỳnh",
+      "TheLoai": "Hài",
+      "DoTuoi": "16+",
+      "SoDiem":"9",
+      "HinhAnh": "trangquynh",
+      "TrangThai":"Phim Đang Chiếu"
+    },
+    {
+      "TenPhim": "Your Name",
+      "TheLoai": "Anime",
+      "DoTuoi": "16+",
+      "SoDiem":"9",
+      "HinhAnh": "images",
+      "TrangThai":"Phim Sắp Chiếu"
+    },
+    {
+      "TenPhim": "Pháp sư mù",
+      "TheLoai": "Hài",
+      "DoTuoi": "16+",
+      "SoDiem":"9",
+      "HinhAnh": "phapsumu",
+      "TrangThai":"Phim Sắp Chiếu"
+    }
+  ]
+
+}

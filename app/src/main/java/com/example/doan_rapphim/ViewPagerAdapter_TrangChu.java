@@ -22,6 +22,8 @@ public class ViewPagerAdapter_TrangChu extends FragmentStatePagerAdapter {
                 return new DanhSachPhimFragment();
             case 2:
                 return new UserFragment();
+            case 3:
+                return new timPhimFragment();
             default:
                 return new TrangChuFragment();
 
@@ -31,6 +33,6 @@ public class ViewPagerAdapter_TrangChu extends FragmentStatePagerAdapter {
 
     @Override
     public int getCount() {
-        return 3;
+        return 4;
     }
 }

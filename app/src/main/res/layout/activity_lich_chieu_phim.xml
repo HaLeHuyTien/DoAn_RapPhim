@@ -51,7 +51,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/spinDiaDiem">
 
                     <EditText
-                        android:id="@+id/txtNgaySinh"
+                        android:id="@+id/txtLichChieu"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:background="@drawable/edit_text_border"
@@ -62,12 +62,12 @@
                         android:textSize="18sp" />
 
                     <ImageButton
-                        android:id="@+id/imgLich"
+                        android:id="@+id/imgLichChieu"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_alignTop="@+id/txtNgaySinh"
-                        android:layout_alignRight="@+id/txtNgaySinh"
-                        android:layout_alignBottom="@+id/txtNgaySinh"
+                        android:layout_alignTop="@+id/txtNgaySinhDK"
+                        android:layout_alignRight="@+id/txtNgaySinhDK"
+                        android:layout_alignBottom="@+id/txtNgaySinhDK"
                         android:padding="5dp"
                         android:src="@drawable/ic_baseline_calendar_today_24" />
 

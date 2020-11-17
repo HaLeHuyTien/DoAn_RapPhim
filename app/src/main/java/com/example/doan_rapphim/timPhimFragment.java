@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -34,6 +35,7 @@ public class timPhimFragment extends Fragment implements AdapterView.OnItemSelec
     private AdapterListPhimItem mAdapter;
     private EditText txt;
     public String Trangthai;
+    private Button btnTimKiem;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -83,6 +85,7 @@ public class timPhimFragment extends Fragment implements AdapterView.OnItemSelec
         ArrayAdapter<CharSequence> adapter= ArrayAdapter.createFromResource(getActivity(),R.array.lables_array, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         Spinner spinner=view.findViewById(R.id.spinner);
+        btnTimKiem = view.findViewById(R.id.btnTim);
 
         if(spinner!=null){
             spinner.setOnItemSelectedListener(this);
@@ -113,15 +116,36 @@ public class timPhimFragment extends Fragment implements AdapterView.OnItemSelec
         }catch (Exception e){
             Toast.makeText(getActivity(),"sai",Toast.LENGTH_LONG).show();
         }
-       /* LinkedList<Phim> result=new LinkedList<>();
-        int count=mWordList.size();
-        for (int i=0;i<count;i++){
-            String tam=mWordList.get(i).getTenPhim();
-            if(tam.indexOf(Trangthai)>=0) {
-                result.add(mWordList.get(i));
-            }
-        }*/
 
+        btnTimKiem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                LinkedList<Phim> timkiem =new LinkedList<>();
+                EditText editText=view.findViewById(R.id.txtTim);
+                try {
+
+                    Integer soluongphim = readJsonListPhim.SoLuongPhim(getActivity());
+                    mWordList.clear();
+
+                    for(Integer i = 0; i < soluongphim; i++){
+                        Phim phim=readJsonListPhim.readPhimJson(getActivity(),i);
+                        if(phim.getTenPhim().equals(editText.getText().toString()))
+                            mWordList.addLast(phim);
+                    }
+
+
+                    mAdapter=new AdapterListPhimItem(getActivity(),mWordList);
+
+                    mRecyclerview.setAdapter(mAdapter);
+
+                    mRecyclerview.setLayoutManager(new LinearLayoutManager(getActivity()));
+
+
+                }catch (Exception e){
+                    Toast.makeText(getActivity(),"sai",Toast.LENGTH_LONG).show();
+                }
+            }
+        });
 
 
         // Inflate the layout for this fragment
@@ -142,25 +166,5 @@ public class timPhimFragment extends Fragment implements AdapterView.OnItemSelec
     public void onNothingSelected(AdapterView<?> parent) {
 
     }
-    public void TimKiem(View view) {
-        LinkedList<Phim> result=new LinkedList<>();
-        EditText editText=view.findViewById(R.id.txtTim);
-        int count=mWordList.size();
-
-        for (int i=0;i<count;i++){
-            String tam=mWordList.get(i).getTenPhim();
-            if(tam.indexOf(editText.getText().toString())>=0) {
-                result.add(mWordList.get(i));
-            }
-        }
-
-
-
-
-        mAdapter=new AdapterListPhimItem(getActivity(),result);
-
-        mRecyclerview.setAdapter(mAdapter);
-
-        mRecyclerview.setLayoutManager(new LinearLayoutManager(getActivity()));
-    }
+    
 }

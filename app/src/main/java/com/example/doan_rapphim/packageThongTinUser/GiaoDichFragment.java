@@ -7,8 +7,13 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 
 import com.example.doan_rapphim.R;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -25,6 +30,7 @@ public class GiaoDichFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    private Spinner spnThang;
 
     public GiaoDichFragment() {
         // Required empty public constructor
@@ -61,6 +67,21 @@ public class GiaoDichFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_giao_dich, container, false);
+        View view = inflater.inflate(R.layout.fragment_giao_dich, container, false);
+        spnThang = view.findViewById(R.id.spinnerThang);
+        chonThang();
+        return view;
+
+    }
+
+    public void chonThang() {
+        List<String> list = new ArrayList<>();
+        for(int i = 1;i<13;i++) {
+            list.add("T "+ i);
+
+        }
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_item, list);
+        adapter.setDropDownViewResource(android.R.layout.simple_list_item_single_choice);
+        spnThang.setAdapter(adapter);
     }
 }

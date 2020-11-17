@@ -1,12 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:background="@color/cardview_light_background"
     tools:context=".packageThongTinUser.ThayDoiThongTin">
-
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
     <ImageView
         android:id="@+id/imgHinhDaiDien2"
         android:layout_width="149dp"
@@ -31,7 +37,7 @@
     <EditText
         android:id="@+id/editTextHVT"
         android:layout_width="0dp"
-        android:layout_height="39dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="32dp"
@@ -56,6 +62,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextHVT" />
 
+    <Button
+        android:id="@+id/btnThoat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="70dp"
+        android:background="@drawable/custom_button"
+        android:text="Thoát"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinnerXaPhuong" />
+
     <Spinner
         android:id="@+id/spinnerQuanHuyen"
         android:layout_width="0dp"
@@ -67,91 +84,86 @@
         app:layout_constraintTop_toBottomOf="@+id/spinnerThanhPho" />
 
     <Spinner
-        android:id="@+id/spinnerXaPhuong"
-        android:layout_width="0dp"
-        android:layout_height="46dp"
-        android:layout_marginTop="12dp"
-        app:layout_constraintEnd_toEndOf="@+id/spinnerQuanHuyen"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/spinnerQuanHuyen"
-        app:layout_constraintTop_toBottomOf="@+id/spinnerQuanHuyen" />
-
-    <Spinner
         android:id="@+id/spinnerThanhPho"
-        android:layout_width="161dp"
-        android:layout_height="43dp"
-        android:layout_marginTop="24dp"
+        android:layout_width="254dp"
+        android:layout_height="46dp"
+        android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.796"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextSDT" />
-
-    <Button
-        android:id="@+id/btnLuu"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="80dp"
-        android:layout_marginTop="50dp"
-        android:background="@drawable/custom_button"
-        android:text="Lưu"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinnerXaPhuong" />
-
-    <Button
-        android:id="@+id/btnThoat"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:layout_marginEnd="80dp"
-        android:background="@drawable/custom_button"
-        android:text="Thoát"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinnerXaPhuong" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextDate" />
 
     <TextView
         android:id="@+id/textView13"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="28dp"
         android:text="TP/Tỉnh"
         android:textSize="16sp"
         app:layout_constraintEnd_toStartOf="@+id/spinnerThanhPho"
+        app:layout_constraintHorizontal_bias="0.666"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextSDT" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextDate" />
 
-    <TextView
-        android:id="@+id/textView14"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="33dp"
-        android:text="Quận/Huyện"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toStartOf="@+id/spinnerQuanHuyen"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView13" />
+    <Spinner
+        android:id="@+id/spinnerXaPhuong"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="24dp"
+        app:layout_constraintEnd_toEndOf="@+id/spinnerQuanHuyen"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/spinnerQuanHuyen"
+        app:layout_constraintTop_toBottomOf="@+id/spinnerQuanHuyen" />
 
     <TextView
         android:id="@+id/textView15"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="48dp"
         android:text="Phường/Xã"
         android:textSize="16sp"
         app:layout_constraintEnd_toStartOf="@+id/spinnerXaPhuong"
+        app:layout_constraintHorizontal_bias="0.736"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView14" />
+
+    <TextView
+        android:id="@+id/textView14"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:text="Quận/Huyện"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toStartOf="@+id/spinnerQuanHuyen"
+        app:layout_constraintHorizontal_bias="0.775"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView13" />
+
+    <Button
+        android:id="@+id/btnLuu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="70dp"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/custom_button"
+        android:text="Lưu"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinnerXaPhuong" />
 
     <EditText
         android:id="@+id/editTextDate"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="1dp"
+        android:layout_marginTop="24dp"
         android:layout_marginEnd="32dp"
         android:ems="10"
+        android:hint="Ngày sinh"
         android:inputType="date"
-        app:layout_constraintBottom_toTopOf="@+id/spinnerThanhPho"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextSDT" />
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</LinearLayout>

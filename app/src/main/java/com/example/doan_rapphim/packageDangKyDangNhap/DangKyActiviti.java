@@ -17,7 +17,7 @@ public class DangKyActiviti extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dang_ky_activiti);
-        button = findViewById(R.id.btnDK1);
+        button = findViewById(R.id.btnDK);
 
     }
     public void ChuyenTrang(View view){

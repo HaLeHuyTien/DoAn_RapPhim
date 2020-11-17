@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <ImageView
+        android:id="@+id/imgHinh"
+        android:layout_width="135dp"
+        android:layout_height="184dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/haiphuongposter" />
+
+    <TextView
+        android:id="@+id/txtTenPhim"
+        android:layout_width="194dp"
+        android:layout_height="34dp"
+        android:layout_marginStart="7dp"
+        android:layout_marginTop="4dp"
+        android:drawableTint="@color/black"
+        android:text="HAI PHƯỢNG"
+        android:textColor="#232222"
+        android:textColorLink="#FFFFFF"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/imgHinh"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/txtChuY"
+        android:layout_width="217dp"
+        android:layout_height="26dp"
+        android:layout_marginTop="4dp"
+        android:drawableTint="#F40F0F"
+        android:text="Phim cấm khản giả dưới 18 tuổi"
+        android:textColor="#EF0606"
+        android:textColorLink="#FFFFFF"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/imgHinh"
+        app:layout_constraintTop_toBottomOf="@+id/txtTenPhim" />
+
+    <TextView
+        android:id="@+id/txtNgay"
+        android:layout_width="217dp"
+        android:layout_height="27dp"
+        android:drawableTint="#F40F0F"
+        android:text="Thứ 4, 37 Thg 10, 2020"
+        android:textColor="#958686"
+        android:textColorLink="#FFFFFF"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/imgHinh"
+        app:layout_constraintTop_toBottomOf="@+id/txtChuY" />
+
+    <TextView
+        android:id="@+id/txtGio"
+        android:layout_width="217dp"
+        android:layout_height="27dp"
+        android:drawableTint="#F40F0F"
+        android:text="14:30 ~ 16:15"
+        android:textColor="#958686"
+        android:textColorLink="#FFFFFF"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/imgHinh"
+        app:layout_constraintTop_toBottomOf="@+id/txtNgay" />
+
+    <TextView
+        android:id="@+id/txtDiaDiem"
+        android:layout_width="217dp"
+        android:layout_height="27dp"
+        android:drawableTint="#F40F0F"
+        android:text="CGV Gò Vấp"
+        android:textColor="#958686"
+        android:textColorLink="#FFFFFF"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/imgHinh"
+        app:layout_constraintTop_toBottomOf="@+id/txtGio" />
+
+    <TextView
+        android:id="@+id/txtSoGhe"
+        android:layout_width="217dp"
+        android:layout_height="27dp"
+        android:drawableTint="#F40F0F"
+        android:text="Seat: H3, H4"
+        android:textColorLink="#FFFFFF"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/imgHinh"
+        app:layout_constraintTop_toBottomOf="@+id/txtDiaDiem" />
+
+    <TextView
+        android:id="@+id/txtTong"
+        android:layout_width="106dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="12dp"
+        android:drawableTint="#F40F0F"
+        android:text="Tổng cộng: "
+        android:textColor="#FA0707"
+        android:textColorLink="#FFFFFF"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/imgHinh"
+        app:layout_constraintTop_toBottomOf="@+id/txtSoGhe" />
+
+    <TextView
+        android:id="@+id/TextView"
+        android:layout_width="102dp"
+        android:layout_height="27dp"
+        android:layout_marginTop="52dp"
+        android:layout_marginEnd="156dp"
+        android:drawableTint="#F40F0F"
+        android:text="Số lượng: "
+        android:textColor="#AC8D8D"
+        android:textColorLink="#FFFFFF"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/txtSoluong"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imgHinh" />
+
+    <TextView
+        android:id="@+id/textView22"
+        android:layout_width="102dp"
+        android:layout_height="27dp"
+        android:drawableTint="#F40F0F"
+        android:text="Tổng:"
+        android:textColor="#AC8D8D"
+        android:textColorLink="#FFFFFF"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/txtTien2"
+        app:layout_constraintHorizontal_bias="0.102"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/TextView" />
+
+    <TextView
+        android:id="@+id/txtSoluong"
+        android:layout_width="102dp"
+        android:layout_height="27dp"
+        android:layout_marginTop="8dp"
+        android:drawableTint="#F40F0F"
+        android:gravity="center"
+        android:text="2"
+        android:textColor="#AC8D8D"
+        android:textColorLink="#FFFFFF"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtTien" />
+
+    <TextView
+        android:id="@+id/txtTien2"
+        android:layout_width="102dp"
+        android:layout_height="27dp"
+        android:drawableTint="#F40F0F"
+        android:gravity="center"
+        android:text="150.000 đ"
+        android:textColor="#AC8D8D"
+        android:textColorLink="#FFFFFF"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtSoluong" />
+
+    <TextView
+        android:id="@+id/txtTien"
+        android:layout_width="106dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="12dp"
+        android:drawableTint="#F40F0F"
+        android:text="150.000 đ"
+        android:textColor="#FA0707"
+        android:textColorLink="#FFFFFF"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/txtTong"
+        app:layout_constraintTop_toBottomOf="@+id/txtSoGhe" />
+
+    <TextView
+        android:id="@+id/textView18"
+        android:layout_width="350dp"
+        android:layout_height="54dp"
+        android:layout_marginTop="292dp"
+        android:background="#DFC8C8"
+        android:gravity="center"
+        android:text="GIẢM GIÁ"
+        android:textColor="#885D5D"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/txtCoupon"
+        android:layout_width="350dp"
+        android:layout_height="54dp"
+        android:text="Coupon"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtVoucher" />
+
+    <TextView
+        android:id="@+id/txtDiem"
+        android:layout_width="350dp"
+        android:layout_height="54dp"
+        android:layout_marginTop="1dp"
+        android:text="Điểm thưởng"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtCoupon" />
+
+    <TextView
+        android:id="@+id/txtVip"
+        android:layout_width="350dp"
+        android:layout_height="54dp"
+        android:text="VIP"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtDiem" />
+
+    <TextView
+        android:id="@+id/txtVoucher"
+        android:layout_width="350dp"
+        android:layout_height="54dp"
+        android:text="CVG Voucher"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView18" />
+
+    <Button
+        android:id="@+id/btnThanhToan"
+        android:layout_width="360dp"
+        android:layout_height="47dp"
+        android:background="#F6F2F2"
+        android:backgroundTint="#F4EEEE"
+        android:text="THANH TOÁN"
+        android:textColor="#ED0D0D"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtVip" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -4,30 +4,30 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#80DEEA"
-    tools:context=".packageThongTinUser.ThayDoiMatKhau">
+    android:background="@color/cardview_light_background"
+    tools:context=".ThayDoiMatKhau">
 
     <Button
         android:id="@+id/btnLuu2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="70dp"
-        android:layout_marginTop="100dp"
-        android:background="#4CAF50"
+        android:layout_marginTop="50dp"
         android:text="Lưu"
+        android:background="@drawable/custom_button"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPassword3" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextNLMK" />
 
     <Button
         android:id="@+id/btnThoat2"
         android:layout_width="wrap_content"
-        android:layout_height="48dp"
-        android:layout_marginTop="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
         android:layout_marginEnd="70dp"
-        android:background="#F44336"
+        android:background="@drawable/custom_button"
         android:text="Thoát"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPassword3" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextNLMK" />
 
     <TextView
         android:id="@+id/textView"
@@ -42,82 +42,45 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/textView9"
-        android:layout_width="100dp"
-        android:layout_height="25dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="50dp"
-        android:text="Mật Khẩu Cũ"
-        android:textColor="#EF5350"
-        android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
-
-    <TextView
-        android:id="@+id/textView11"
-        android:layout_width="100dp"
-        android:layout_height="25dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="40dp"
-        android:text="Mật Khẩu Mới"
-        android:textColor="#EF5350"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="@+id/textView9"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView9" />
-
-    <TextView
-        android:id="@+id/textView12"
-        android:layout_width="100sp"
-        android:layout_height="40sp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="35dp"
-        android:text="Nhập Lại Mật Khẩu"
-        android:textColor="#EF5350"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="@+id/textView11"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView11" />
-
     <EditText
-        android:id="@+id/edtMKCu"
+        android:id="@+id/editTextMKCu"
         android:layout_width="0dp"
-        android:layout_height="36dp"
-        android:layout_marginStart="16dp"
+        android:layout_height="50sp"
+        android:layout_marginStart="32dp"
         android:layout_marginTop="44dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginEnd="32dp"
         android:ems="10"
+        android:hint="Mật khẩu cũ"
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textView9"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <EditText
-        android:id="@+id/editTextTextPassword2"
-        android:layout_width="261dp"
-        android:layout_height="37dp"
-        android:layout_marginStart="16dp"
+        android:id="@+id/editTextMKMoi"
+        android:layout_width="0dp"
+        android:layout_height="50sp"
+        android:layout_marginStart="32dp"
         android:layout_marginTop="24dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginEnd="32dp"
         android:ems="10"
+        android:hint="Mật khẩu mới"
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textView11"
-        app:layout_constraintTop_toBottomOf="@+id/edtMKCu" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextMKCu" />
 
     <EditText
-        android:id="@+id/editTextTextPassword3"
-        android:layout_width="261dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="16dp"
+        android:id="@+id/editTextTextNLMK"
+        android:layout_width="0dp"
+        android:layout_height="50sp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="32dp"
         android:ems="10"
+        android:hint="Nhập lại mật khẩu"
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/textView12"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPassword2" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextMKMoi" />
 </androidx.constraintlayout.widget.ConstraintLayout>

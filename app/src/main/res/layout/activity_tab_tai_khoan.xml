@@ -4,13 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".packageThongTinUser.TabTaiKhoan">
+    tools:context=".TabTaiKhoan">
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tabBar"
         android:layout_width="409dp"
         android:layout_height="wrap_content"
-        android:background="#E8EAF6"
+        android:background="#B3E5FC"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -32,7 +32,7 @@
         android:id="@+id/viewPager"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="#81D4FA"
+        android:background="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

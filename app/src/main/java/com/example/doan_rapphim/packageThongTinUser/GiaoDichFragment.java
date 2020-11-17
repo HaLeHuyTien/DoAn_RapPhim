@@ -76,7 +76,7 @@ public class GiaoDichFragment extends Fragment {
 
     public void chonThang() {
         List<String> list = new ArrayList<>();
-        for(int i = 1;i<13;i++) {
+        for(int i = 0;i<13;i++) {
             list.add("T "+ i);
 
         }

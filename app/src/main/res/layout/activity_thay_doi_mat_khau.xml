@@ -4,11 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/cardview_light_background"
+    android:background="@drawable/p5"
     tools:context=".packageThongTinUser.ThayDoiMatKhau">
 
     <Button
-        android:id="@+id/btnLuu2"
+        android:id="@+id/btnLuuTT"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="70dp"
@@ -16,10 +16,10 @@
         android:text="Lưu"
         android:background="@drawable/custom_button"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextNLMK" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextNLMKTT" />
 
     <Button
-        android:id="@+id/btnThoat2"
+        android:id="@+id/btnThoatTT"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
@@ -27,7 +27,7 @@
         android:background="@drawable/custom_button"
         android:text="Thoát"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextNLMK" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextNLMKTT" />
 
     <TextView
         android:id="@+id/textView"
@@ -43,9 +43,10 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editTextMKCu"
+        android:id="@+id/editTextMKCuTT"
         android:layout_width="0dp"
-        android:layout_height="50sp"
+        android:layout_height="45dp"
+        android:background="@drawable/custom_input"
         android:layout_marginStart="32dp"
         android:layout_marginTop="44dp"
         android:layout_marginEnd="32dp"
@@ -57,9 +58,10 @@
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <EditText
-        android:id="@+id/editTextMKMoi"
+        android:id="@+id/editTextMKMoiTT"
         android:layout_width="0dp"
-        android:layout_height="50sp"
+        android:layout_height="45dp"
+        android:background="@drawable/custom_input"
         android:layout_marginStart="32dp"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="32dp"
@@ -68,12 +70,13 @@
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextMKCu" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextMKCuTT" />
 
     <EditText
-        android:id="@+id/editTextTextNLMK"
+        android:id="@+id/editTextTextNLMKTT"
         android:layout_width="0dp"
-        android:layout_height="50sp"
+        android:layout_height="45dp"
+        android:background="@drawable/custom_input"
         android:layout_marginStart="32dp"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="32dp"
@@ -82,5 +85,5 @@
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextMKMoi" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextMKMoiTT" />
 </androidx.constraintlayout.widget.ConstraintLayout>

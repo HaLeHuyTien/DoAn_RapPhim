@@ -1,4 +1,4 @@
-package com.example.doan_rapphim;
+package com.example.doan_rapphim.packageDanhSachPhim;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.example.doan_rapphim.R;
 import com.example.doan_rapphim.packageTrangChiTiet.TrangChiTiet;
 
 

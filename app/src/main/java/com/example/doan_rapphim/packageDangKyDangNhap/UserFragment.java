@@ -1,4 +1,4 @@
-package com.example.doan_rapphim;
+package com.example.doan_rapphim.packageDangKyDangNhap;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,6 +10,9 @@ import android.widget.Button;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+
+import com.example.doan_rapphim.R;
+import com.example.doan_rapphim.packageThongTinUser.TabTaiKhoan;
 
 public class UserFragment extends Fragment {
 private Button button;
@@ -30,7 +33,7 @@ private Button button;
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(getActivity() ,TabTaiKhoan.class);
+                Intent intent=new Intent(getActivity() , TabTaiKhoan.class);
                 startActivity(intent);
             }
         });

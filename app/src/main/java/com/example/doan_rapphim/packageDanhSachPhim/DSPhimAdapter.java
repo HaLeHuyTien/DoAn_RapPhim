@@ -1,4 +1,4 @@
-package com.example.doan_rapphim;
+package com.example.doan_rapphim.packageDanhSachPhim;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;

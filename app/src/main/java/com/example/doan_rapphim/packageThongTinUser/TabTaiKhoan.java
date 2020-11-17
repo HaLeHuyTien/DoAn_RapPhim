@@ -1,13 +1,13 @@
-package com.example.doan_rapphim;
+package com.example.doan_rapphim.packageThongTinUser;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import com.example.doan_rapphim.R;
 import com.google.android.material.tabs.TabItem;
 import com.google.android.material.tabs.TabLayout;
 

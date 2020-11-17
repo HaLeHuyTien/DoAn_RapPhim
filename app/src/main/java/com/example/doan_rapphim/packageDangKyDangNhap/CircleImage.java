@@ -1,4 +1,4 @@
-package com.example.doan_rapphim;
+package com.example.doan_rapphim.packageDangKyDangNhap;
 
 import android.content.Context;
 import android.graphics.Bitmap;

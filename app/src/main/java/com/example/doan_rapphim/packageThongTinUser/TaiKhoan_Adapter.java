@@ -1,12 +1,10 @@
-package com.example.doan_rapphim;
+package com.example.doan_rapphim.packageThongTinUser;
 
-import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
 import com.example.doan_rapphim.GiaoDichFragment;
-import com.example.doan_rapphim.TaiKhoan_ThongTinFragment;
 
 public class TaiKhoan_Adapter extends FragmentPagerAdapter {
     private int numOfTabs;

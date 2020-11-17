@@ -10,10 +10,7 @@ import android.os.Handler;
 
 
 import com.example.doan_rapphim.R;
-import com.example.doan_rapphim.ThongTinFragment;
 import com.example.doan_rapphim.ViewPagerAdapter_TrangChiTiet;
-import com.example.doan_rapphim.packageTrangChiTiet.BinhLuanFragment;
-import com.example.doan_rapphim.packageTrangChiTiet.LichChieuFragment;
 import com.google.android.material.tabs.TabLayout;
 
 

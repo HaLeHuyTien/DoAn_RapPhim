@@ -1,4 +1,4 @@
-package com.example.doan_rapphim;
+package com.example.doan_rapphim.packageThongTinUser;
 
 import android.os.Bundle;
 
@@ -8,12 +8,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.doan_rapphim.R;
+import com.example.doan_rapphim.packageTrangChiTiet.ThongTinFragment;
+
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link DSPhimSapChieu#newInstance} factory method to
+ * Use the {@link ThongTinFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class DSPhimSapChieu extends Fragment {
+public class TaiKhoan_ThongTinFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -24,7 +27,7 @@ public class DSPhimSapChieu extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public DSPhimSapChieu() {
+    public TaiKhoan_ThongTinFragment() {
         // Required empty public constructor
     }
 
@@ -34,11 +37,11 @@ public class DSPhimSapChieu extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment DSPhimSapChieu.
+     * @return A new instance of fragment ThongTinFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static DSPhimSapChieu newInstance(String param1, String param2) {
-        DSPhimSapChieu fragment = new DSPhimSapChieu();
+    public static ThongTinFragment newInstance(String param1, String param2) {
+        ThongTinFragment fragment = new ThongTinFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -59,6 +62,6 @@ public class DSPhimSapChieu extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_d_s_phim_sap_chieu, container, false);
+        return inflater.inflate(R.layout.fragment_thong_tin_nguoi_dung, container, false);
     }
 }

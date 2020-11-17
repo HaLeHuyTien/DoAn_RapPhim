@@ -1,8 +1,10 @@
-package com.example.doan_rapphim;
+package com.example.doan_rapphim.packageThongTinUser;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.example.doan_rapphim.R;
 
 public class ThayDoiThongTin extends AppCompatActivity {
 

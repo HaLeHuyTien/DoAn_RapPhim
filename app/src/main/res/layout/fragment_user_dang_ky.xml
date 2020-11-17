@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:padding="40dp"
     android:background="@drawable/p5"
-    tools:context=".DangKyActiviti">
+    tools:context=".packageDangKyDangNhap.DangKyActiviti">
 
     <Button
         android:id="@+id/btnTaiHinh"

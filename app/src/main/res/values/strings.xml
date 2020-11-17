@@ -13,7 +13,7 @@
     <string name="xemthem">Xem thêm</string>
     <string name="rutgon">Rút gọn</string>
     <string-array name="lables_array">
-
+        <item>Bộ lọc phim</item>
         <item>Phim Đang Chiếu</item>
         <item>Phim Sắp Chiếu</item>
     </string-array>

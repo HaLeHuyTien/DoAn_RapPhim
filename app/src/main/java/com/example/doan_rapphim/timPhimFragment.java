@@ -90,13 +90,24 @@ public class timPhimFragment extends Fragment implements AdapterView.OnItemSelec
         }
 
        try {
+           LinkedList<Phim> result=new LinkedList<>();
            Integer soluongphim = readJsonListPhim.SoLuongPhim(getActivity());
            mWordList.clear();
 
            for(Integer i = 0; i < soluongphim; i++){
-                Phim phim=readJsonListPhim.readTuDienJson(getActivity(),i);
+                Phim phim=readJsonListPhim.readPhimJson(getActivity(),i);
                 mWordList.addLast(phim);
             }
+
+
+
+           mRecyclerview=view.findViewById(R.id.recylerview);
+
+           mAdapter=new AdapterListPhimItem(getActivity(),mWordList);
+
+           mRecyclerview.setAdapter(mAdapter);
+
+           mRecyclerview.setLayoutManager(new LinearLayoutManager(getActivity()));
 
 
         }catch (Exception e){
@@ -111,13 +122,7 @@ public class timPhimFragment extends Fragment implements AdapterView.OnItemSelec
             }
         }*/
 
-        mRecyclerview=view.findViewById(R.id.recylerview);
 
-        mAdapter=new AdapterListPhimItem(getActivity(),mWordList);
-
-        mRecyclerview.setAdapter(mAdapter);
-
-        mRecyclerview.setLayoutManager(new LinearLayoutManager(getActivity()));
 
         // Inflate the layout for this fragment
         return view;

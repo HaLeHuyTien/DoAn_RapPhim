@@ -12,7 +12,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 
 public class readJsonListPhim {
-    public static Phim readTuDienJson(Context context, int i) throws IOException, JSONException {
+    public static Phim readPhimJson(Context context, int i) throws IOException, JSONException {
         String jsonText=readText(context,R.raw.dsphim);
 
         JSONObject jsonRoot=new JSONObject(jsonText);

@@ -12,10 +12,10 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.doan_rapphim.R;
-import com.example.doan_rapphim.packageDangKyDangNhap.packageDangKy.DangKyActiviti;
+import com.example.doan_rapphim.packageDangKyDangNhap.packageDangKy.DangKyActivity;
 import com.example.doan_rapphim.packageDangKyDangNhap.packageDangNhap.packageThongTinUser.TabTaiKhoan;
 
-public class UserFragment extends Fragment {
+public class DangNhapFragment extends Fragment {
 private Button button;
     @Nullable
     @Override
@@ -25,7 +25,7 @@ private Button button;
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(getActivity() , DangKyActiviti.class);
+                Intent intent=new Intent(getActivity() , DangKyActivity.class);
                 startActivity(intent);
             }
         });

@@ -77,7 +77,7 @@ public class LichChieuFragment extends Fragment {
 
         spnDiaDiem = view.findViewById(R.id.spinDiaDiem);
         spnRap = view.findViewById(R.id.spinRap);
-        EditNgay = view.findViewById(R.id.txtNgaySinhDK);
+        EditNgay = view.findViewById(R.id.txtLichChieu);
         imgLich = view.findViewById(R.id.imgLichChieu);
 
 

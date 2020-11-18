@@ -11,11 +11,11 @@
         android:theme="@style/Theme.DoAn_RapPhim">
         <activity android:name=".packageDangKyDangNhap.packageDangNhap.packageThongTinUser.TabTaiKhoan"
             android:label="THÔNG TIN"
-            android:parentActivityName=".packageDangKyDangNhap.packageDangKy.DangKyActiviti">
+            android:parentActivityName=".packageDangKyDangNhap.packageDangKy.DangKyActivity">
             <meta-data android:name="android.support.PARENT_ACTIVITY"
-                android:value=".packageDangKyDangNhap.packageDangKy.DangKyActiviti"/>
+                android:value=".packageDangKyDangNhap.packageDangKy.DangKyActivity"/>
         </activity>
-        <activity android:name=".packageDangKyDangNhap.packageDangKy.DangKyActiviti" />
+        <activity android:name=".packageDangKyDangNhap.packageDangKy.DangKyActivity" />
         <activity android:name=".packageTrangChiTiet.TrangChiTiet" />
         <activity android:name=".packageDangKyDangNhap.packageDangNhap.packageThongTinUser.ThayDoiThongTin"/>
         <activity android:name=".packageDangKyDangNhap.packageDangNhap.packageThongTinUser.ThayDoiMatKhau"/>

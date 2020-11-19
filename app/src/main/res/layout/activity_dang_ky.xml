@@ -147,7 +147,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/reLayoutDK" />
 
                 <EditText
-                    android:id="@+id/txtPassDK"
+                    android:id="@+id/txtMatKhauDK"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:layout_marginTop="8dp"
@@ -177,13 +177,14 @@
                     android:text="Đăng ký"
                     android:textColor="@android:color/white"
                     android:textSize="18sp"
+                    android:onClick="DangKy"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/txtConfirmPassDK" />
+                    app:layout_constraintTop_toBottomOf="@+id/txtNhapLaiMatKhauDK" />
 
                 <EditText
-                    android:id="@+id/txtConfirmPassDK"
+                    android:id="@+id/txtNhapLaiMatKhauDK"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
 
@@ -199,7 +200,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.562"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/txtPassDK" />
+                    app:layout_constraintTop_toBottomOf="@+id/txtMatKhauDK" />
 
 
                 <ImageView

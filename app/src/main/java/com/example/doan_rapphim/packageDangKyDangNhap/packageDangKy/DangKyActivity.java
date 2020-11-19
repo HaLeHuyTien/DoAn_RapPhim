@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import com.example.doan_rapphim.R;
 
@@ -17,8 +18,13 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 public class DangKyActivity extends AppCompatActivity {
-    private Button button;
-    private EditText HoTen;
+    private Button btnDangKy;
+    private EditText edtHoTenDK;
+    private EditText edtEmailDK;
+    private EditText edtSDTDangKy;
+    private EditText edtDiaChiDK;
+    private EditText edtMatKhauDK;
+    private EditText edtNhapLaiMatKhauDK;
     private EditText edtNgaySinh;
     private ImageButton imgLichNgaySinhFormDangKy;
     private int lastSelectedYear;
@@ -28,9 +34,14 @@ public class DangKyActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dang_ky);
-        button = findViewById(R.id.btnDangKyFormDK);
-        HoTen = findViewById(R.id.txtHoTenDK);
+        btnDangKy = findViewById(R.id.btnDangKyFormDK);
+        edtHoTenDK = findViewById(R.id.txtHoTenDK);
         edtNgaySinh=findViewById(R.id.txtNgaySinhDK);
+        edtEmailDK=findViewById(R.id.txtEmailDK);
+        edtSDTDangKy=findViewById(R.id.txtSDTDangKy);
+        edtDiaChiDK=findViewById(R.id.txtDiaChiDK);
+        edtMatKhauDK=findViewById(R.id.txtMatKhauDK);
+        edtNhapLaiMatKhauDK=findViewById(R.id.txtNhapLaiMatKhauDK);
         imgLichNgaySinhFormDangKy=findViewById(R.id.imgLichNgaySinhDK);
         imgLichNgaySinhFormDangKy.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -46,12 +57,6 @@ public class DangKyActivity extends AppCompatActivity {
         DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
         String date = df.format(Calendar.getInstance().getTime());
         edtNgaySinh.setText(date);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
     }
 
     public void ChonNgaySinh(){
@@ -75,6 +80,39 @@ public class DangKyActivity extends AppCompatActivity {
         datePickerDialog = new DatePickerDialog(this, dateSetListener, lastSelectedYear, lastSelectedMonth, lastSelectedDayOfMonth);
         datePickerDialog.show();
     }
+    public void DangKy(View view){
+        String HoTen=edtHoTenDK.getText().toString();
+        String Email=edtEmailDK.getText().toString();
+        String SDT=edtSDTDangKy.getText().toString();
+        String DiaChi=edtDiaChiDK.getText().toString();
+        String MatKhau=edtMatKhauDK.getText().toString();
+        String NhapLaiMatKhau=edtNhapLaiMatKhauDK.getText().toString();
+        if(HoTen.equals("")){
+            Toast.makeText(this,"Bạn chưa nhập Họ và Tên trong form Đăng ký",Toast.LENGTH_SHORT).show();
+        }
+        else if(kiemTraDinhNghia(HoTen)==true){
+            Toast.makeText(this,"Bạn chưa nhập đúng 3 từ Họ và Tên trong form Đăng ký",Toast.LENGTH_SHORT).show();
+        }
+        else {
+            Toast.makeText(this,"Bạn chưa nhập đúng trong form Đăng ký",Toast.LENGTH_SHORT).show();
+        }
+
+
+    }
+    public static boolean kiemTraDinhNghia(final String kt){
+        int tam=1;
+        if(kt!=null){
+            for(int i=0;i<kt.length();i++){
+                if(Character.isWhitespace(kt.charAt(i))){
+                    tam++;
+                }
+            }
+        }
+        if(tam>2)
+            return false;
+        else return true;
+    }
+
 
 }
 

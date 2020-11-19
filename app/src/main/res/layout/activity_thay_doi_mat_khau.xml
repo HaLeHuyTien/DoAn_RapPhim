@@ -16,7 +16,7 @@
         android:text="Lưu"
         android:background="@drawable/custom_button"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextNLMKTT" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextNLMKTT" />
 
     <Button
         android:id="@+id/btnThoatTT"
@@ -27,7 +27,7 @@
         android:background="@drawable/custom_button"
         android:text="Thoát"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextNLMKTT" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextNLMKTT" />
 
     <TextView
         android:id="@+id/textView"
@@ -73,7 +73,7 @@
         app:layout_constraintTop_toBottomOf="@+id/editTextMKCuTT" />
 
     <EditText
-        android:id="@+id/editTextTextNLMKTT"
+        android:id="@+id/editTextNLMKTT"
         android:layout_width="0dp"
         android:layout_height="45dp"
         android:background="@drawable/custom_input"
@@ -86,4 +86,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextMKMoiTT" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,6 +1,5 @@
-package com.example.doan_rapphim.packageThongTinUser;
+package com.example.doan_rapphim.packageDangKyDangNhap.packageDangKy;
 
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -11,16 +10,14 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.example.doan_rapphim.R;
-import com.example.doan_rapphim.packageTrangChiTiet.ThongTinFragment;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the  factory method to
+ * Use the {@link UserDangKyFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class TaiKhoan_ThongTinFragment extends Fragment {
-    private Button ThayDoiThongTin;
-    private Button ThayDoiMatKhau;
+public class UserDangKyFragment extends Fragment {
+
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -30,7 +27,7 @@ public class TaiKhoan_ThongTinFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public TaiKhoan_ThongTinFragment() {
+    public UserDangKyFragment() {
         // Required empty public constructor
     }
 
@@ -40,11 +37,11 @@ public class TaiKhoan_ThongTinFragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment ThongTinFragment.
+     * @return A new instance of fragment UserDangKyFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static ThongTinFragment newInstance(String param1, String param2) {
-        ThongTinFragment fragment = new ThongTinFragment();
+    public static UserDangKyFragment newInstance(String param1, String param2) {
+        UserDangKyFragment fragment = new UserDangKyFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -60,28 +57,16 @@ public class TaiKhoan_ThongTinFragment extends Fragment {
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
-
+    private Button button;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_thong_tin_nguoi_dung, container, false);
         // Inflate the layout for this fragment
-        ThayDoiThongTin = view.findViewById(R.id.btnThayDoiTT);
-        ThayDoiThongTin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getContext(), com.example.doan_rapphim.packageThongTinUser.ThayDoiThongTin.class);
-                startActivity(intent);
-            }
-        });
-        ThayDoiMatKhau = view.findViewById(R.id.btnThayDoiMK);
-        ThayDoiMatKhau.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), com.example.doan_rapphim.packageThongTinUser.ThayDoiMatKhau.class);
-                startActivity(intent);
-            }
-        });
+        View view = inflater.inflate(R.layout.activity_dang_ky,container,false);
+
+
+
         return view;
     }
+
 }

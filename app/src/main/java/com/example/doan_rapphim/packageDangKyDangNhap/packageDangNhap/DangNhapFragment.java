@@ -1,4 +1,4 @@
-package com.example.doan_rapphim.packageDangKyDangNhap;
+package com.example.doan_rapphim.packageDangKyDangNhap.packageDangNhap;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,19 +12,20 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.doan_rapphim.R;
-import com.example.doan_rapphim.packageThongTinUser.TabTaiKhoan;
+import com.example.doan_rapphim.packageDangKyDangNhap.packageDangKy.DangKyActivity;
+import com.example.doan_rapphim.packageDangKyDangNhap.packageDangNhap.packageThongTinUser.TabTaiKhoan;
 
-public class UserFragment extends Fragment {
+public class DangNhapFragment extends Fragment {
 private Button button;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_user,container,false);
+        View view = inflater.inflate(R.layout.fragment_dangnhap,container,false);
         button=view.findViewById(R.id.btnDK);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(getActivity() ,DangKyActiviti.class);
+                Intent intent=new Intent(getActivity() , DangKyActivity.class);
                 startActivity(intent);
             }
         });

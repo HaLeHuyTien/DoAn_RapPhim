@@ -100,7 +100,7 @@
                     android:text="Cinema"
                     android:textAlignment="center"
                     android:textColor="@android:color/holo_red_dark"
-                    android:textSize="100sp"
+                    android:textSize="90dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />

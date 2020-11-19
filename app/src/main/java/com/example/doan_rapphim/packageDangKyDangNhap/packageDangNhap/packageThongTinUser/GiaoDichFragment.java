@@ -1,4 +1,4 @@
-package com.example.doan_rapphim.packageDangKyDangNhap;
+package com.example.doan_rapphim.packageDangKyDangNhap.packageDangNhap.packageThongTinUser;
 
 import android.os.Bundle;
 
@@ -7,16 +7,20 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 
 import com.example.doan_rapphim.R;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link UserDangKyFragment#newInstance} factory method to
+ * Use the {@link GiaoDichFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class UserDangKyFragment extends Fragment {
+public class GiaoDichFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -26,8 +30,9 @@ public class UserDangKyFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    private Spinner spnThang;
 
-    public UserDangKyFragment() {
+    public GiaoDichFragment() {
         // Required empty public constructor
     }
 
@@ -37,11 +42,11 @@ public class UserDangKyFragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment UserDangKyFragment.
+     * @return A new instance of fragment GiaoDichFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static UserDangKyFragment newInstance(String param1, String param2) {
-        UserDangKyFragment fragment = new UserDangKyFragment();
+    public static GiaoDichFragment newInstance(String param1, String param2) {
+        GiaoDichFragment fragment = new GiaoDichFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -57,16 +62,26 @@ public class UserDangKyFragment extends Fragment {
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
-    private Button button;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.activity_dang_ky_activiti,container,false);
-
-
-
+        View view = inflater.inflate(R.layout.fragment_giao_dich, container, false);
+        spnThang = view.findViewById(R.id.spinnerThang);
+        chonThang();
         return view;
+
     }
 
+    public void chonThang() {
+        List<String> list = new ArrayList<>();
+        for(int i = 0;i<13;i++) {
+            list.add("T "+ i);
+
+        }
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_item, list);
+        adapter.setDropDownViewResource(android.R.layout.simple_list_item_single_choice);
+        spnThang.setAdapter(adapter);
+    }
 }

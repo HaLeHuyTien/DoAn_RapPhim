@@ -88,10 +88,25 @@ public class DangKyActivity extends AppCompatActivity {
         String MatKhau=edtMatKhauDK.getText().toString();
         String NhapLaiMatKhau=edtNhapLaiMatKhauDK.getText().toString();
         if(HoTen.equals("")){
-            Toast.makeText(this,"Bạn chưa nhập Họ và Tên trong form Đăng ký",Toast.LENGTH_SHORT).show();
+            Toast.makeText(this,"Bạn chưa nhập Họ và Tên cho form Đăng ký",Toast.LENGTH_SHORT).show();
         }
-        else if(kiemTraDinhNghia(HoTen)==true){
+        else if(kiemTraNhapDung3Tu(HoTen)==true){
             Toast.makeText(this,"Bạn chưa nhập đúng 3 từ Họ và Tên trong form Đăng ký",Toast.LENGTH_SHORT).show();
+        }
+        else if(Email.equals("")){
+            Toast.makeText(this,"Bạn chưa nhập Email cho form Đăng ký",Toast.LENGTH_SHORT).show();
+        }
+        else if(SDT.equals("")){
+            Toast.makeText(this,"Bạn chưa nhập Số điện thoại cho form Đăng ký",Toast.LENGTH_SHORT).show();
+        }
+        else if(DiaChi.equals("")){
+            Toast.makeText(this,"Bạn chưa nhập Địa chỉ cho form Đăng ký",Toast.LENGTH_SHORT).show();
+        }
+        else if(MatKhau.equals("")){
+            Toast.makeText(this,"Bạn chưa nhập Mật khẩu cho form Đăng ký",Toast.LENGTH_SHORT).show();
+        }
+        else if(NhapLaiMatKhau.equals("")){
+            Toast.makeText(this,"Bạn chưa Nhập lại mật khẩu cho form Đăng ký",Toast.LENGTH_SHORT).show();
         }
         else {
             Toast.makeText(this,"Bạn chưa nhập đúng trong form Đăng ký",Toast.LENGTH_SHORT).show();
@@ -99,7 +114,7 @@ public class DangKyActivity extends AppCompatActivity {
 
 
     }
-    public static boolean kiemTraDinhNghia(final String kt){
+    public static boolean kiemTraNhapDung3Tu(final String kt){
         int tam=1;
         if(kt!=null){
             for(int i=0;i<kt.length();i++){

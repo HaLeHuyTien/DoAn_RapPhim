@@ -42,7 +42,7 @@
 
                     />
 
-                <RelativeLayout
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/relativeLayout"
                     android:layout_width="0dp"
                     android:layout_height="46dp"
@@ -52,26 +52,31 @@
 
                     <EditText
                         android:id="@+id/txtLichChieu"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:background="@drawable/edit_text_border"
                         android:ems="10"
                         android:inputType="textPersonName"
                         android:padding="2dp"
                         android:text="Name"
-                        android:textSize="18sp" />
+                        android:textSize="18sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/imgLichChieu"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
                     <ImageButton
                         android:id="@+id/imgLichChieu"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignTop="@+id/txtNgaySinhDK"
-                        android:layout_alignRight="@+id/txtNgaySinhDK"
-                        android:layout_alignBottom="@+id/txtNgaySinhDK"
+                        android:layout_height="0dp"
                         android:padding="5dp"
-                        android:src="@drawable/ic_baseline_calendar_today_24" />
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/ic_baseline_calendar_today_24"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
-                </RelativeLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

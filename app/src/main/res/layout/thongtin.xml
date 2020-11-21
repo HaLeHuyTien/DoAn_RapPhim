@@ -40,9 +40,8 @@
                     android:id="@+id/txtNgonNgu"
                     android:layout_width="134dp"
                     android:layout_height="35dp"
-                    android:text="Phụ đề"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/txtThoiGian" />
+                    app:layout_constraintTop_toBottomOf="@+id/txtThoiLuong" />
 
                 <TextView
                     android:id="@+id/txt2"
@@ -50,25 +49,23 @@
                     android:layout_height="35dp"
                     android:paddingStart="10sp"
                     android:paddingEnd="10sp"
-                    android:text="Thời gian"
+                    android:text="Thời lượng"
                     app:layout_constraintEnd_toStartOf="@+id/txtNgayKhoiChieu"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toEndOf="@+id/imgHinhPhim"
                     app:layout_constraintTop_toBottomOf="@+id/txt" />
 
                 <TextView
-                    android:id="@+id/txtThoiGian"
+                    android:id="@+id/txtThoiLuong"
                     android:layout_width="134dp"
                     android:layout_height="35dp"
-                    android:text="101 phút"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/txtThểLoại" />
+                    app:layout_constraintTop_toBottomOf="@+id/txtTheLoai" />
 
                 <TextView
-                    android:id="@+id/txtThểLoại"
+                    android:id="@+id/txtTheLoai"
                     android:layout_width="134dp"
                     android:layout_height="35dp"
-                    android:text="Anime"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/txtNgayKhoiChieu" />
 
@@ -88,7 +85,6 @@
                     android:id="@+id/txtTenPhim"
                     android:layout_width="0dp"
                     android:layout_height="35dp"
-                    android:text="ONE PIECE: STAMPEDE"
                     android:textSize="24sp"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -97,12 +93,13 @@
 
                 <ImageView
                     android:id="@+id/imgHinhPhim"
-                    android:layout_width="115dp"
-                    android:layout_height="0dp"
+                    android:layout_width="113dp"
+                    android:layout_height="150dp"
                     android:adjustViewBounds="true"
+                    android:scaleType="centerCrop"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/txtTenPhim"
-                    app:srcCompat="@drawable/onepiece" />
+                     />
 
                 <TextView
                     android:id="@+id/txt1"
@@ -119,7 +116,6 @@
                     android:id="@+id/txtNgayKhoiChieu"
                     android:layout_width="134dp"
                     android:layout_height="35dp"
-                    android:text="23/10/2020"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/txtTenPhim" />
 
@@ -149,26 +145,26 @@
                 android:padding="10sp">
 
                 <ImageView
-                    android:id="@+id/imageView10"
+                    android:id="@+id/imgXH3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:layout_constraintStart_toEndOf="@+id/imageView9"
+                    app:layout_constraintStart_toEndOf="@+id/imgXH2"
                     app:layout_constraintTop_toTopOf="parent"
                     app:srcCompat="@drawable/yellowstar" />
 
                 <ImageView
-                    android:id="@+id/imageView11"
+                    android:id="@+id/imgXH4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:layout_constraintStart_toEndOf="@+id/imageView10"
+                    app:layout_constraintStart_toEndOf="@+id/imgXH3"
                     app:layout_constraintTop_toTopOf="parent"
                     app:srcCompat="@drawable/yellowstar" />
 
                 <ImageView
-                    android:id="@+id/imageView9"
+                    android:id="@+id/imgXH2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:layout_constraintStart_toEndOf="@+id/imageView8"
+                    app:layout_constraintStart_toEndOf="@+id/imgXH1"
                     app:layout_constraintTop_toTopOf="parent"
                     app:srcCompat="@drawable/yellowstar" />
 
@@ -181,7 +177,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <ImageView
-                    android:id="@+id/imageView8"
+                    android:id="@+id/imgXH1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="68dp"
@@ -190,10 +186,10 @@
                     app:srcCompat="@drawable/yellowstar" />
 
                 <ImageView
-                    android:id="@+id/imageView12"
+                    android:id="@+id/imgXH5"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:layout_constraintStart_toEndOf="@+id/imageView11"
+                    app:layout_constraintStart_toEndOf="@+id/imgXH4"
                     app:layout_constraintTop_toTopOf="parent"
                     app:srcCompat="@drawable/blackstar" />
 
@@ -201,11 +197,10 @@
                     android:id="@+id/txtDiem"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="9.0"
                     android:textSize="18sp"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/imageView12"
+                    app:layout_constraintStart_toEndOf="@+id/imgXH5"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
@@ -218,14 +213,13 @@
                     app:layout_constraintTop_toBottomOf="@+id/textView13" />
 
                 <TextView
-                    android:id="@+id/btnDoTuoi"
+                    android:id="@+id/txtDoTuoi"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="68dp"
                     android:layout_marginTop="16dp"
-                    android:text="16+"
                     app:layout_constraintStart_toEndOf="@+id/textView15"
-                    app:layout_constraintTop_toBottomOf="@+id/imageView8" />
+                    app:layout_constraintTop_toBottomOf="@+id/imgXH1" />
 
                 <TextView
                     android:id="@+id/textView17"
@@ -239,20 +233,19 @@
                     app:layout_constraintTop_toBottomOf="@+id/textView15" />
 
                 <com.borjabravo.readmoretextview.ReadMoreTextView
+                    android:id="@+id/txtTomTat"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    app:colorClickableText="#43A6F5"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView17"
-                    android:id="@+id/txtTomTat"
-                    android:textSize="14sp"
-                    android:text="@string/Tom_Tat"
-                    app:trimExpandedText="@string/rutgon"
                     app:trimCollapsedText="@string/xemthem"
-                    app:trimMode="trimModeLength"
+                    app:trimExpandedText="@string/rutgon"
                     app:trimLength="200"
-                    app:colorClickableText="#43A6F5"/>
+                    app:trimMode="trimModeLength" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -277,93 +270,15 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <HorizontalScrollView
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvDienVien"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
+                    android:scrollbars="horizontal"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/txta">
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:orientation="horizontal" >
-
-                        <androidx.constraintlayout.widget.ConstraintLayout
-                            android:layout_width="130dp"
-                            android:layout_height="match_parent">
-
-                            <ImageView
-                                android:id="@+id/HinhDV1"
-                                android:layout_width="100dp"
-                                android:layout_height="100dp"
-                                app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toTopOf="parent"
-                                app:srcCompat="@drawable/luffy" />
-
-                            <TextView
-                                android:id="@+id/txtTenDV1"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="10dp"
-                                android:text="Luffy"
-                                app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toBottomOf="@+id/HinhDV1" />
-                        </androidx.constraintlayout.widget.ConstraintLayout>
-
-                        <androidx.constraintlayout.widget.ConstraintLayout
-                            android:layout_width="130dp"
-                            android:layout_height="match_parent">
-
-                            <ImageView
-                                android:id="@+id/HinhDV2"
-                                android:layout_width="100dp"
-                                android:layout_height="100dp"
-                                app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toTopOf="parent"
-                                app:srcCompat="@drawable/zoro" />
-
-                            <TextView
-                                android:id="@+id/txtDV2"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="10dp"
-                                android:text="Zoro"
-                                app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toBottomOf="@+id/HinhDV2" />
-
-                        </androidx.constraintlayout.widget.ConstraintLayout>
-
-                        <androidx.constraintlayout.widget.ConstraintLayout
-                            android:layout_width="130dp"
-                            android:layout_height="match_parent">
-
-                            <ImageView
-                                android:id="@+id/HinhDV3"
-                                android:layout_width="100dp"
-                                android:layout_height="100dp"
-                                app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toTopOf="parent"
-                                app:srcCompat="@drawable/sanji" />
-
-                            <TextView
-                                android:id="@+id/txtDV3"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="10dp"
-                                android:text="Sanji"
-                                app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toBottomOf="@+id/HinhDV3" />
-                        </androidx.constraintlayout.widget.ConstraintLayout>
-                    </LinearLayout>
-                </HorizontalScrollView>
+                    app:layout_constraintTop_toBottomOf="@+id/txta" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -398,7 +313,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView2"
                     app:showFullScreenButton="true"
-                    app:videoId="S8_YwFLCh4U" />
+                    />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

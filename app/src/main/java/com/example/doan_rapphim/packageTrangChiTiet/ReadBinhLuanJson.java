@@ -18,7 +18,7 @@ public class ReadBinhLuanJson {
     public static BinhLuan_Json readBinhLuanJsonFile(Context context, int ViTriBinhLuan) throws IOException,JSONException{
 
         BinhLuan_Json binhLuan_json = new BinhLuan_Json();
-        String jsonText = readText(context,R.raw.binhluan);
+        String jsonText = readText(context,R.raw.tct_binhluan);
         JSONObject jsonRoot = new JSONObject(jsonText);
         JSONArray jsonArray = jsonRoot.getJSONArray("DanhSach");
 
@@ -37,7 +37,7 @@ public class ReadBinhLuanJson {
     }
 
     public static Integer SoLuongBinhLuan(Context context) throws IOException, JSONException {
-        String jsonText = readText(context, R.raw.binhluan);
+        String jsonText = readText(context, R.raw.tct_binhluan);
         JSONObject jsonRoot = new JSONObject(jsonText);
         JSONArray jsonArray = jsonRoot.getJSONArray("DanhSach");
         return jsonArray.length();

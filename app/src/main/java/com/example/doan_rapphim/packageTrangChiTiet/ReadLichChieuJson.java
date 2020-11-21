@@ -3,7 +3,6 @@ package com.example.doan_rapphim.packageTrangChiTiet;
 import android.content.Context;
 
 import com.example.doan_rapphim.R;
-import com.example.doan_rapphim.packageTrangChiTiet.LichChieu_Json;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -21,7 +20,7 @@ public class ReadLichChieuJson {
 
         LichChieu_Json lichChieu_json = new LichChieu_Json();
 
-        String jsonText = readText(context, R.raw.lichchieu);
+        String jsonText = readText(context, R.raw.tct_lichchieu);
         JSONObject jsonRoot = new JSONObject(jsonText);
         JSONArray jsonArray2 = jsonRoot.getJSONArray("DanhSach");
 
@@ -44,7 +43,7 @@ public class ReadLichChieuJson {
     }
 
      public static Integer SoLuongXuatChieu(Context context) throws IOException, JSONException{
-        String jsonText = readText(context, R.raw.lichchieu);
+        String jsonText = readText(context, R.raw.tct_lichchieu);
         JSONObject jsonRoot = new JSONObject(jsonText);
         JSONArray jsonArray = jsonRoot.getJSONArray("DanhSach");
         return jsonArray.length();

@@ -1,0 +1,17 @@
+{
+  "DanhSach":
+  [
+    {
+      "HinhDV": "luffy",
+      "TenDV": "Luffy"
+    }    ,
+    {
+      "HinhDV": "zoro",
+      "TenDV": "Zoro"
+    },
+    {
+      "HinhDV": "sanji",
+      "TenDV": "Sanji"
+    }
+  ]
+}

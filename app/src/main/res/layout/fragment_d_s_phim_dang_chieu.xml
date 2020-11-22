@@ -262,7 +262,7 @@
                     android:id="@+id/Phim3"
                     android:layout_width="174dp"
                     android:layout_height="264dp"
-                    android:src="@drawable/images"
+                    android:src="@drawable/yourname"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />

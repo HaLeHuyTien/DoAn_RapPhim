@@ -1,6 +1,16 @@
 package com.example.doan_rapphim.packageTrangChiTiet;
 
 public class LichChieu_Json {
+    private Integer IDPhim;
+
+    public Integer getIDPhim() {
+        return IDPhim;
+    }
+
+    public void setIDPhim(Integer IDPhim) {
+        this.IDPhim = IDPhim;
+    }
+
     private String TenRap;
     private String TenTinh;
     private String[] XuatChieu;

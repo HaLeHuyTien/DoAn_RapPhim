@@ -27,6 +27,8 @@ import java.util.LinkedList;
 
 public class ThongTinFragment extends Fragment {
 
+    private TrangChiTiet trangChiTiet;
+
     private ImageView imgHinhPhim;
     private  TextView txtTenPhim;
     private ReadMoreTextView txtTomTat;
@@ -64,6 +66,8 @@ public class ThongTinFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.thongtin, container,false);
 
+        trangChiTiet = (TrangChiTiet) getActivity();
+
         //TrangChiTiet
         imgHinhPhim = view.findViewById(R.id.imgHinhPhim);
         txtTenPhim = view.findViewById(R.id.txtTenPhim);
@@ -85,7 +89,7 @@ public class ThongTinFragment extends Fragment {
 
         //Gan vao` Trang Chi Tiet
         try {
-            ThongTinJson thongTinJson = ReadThongTinJson.readThongTinJsonFile(getActivity(),0);
+            ThongTinJson thongTinJson = ReadThongTinJson.readThongTinJsonFile(getActivity(),trangChiTiet.getIdPhim());
             int resId = this.getContext().getResources().getIdentifier(thongTinJson.getHinhPhim(),"drawable",getContext().getPackageName());
             imgHinhPhim.setImageResource(resId);
             txtTenPhim.setText(thongTinJson.getTenPhim());

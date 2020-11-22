@@ -2,18 +2,21 @@
   "DanhSach":
   [
     {
+      "IDPhim": "0",
       "TenNguoiBinhLuan": "Zoro",
       "NoiDungBinhLuan": "Tao bị lạc rồi !!! ALOOOO !!",
       "AnhNguoiBinhLuan": "zoro",
       "NgayBinhLuan": "15/11/2020"
     },
     {
+      "IDPhim": "0",
       "TenNguoiBinhLuan": "Sanji",
       "NoiDungBinhLuan": "Không ưa thằng ở trên !!",
       "AnhNguoiBinhLuan": "sanji",
       "NgayBinhLuan": "15/11/2020"
     },
     {
+      "IDPhim": "0",
       "TenNguoiBinhLuan": "Luffy",
       "NoiDungBinhLuan": "Vua hải tặc là ta !!",
       "AnhNguoiBinhLuan": "luffy",

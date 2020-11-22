@@ -22,7 +22,7 @@ public class TabTaiKhoan extends AppCompatActivity {
         TabItem tabThongTin = findViewById(R.id.tabThongTin);
         TabItem tabGiaoDich = findViewById(R.id.tabGiaoDich);
         btnThayDoiThongTin =findViewById(R.id.btnThayDoiTT);
-        final ViewPager viewPager = findViewById(R.id.viewPager);
+        final ViewPager viewPager = findViewById(R.id.viewPagerTrangChiTiet);
 
         TaiKhoan_Adapter pagerAdapter = new TaiKhoan_Adapter(getSupportFragmentManager(), tabLayout.getTabCount());
 

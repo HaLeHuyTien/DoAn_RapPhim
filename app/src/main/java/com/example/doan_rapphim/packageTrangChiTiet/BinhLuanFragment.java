@@ -1,6 +1,7 @@
 package com.example.doan_rapphim.packageTrangChiTiet;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 
 import android.view.LayoutInflater;
@@ -29,6 +30,7 @@ public class BinhLuanFragment extends Fragment {
     private final LinkedList<BinhLuan_Json> mWordList = new LinkedList<>();
     private RecyclerView recyclerView;
     private BinhLuanListAdapter adapter;
+    private TrangChiTiet mtrangChiTiet;
 
     public static BinhLuanFragment getInstance(){
         BinhLuanFragment binhLuanFragment = new BinhLuanFragment();
@@ -46,6 +48,7 @@ public class BinhLuanFragment extends Fragment {
         View view = inflater.inflate(R.layout.binhluan, container,false);
         recyclerView = view.findViewById(R.id.recycler_view_binh_luan);
         btn = view.findViewById(R.id.btnDangBinhLuan);
+        mtrangChiTiet = (TrangChiTiet) getActivity();
         HiennThiDanhSach();
         return view;
 
@@ -57,14 +60,14 @@ public class BinhLuanFragment extends Fragment {
             mWordList.clear();
             for(Integer i = 0; i < soluongBinhLuan; i++){
                 BinhLuan_Json binhLuan_json = ReadBinhLuanJson.readBinhLuanJsonFile(getActivity(),i);
+                if(binhLuan_json.getIDPhim() == mtrangChiTiet.getIdPhim())
                 mWordList.addLast(binhLuan_json);
             }
             adapter = new BinhLuanListAdapter(getActivity(),mWordList);
             recyclerView.setAdapter(adapter);
             recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-
         }catch (Exception e){
-            btn.setText("Hello");
+            btn.setText("Lỗi");
         }
 
     }

@@ -31,6 +31,7 @@ public class ReadThongTinJson {
         String ThoiLuong = jsonObject.getString("ThoiLuong");
         String TheLoai = jsonObject.getString("TheLoai");
         String NgonNgu = jsonObject.getString("NgonNgu");
+        String DoTuoi = jsonObject.getString("DoTuoi");
         Double Diem = jsonObject.getDouble("Diem");
         String Trailer = jsonObject.getString("Trailer");
 
@@ -42,6 +43,7 @@ public class ReadThongTinJson {
         thongTinJson.setThoiLuong(ThoiLuong);
         thongTinJson.setTheLoai(TheLoai);
         thongTinJson.setNgonNgu(NgonNgu);
+        thongTinJson.setDoTuoi(DoTuoi);
         thongTinJson.setDiem(Diem);
         thongTinJson.setTrailer(Trailer);
 

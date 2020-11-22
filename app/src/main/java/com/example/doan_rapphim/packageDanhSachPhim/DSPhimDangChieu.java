@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.example.doan_rapphim.R;
+import com.example.doan_rapphim.packageTrangChiTiet.IDPhim;
 import com.example.doan_rapphim.packageTrangChiTiet.TrangChiTiet;
 
 
@@ -66,6 +68,7 @@ public class DSPhimDangChieu extends Fragment {
     private Button btnchitiet3;
     private Button btnchitiet4;
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -75,6 +78,8 @@ public class DSPhimDangChieu extends Fragment {
         btnchitiet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Integer idPhim = 0;
+                IDPhim.ID = idPhim;
                 Intent intent=new Intent(getActivity() , TrangChiTiet.class);
                 startActivity(intent);
             }
@@ -84,6 +89,8 @@ public class DSPhimDangChieu extends Fragment {
         btnchitiet2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Integer idPhim = 1;
+                IDPhim.ID = idPhim;
                 Intent intent=new Intent(getActivity() ,TrangChiTiet.class);
                 startActivity(intent);
             }
@@ -93,15 +100,19 @@ public class DSPhimDangChieu extends Fragment {
         btnchitiet3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Integer idPhim = 2;
+                IDPhim.ID = idPhim;
                 Intent intent=new Intent(getActivity() ,TrangChiTiet.class);
                 startActivity(intent);
             }
         });
 
-        btnchitiet3 = (Button) view.findViewById(R.id.btnChiTiet4);
-        btnchitiet3.setOnClickListener(new View.OnClickListener() {
+        btnchitiet4 = (Button) view.findViewById(R.id.btnChiTiet4);
+        btnchitiet4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Integer idPhim = 3;
+                IDPhim.ID = idPhim;
                 Intent intent=new Intent(getActivity() ,TrangChiTiet.class);
                 startActivity(intent);
             }
@@ -109,4 +120,7 @@ public class DSPhimDangChieu extends Fragment {
 
         return view;
     }
+
+
+
 }

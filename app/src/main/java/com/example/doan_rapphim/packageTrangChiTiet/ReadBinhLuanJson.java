@@ -23,11 +23,13 @@ public class ReadBinhLuanJson {
         JSONArray jsonArray = jsonRoot.getJSONArray("DanhSach");
 
         JSONObject jsonObject = jsonArray.getJSONObject(ViTriBinhLuan);
+        Integer IDPhim = jsonObject.getInt("IDPhim");
         String tennguoibl = jsonObject.getString("TenNguoiBinhLuan");
         String noidungbl = jsonObject.getString("NoiDungBinhLuan");
         String anhnguoibl = jsonObject.getString("AnhNguoiBinhLuan");
         String ngaybl =  jsonObject.getString("NgayBinhLuan");
 
+        binhLuan_json.setIDPhim(IDPhim);
         binhLuan_json.setTenNguoiBinhLuan(tennguoibl);
         binhLuan_json.setNoiDungBinhLuan(noidungbl);
         binhLuan_json.setAnhNguoiBinhLuan(anhnguoibl);

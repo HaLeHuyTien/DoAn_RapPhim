@@ -5,10 +5,13 @@ import androidx.fragment.app.FragmentStatePagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 
 
+import com.example.doan_rapphim.DanhSachPhimFragment;
+import com.example.doan_rapphim.MainActivity;
 import com.example.doan_rapphim.R;
 import com.example.doan_rapphim.ViewPagerAdapter_TrangChiTiet;
 import com.google.android.material.tabs.TabLayout;
@@ -19,6 +22,7 @@ public class TrangChiTiet extends AppCompatActivity {
 
     TabLayout tabLayout;
     ViewPager viewPager;
+    private  Integer idPhim;
 
 
     @Override
@@ -29,12 +33,25 @@ public class TrangChiTiet extends AppCompatActivity {
 
 
         tabLayout = findViewById(R.id.tabLayout);
-        viewPager = findViewById(R.id.viewPager);
+        viewPager = findViewById(R.id.viewPagerTrangChiTiet);
 
+        sendDataToFragment();
 
         getTabs();
 
 
+    }
+
+    public void sendDataToFragment(){
+        idPhim = IDPhim.ID;
+    }
+
+    public  Integer getIdPhim(){
+        return idPhim;
+    }
+
+    public void setIdPhim(Integer data) {
+        idPhim = data;
     }
 
     public void getTabs(){

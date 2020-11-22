@@ -38,6 +38,9 @@ import java.util.Calendar;
 
 
 public class LichChieuFragment extends Fragment {
+
+    private TrangChiTiet trangChiTiet;
+
     private Spinner spnDiaDiem;
 
     private Spinner spnRap;
@@ -74,6 +77,8 @@ public class LichChieuFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.activity_lich_chieu_phim, container, false);
+
+        trangChiTiet = (TrangChiTiet) getActivity();
 
         spnDiaDiem = view.findViewById(R.id.spinDiaDiem);
         spnRap = view.findViewById(R.id.spinRap);
@@ -179,6 +184,7 @@ public class LichChieuFragment extends Fragment {
             for(Integer i = 0; i < soluongXuatChieu; i++) {
                 LichChieu_Json lichChieu_json = ReadLichChieuJson.readLichChieuJsonFile(getActivity(), i);
                 if(lichChieu_json.getNgayChieu().equals(EditNgay.getText().toString())) {
+                    if(lichChieu_json.getIDPhim() == trangChiTiet.getIdPhim())
                     mWordList.addLast(lichChieu_json);
                 }
             }

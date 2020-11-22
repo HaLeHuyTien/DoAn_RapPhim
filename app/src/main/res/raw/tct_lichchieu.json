@@ -1,9 +1,10 @@
 
 {
   "DanhSach":[{
+    "IDPhim": "0",
     "TenRap": "Galaxy 1",
     "TenTinh": "TP.Hồ Chí Minh",
-    "NgayChieu": "09/11/2020",
+    "NgayChieu": "24/11/2020",
     "XuatChieu": [
       "11:00",
       "12:30",
@@ -16,9 +17,10 @@
     ]
   },
     {
+      "IDPhim": "0",
       "TenRap": "Galaxy 2",
       "TenTinh": "Hà Nội",
-      "NgayChieu": "09/11/2020",
+      "NgayChieu": "24/11/2020",
       "XuatChieu": [
         "11:00",
         "12:30",
@@ -31,9 +33,10 @@
       ]
     },
     {
+      "IDPhim": "0",
       "TenRap": "Galaxy 3",
       "TenTinh": "Cà Mau",
-      "NgayChieu": "09/11/2020",
+      "NgayChieu": "23/11/2020",
       "XuatChieu": [
         "11:00",
         "12:30",
@@ -46,9 +49,10 @@
       ]
     },
     {
+      "IDPhim": "0",
       "TenRap": "Galaxy 4",
       "TenTinh": "Cà Mau",
-      "NgayChieu": "09/11/2020",
+      "NgayChieu": "23/11/2020",
       "XuatChieu": [
         "11:00",
         "12:30",
@@ -61,9 +65,10 @@
       ]
     },
     {
+      "IDPhim": "1",
       "TenRap": "Galaxy 3",
       "TenTinh": "Cà Mau",
-      "NgayChieu": "10/11/2020",
+      "NgayChieu": "23/11/2020",
       "XuatChieu": [
         "11:00",
         "12:30",
@@ -76,9 +81,10 @@
       ]
     },
     {
+      "IDPhim": "1",
       "TenRap": "Galaxy 4",
       "TenTinh": "Cà Mau",
-      "NgayChieu": "10/11/2020",
+      "NgayChieu": "24/11/2020",
       "XuatChieu": [
         "11:00",
         "12:30",

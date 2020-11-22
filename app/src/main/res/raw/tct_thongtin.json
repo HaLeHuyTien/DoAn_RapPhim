@@ -9,7 +9,7 @@
       "NgayKhoiChieu": "21/11/2020",
       "ThoiLuong": "90 phút",
       "TheLoai": "Anime",
-      "NgonNgu": "Phụ đề",
+      "NgonNgu": "Tiếng Nhật (Phụ đề)",
       "Diem" : "9.0",
       "DoTuoi": "16+",
       "Trailer": "S8_YwFLCh4U",
@@ -28,6 +28,82 @@
                   "TenDV": "Sanji"
                 }
               ]
+    },
+    {
+      "IDPhim": "1",
+      "HinhPhim": "phapsumu",
+      "TenPhim": "Pháp Sư Mù",
+      "TomTat": "Bộ phim điện ảnh Pháp Sư Mù: Ai Chết Giơ tay sẽ tái hiện hành trình đi tìm lại ánh sáng cho đôi mắt của Tinh Lâm (Huỳnh Lập) và những câu chuyện nhân quả đan xen mà Tinh Lâm phải trải qua để thấu hiểu rõ hơn về cuộc đời. Cùng với Thụy Du (Quang Trung) - chàng trai có khả năng cho các linh hồn người chết nhập vào, và Liên Thanh (Hạnh Thảo) - cô gái có khả năng nhìn thấy linh hồn, họ trở thành bộ ba ăn ý. Cả nhóm cùng giải cứu những linh hồn chưa siêu thoát cũng như chữa trị cho đôi mắt của Tinh Lâm.",
+      "NgayKhoiChieu": "22/11/2020",
+      "ThoiLuong": "120 phút",
+      "TheLoai": "Kinh Dị, Hài",
+      "NgonNgu": "Tiếng Việt",
+      "Diem" : "8.0",
+      "DoTuoi": "18+",
+      "Trailer": "KbRjegsahXw",
+      "DienVien":
+      [
+        {
+          "HinhDV": "huynhlap",
+          "TenDV": "Huỳnh Lập"
+        }    ,
+        {
+          "HinhDV": "dainghia",
+          "TenDV": "Đại Nghĩa"
+        },
+        {
+          "HinhDV": "quangtrung",
+          "TenDV": "Quang Trung"
+        }
+      ]
+    },
+    {
+      "IDPhim": "2",
+      "HinhPhim": "yourname",
+      "TenPhim": "Your Name",
+      "TomTat": "Your Name – Kimi No Na Wa kể về nữ sinh trung học Mitsuha. Chán ngán cuộc sống tẻ nhạt ở thị trấn nhỏ vùng Itomori, Mitsuha luôn ước ao kiếp sau mình sẽ trở thành một chàng đẹp trai ở thủ đô Tokyo phồn hoa đô hội. Trong khi đó, chàng trai Taki ở Tokyo đang hài lòng với cuộc sống và công việc làm thêm của mình. Thế nhưng mỗi đêm cậu luôn mơ thấy mình trong cơ thể một cô bé thôn quê.  Khi Sao chổi tiến tới gần Trái đất tạo ra sự kiện ngàn năm có một, Taki và Mitsuha bị hoán đổi cơ thể cho nhau !",
+      "NgayKhoiChieu": "22/11/2020",
+      "ThoiLuong": "106 phút",
+      "TheLoai": "Anime",
+      "NgonNgu": "Tiếng Nhật (Phụ đề)",
+      "Diem" : "8.5",
+      "DoTuoi": "16+",
+      "Trailer": "_mifHzxFNQ4",
+      "DienVien":
+      [
+        {
+          "HinhDV": "mitsuhamiyamizu",
+          "TenDV": "Mitsuha Miyamizu"
+        }    ,
+        {
+          "HinhDV": "takitachibana",
+          "TenDV": "Taki Tachibana"
+        }
+      ]
+    },
+    {
+      "IDPhim": "3",
+      "HinhPhim": "trangquynh",
+      "TenPhim": "Your Name",
+      "TomTat": "Trạng Quỳnh sẽ xoay quanh hành trình giải cứu thầy Đoàn, đồng thời là cha Điềm đầy gian truân nhưng cũng nhiều tiếng cười của những con người nhỏ bé trong xã hội phong kiến dù luôn bị chèn ép bởi tầng lớp quan lại bất công.",
+      "NgayKhoiChieu": "22/11/2020",
+      "ThoiLuong": "95 phút",
+      "TheLoai": "Hài",
+      "NgonNgu": "Tiếng Việt",
+      "Diem" : "8.0",
+      "DoTuoi": "13+",
+      "Trailer": "ikXMNocYUeY",
+      "DienVien":
+      [
+        {
+          "HinhDV": "tranthanh",
+          "TenDV": "Trấn Thành"
+        }    ,
+        {
+          "HinhDV": "nhaphuong",
+          "TenDV": "Nhã Phương"
+        }
+      ]
     }
 
 

@@ -32,7 +32,7 @@
                     android:layout_marginTop="16dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/images" />
+                    app:srcCompat="@drawable/yourname" />
 
                 <ImageView
                     android:id="@+id/imageView4"

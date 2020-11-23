@@ -2,8 +2,8 @@
 <shape xmlns:android="http://schemas.android.com/apk/res/android"
 
     android:shape="rectangle">
-    <!-- Set màu nền
-    <solid android:color="#C60505"></solid>-->
+    <!-- Set màu nền-->
+    <solid android:color="#C60505"></solid>
     <!-- Đặt thuộc tính màu và độ rộng đường viền-->
     <stroke
         android:width="3dp"

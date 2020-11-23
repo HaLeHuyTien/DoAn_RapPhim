@@ -1,4 +1,4 @@
-package com.example.doan_rapphim.packageThongTinUser;
+package com.example.doan_rapphim.packageDangKyDangNhap.packageDangNhap.packageThongTinUser;
 
 public class ThongTinUser {
     private int ID;
@@ -8,6 +8,7 @@ public class ThongTinUser {
     private String NgaySinh ;
     private String DiaChi;
     private String MatKhau;
+    private String Anh;
     private int TrangThai;
 
     public void setID(int id) { this.ID = id;}
@@ -30,6 +31,9 @@ public class ThongTinUser {
 
     public void setMatKhau(String matKhau) { this.MatKhau = matKhau;}
     public String getMatKhau(){return this.MatKhau;}
+
+    public void setAnh(String anh) { this.Anh = anh;}
+    public String getAnh(){return this.Anh;}
 
     public void setTrangThai(int trangThai) { this.TrangThai = trangThai;}
     public int getTrangThai(){return this.TrangThai;}

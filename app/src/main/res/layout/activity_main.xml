@@ -16,11 +16,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        app:menu="@menu/menu_bottom_nav"
+        app:itemBackground="@color/white"
         app:itemIconTint="@color/custom_color_bottom_trangchu"
         app:itemTextColor="@color/custom_color_bottom_trangchu"
 
-        />
+        app:menu="@menu/menu_bottom_nav" />
 
 
 </RelativeLayout>

@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     android:background="@drawable/p5"
     android:orientation="vertical"
-    android:padding="40dp"
+    android:paddingStart="40dp"
+    android:paddingEnd="40dp"
     tools:context=".MainActivity">
 
     <ScrollView
@@ -45,10 +46,21 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView" />
 
+                <RelativeLayout
+                    android:id="@+id/reLayoutDN"
+                    android:layout_width="0dp"
+                    android:layout_height="80dp"
+                    android:layout_marginTop="8dp"
+
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+
+                    app:layout_constraintTop_toBottomOf="@+id/txtEmailDN">
                 <EditText
                     android:id="@+id/txtPassDN"
                     android:layout_width="match_parent"
-                    android:layout_height="60dp"
+                    android:layout_height="match_parent"
                     android:layout_marginTop="16dp"
                     android:background="@drawable/custom_input"
                     android:drawableStart="@drawable/custom_lock_icon"
@@ -62,8 +74,19 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.8"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/txtEmailDN" />
+                    />
 
+                    <ImageButton
+                        android:id="@+id/imgHidePassDN"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignTop="@+id/txtPassDN"
+                        android:layout_alignRight="@+id/txtPassDN"
+                        android:layout_alignBottom="@+id/txtPassDN"
+                        android:padding="5dp"
+                        android:src="@drawable/ic_baseline_remove_red_eye_24"
+                        />
+                </RelativeLayout>
                 <Button
                     android:id="@+id/btnDK"
                     android:layout_width="match_parent"
@@ -91,7 +114,7 @@
                     android:textSize="18sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/txtPassDN" />
+                    app:layout_constraintTop_toBottomOf="@+id/reLayoutDN" />
 
                 <TextView
                     android:id="@+id/textView"

@@ -16,6 +16,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.doan_rapphim.R;
+import com.example.doan_rapphim.packageDangKyDangNhap.packageDangNhap.IDUser;
 import com.example.doan_rapphim.packageTrangChiTiet.LichChieuFragment;
 import com.example.doan_rapphim.packageTrangChiTiet.LichChieuListAdapter;
 import com.example.doan_rapphim.packageTrangChiTiet.LichChieu_Json;
@@ -124,9 +125,9 @@ public class TaiKhoan_ThongTinFragment extends Fragment {
 
     private void HienThiUser() {
         try {
-            int soluong = ReadThongTinUserJson.SoLuongTaiKhoan(getActivity());
+
             //for(int i = 0; i < soluong ; i ++) {
-                ThongTinUser thongTinUser = ReadThongTinUserJson.readThongTinUserFile(getActivity(), 0);
+                ThongTinUser thongTinUser = ReadThongTinUserJson.readThongTinUserFile(getActivity(), IDUser.idUser);
                 //Truyen Id if(thongTinUser.getID() == )
                 txtEmail.setText(thongTinUser.getEmail());
                 int resID = this.getContext().getResources().getIdentifier(thongTinUser.getAnh(),"drawable",this.getContext().getPackageName());

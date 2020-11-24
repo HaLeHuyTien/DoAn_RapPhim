@@ -4,9 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="40dp"
+    android:paddingStart="40dp"
+    android:paddingEnd="40dp"
     android:background="@drawable/p5"
-    tools:context=".DangKyActivity"
+
     android:orientation="vertical">
 
     <ScrollView
@@ -118,7 +119,7 @@
                         android:paddingStart="12dp"
                         android:textSize="18sp" />
                     <ImageButton
-                        android:id="@+id/imgLichNgaySinhDK"
+                        android:id="@+id/imgHidePassDN"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignTop="@+id/txtNgaySinhDK"

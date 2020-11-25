@@ -109,6 +109,11 @@ public class ThongTinFragment extends Fragment {
 
 
             });
+            DienVienJson daodien = new DienVienJson();
+            daodien.setTenDV(thongTinJson.getDaoDien());
+            daodien.setHinhDV(thongTinJson.getHinhDaoDien());
+            mWordList.addLast(daodien);
+
             int soluongDV = ReadDienVienJson.SoLuongDienVien(getActivity(),thongTinJson.getIDPhim());
             for (int i = 0; i< soluongDV ; i++) {
                 DienVienJson dienVienJson = ReadDienVienJson.readDienVienJsonFile(getActivity(), thongTinJson.getIDPhim(),i);

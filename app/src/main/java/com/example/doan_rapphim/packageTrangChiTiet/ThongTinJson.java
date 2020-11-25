@@ -21,6 +21,24 @@ public class ThongTinJson {
     private Double Diem;
     private String DoTuoi;
     private String Trailer;
+    private String DaoDien;
+    private String HinhDaoDien;
+
+    public String getHinhDaoDien() {
+        return HinhDaoDien;
+    }
+
+    public void setHinhDaoDien(String hinhDaoDien) {
+        HinhDaoDien = hinhDaoDien;
+    }
+
+    public String getDaoDien() {
+        return DaoDien;
+    }
+
+    public void setDaoDien(String daoDien) {
+        DaoDien = daoDien;
+    }
 
     public String getHinhPhim() {
         return HinhPhim;

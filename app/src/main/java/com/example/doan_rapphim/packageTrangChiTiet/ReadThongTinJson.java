@@ -34,6 +34,8 @@ public class ReadThongTinJson {
         String DoTuoi = jsonObject.getString("DoTuoi");
         Double Diem = jsonObject.getDouble("Diem");
         String Trailer = jsonObject.getString("Trailer");
+        String DaoDien = jsonObject.getString("DaoDien");
+        String HinhDD = jsonObject.getString("HinhDaoDien");
 
         thongTinJson.setIDPhim(idPhim);
         thongTinJson.setHinhPhim(HinhPhim);
@@ -46,9 +48,18 @@ public class ReadThongTinJson {
         thongTinJson.setDoTuoi(DoTuoi);
         thongTinJson.setDiem(Diem);
         thongTinJson.setTrailer(Trailer);
+        thongTinJson.setDaoDien(DaoDien);
+        thongTinJson.setHinhDaoDien(HinhDD);
 
 
         return thongTinJson;
+    }
+
+    public static Integer SoLuongPhim(Context context) throws IOException, JSONException{
+        String jsonText = readText(context, R.raw.tct_thongtin);
+        JSONObject jsonRoot = new JSONObject(jsonText);
+        JSONArray jsonArray = jsonRoot.getJSONArray("DanhSach");
+        return jsonArray.length();
     }
 
     private static String readText(Context context, int resId) throws IOException {

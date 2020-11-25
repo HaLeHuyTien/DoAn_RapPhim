@@ -1,26 +1,38 @@
 package com.example.doan_rapphim;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.doan_rapphim.packageTrangChiTiet.IDPhim;
+import com.example.doan_rapphim.packageTrangChiTiet.ThongTinJson;
+import com.example.doan_rapphim.packageTrangChiTiet.TrangChiTiet;
+
 import java.util.LinkedList;
 
 public class AdapterListPhimItem extends RecyclerView.Adapter<AdapterListPhimItem.WordViewHolder> {
-    private final LinkedList<Phim> mWordList;
+    private final LinkedList<ThongTinJson> mWordList;
     private LayoutInflater mInflater;
     private Context context;
+    private Activity activity;
 
-    public AdapterListPhimItem(Context context,LinkedList<Phim> wordList){
+
+
+    public AdapterListPhimItem(Context context,Activity activity,LinkedList<ThongTinJson> wordList){
         mInflater=LayoutInflater.from(context);
         this.mWordList=wordList;
-        this.context = context;}
+        this.context = context;
+        this.activity = activity;
+    }
     @NonNull
     @Override
     public AdapterListPhimItem.WordViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -28,14 +40,29 @@ public class AdapterListPhimItem extends RecyclerView.Adapter<AdapterListPhimIte
         return new WordViewHolder(mItemView,this);
     }
 
+
     @Override
     public void onBindViewHolder(@NonNull AdapterListPhimItem.WordViewHolder holder, int position) {
-        Phim mCurrent=mWordList.get(position);
+        ThongTinJson mCurrent=mWordList.get(position);
         holder.txtTenPhim.setText(mCurrent.getTenPhim());
         holder.txtTheLoai.setText(mCurrent.getTheLoai());
+        holder.txtDaoDien.setText(mCurrent.getDaoDien());
+        holder.txtTuoi.setText(mCurrent.getDoTuoi());
+
        // holder.wordTextView3.setText(mCurrent.getNoiDung());
-        int resID = this.context.getResources().getIdentifier(mCurrent.getHinhAnh(),"drawable",this.context.getPackageName());
+        int resID = this.context.getResources().getIdentifier(mCurrent.getHinhPhim(),"drawable",this.context.getPackageName());
         holder.img2.setImageResource(resID);
+        holder.btnChiTiet.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                IDPhim.ID = mCurrent.getIDPhim();
+                Intent intent=new Intent(activity ,TrangChiTiet.class);
+                activity.startActivity(intent);
+            }
+        });
+
+
     }
 
     @Override
@@ -46,6 +73,9 @@ public class AdapterListPhimItem extends RecyclerView.Adapter<AdapterListPhimIte
     public class WordViewHolder extends RecyclerView.ViewHolder {
         public final TextView txtTenPhim;
         public final TextView txtTheLoai;
+        public final TextView txtDaoDien;
+        public final TextView txtTuoi;
+        public final Button btnChiTiet;
         //public final TextView txtSoTuoi;
         //public final TextView txtSoDiem;
         //public final TextView txtHinhAnh;
@@ -55,10 +85,13 @@ public class AdapterListPhimItem extends RecyclerView.Adapter<AdapterListPhimIte
         final AdapterListPhimItem mAdapter;
         public WordViewHolder(View itemView,AdapterListPhimItem adapterWordList){
             super(itemView);
-           txtTenPhim=itemView.findViewById(R.id.edttenphim);
-            txtTheLoai=itemView.findViewById(R.id.edttheloai);
+           txtTenPhim=itemView.findViewById(R.id.txtRVTenPhim);
+           txtTheLoai=itemView.findViewById(R.id.txtTenTL);
+           txtTuoi=itemView.findViewById(R.id.txtSoTuoi);
+           txtDaoDien= itemView.findViewById(R.id.txtTenDD);
+           btnChiTiet = itemView.findViewById(R.id.btnRVChiTiet);
 
-            img2=itemView.findViewById(R.id.imgPoster);
+            img2=itemView.findViewById(R.id.imgRVHinhPhim);
 
             this.mAdapter=adapterWordList;
         }

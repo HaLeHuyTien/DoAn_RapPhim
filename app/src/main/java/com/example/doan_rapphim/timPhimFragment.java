@@ -18,6 +18,8 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.doan_rapphim.packageTrangChiTiet.ReadBinhLuanJson;
+import com.example.doan_rapphim.packageTrangChiTiet.ReadThongTinJson;
+import com.example.doan_rapphim.packageTrangChiTiet.ThongTinJson;
 
 import org.json.JSONException;
 
@@ -30,7 +32,7 @@ import java.util.LinkedList;
  * create an instance of this fragment.
  */
 public class timPhimFragment extends Fragment implements AdapterView.OnItemSelectedListener {
-    private final LinkedList<Phim> mWordList=new LinkedList<>();
+    private final LinkedList<ThongTinJson> mWordList=new LinkedList<>();
     private RecyclerView mRecyclerview;
     private AdapterListPhimItem mAdapter;
     private EditText txt;
@@ -86,72 +88,87 @@ public class timPhimFragment extends Fragment implements AdapterView.OnItemSelec
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         Spinner spinner=view.findViewById(R.id.spinner);
         btnTimKiem = view.findViewById(R.id.btnTim);
+        mRecyclerview=view.findViewById(R.id.recylerview);
 
         if(spinner!=null){
             spinner.setOnItemSelectedListener(this);
             spinner.setAdapter(adapter);
         }
 
-       try {
-           LinkedList<Phim> result=new LinkedList<>();
-           Integer soluongphim = readJsonListPhim.SoLuongPhim(getActivity());
-           mWordList.clear();
-
-           for(Integer i = 0; i < soluongphim; i++){
-                Phim phim=readJsonListPhim.readPhimJson(getActivity(),i);
-                mWordList.addLast(phim);
-            }
-
-
-
-           mRecyclerview=view.findViewById(R.id.recylerview);
-
-           mAdapter=new AdapterListPhimItem(getActivity(),mWordList);
-
-           mRecyclerview.setAdapter(mAdapter);
-
-           mRecyclerview.setLayoutManager(new LinearLayoutManager(getActivity()));
-
-
-        }catch (Exception e){
-            Toast.makeText(getActivity(),"sai",Toast.LENGTH_LONG).show();
-        }
+       HienthiDanhSach(view);
 
         btnTimKiem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                LinkedList<Phim> timkiem =new LinkedList<>();
+                LinkedList<ThongTinJson> timkiem =new LinkedList<>();
                 EditText editText=view.findViewById(R.id.txtTim);
-                try {
+                if(editText.getText().toString().equals(""))
+                    HienthiDanhSach(view);
+                else {
+                    try {
 
-                    Integer soluongphim = readJsonListPhim.SoLuongPhim(getActivity());
-                    mWordList.clear();
+                        Integer soluongphim = ReadThongTinJson.SoLuongPhim(getActivity());
+                        mWordList.clear();
 
-                    for(Integer i = 0; i < soluongphim; i++){
-                        Phim phim=readJsonListPhim.readPhimJson(getActivity(),i);
-                        if(phim.getTenPhim().equals(editText.getText().toString()))
-                            mWordList.addLast(phim);
+                        for (Integer i = 0; i < soluongphim; i++) {
+                            ThongTinJson thongTinJson = ReadThongTinJson.readThongTinJsonFile(getActivity(), i);
+                            if (thongTinJson.getTenPhim().equals(editText.getText().toString()))
+                                mWordList.addLast(thongTinJson);
+
+
+
+                        }
+
+
+                        mAdapter = new AdapterListPhimItem(getContext(),getActivity(), mWordList);
+
+                        mRecyclerview.setAdapter(mAdapter);
+
+                        mRecyclerview.setLayoutManager(new LinearLayoutManager(getActivity()));
+
+
+
+                    } catch (Exception e) {
+                        Toast.makeText(getActivity(), "sai", Toast.LENGTH_LONG).show();
                     }
-
-
-                    mAdapter=new AdapterListPhimItem(getActivity(),mWordList);
-
-                    mRecyclerview.setAdapter(mAdapter);
-
-                    mRecyclerview.setLayoutManager(new LinearLayoutManager(getActivity()));
-
-
-                }catch (Exception e){
-                    Toast.makeText(getActivity(),"sai",Toast.LENGTH_LONG).show();
                 }
             }
         });
+
 
 
         // Inflate the layout for this fragment
         return view;
     }
 
+    void HienthiDanhSach(View view)
+    {
+        try {
+            LinkedList<ThongTinJson> result=new LinkedList<>();
+            Integer soluongphim = ReadThongTinJson.SoLuongPhim(getActivity());
+            mWordList.clear();
+
+            for(Integer i = 0; i < soluongphim; i++){
+                ThongTinJson thongTinJson = ReadThongTinJson.readThongTinJsonFile(getActivity(),i);
+                mWordList.addLast(thongTinJson);
+            }
+
+
+
+
+
+            mAdapter=new AdapterListPhimItem(getContext(),getActivity(),mWordList);
+
+
+            mRecyclerview.setAdapter(mAdapter);
+
+            mRecyclerview.setLayoutManager(new LinearLayoutManager(getActivity()));
+
+
+        }catch (Exception e){
+            Toast.makeText(getActivity(),"sai",Toast.LENGTH_LONG).show();
+        }
+    }
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         String s=parent.getItemAtPosition(position).toString();

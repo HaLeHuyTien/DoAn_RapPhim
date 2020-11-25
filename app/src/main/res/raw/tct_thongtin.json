@@ -27,7 +27,9 @@
                   "HinhDV": "sanji",
                   "TenDV": "Sanji"
                 }
-              ]
+              ],
+      "DaoDien": "Takashi Otsuka",
+      "HinhDaoDien": "takashiotsuka"
     },
     {
       "IDPhim": "1",
@@ -55,7 +57,9 @@
           "HinhDV": "quangtrung",
           "TenDV": "Quang Trung"
         }
-      ]
+      ],
+      "DaoDien": "Lý Minh Thắng",
+      "HinhDaoDien": "lyminhthang"
     },
     {
       "IDPhim": "2",
@@ -79,12 +83,14 @@
           "HinhDV": "takitachibana",
           "TenDV": "Taki Tachibana"
         }
-      ]
+      ],
+      "DaoDien": "Shinkai Makoto",
+      "HinhDaoDien": "shinkaimakoto"
     },
     {
       "IDPhim": "3",
       "HinhPhim": "trangquynh",
-      "TenPhim": "Your Name",
+      "TenPhim": "Trạng Quỳnh",
       "TomTat": "Trạng Quỳnh sẽ xoay quanh hành trình giải cứu thầy Đoàn, đồng thời là cha Điềm đầy gian truân nhưng cũng nhiều tiếng cười của những con người nhỏ bé trong xã hội phong kiến dù luôn bị chèn ép bởi tầng lớp quan lại bất công.",
       "NgayKhoiChieu": "22/11/2020",
       "ThoiLuong": "95 phút",
@@ -103,7 +109,9 @@
           "HinhDV": "nhaphuong",
           "TenDV": "Nhã Phương"
         }
-      ]
+      ],
+      "DaoDien": "Đức Thịnh",
+      "HinhDaoDien": "ducthinh"
     }
 
 

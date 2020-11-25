@@ -264,7 +264,7 @@
                     android:id="@+id/txta"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Diễn Viên"
+                    android:text="Đạo Diễn / Diễn Viên"
                     android:textSize="18sp"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"

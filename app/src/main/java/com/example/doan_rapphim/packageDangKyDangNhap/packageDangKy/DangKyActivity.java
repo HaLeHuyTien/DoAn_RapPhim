@@ -3,6 +3,7 @@ package com.example.doan_rapphim.packageDangKyDangNhap.packageDangKy;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -12,7 +13,14 @@ import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.example.doan_rapphim.R;
+import com.example.doan_rapphim.packageDangKyDangNhap.packageDangNhap.IDUser;
+import com.example.doan_rapphim.packageDangKyDangNhap.packageDangNhap.packageThongTinUser.ReadThongTinUserJson;
+import com.example.doan_rapphim.packageDangKyDangNhap.packageDangNhap.packageThongTinUser.TabTaiKhoan;
+import com.example.doan_rapphim.packageDangKyDangNhap.packageDangNhap.packageThongTinUser.ThongTinUser;
 
+import org.json.JSONException;
+
+import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -27,6 +35,7 @@ public class DangKyActivity extends AppCompatActivity {
     private EditText edtNhapLaiMatKhauDK;
     private EditText edtNgaySinh;
     private ImageButton imgLichNgaySinhFormDangKy;
+    private String EmailDK;
     private int lastSelectedYear;
     private int lastSelectedMonth;
     private int lastSelectedDayOfMonth;
@@ -111,7 +120,26 @@ public class DangKyActivity extends AppCompatActivity {
         else {
             Toast.makeText(this,"Bạn chưa nhập đúng trong form Đăng ký",Toast.LENGTH_SHORT).show();
         }
-
+        int a = 0;
+        try {
+            int soluongUser = ReadThongTinUserJson.SoLuongTaiKhoan(this);
+            for(int i = 0; i < soluongUser; i ++) {
+                ThongTinUser thongTinUser = ReadThongTinUserJson.readThongTinUserFile(this, i);
+                Email = thongTinUser.getEmail();
+                if (edtEmailDK.getText().toString().equals(Email) ) {
+                    IDUser.idUser = i;
+                    Toast.makeText(this, "Email bạn nhập đã tồn tại", Toast.LENGTH_SHORT).show();
+                    a = 1;
+                    break;
+                }
+            }
+            if(a == 0)
+                Toast.makeText(this, "Thành công", Toast.LENGTH_SHORT).show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
 
     }
     public static boolean kiemTraNhapDung3Tu(final String kt){

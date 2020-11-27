@@ -9,24 +9,28 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.DoAn_RapPhim">
-        <activity android:name=".packageDangKyDangNhap.packageDangNhap.packageThongTinUser.TabTaiKhoan"
+        <activity android:name=".packageDangKyDangNhap.packageDangNhap.QuenMatKhauActivity"></activity>
+        <activity
+            android:name=".packageDangKyDangNhap.packageDangNhap.packageThongTinUser.TabTaiKhoan"
             android:label="THÔNG TIN"
             android:parentActivityName=".packageDangKyDangNhap.packageDangKy.DangKyActivity">
-            <meta-data android:name="android.support.PARENT_ACTIVITY"
-                android:value=".packageDangKyDangNhap.packageDangKy.DangKyActivity"/>
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".packageDangKyDangNhap.packageDangKy.DangKyActivity" />
         </activity>
         <activity android:name=".packageDangKyDangNhap.packageDangKy.DangKyActivity" />
         <activity android:name=".packageTrangChiTiet.TrangChiTiet" />
-        <activity android:name=".packageDangKyDangNhap.packageDangNhap.packageThongTinUser.ThayDoiThongTin"/>
-        <activity android:name=".packageDangKyDangNhap.packageDangNhap.packageThongTinUser.ThayDoiMatKhau"/>
-        <activity android:name=".packageTrangChiTiet.packageThanhToan.ThanhToan"
+        <activity android:name=".packageDangKyDangNhap.packageDangNhap.packageThongTinUser.ThayDoiThongTin" />
+        <activity android:name=".packageDangKyDangNhap.packageDangNhap.packageThongTinUser.ThayDoiMatKhau" />
+        <activity
+            android:name=".packageTrangChiTiet.packageThanhToan.ThanhToan"
             android:label="THANH TOÁN"
             android:parentActivityName=".packageTrangChiTiet.TrangChiTiet">
-            <meta-data android:name="android.support.PARENT_ACTIVITY"
-                android:value=".packageTrangChiTiet.TrangChiTiet"/>
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".packageTrangChiTiet.TrangChiTiet" />
         </activity>
         <activity android:name=".MainActivity">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

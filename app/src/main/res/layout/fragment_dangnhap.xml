@@ -87,20 +87,22 @@
                         android:src="@drawable/ic_baseline_remove_red_eye_24"
                         />
                 </RelativeLayout>
+
                 <Button
                     android:id="@+id/btnDK"
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:layout_marginTop="40dp"
+                    android:layout_width="260dp"
+                    android:layout_height="49dp"
+                    android:layout_marginTop="32dp"
                     android:background="@drawable/custom_button"
 
                     android:text="Đăng ký tài khoản"
-                    android:textColor="@color/white"
                     android:textAllCaps="false"
+                    android:textColor="@color/white"
                     android:textSize="20sp"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.492"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/btnDN"
+                    app:layout_constraintTop_toBottomOf="@+id/txtQuenMK"
                     tools:ignore="OnClick" />
 
                 <Button
@@ -115,6 +117,19 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/reLayoutDN" />
+
+
+                <TextView
+                    android:id="@+id/txtQuenMK"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="32dp"
+                    android:text="Quên mật khẩu?"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="24sp"
+                    app:layout_constraintTop_toBottomOf="@+id/btnDN"
+                    tools:layout_editor_absoluteX="0dp" />
 
                 <TextView
                     android:id="@+id/textView"

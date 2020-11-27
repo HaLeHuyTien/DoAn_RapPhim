@@ -83,6 +83,7 @@
                     android:layout_marginTop="8dp"
                     android:background="@drawable/custom_input"
                     android:drawableStart="@drawable/ic_baseline_phone_24"
+                    android:drawablePadding="12dp"
                     android:ems="10"
                     android:hint="Số điện thoại"
                     android:paddingStart="12dp"
@@ -106,7 +107,6 @@
                     app:layout_constraintTop_toBottomOf="@+id/txtSDTDangKy">
 
 
-
                     <EditText
                         android:id="@+id/txtNgaySinhDK"
                         android:layout_width="match_parent"
@@ -114,6 +114,7 @@
 
                         android:background="@drawable/custom_input"
                         android:drawableStart="@drawable/ic_baseline_date_range_24"
+                        android:drawablePadding="12dp"
                         android:ems="10"
                         android:hint="Ngày sinh"
                         android:paddingStart="12dp"
@@ -137,6 +138,7 @@
                     android:layout_marginTop="8dp"
                     android:background="@drawable/custom_input"
                     android:drawableStart="@drawable/baseline_home_24"
+                    android:drawablePadding="12dp"
                     android:ems="10"
                     android:hint="Địa Chỉ"
                     android:paddingStart="12dp"
@@ -192,6 +194,7 @@
                     android:layout_marginTop="8dp"
                     android:background="@drawable/custom_input"
                     android:drawableStart="@drawable/custom_lock_icon"
+                    android:drawablePadding="12dp"
                     android:ems="10"
                     android:hint="Nhập lại mật khẩu"
                     android:inputType="textPassword"

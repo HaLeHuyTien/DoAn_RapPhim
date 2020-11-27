@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -32,6 +33,7 @@ private Button btnDN,btnDK;
 private EditText edtEmail,edtMatKhau;
 private ImageButton imgHidePass;
 private String Email,MatKhau;
+private TextView txtQuenMatKhau;
 private Integer x = 0;
     private final LinkedList<ThongTinUser> mWordList = new LinkedList<>();
     @Nullable
@@ -41,6 +43,15 @@ private Integer x = 0;
         btnDK=view.findViewById(R.id.btnDK);
         edtEmail=view.findViewById(R.id.txtEmailDN);
         edtMatKhau=view.findViewById(R.id.txtPassDN);
+        txtQuenMatKhau=view.findViewById(R.id.txtQuenMK);
+        txtQuenMatKhau.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(getActivity() , QuenMatKhauActivity.class);
+                startActivity(intent);
+            }
+        });
         btnDK.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

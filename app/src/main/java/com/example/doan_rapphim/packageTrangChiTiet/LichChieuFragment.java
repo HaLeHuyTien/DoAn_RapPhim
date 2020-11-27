@@ -244,4 +244,6 @@ public class LichChieuFragment extends Fragment {
         datePickerDialog.show();
     }
 
+    public static class ReadThanhToanJson {
+    }
 }

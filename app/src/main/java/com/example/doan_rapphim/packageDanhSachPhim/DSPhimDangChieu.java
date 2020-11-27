@@ -108,7 +108,7 @@ public class DSPhimDangChieu extends Fragment {
                 Date strDate = sdf.parse(thongTinJson.getNgayKhoiChieu());
                 String currentTime = sdf.format(Calendar.getInstance().getTime());
                 Date currentDay = sdf.parse(currentTime);
-                if(strDate.before(currentDay))
+                if(strDate.before(currentDay) || currentTime.equals(thongTinJson.getNgayKhoiChieu()))
                     mWordList.addLast(thongTinJson);
 
 

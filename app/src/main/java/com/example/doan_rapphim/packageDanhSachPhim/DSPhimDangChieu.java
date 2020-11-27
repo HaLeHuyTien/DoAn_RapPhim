@@ -5,15 +5,27 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
+import com.example.doan_rapphim.AdapterListPhimItem;
 import com.example.doan_rapphim.R;
 import com.example.doan_rapphim.packageTrangChiTiet.IDPhim;
+import com.example.doan_rapphim.packageTrangChiTiet.ReadThongTinJson;
+import com.example.doan_rapphim.packageTrangChiTiet.ThongTinJson;
 import com.example.doan_rapphim.packageTrangChiTiet.TrangChiTiet;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.LinkedList;
 
 
 /**
@@ -63,10 +75,10 @@ public class DSPhimDangChieu extends Fragment {
         }
     }
 
-    private Button btnchitiet;
-    private Button btnchitiet2;
-    private Button btnchitiet3;
-    private Button btnchitiet4;
+    private final LinkedList<ThongTinJson> mWordList=new LinkedList<>();
+    private RecyclerView mRecyclerview;
+    private AdapterListPhimItem mAdapter;
+
 
 
     @Override
@@ -74,53 +86,49 @@ public class DSPhimDangChieu extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_d_s_phim_dang_chieu, container, false);
-        btnchitiet = (Button) view.findViewById(R.id.btnChiTiet1);
-        btnchitiet.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Integer idPhim = 0;
-                IDPhim.ID = idPhim;
-                Intent intent=new Intent(getActivity() , TrangChiTiet.class);
-                startActivity(intent);
-            }
-        });
+        mRecyclerview=view.findViewById(R.id.RVDSPhimDangChieu);
+        HienthiDanhSach(view);
 
-        btnchitiet2 = (Button) view.findViewById(R.id.btnChiTiet2);
-        btnchitiet2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Integer idPhim = 1;
-                IDPhim.ID = idPhim;
-                Intent intent=new Intent(getActivity() ,TrangChiTiet.class);
-                startActivity(intent);
-            }
-        });
-
-        btnchitiet3 = (Button) view.findViewById(R.id.btnChiTiet3);
-        btnchitiet3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Integer idPhim = 2;
-                IDPhim.ID = idPhim;
-                Intent intent=new Intent(getActivity() ,TrangChiTiet.class);
-                startActivity(intent);
-            }
-        });
-
-        btnchitiet4 = (Button) view.findViewById(R.id.btnChiTiet4);
-        btnchitiet4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Integer idPhim = 3;
-                IDPhim.ID = idPhim;
-                Intent intent=new Intent(getActivity() ,TrangChiTiet.class);
-                startActivity(intent);
-            }
-        });
 
         return view;
     }
 
+    void HienthiDanhSach(View view)
+    {
+        try {
+            LinkedList<ThongTinJson> result=new LinkedList<>();
+            Integer soluongphim = ReadThongTinJson.SoLuongPhim(getActivity());
+            mWordList.clear();
 
+            for(Integer i = 0; i < soluongphim; i++){
+                ThongTinJson thongTinJson = ReadThongTinJson.readThongTinJsonFile(getActivity(),i);
+
+                Calendar cal = Calendar.getInstance();
+                SimpleDateFormat sdf = new SimpleDateFormat("dd/mm/yyyy");
+                Date strDate = sdf.parse(thongTinJson.getNgayKhoiChieu());
+                String currentTime = sdf.format(Calendar.getInstance().getTime());
+                Date currentDay = sdf.parse(currentTime);
+                if(strDate.before(currentDay))
+                    mWordList.addLast(thongTinJson);
+
+
+            }
+
+
+
+
+
+            mAdapter=new AdapterListPhimItem(getContext(),getActivity(),mWordList);
+
+
+            mRecyclerview.setAdapter(mAdapter);
+
+            mRecyclerview.setLayoutManager(new LinearLayoutManager(getActivity()));
+
+
+        }catch (Exception e){
+            Toast.makeText(getActivity(),"sai",Toast.LENGTH_LONG).show();
+        }
+    }
 
 }

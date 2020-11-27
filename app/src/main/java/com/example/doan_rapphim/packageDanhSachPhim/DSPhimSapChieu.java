@@ -3,12 +3,23 @@ package com.example.doan_rapphim.packageDanhSachPhim;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
+import com.example.doan_rapphim.AdapterListPhimItem;
 import com.example.doan_rapphim.R;
+import com.example.doan_rapphim.packageTrangChiTiet.ReadThongTinJson;
+import com.example.doan_rapphim.packageTrangChiTiet.ThongTinJson;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.LinkedList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -57,10 +68,51 @@ public class DSPhimSapChieu extends Fragment {
         }
     }
 
+    private final LinkedList<ThongTinJson> mWordList=new LinkedList<>();
+    private RecyclerView mRecyclerview;
+    private AdapterListPhimItem mAdapter;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_d_s_phim_sap_chieu, container, false);
+        View view = inflater.inflate(R.layout.fragment_d_s_phim_sap_chieu, container, false);
+        mRecyclerview=view.findViewById(R.id.RVDSPhimSapChieu);
+        HienthiDanhSach(view);
+        return  view;
+    }
+
+    void HienthiDanhSach(View view)
+    {
+        try {
+            LinkedList<ThongTinJson> result=new LinkedList<>();
+            Integer soluongphim = ReadThongTinJson.SoLuongPhim(getActivity());
+            mWordList.clear();
+
+            for(Integer i = 0; i < soluongphim; i++){
+                ThongTinJson thongTinJson = ReadThongTinJson.readThongTinJsonFile(getActivity(),i);
+
+                Calendar cal = Calendar.getInstance();
+                SimpleDateFormat sdf = new SimpleDateFormat("dd/mm/yyyy");
+                Date strDate = sdf.parse(thongTinJson.getNgayKhoiChieu());
+                String currentTime = sdf.format(Calendar.getInstance().getTime());
+                Date currentDay = sdf.parse(currentTime);
+                if(strDate.after(currentDay))
+                    mWordList.addLast(thongTinJson);
+            }
+
+
+
+            mAdapter=new AdapterListPhimItem(getContext(),getActivity(),mWordList);
+
+
+            mRecyclerview.setAdapter(mAdapter);
+
+            mRecyclerview.setLayoutManager(new LinearLayoutManager(getActivity()));
+
+
+        }catch (Exception e){
+            Toast.makeText(getActivity(),"sai",Toast.LENGTH_LONG).show();
+        }
     }
 }

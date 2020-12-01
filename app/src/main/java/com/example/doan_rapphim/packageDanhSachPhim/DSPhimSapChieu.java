@@ -93,7 +93,7 @@ public class DSPhimSapChieu extends Fragment {
                 ThongTinJson thongTinJson = ReadThongTinJson.readThongTinJsonFile(getActivity(),i);
 
                 Calendar cal = Calendar.getInstance();
-                SimpleDateFormat sdf = new SimpleDateFormat("dd/mm/yyyy");
+                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
                 Date strDate = sdf.parse(thongTinJson.getNgayKhoiChieu());
                 String currentTime = sdf.format(Calendar.getInstance().getTime());
                 Date currentDay = sdf.parse(currentTime);

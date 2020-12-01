@@ -104,12 +104,15 @@ public class DSPhimDangChieu extends Fragment {
                 ThongTinJson thongTinJson = ReadThongTinJson.readThongTinJsonFile(getActivity(),i);
 
                 Calendar cal = Calendar.getInstance();
-                SimpleDateFormat sdf = new SimpleDateFormat("dd/mm/yyyy");
+                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
                 Date strDate = sdf.parse(thongTinJson.getNgayKhoiChieu());
                 String currentTime = sdf.format(Calendar.getInstance().getTime());
+
+                int b = 0;
                 Date currentDay = sdf.parse(currentTime);
                 if(strDate.before(currentDay) || currentTime.equals(thongTinJson.getNgayKhoiChieu()))
                     mWordList.addLast(thongTinJson);
+                
 
 
             }

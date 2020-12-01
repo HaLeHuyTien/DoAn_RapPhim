@@ -1,6 +1,7 @@
 package com.example.doan_rapphim.packageDanhSachPhim;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -22,6 +23,16 @@ import com.example.doan_rapphim.packageTrangChiTiet.ReadThongTinJson;
 import com.example.doan_rapphim.packageTrangChiTiet.ThongTinJson;
 import com.example.doan_rapphim.packageTrangChiTiet.TrangChiTiet;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -80,6 +91,9 @@ public class DSPhimDangChieu extends Fragment {
     private AdapterListPhimItem mAdapter;
 
 
+    private static String jsonURL = "http://0306181355.pixelcent.com/Cinema/Phim.php";
+
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -87,7 +101,16 @@ public class DSPhimDangChieu extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_d_s_phim_dang_chieu, container, false);
         mRecyclerview=view.findViewById(R.id.RVDSPhimDangChieu);
-        HienthiDanhSach(view);
+        GetPhim getPhim = new GetPhim();
+        getPhim.execute();
+
+
+        mAdapter=new AdapterListPhimItem(getContext(),getActivity(),mWordList);
+
+        mRecyclerview.setAdapter(mAdapter);
+
+        mRecyclerview.setLayoutManager(new LinearLayoutManager(getActivity()));
+        //HienthiDanhSach(view);
 
 
         return view;
@@ -119,8 +142,6 @@ public class DSPhimDangChieu extends Fragment {
 
 
 
-
-
             mAdapter=new AdapterListPhimItem(getContext(),getActivity(),mWordList);
 
 
@@ -131,6 +152,100 @@ public class DSPhimDangChieu extends Fragment {
 
         }catch (Exception e){
             Toast.makeText(getActivity(),"sai",Toast.LENGTH_LONG).show();
+        }
+    }
+
+    public class GetPhim extends AsyncTask<String, String, String>{
+
+
+        @Override
+        protected String doInBackground(String... strings) {
+            String current = "";
+
+            try {
+                URL url;
+                HttpURLConnection urlConnection = null;
+
+
+                try {
+                    url = new URL(jsonURL);
+                    urlConnection = (HttpURLConnection) url.openConnection();
+
+                    InputStream in = urlConnection.getInputStream();
+                    InputStreamReader isr = new InputStreamReader(in);
+
+                    int data = isr.read();
+                    while (data != -1) {
+                        current += (char) data;
+                        data = isr.read();
+                    }
+
+                    return current;
+
+                } catch (MalformedURLException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } finally {
+                    if (urlConnection != null) {
+                        urlConnection.disconnect();
+                    }
+                }
+
+            }catch (Exception e) {
+                e.printStackTrace();
+            }
+            return current;
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            try {
+                JSONObject jsonObject = new JSONObject(s);
+                JSONArray jsonArray = jsonObject.getJSONArray("DanhSach");
+
+
+                    JSONObject jsonObject1 = jsonArray.getJSONObject(0);
+                    String id = jsonObject1.getString("id");
+                    String TenPhim = jsonObject1.getString("TenPhim");
+                    String LoaiPhim = jsonObject1.getString("LoaiPhim");
+                    String DaoDien = jsonObject1.getString("DaoDien");
+                    String HinhDaoDien = jsonObject1.getString("HinhDaoDien");
+                    String ThoiLuong = jsonObject1.getString("ThoiLuong");
+                    String GioiHanTuoi = jsonObject1.getString("GioiHanTuoi");
+                    String VideoTrailer = jsonObject1.getString("VideoTrailer");
+                    String NoiDung = jsonObject1.getString("NoiDung");
+                    String Hinh = jsonObject1.getString("Hinh");
+                    String NhaSanXuat = jsonObject1.getString("NhaSanXuat");
+                    Integer a = Integer.parseInt(id);
+
+                    ThongTinJson Phim = new ThongTinJson();
+                    Phim.setIDPhim(a);
+                    Phim.setTenPhim(TenPhim);
+                    Phim.setTheLoai(LoaiPhim);
+                    Phim.setDaoDien(DaoDien);
+                    Phim.setHinhDaoDien(HinhDaoDien);
+                    Phim.setThoiLuong(ThoiLuong);
+                    Phim.setDoTuoi(GioiHanTuoi);
+                    Phim.setTrailer(VideoTrailer);
+                    Phim.setTomTat(NoiDung);
+                    Phim.setHinhPhim(Hinh);
+                    Phim.setNgonNgu(NhaSanXuat);
+                    Phim.setDiem(9.0);
+                    Phim.setNgayKhoiChieu("30/11/2020");
+                    Phim.setNhaSanXuat(NhaSanXuat);
+
+
+                    mWordList.addLast(Phim);
+
+
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+
+
         }
     }
 

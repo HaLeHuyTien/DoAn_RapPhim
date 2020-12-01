@@ -23,6 +23,15 @@ public class ThongTinJson {
     private String Trailer;
     private String DaoDien;
     private String HinhDaoDien;
+    private String NhaSanXuat;
+
+    public String getNhaSanXuat() {
+        return NhaSanXuat;
+    }
+
+    public void setNhaSanXuat(String nhaSanXuat) {
+        NhaSanXuat = nhaSanXuat;
+    }
 
     public String getHinhDaoDien() {
         return HinhDaoDien;

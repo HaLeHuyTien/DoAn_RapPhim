@@ -6,7 +6,9 @@ public class ThongTinUser {
     private String Email;
     private String SDT;
     private String NgaySinh ;
-    private String DiaChi;
+    private String XaPhuong;
+    private String HuyenQuan;
+    private String TinhTP;
     private String MatKhau;
     private String Anh;
     private int TrangThai;
@@ -23,11 +25,17 @@ public class ThongTinUser {
     public void setSDT(String sdt) { this.SDT = sdt;}
     public String getSDT(){return this.SDT;}
 
+    public void setXaPhuong(String xaPhuong) { this.XaPhuong = xaPhuong;}
+    public String getXaPhuong(){return this.XaPhuong;}
+
+    public void setHuyenQuan(String huyenQuan) { this.HuyenQuan = huyenQuan;}
+    public String getHuyenQuan(){return this.HuyenQuan;}
+
+    public void setTinhTP(String tinhTP) { this.TinhTP = tinhTP;}
+    public String getTinhTP(){return this.TinhTP;}
+
     public void setNgaySinh(String ngaySinh) { this.NgaySinh = ngaySinh;}
     public String getNgaySinh(){return this.NgaySinh;}
-
-    public void setDiaChi(String diaChi) { this.DiaChi = diaChi;}
-    public String getDiaChi(){return this.DiaChi;}
 
     public void setMatKhau(String matKhau) { this.MatKhau = matKhau;}
     public String getMatKhau(){return this.MatKhau;}

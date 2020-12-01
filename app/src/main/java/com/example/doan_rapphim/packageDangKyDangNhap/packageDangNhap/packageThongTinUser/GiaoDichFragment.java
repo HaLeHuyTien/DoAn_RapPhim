@@ -9,8 +9,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.example.doan_rapphim.R;
+import com.example.doan_rapphim.packageDangKyDangNhap.packageDangNhap.IDUser;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,7 +23,7 @@ import java.util.List;
  * create an instance of this fragment.
  */
 public class GiaoDichFragment extends Fragment {
-
+    private TextView txtHVT;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -69,16 +71,31 @@ public class GiaoDichFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_giao_dich, container, false);
         spnThang = view.findViewById(R.id.spinnerThang);
+        txtHVT = view.findViewById(R.id.txtHVTGD);
         chonThang();
+        HienThiGiaoDich();
         return view;
 
+
+    }
+
+    private void HienThiGiaoDich() {
+        try {
+
+            //for(int i = 0; i < soluong ; i ++) {
+            ThongTinUser thongTinUser = ReadThongTinUserJson.readThongTinUserFile(getActivity(), IDUser.idUser);
+            //Truyen Id if(thongTinUser.getID() == )
+            txtHVT.setText(thongTinUser.getHoVaTen());
+            //}
+        }catch (Exception e){
+            txtHVT.setText("Error");
+        }
     }
 
     public void chonThang() {
         List<String> list = new ArrayList<>();
         for(int i = 0;i<13;i++) {
             list.add("T "+ i);
-
         }
         ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_item, list);
         adapter.setDropDownViewResource(android.R.layout.simple_list_item_single_choice);

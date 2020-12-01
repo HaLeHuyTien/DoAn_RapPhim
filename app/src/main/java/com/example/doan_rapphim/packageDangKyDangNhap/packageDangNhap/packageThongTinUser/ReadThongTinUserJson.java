@@ -27,7 +27,9 @@ public class ReadThongTinUserJson {
         String Email = jsonObject.getString("Email");
         String SDT = jsonObject.getString("SDT");
         String NgaySinh = jsonObject.getString("NgaySinh");
-        String DiaChi = jsonObject.getString("DiaChi");
+        String XaPhuong = jsonObject.getString("Phuong");
+        String HuyenQuan = jsonObject.getString("Quan");
+        String TinhThanhPho = jsonObject.getString("ThanhPho");
         String MatKhau = jsonObject.getString("MatKhau");
         String Anh = jsonObject.getString("Anh");
         Integer TrangThai = jsonObject.getInt("TrangThai");
@@ -37,7 +39,9 @@ public class ReadThongTinUserJson {
         thongTinUser.setEmail(Email);
         thongTinUser.setSDT(SDT);
         thongTinUser.setNgaySinh(NgaySinh);
-        thongTinUser.setDiaChi(DiaChi);
+        thongTinUser.setXaPhuong(XaPhuong);
+        thongTinUser.setHuyenQuan(HuyenQuan);
+        thongTinUser.setTinhTP(TinhThanhPho);
         thongTinUser.setMatKhau(MatKhau);
         thongTinUser.setAnh(Anh);
         thongTinUser.setTrangThai(TrangThai);

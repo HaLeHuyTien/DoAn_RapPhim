@@ -4,10 +4,17 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.example.doan_rapphim.R;
+import com.example.doan_rapphim.packageDangKyDangNhap.packageDangNhap.IDUser;
 
+import org.json.JSONException;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,6 +22,11 @@ public class ThayDoiThongTin extends AppCompatActivity {
     private Spinner spnTinhTp;
     private Spinner spnHuyenQuan;
     private Spinner spnXaPhuong;
+
+    private ImageView txtanhDaiDien;
+    private EditText txtHoVaTen;
+    private EditText txtSDT;
+    private EditText txtNgaySinh;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,9 +34,26 @@ public class ThayDoiThongTin extends AppCompatActivity {
         spnTinhTp = findViewById(R.id.spinnerThanhPho);
         spnHuyenQuan = findViewById(R.id.spinnerQuanHuyen);
         spnXaPhuong = findViewById(R.id.spinnerXaPhuong);
+        txtanhDaiDien = findViewById(R.id.imgHinhDaiDienThayDoi);
+        txtHoVaTen = findViewById(R.id.editTextHVT);
+        txtSDT = findViewById(R.id.editTextSDTTT);
+        txtNgaySinh = findViewById(R.id.editTextDateTT);
         chonTP();
         chonQuan();
         chonPhuong();
+        HienThiThongTinUser();
+    }
+
+    private void HienThiThongTinUser() {
+        try {
+            ThongTinUser thongTinUser = ReadThongTinUserJson.readThongTinUserFile(this, IDUser.idUser);
+            txtHoVaTen.setText(thongTinUser.getHoVaTen());
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
     }
 
     public void chonTP() {

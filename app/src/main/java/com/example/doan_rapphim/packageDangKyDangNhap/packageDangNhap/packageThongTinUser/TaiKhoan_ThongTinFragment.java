@@ -4,28 +4,17 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.doan_rapphim.R;
 import com.example.doan_rapphim.packageDangKyDangNhap.packageDangNhap.IDUser;
-import com.example.doan_rapphim.packageTrangChiTiet.LichChieuFragment;
-import com.example.doan_rapphim.packageTrangChiTiet.LichChieuListAdapter;
-import com.example.doan_rapphim.packageTrangChiTiet.LichChieu_Json;
 import com.example.doan_rapphim.packageTrangChiTiet.ThongTinFragment;
-
-import org.json.JSONException;
-
-import java.io.IOException;
-import java.util.LinkedList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -43,11 +32,6 @@ public class TaiKhoan_ThongTinFragment extends Fragment {
     private TextView txtSDT;
     private TextView txtNgaySinh;
     private TextView txtDiaChi;
-    private EditText txtMKC;
-
-    private final LinkedList<ThongTinUser> mWordList = new LinkedList<>();
-    private RecyclerView mRecyclerView;
-    private ThongTinUserAdapter mAdapter;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -100,7 +84,6 @@ public class TaiKhoan_ThongTinFragment extends Fragment {
         txtSDT = view.findViewById(R.id.txtSDTTT);
         txtNgaySinh = view.findViewById(R.id.txtNgaySinhTT);
         txtDiaChi = view.findViewById(R.id.txtDiaChiTT);
-        txtMKC = view.findViewById(R.id.editTextMKCuTT);
 
         HienThiUser();
         // Inflate the layout for this fragment
@@ -135,7 +118,7 @@ public class TaiKhoan_ThongTinFragment extends Fragment {
                 txtHoVaTen.setText(thongTinUser.getHoVaTen());
                 txtSDT.setText(thongTinUser.getSDT());
                 txtNgaySinh.setText(thongTinUser.getNgaySinh());
-                txtDiaChi.setText(thongTinUser.getDiaChi());
+                txtDiaChi.setText(thongTinUser.getXaPhuong()+", " + thongTinUser.getHuyenQuan()+", "+thongTinUser.getTinhTP());
             //}
         }catch (Exception e){
             txtEmail.setText("Error");

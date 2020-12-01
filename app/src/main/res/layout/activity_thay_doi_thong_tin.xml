@@ -14,7 +14,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
     <ImageView
-        android:id="@+id/imgHinhDaiDienTT"
+        android:id="@+id/imgHinhDaiDienThayDoi"
         android:layout_width="149dp"
         android:layout_height="147dp"
         android:layout_marginTop="16dp"
@@ -30,8 +30,9 @@
         android:layout_marginTop="32dp"
         android:text="Đổi"
         android:background="@drawable/custom_button"
+        android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imgHinhDaiDienTT"
+        app:layout_constraintStart_toEndOf="@+id/imgHinhDaiDienThayDoi"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
@@ -47,7 +48,7 @@
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imgHinhDaiDienTT" />
+        app:layout_constraintTop_toBottomOf="@+id/imgHinhDaiDienThayDoi" />
 
     <EditText
         android:id="@+id/editTextSDTTT"
@@ -72,6 +73,7 @@
         android:layout_marginEnd="70dp"
         android:background="@drawable/custom_button"
         android:text="Thoát"
+        android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/spinnerXaPhuong" />
 
@@ -155,6 +157,7 @@
         android:layout_marginTop="40dp"
         android:background="@drawable/custom_button"
         android:text="Lưu"
+        android:textColor="@color/white"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/spinnerXaPhuong" />
 

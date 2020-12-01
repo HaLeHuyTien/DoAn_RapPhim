@@ -31,13 +31,13 @@
                     android:layout_height="35dp"
                     android:paddingStart="10sp"
                     android:paddingEnd="10sp"
-                    android:text="Ngôn ngữ:"
-                    app:layout_constraintEnd_toStartOf="@+id/txtNgonNgu"
+                    android:text="Nhà Sản Xuất:"
+                    app:layout_constraintEnd_toStartOf="@+id/txtNhaSanXuat"
                     app:layout_constraintStart_toEndOf="@+id/imgHinhPhim"
                     app:layout_constraintTop_toBottomOf="@+id/txt2" />
 
                 <TextView
-                    android:id="@+id/txtNgonNgu"
+                    android:id="@+id/txtNhaSanXuat"
                     android:layout_width="134dp"
                     android:layout_height="35dp"
                     app:layout_constraintEnd_toEndOf="parent"

@@ -105,11 +105,7 @@ public class DSPhimDangChieu extends Fragment {
         getPhim.execute();
 
 
-        mAdapter=new AdapterListPhimItem(getContext(),getActivity(),mWordList);
 
-        mRecyclerview.setAdapter(mAdapter);
-
-        mRecyclerview.setLayoutManager(new LinearLayoutManager(getActivity()));
         //HienthiDanhSach(view);
 
 
@@ -155,7 +151,7 @@ public class DSPhimDangChieu extends Fragment {
         }
     }
 
-    public class GetPhim extends AsyncTask<String, String, String>{
+    private class GetPhim extends AsyncTask<String, String, String>{
 
 
         @Override
@@ -204,8 +200,8 @@ public class DSPhimDangChieu extends Fragment {
                 JSONObject jsonObject = new JSONObject(s);
                 JSONArray jsonArray = jsonObject.getJSONArray("DanhSach");
 
-
-                    JSONObject jsonObject1 = jsonArray.getJSONObject(0);
+                for(int i = 0; i < jsonArray.length(); i++) {
+                    JSONObject jsonObject1 = jsonArray.getJSONObject(i);
                     String id = jsonObject1.getString("id");
                     String TenPhim = jsonObject1.getString("TenPhim");
                     String LoaiPhim = jsonObject1.getString("LoaiPhim");
@@ -230,15 +226,32 @@ public class DSPhimDangChieu extends Fragment {
                     Phim.setTrailer(VideoTrailer);
                     Phim.setTomTat(NoiDung);
                     Phim.setHinhPhim(Hinh);
-                    Phim.setNgonNgu(NhaSanXuat);
                     Phim.setDiem(9.0);
                     Phim.setNgayKhoiChieu("30/11/2020");
                     Phim.setNhaSanXuat(NhaSanXuat);
 
 
-                    mWordList.addLast(Phim);
+                    try {
+                        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+                        Date strDate = sdf.parse(Phim.getNgayKhoiChieu());
+                        String currentTime = sdf.format(Calendar.getInstance().getTime());
 
+                        int b = 0;
+                        Date currentDay = sdf.parse(currentTime);
+                        if(strDate.before(currentDay) || currentTime.equals(Phim.getNgayKhoiChieu()))
+                            mWordList.addLast(Phim);
+                    }catch (Exception e)
+                    {
+                        e.printStackTrace();
+                    }
 
+                }
+
+                mAdapter=new AdapterListPhimItem(getContext(),getActivity(),mWordList);
+
+                mRecyclerview.setAdapter(mAdapter);
+
+                mRecyclerview.setLayoutManager(new LinearLayoutManager(getActivity()));
 
             } catch (JSONException e) {
                 e.printStackTrace();

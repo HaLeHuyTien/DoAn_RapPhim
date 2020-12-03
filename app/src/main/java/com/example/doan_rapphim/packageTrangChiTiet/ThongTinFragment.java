@@ -38,10 +38,11 @@ import java.util.LinkedList;
 
 public class ThongTinFragment extends Fragment {
 
-    public TrangChiTiet trangChiTiet = (TrangChiTiet) getActivity();
+    private TrangChiTiet trangChiTiet;
 
     private  String jsonURL = "http://0306181355.pixelcent.com/Cinema/Phim.php";
-    private  String jsonURLDV = "http://0306181355.pixelcent.com/Cinema/DienVienTheoPhim.php?idphim=" + trangChiTiet.getIdPhim().toString();
+    private  String jsonURLDV;
+    private  String value= "http://0306181355.pixelcent.com/Cinema/DienVienTheoPhim.php?idphim=";
 
 
 
@@ -82,7 +83,9 @@ public class ThongTinFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.thongtin, container,false);
 
-        
+        trangChiTiet = (TrangChiTiet) getActivity();
+
+        jsonURLDV = value + trangChiTiet.getIdPhim().toString();
 
 
         //TrangChiTiet

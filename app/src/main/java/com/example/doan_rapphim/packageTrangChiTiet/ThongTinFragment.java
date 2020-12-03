@@ -38,10 +38,12 @@ import java.util.LinkedList;
 
 public class ThongTinFragment extends Fragment {
 
-    private static String jsonURL = "http://0306181355.pixelcent.com/Cinema/Phim.php";
-    private static String jsonURLDV = "http://0306181355.pixelcent.com/Cinema/DienVienTheoPhim.php?idphim=";
+    public TrangChiTiet trangChiTiet = (TrangChiTiet) getActivity();
 
-    private TrangChiTiet trangChiTiet;
+    private  String jsonURL = "http://0306181355.pixelcent.com/Cinema/Phim.php";
+    private  String jsonURLDV = "http://0306181355.pixelcent.com/Cinema/DienVienTheoPhim.php?idphim=" + trangChiTiet.getIdPhim().toString();
+
+
 
     private ImageView imgHinhPhim;
     private  TextView txtTenPhim;
@@ -80,8 +82,8 @@ public class ThongTinFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.thongtin, container,false);
 
-        trangChiTiet = (TrangChiTiet) getActivity();
-        jsonURLDV = jsonURLDV + trangChiTiet.getIdPhim().toString();
+        
+
 
         //TrangChiTiet
         imgHinhPhim = view.findViewById(R.id.imgHinhPhim);
@@ -207,6 +209,7 @@ public class ThongTinFragment extends Fragment {
         @Override
         protected void onPostExecute(String s) {
             try {
+
                 JSONObject jsonObject = new JSONObject(s);
                 JSONArray jsonArray = jsonObject.getJSONArray("DanhSach");
 
@@ -303,6 +306,7 @@ public class ThongTinFragment extends Fragment {
         @Override
         protected void onPostExecute(String s) {
             try {
+
                 JSONObject jsonObject = new JSONObject(s);
                 JSONArray jsonArray = jsonObject.getJSONArray("DanhSach");
 

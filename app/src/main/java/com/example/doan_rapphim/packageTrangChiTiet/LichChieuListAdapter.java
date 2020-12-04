@@ -32,7 +32,6 @@ public class LichChieuListAdapter extends RecyclerView.Adapter<LichChieuListAdap
     public void onBindViewHolder(@NonNull LichChieuListAdapter.LichChieuViewHolder holder, int position) {
         LichChieu_Json mCurrent = mLichChieuList.get(position);
         holder.txtTenRap.setText(mCurrent.getTenRap());
-        holder.txtTenTinh.setText(mCurrent.getTenTinh());
         String a[] = mCurrent.getXuatChieu();
         for(int i =0;i<a.length;i++){
             holder.btnGioChieu[i].setText(a[i]);
@@ -46,13 +45,11 @@ public class LichChieuListAdapter extends RecyclerView.Adapter<LichChieuListAdap
 
     public class LichChieuViewHolder extends RecyclerView.ViewHolder {
         public final TextView txtTenRap;
-        public final TextView txtTenTinh;
         public final Button btnGioChieu[] = new Button[8];
         final LichChieuListAdapter mAdapter;
         public LichChieuViewHolder(View itemView, LichChieuListAdapter adapter){
             super(itemView);
             txtTenRap = itemView.findViewById(R.id.txtTenRap);
-            txtTenTinh = itemView.findViewById(R.id.txtTenTinh);
             btnGioChieu[0] = itemView.findViewById(R.id.btnGioChieu1);
             btnGioChieu[1] = itemView.findViewById(R.id.btnGioChieu2);
             btnGioChieu[2] = itemView.findViewById(R.id.btnGioChieu3);

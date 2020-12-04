@@ -15,6 +15,15 @@ public class LichChieu_Json {
     private String TenTinh;
     private String[] XuatChieu;
     private String NgayChieu;
+    private String TenPhong;
+
+    public String getTenPhong() {
+        return TenPhong;
+    }
+
+    public void setTenPhong(String tenPhong) {
+        TenPhong = tenPhong;
+    }
 
     public String getNgayChieu() {
         return NgayChieu;

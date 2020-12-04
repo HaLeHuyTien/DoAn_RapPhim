@@ -123,7 +123,7 @@ public class DSPhimDangChieu extends Fragment {
                 ThongTinJson thongTinJson = ReadThongTinJson.readThongTinJsonFile(getActivity(),i);
 
                 Calendar cal = Calendar.getInstance();
-                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+                SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
                 Date strDate = sdf.parse(thongTinJson.getNgayKhoiChieu());
                 String currentTime = sdf.format(Calendar.getInstance().getTime());
 
@@ -227,12 +227,12 @@ public class DSPhimDangChieu extends Fragment {
                     Phim.setTomTat(NoiDung);
                     Phim.setHinhPhim(Hinh);
                     Phim.setDiem(9.0);
-                    Phim.setNgayKhoiChieu("30/11/2020");
+                    Phim.setNgayKhoiChieu("30-11-2020");
                     Phim.setNhaSanXuat(NhaSanXuat);
 
 
                     try {
-                        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+                        SimpleDateFormat sdf = new SimpleDateFormat("d-MM-yyyy");
                         Date strDate = sdf.parse(Phim.getNgayKhoiChieu());
                         String currentTime = sdf.format(Calendar.getInstance().getTime());
 

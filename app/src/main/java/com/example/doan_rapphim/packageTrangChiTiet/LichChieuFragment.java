@@ -2,6 +2,7 @@ package com.example.doan_rapphim.packageTrangChiTiet;
 
 import android.app.DatePickerDialog;
 import android.content.Context;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,12 +25,24 @@ import android.widget.TextView;
 import android.widget.Button;
 
 
+import com.example.doan_rapphim.AdapterListPhimItem;
 import com.example.doan_rapphim.R;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Calendar;
@@ -39,11 +52,11 @@ import java.util.Calendar;
 
 public class LichChieuFragment extends Fragment {
 
+    private  String jsonURL;
+    private static String value = "http://0306181355.pixelcent.com/Cinema/XuatChieuTheoPhim.php?IDPhim=";
+
     private TrangChiTiet trangChiTiet;
 
-    private Spinner spnDiaDiem;
-
-    private Spinner spnRap;
 
     private EditText EditNgay;
 
@@ -80,8 +93,9 @@ public class LichChieuFragment extends Fragment {
 
         trangChiTiet = (TrangChiTiet) getActivity();
 
-        spnDiaDiem = view.findViewById(R.id.spinDiaDiem);
-        spnRap = view.findViewById(R.id.spinRap);
+        jsonURL = value + trangChiTiet.getIdPhim().toString();
+
+
         EditNgay = view.findViewById(R.id.txtLichChieu);
         imgLich = view.findViewById(R.id.imgLichChieu);
 
@@ -100,18 +114,22 @@ public class LichChieuFragment extends Fragment {
         this.lastSelectedMonth = c.get(Calendar.MONTH);
         this.lastSelectedDayOfMonth = c.get(Calendar.DAY_OF_MONTH);
 
-        DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+        DateFormat df = new SimpleDateFormat("d-MM-yyyy");
         String date = df.format(Calendar.getInstance().getTime());
         EditNgay.setText(date);
-        addDiaDiem();
-        addRap();
+
+       /* addDiaDiem();
+        addRap();*/
 
 
 
-        HienThiDanhSach();
+        //HienThiDanhSach();
 
-        spnDiaDiem.setOnItemSelectedListener(myListener);
-        spnRap.setOnItemSelectedListener(myListener);
+        //spnDiaDiem.setOnItemSelectedListener(myListener);
+        //spnRap.setOnItemSelectedListener(myListener);
+
+        GetXuatChieu getXuatChieu = new GetXuatChieu();
+        getXuatChieu.execute();
 
 
         return view;
@@ -121,7 +139,7 @@ public class LichChieuFragment extends Fragment {
     AdapterView.OnItemSelectedListener myListener = new AdapterView.OnItemSelectedListener() {
         @Override
         public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-           Loc();
+           //Loc();
         }
 
         @Override
@@ -129,53 +147,6 @@ public class LichChieuFragment extends Fragment {
 
         }
     };
-
-    public void Loc(){
-        LinkedList<LichChieu_Json> result = new LinkedList<>();
-        LinkedList<LichChieu_Json> KQ = new LinkedList<>();
-        int count = mWordList.size();
-        int diadiemvitri = spnDiaDiem.getSelectedItemPosition();
-        String diadiemgiatri = spnDiaDiem.getSelectedItem().toString();
-        int rapvitri = spnRap.getSelectedItemPosition();
-        String NgayChieu = EditNgay.getText().toString();
-        String rapgiatri = spnRap.getSelectedItem().toString();
-        if(diadiemvitri == 0){
-            if(rapvitri == 0)
-            {
-                KQ = mWordList;
-            }
-            else {
-                for (int i = 0; i < count; i++) {
-                    if (mWordList.get(i).getTenRap().equals(rapgiatri) && mWordList.get(i).getNgayChieu().equals(NgayChieu)) {
-                        result.add(mWordList.get(i));
-                    }
-                }
-                KQ = result;
-            }
-        }
-        else{
-            if(rapvitri == 0) {
-                for (int i = 0; i < count; i++) {
-                    if (mWordList.get(i).getTenTinh().equals(diadiemgiatri) && mWordList.get(i).getNgayChieu().equals(NgayChieu)) {
-                        result.add(mWordList.get(i));
-                    }
-                }
-                KQ = result;
-            }
-            else
-            {
-                for (int i = 0; i < count; i++) {
-                    if (mWordList.get(i).getTenTinh().equals(diadiemgiatri) && mWordList.get(i).getTenRap().equals(rapgiatri) && mWordList.get(i).getNgayChieu().equals(NgayChieu)) {
-                        result.add(mWordList.get(i));
-                    }
-                }
-                KQ = result;
-            }
-        }
-        mAdapter = new LichChieuListAdapter(getActivity(),KQ);
-        mRecyclerView.setAdapter(mAdapter);
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-    }
 
     public void HienThiDanhSach(){
         try {
@@ -198,8 +169,88 @@ public class LichChieuFragment extends Fragment {
         }
     }
 
+    private class GetXuatChieu extends AsyncTask<String, String, String> {
 
-    public void addDiaDiem() {
+
+        @Override
+        protected String doInBackground(String... strings) {
+            String current = "";
+
+            try {
+                URL url;
+                HttpURLConnection urlConnection = null;
+
+
+                try {
+                    url = new URL(jsonURL);
+                    urlConnection = (HttpURLConnection) url.openConnection();
+
+                    InputStream in = urlConnection.getInputStream();
+                    InputStreamReader isr = new InputStreamReader(in);
+
+                    int data = isr.read();
+                    while (data != -1) {
+                        current += (char) data;
+                        data = isr.read();
+                    }
+
+                    return current;
+
+                } catch (MalformedURLException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } finally {
+                    if (urlConnection != null) {
+                        urlConnection.disconnect();
+                    }
+                }
+
+            }catch (Exception e) {
+                e.printStackTrace();
+            }
+            return current;
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            try {
+                JSONObject jsonObject = new JSONObject(s);
+                JSONArray jsonArray = jsonObject.getJSONArray("DanhSach");
+                for(int i = 0; i < jsonArray.length()/8; i++) {
+
+                        JSONObject jsonObject1 = jsonArray.getJSONObject(i*8);
+                        String NgayChieu = jsonObject1.getString("NgayChieu");
+                        String TenPhong = jsonObject1.getString("TenPhong");
+                        String TenRap = jsonObject1.getString("TenRap");
+                        String []XuatChieu = new String[8];
+                        int a = 0;
+                        for(int j = (i*8); j < (i+1)*8;j++) {
+                            JSONObject jsonObject2 = jsonArray.getJSONObject(j);
+                            XuatChieu[a] = jsonObject2.getString("GioChieu");
+                            a++;
+                        }
+                        LichChieu_Json lichChieu_json = new LichChieu_Json();
+                        lichChieu_json.setNgayChieu(NgayChieu);
+                        lichChieu_json.setXuatChieu(XuatChieu);
+                        lichChieu_json.setTenPhong(TenPhong);
+                        lichChieu_json.setTenRap(TenRap);
+                    if(lichChieu_json.getNgayChieu().equals(EditNgay.getText().toString())) {
+                        mWordList.addLast(lichChieu_json);
+                    }
+                }
+                mAdapter = new LichChieuListAdapter(getActivity(),mWordList);
+                mRecyclerView.setAdapter(mAdapter);
+                mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+
+        }
+    }
+
+   /* public void addDiaDiem() {
         List<String> list = new ArrayList<>();
         list.add("Cả nước");
         list.add("TP.Hồ Chí Minh");
@@ -220,7 +271,7 @@ public class LichChieuFragment extends Fragment {
         ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_item, list);
         adapter.setDropDownViewResource(android.R.layout.simple_list_item_single_choice);
         spnRap.setAdapter(adapter);
-    }
+    }*/
 
     public void XemNgay(){
         DatePickerDialog.OnDateSetListener dateSetListener = new DatePickerDialog.OnDateSetListener() {
@@ -229,9 +280,7 @@ public class LichChieuFragment extends Fragment {
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                 int thang = month + 1;
                 if(dayOfMonth > 9)
-                EditNgay.setText(dayOfMonth +"/" + thang + "/" + year);
-                else
-                    EditNgay.setText("0" + dayOfMonth + "/" + thang+ "/" + year);
+                EditNgay.setText(dayOfMonth +"-" + thang + "-" + year);
                 lastSelectedYear = year;
                 lastSelectedMonth = month;
                 lastSelectedDayOfMonth = dayOfMonth;
@@ -244,6 +293,5 @@ public class LichChieuFragment extends Fragment {
         datePickerDialog.show();
     }
 
-    public static class ReadThanhToanJson {
-    }
+
 }

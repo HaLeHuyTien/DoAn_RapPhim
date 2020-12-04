@@ -207,12 +207,12 @@ public class DSPhimSapChieu extends Fragment {
                     Phim.setTomTat(NoiDung);
                     Phim.setHinhPhim(Hinh);
                     Phim.setDiem(9.0);
-                    Phim.setNgayKhoiChieu("30/11/2020");
+                    Phim.setNgayKhoiChieu("30-11-2020");
                     Phim.setNhaSanXuat(NhaSanXuat);
 
 
                     try {
-                        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+                        SimpleDateFormat sdf = new SimpleDateFormat("d-MM-yyyy");
                         Date strDate = sdf.parse(Phim.getNgayKhoiChieu());
                         String currentTime = sdf.format(Calendar.getInstance().getTime());
                         Date currentDay = sdf.parse(currentTime);

@@ -1,5 +1,6 @@
 package com.example.doan_rapphim;
 
+import android.os.AsyncTask;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -17,13 +18,25 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.example.doan_rapphim.packageTrangChiTiet.BinhLuanListAdapter;
+import com.example.doan_rapphim.packageTrangChiTiet.BinhLuan_Json;
 import com.example.doan_rapphim.packageTrangChiTiet.ReadBinhLuanJson;
 import com.example.doan_rapphim.packageTrangChiTiet.ReadThongTinJson;
 import com.example.doan_rapphim.packageTrangChiTiet.ThongTinJson;
 
+import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.LinkedList;
 
 /**
@@ -32,10 +45,12 @@ import java.util.LinkedList;
  * create an instance of this fragment.
  */
 public class timPhimFragment extends Fragment implements AdapterView.OnItemSelectedListener {
+
+    private  String jsonURL= "http://0306181355.pixelcent.com/Cinema/Phim.php";
     private final LinkedList<ThongTinJson> mWordList=new LinkedList<>();
     private RecyclerView mRecyclerview;
     private AdapterListPhimItem mAdapter;
-    private EditText txt;
+    private EditText txtTim;
     public String Trangthai;
     private Button btnTimKiem;
 
@@ -79,6 +94,9 @@ public class timPhimFragment extends Fragment implements AdapterView.OnItemSelec
         }
     }
 
+
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -89,49 +107,22 @@ public class timPhimFragment extends Fragment implements AdapterView.OnItemSelec
         Spinner spinner=view.findViewById(R.id.spinner);
         btnTimKiem = view.findViewById(R.id.btnTim);
         mRecyclerview=view.findViewById(R.id.recylerview);
+        txtTim = view.findViewById(R.id.txtTim);
 
         if(spinner!=null){
             spinner.setOnItemSelectedListener(this);
             spinner.setAdapter(adapter);
         }
 
-       HienthiDanhSach(view);
+       GetPhim getPhim = new GetPhim();
+        getPhim.execute();
 
         btnTimKiem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                LinkedList<ThongTinJson> timkiem =new LinkedList<>();
-                EditText editText=view.findViewById(R.id.txtTim);
-                if(editText.getText().toString().equals(""))
-                    HienthiDanhSach(view);
-                else {
-                    try {
+                GetPhim getPhim1 = new GetPhim();
+                getPhim1.execute();
 
-                        Integer soluongphim = ReadThongTinJson.SoLuongPhim(getActivity());
-                        mWordList.clear();
-
-                        for (Integer i = 0; i < soluongphim; i++) {
-                            ThongTinJson thongTinJson = ReadThongTinJson.readThongTinJsonFile(getActivity(), i);
-                            if (thongTinJson.getTenPhim().equals(editText.getText().toString()))
-                                mWordList.addLast(thongTinJson);
-
-
-
-                        }
-
-
-                        mAdapter = new AdapterListPhimItem(getContext(),getActivity(), mWordList);
-
-                        mRecyclerview.setAdapter(mAdapter);
-
-                        mRecyclerview.setLayoutManager(new LinearLayoutManager(getActivity()));
-
-
-
-                    } catch (Exception e) {
-                        Toast.makeText(getActivity(), "sai", Toast.LENGTH_LONG).show();
-                    }
-                }
             }
         });
 
@@ -169,13 +160,138 @@ public class timPhimFragment extends Fragment implements AdapterView.OnItemSelec
             Toast.makeText(getActivity(),"sai",Toast.LENGTH_LONG).show();
         }
     }
+
+    private class GetPhim extends AsyncTask<String, String, String> {
+
+
+        @Override
+        protected String doInBackground(String... strings) {
+            String current = "";
+
+            try {
+                URL url;
+                HttpURLConnection urlConnection = null;
+
+
+                try {
+                    url = new URL(jsonURL);
+                    urlConnection = (HttpURLConnection) url.openConnection();
+
+                    InputStream in = urlConnection.getInputStream();
+                    InputStreamReader isr = new InputStreamReader(in);
+
+                    int data = isr.read();
+                    while (data != -1) {
+                        current += (char) data;
+                        data = isr.read();
+                    }
+
+                    return current;
+
+                } catch (MalformedURLException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } finally {
+                    if (urlConnection != null) {
+                        urlConnection.disconnect();
+                    }
+                }
+
+            }catch (Exception e) {
+                e.printStackTrace();
+            }
+            return current;
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            try {
+
+                mWordList.clear();
+
+                JSONObject jsonObject = new JSONObject(s);
+                JSONArray jsonArray = jsonObject.getJSONArray("DanhSach");
+
+                for(int i = 0; i < jsonArray.length(); i++) {
+                    JSONObject jsonObject1 = jsonArray.getJSONObject(i);
+                    String id = jsonObject1.getString("id");
+                    String TenPhim = jsonObject1.getString("TenPhim");
+                    String LoaiPhim = jsonObject1.getString("LoaiPhim");
+                    String DaoDien = jsonObject1.getString("DaoDien");
+                    String HinhDaoDien = jsonObject1.getString("HinhDaoDien");
+                    String ThoiLuong = jsonObject1.getString("ThoiLuong");
+                    String GioiHanTuoi = jsonObject1.getString("GioiHanTuoi");
+                    String VideoTrailer = jsonObject1.getString("VideoTrailer");
+                    String NoiDung = jsonObject1.getString("NoiDung");
+                    String Hinh = jsonObject1.getString("Hinh");
+                    String NhaSanXuat = jsonObject1.getString("NhaSanXuat");
+                    Integer a = Integer.parseInt(id);
+
+                    ThongTinJson Phim = new ThongTinJson();
+                    Phim.setIDPhim(a);
+                    Phim.setTenPhim(TenPhim);
+                    Phim.setTheLoai(LoaiPhim);
+                    Phim.setDaoDien(DaoDien);
+                    Phim.setHinhDaoDien(HinhDaoDien);
+                    Phim.setThoiLuong(ThoiLuong);
+                    Phim.setDoTuoi(GioiHanTuoi);
+                    Phim.setTrailer(VideoTrailer);
+                    Phim.setTomTat(NoiDung);
+                    Phim.setHinhPhim(Hinh);
+                    Phim.setDiem(9.0);
+                    Phim.setNgayKhoiChieu("30-11-2020");
+                    Phim.setNhaSanXuat(NhaSanXuat);
+
+
+                    try {
+                        SimpleDateFormat sdf = new SimpleDateFormat("d-MM-yyyy");
+                        Date strDate = sdf.parse(Phim.getNgayKhoiChieu());
+                        String currentTime = sdf.format(Calendar.getInstance().getTime());
+
+                        int b = 0;
+                        Date currentDay = sdf.parse(currentTime);
+                        if(Trangthai.equals("dangchieu")) {
+                            if (strDate.before(currentDay) || currentTime.equals(Phim.getNgayKhoiChieu()))
+
+                                if(txtTim.getText().toString().replace(" ","").equals("") || Phim.getTenPhim().toLowerCase().indexOf(txtTim.getText().toString().toLowerCase()) > -1)
+                                mWordList.addLast(Phim);
+                        }
+                        else{
+                            if (strDate.after(currentDay))
+                                if(txtTim.getText().toString().replace(" ","").equals("") || txtTim.getText().toString().toLowerCase().indexOf(Phim.getTenPhim().toLowerCase()) > -1)
+                                mWordList.addLast(Phim);
+                        }
+                    }catch (Exception e)
+                    {
+                        e.printStackTrace();
+                    }
+
+                }
+                mAdapter = new AdapterListPhimItem(getContext(),getActivity(),mWordList);
+                mRecyclerview.setAdapter(mAdapter);
+                mRecyclerview.setLayoutManager(new LinearLayoutManager(getActivity()));
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         String s=parent.getItemAtPosition(position).toString();
-        if(s.equals("Phim Đang Chiếu"))
-            Trangthai="dangchieu";
-        else
-            Trangthai="sapchieu";
+        if(s.equals("Phim Đang Chiếu")) {
+            Trangthai = "dangchieu";
+            GetPhim getPhim = new GetPhim();
+            getPhim.execute();
+        }
+
+        else {
+            Trangthai = "sapchieu";
+            GetPhim getPhim = new GetPhim();
+            getPhim.execute();
+        }
 
     }
 

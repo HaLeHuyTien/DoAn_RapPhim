@@ -109,6 +109,7 @@ public class LichChieuFragment extends Fragment {
                 XemNgay();
             }
         });
+
         final Calendar c = Calendar.getInstance();
         this.lastSelectedYear = c.get(Calendar.YEAR);
         this.lastSelectedMonth = c.get(Calendar.MONTH);
@@ -215,6 +216,7 @@ public class LichChieuFragment extends Fragment {
         @Override
         protected void onPostExecute(String s) {
             try {
+                mWordList.clear();
                 JSONObject jsonObject = new JSONObject(s);
                 JSONArray jsonArray = jsonObject.getJSONArray("DanhSach");
                 for(int i = 0; i < jsonArray.length()/8; i++) {
@@ -279,12 +281,12 @@ public class LichChieuFragment extends Fragment {
             @Override
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                 int thang = month + 1;
-                if(dayOfMonth > 9)
                 EditNgay.setText(dayOfMonth +"-" + thang + "-" + year);
                 lastSelectedYear = year;
                 lastSelectedMonth = month;
                 lastSelectedDayOfMonth = dayOfMonth;
-                HienThiDanhSach();
+                GetXuatChieu getXuatChieu = new GetXuatChieu();
+                getXuatChieu.execute();
 
             }
         };

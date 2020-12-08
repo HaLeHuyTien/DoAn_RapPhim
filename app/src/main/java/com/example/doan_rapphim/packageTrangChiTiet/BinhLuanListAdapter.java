@@ -36,7 +36,8 @@ public class BinhLuanListAdapter extends RecyclerView.Adapter<BinhLuanListAdapte
         BinhLuan_Json mCurrent = mBinhLuanList.get(position);
         holder.txtTenNguoiBinhLuan.setText(mCurrent.getTenNguoiBinhLuan());
         holder.txtNoiDungBinhLuan.setText(mCurrent.getNoiDungBinhLuan());
-        holder.txtNgayBinhLuan.setText(mCurrent.getNgayBinhLuan());;
+        holder.txtNgayBinhLuan.setText(mCurrent.getNgayBinhLuan());
+        holder.txtGioBinhLuan.setText(mCurrent.getGioBinhLuan());
         int resID = this.context.getResources().getIdentifier(mCurrent.getAnhNguoiBinhLuan(),"drawable",this.context.getPackageName());
         holder.imgNguoiBinhLuan.setImageResource(resID);
     }
@@ -51,6 +52,7 @@ public class BinhLuanListAdapter extends RecyclerView.Adapter<BinhLuanListAdapte
         public final TextView txtNoiDungBinhLuan;
         public final TextView txtNgayBinhLuan;
         public final ImageView imgNguoiBinhLuan;
+        public final TextView txtGioBinhLuan;
         final BinhLuanListAdapter mAdapter;
         public BinhLuanViewHolder(View itemView, BinhLuanListAdapter adapter){
             super(itemView);
@@ -58,6 +60,7 @@ public class BinhLuanListAdapter extends RecyclerView.Adapter<BinhLuanListAdapte
             txtNoiDungBinhLuan = itemView.findViewById(R.id.txtNoiDungBinhLuan);
             txtNgayBinhLuan = itemView.findViewById(R.id.txtNgayBinhLuan);
             imgNguoiBinhLuan = itemView.findViewById(R.id.imgNguoiBinhLuan);
+            txtGioBinhLuan = itemView.findViewById(R.id.txtGioBinhLuan);
             this.mAdapter = adapter;
         }
     }

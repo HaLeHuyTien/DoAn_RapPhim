@@ -229,7 +229,6 @@ public class ThongTinFragment extends Fragment {
                     String NoiDung = jsonObject1.getString("NoiDung");
                     String Hinh = jsonObject1.getString("Hinh");
                     String NhaSanXuat = jsonObject1.getString("NhaSanXuat");
-                    Integer a = Integer.parseInt(id);
 
                     int resId = getContext().getResources().getIdentifier(Hinh,"drawable",getContext().getPackageName());
                     imgHinhPhim.setImageResource(resId);

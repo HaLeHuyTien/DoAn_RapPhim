@@ -15,6 +15,15 @@ public class BinhLuan_Json {
     private String NoiDungBinhLuan;
     private String AnhNguoiBinhLuan;
     private String NgayBinhLuan;
+    private String GioBinhLuan;
+
+    public String getGioBinhLuan() {
+        return GioBinhLuan;
+    }
+
+    public void setGioBinhLuan(String gioBinhLuan) {
+        GioBinhLuan = gioBinhLuan;
+    }
 
     public String getTenNguoiBinhLuan() {
         return TenNguoiBinhLuan;

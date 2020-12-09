@@ -219,13 +219,9 @@ public class timPhimFragment extends Fragment implements AdapterView.OnItemSelec
                     String TenPhim = jsonObject1.getString("TenPhim");
                     String LoaiPhim = jsonObject1.getString("LoaiPhim");
                     String DaoDien = jsonObject1.getString("DaoDien");
-                    String HinhDaoDien = jsonObject1.getString("HinhDaoDien");
-                    String ThoiLuong = jsonObject1.getString("ThoiLuong");
                     String GioiHanTuoi = jsonObject1.getString("GioiHanTuoi");
-                    String VideoTrailer = jsonObject1.getString("VideoTrailer");
-                    String NoiDung = jsonObject1.getString("NoiDung");
                     String Hinh = jsonObject1.getString("Hinh");
-                    String NhaSanXuat = jsonObject1.getString("NhaSanXuat");
+                    String NgayKhoiChieu = jsonObject1.getString("NgayKhoiChieu");
                     Integer a = Integer.parseInt(id);
 
                     ThongTinJson Phim = new ThongTinJson();
@@ -233,15 +229,9 @@ public class timPhimFragment extends Fragment implements AdapterView.OnItemSelec
                     Phim.setTenPhim(TenPhim);
                     Phim.setTheLoai(LoaiPhim);
                     Phim.setDaoDien(DaoDien);
-                    Phim.setHinhDaoDien(HinhDaoDien);
-                    Phim.setThoiLuong(ThoiLuong);
                     Phim.setDoTuoi(GioiHanTuoi);
-                    Phim.setTrailer(VideoTrailer);
-                    Phim.setTomTat(NoiDung);
                     Phim.setHinhPhim(Hinh);
-                    Phim.setDiem(9.0);
-                    Phim.setNgayKhoiChieu("30-11-2020");
-                    Phim.setNhaSanXuat(NhaSanXuat);
+                    Phim.setNgayKhoiChieu(NgayKhoiChieu);
 
 
                     try {
@@ -259,7 +249,7 @@ public class timPhimFragment extends Fragment implements AdapterView.OnItemSelec
                         }
                         else{
                             if (strDate.after(currentDay))
-                                if(txtTim.getText().toString().replace(" ","").equals("") || txtTim.getText().toString().toLowerCase().indexOf(Phim.getTenPhim().toLowerCase()) > -1)
+                                if(txtTim.getText().toString().replace(" ","").equals("") || Phim.getTenPhim().toLowerCase().indexOf(txtTim.getText().toString().toLowerCase()) > -1)
                                 mWordList.addLast(Phim);
                         }
                     }catch (Exception e)

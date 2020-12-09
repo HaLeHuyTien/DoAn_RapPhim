@@ -1,7 +1,7 @@
 {
   "DanhSach": [
     {
-      "ID" : "001",
+      "ID" : "1",
       "HoVaTen" : "Người dùng 1",
       "Email": "nguoidung001@gmail.com",
       "SDT": "0368003131",
@@ -14,23 +14,27 @@
       "TrangThai" : "1"
     },
     {
-      "ID" : "002",
+      "ID" : "2",
       "HoVaTen" : "Người dùng 2",
       "Email": "nguoidung002@gmail.com",
       "SDT": "0368003132",
       "NgaySinh": "02/01/2000",
-      "DiaChi": "Tân Thuận Đông,Quận 7,TP.HCM",
+      "Phuong": "Tân Thuận Đông",
+      "Quan": "Quận 8",
+      "ThanhPho": "TP.HCM",
       "MatKhau": "012345AAaa",
       "Anh": "zoro",
       "TrangThai" : "1"
     },
     {
-      "ID" : "003",
+      "ID" : "3",
       "HoVaTen" : "Người dùng 3",
       "Email": "nguoidung003@gmail.com",
       "SDT": "0368003133",
       "NgaySinh": "03/01/2000",
-      "DiaChi": "Tân Thuận Đông,Quận 7,TP.HCM",
+      "Phuong": "Tân Thuận Đông",
+      "Quan": "Quận 9",
+      "ThanhPho": "TP.HCM",
       "MatKhau": "012345AAaa",
       "Anh": "sanji",
       "TrangThai" : "1"

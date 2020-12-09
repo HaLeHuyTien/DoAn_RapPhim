@@ -1,9 +1,11 @@
 package com.example.doan_rapphim.packageDangKyDangNhap.packageDangNhap.packageThongTinUser;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,9 +14,25 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.doan_rapphim.AdapterListPhimItem;
 import com.example.doan_rapphim.R;
 import com.example.doan_rapphim.packageDangKyDangNhap.packageDangNhap.IDUser;
 import com.example.doan_rapphim.packageTrangChiTiet.ThongTinFragment;
+import com.example.doan_rapphim.packageTrangChiTiet.ThongTinJson;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -71,8 +89,9 @@ public class TaiKhoan_ThongTinFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
-    }
 
+    }
+    private static String jsonURL = "http://0306181355.pixelcent.com/Cinema/ThongTinKhachHang.php?ID=1";
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -85,7 +104,8 @@ public class TaiKhoan_ThongTinFragment extends Fragment {
         txtNgaySinh = view.findViewById(R.id.txtNgaySinhTT);
         txtDiaChi = view.findViewById(R.id.txtDiaChiTT);
 
-        HienThiUser();
+
+        //HienThiUser();
         // Inflate the layout for this fragment
         ThayDoiThongTin = view.findViewById(R.id.btnThayDoiTT);
         ThayDoiThongTin.setOnClickListener(new View.OnClickListener() {
@@ -103,6 +123,9 @@ public class TaiKhoan_ThongTinFragment extends Fragment {
                 startActivity(intent);
             }
         });
+
+        GetThongTinKH getThongTinKH = new GetThongTinKH();
+        getThongTinKH.execute();
         return view;
     }
 
@@ -124,5 +147,83 @@ public class TaiKhoan_ThongTinFragment extends Fragment {
             txtEmail.setText("Error");
         }
 
+    }
+
+    private class GetThongTinKH extends AsyncTask<String, String, String> {
+
+
+        @Override
+        protected String doInBackground(String... strings) {
+            String current = "";
+
+            try {
+                URL url;
+                HttpURLConnection urlConnection = null;
+
+
+                try {
+                    url = new URL(jsonURL);
+                    urlConnection = (HttpURLConnection) url.openConnection();
+
+                    InputStream in = urlConnection.getInputStream();
+                    InputStreamReader isr = new InputStreamReader(in);
+
+                    int data = isr.read();
+                    while (data != -1) {
+                        current += (char) data;
+                        data = isr.read();
+                    }
+
+                    return current;
+
+                } catch (MalformedURLException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } finally {
+                    if (urlConnection != null) {
+                        urlConnection.disconnect();
+                    }
+                }
+
+            }catch (Exception e) {
+                e.printStackTrace();
+            }
+            return current;
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            try {
+                JSONObject jsonObject = new JSONObject(s);
+                JSONArray jsonArray = jsonObject.getJSONArray("DanhSach");
+
+                    JSONObject jsonObject1 = jsonArray.getJSONObject(0);
+                    Integer Id = jsonObject1.getInt("ID");
+                    String HVT = jsonObject1.getString("HoVaTen");
+                    String Email = jsonObject1.getString("Email");
+                    String SDT = jsonObject1.getString("SDT");
+                    String NgaySinh = jsonObject1.getString("NgaySinh");
+                    String XaPhuong = jsonObject1.getString("Phuong");
+                    String HuyenQuan = jsonObject1.getString("Quan");
+                    String TinhThanhPho = jsonObject1.getString("ThanhPho");
+                    String MatKhau = jsonObject1.getString("MatKhau");
+                    String Anh = jsonObject1.getString("Anh");
+                    Integer TrangThai = jsonObject1.getInt("TrangThai");
+
+                txtEmail.setText(Email);
+                int resID = getContext().getResources().getIdentifier(Anh,"drawable",getContext().getPackageName());
+                txtanhDaiDien.setImageResource(resID);
+                txtHoVaTen.setText(HVT);
+                txtSDT.setText(SDT);
+                txtNgaySinh.setText(NgaySinh);
+                txtDiaChi.setText(XaPhuong+", " + HuyenQuan+", "+ TinhThanhPho);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+
+
+        }
     }
 }

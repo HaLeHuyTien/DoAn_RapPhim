@@ -1,5 +1,7 @@
 package com.example.doan_rapphim.packageDangKyDangNhap.packageDangNhap.packageThongTinUser;
 
+import android.content.Intent;
+
 public class ThongTinUser {
     private int ID;
     private String HoVaTen;
@@ -11,7 +13,15 @@ public class ThongTinUser {
     private String TinhTP;
     private String MatKhau;
     private String Anh;
-    private int TrangThai;
+    private Integer TrangThai;
+
+    public Integer getTrangThai() {
+        return TrangThai;
+    }
+
+    public void setTrangThai(Integer trangThai) {
+        TrangThai = trangThai;
+    }
 
     public void setID(int id) { this.ID = id;}
     public int getID(){return this.ID;}
@@ -43,6 +53,5 @@ public class ThongTinUser {
     public void setAnh(String anh) { this.Anh = anh;}
     public String getAnh(){return this.Anh;}
 
-    public void setTrangThai(int trangThai) { this.TrangThai = trangThai;}
-    public int getTrangThai(){return this.TrangThai;}
+
 }

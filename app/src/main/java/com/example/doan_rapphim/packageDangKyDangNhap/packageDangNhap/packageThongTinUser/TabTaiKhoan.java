@@ -43,16 +43,5 @@ public class TabTaiKhoan extends AppCompatActivity {
 
             }
         });
-
-
-    }
-    public void ThayDoiThongTin(View view) {
-        Intent intent = new Intent(TabTaiKhoan.this,ThayDoiThongTin.class);
-        startActivity(intent);
-    }
-
-    public void ThayDoiMatKhau(View view) {
-        Intent intent = new Intent(TabTaiKhoan.this,ThayDoiMatKhau.class);
-        startActivity(intent);
     }
     }

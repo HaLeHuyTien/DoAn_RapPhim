@@ -186,13 +186,9 @@ public class DSPhimSapChieu extends Fragment {
                     String TenPhim = jsonObject1.getString("TenPhim");
                     String LoaiPhim = jsonObject1.getString("LoaiPhim");
                     String DaoDien = jsonObject1.getString("DaoDien");
-                    String HinhDaoDien = jsonObject1.getString("HinhDaoDien");
-                    String ThoiLuong = jsonObject1.getString("ThoiLuong");
                     String GioiHanTuoi = jsonObject1.getString("GioiHanTuoi");
-                    String VideoTrailer = jsonObject1.getString("VideoTrailer");
-                    String NoiDung = jsonObject1.getString("NoiDung");
                     String Hinh = jsonObject1.getString("Hinh");
-                    String NhaSanXuat = jsonObject1.getString("NhaSanXuat");
+                    String NgayKhoiChieu = jsonObject1.getString("NgayKhoiChieu");
                     Integer a = Integer.parseInt(id);
 
                     ThongTinJson Phim = new ThongTinJson();
@@ -200,15 +196,9 @@ public class DSPhimSapChieu extends Fragment {
                     Phim.setTenPhim(TenPhim);
                     Phim.setTheLoai(LoaiPhim);
                     Phim.setDaoDien(DaoDien);
-                    Phim.setHinhDaoDien(HinhDaoDien);
-                    Phim.setThoiLuong(ThoiLuong);
                     Phim.setDoTuoi(GioiHanTuoi);
-                    Phim.setTrailer(VideoTrailer);
-                    Phim.setTomTat(NoiDung);
                     Phim.setHinhPhim(Hinh);
-                    Phim.setDiem(9.0);
-                    Phim.setNgayKhoiChieu("30-11-2020");
-                    Phim.setNhaSanXuat(NhaSanXuat);
+                    Phim.setNgayKhoiChieu(NgayKhoiChieu);
 
 
                     try {

@@ -37,6 +37,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.LinkedList;
+import java.util.concurrent.ExecutionException;
 
 
 /**
@@ -94,13 +95,13 @@ public class DSPhimDangChieu extends Fragment {
     private static String jsonURL = "http://0306181355.pixelcent.com/Cinema/Phim.php";
 
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_d_s_phim_dang_chieu, container, false);
         mRecyclerview=view.findViewById(R.id.RVDSPhimDangChieu);
+
         GetPhim getPhim = new GetPhim();
         getPhim.execute();
 
@@ -200,19 +201,15 @@ public class DSPhimDangChieu extends Fragment {
                 JSONObject jsonObject = new JSONObject(s);
                 JSONArray jsonArray = jsonObject.getJSONArray("DanhSach");
 
-                for(int i = 0; i < jsonArray.length(); i++) {
+                for(int i = 0 ; i < jsonArray.length(); i++) {
                     JSONObject jsonObject1 = jsonArray.getJSONObject(i);
                     String id = jsonObject1.getString("id");
                     String TenPhim = jsonObject1.getString("TenPhim");
                     String LoaiPhim = jsonObject1.getString("LoaiPhim");
                     String DaoDien = jsonObject1.getString("DaoDien");
-                    String HinhDaoDien = jsonObject1.getString("HinhDaoDien");
-                    String ThoiLuong = jsonObject1.getString("ThoiLuong");
                     String GioiHanTuoi = jsonObject1.getString("GioiHanTuoi");
-                    String VideoTrailer = jsonObject1.getString("VideoTrailer");
-                    String NoiDung = jsonObject1.getString("NoiDung");
                     String Hinh = jsonObject1.getString("Hinh");
-                    String NhaSanXuat = jsonObject1.getString("NhaSanXuat");
+                    String NgayKhoiChieu = jsonObject1.getString("NgayKhoiChieu");
                     Integer a = Integer.parseInt(id);
 
                     ThongTinJson Phim = new ThongTinJson();
@@ -220,31 +217,21 @@ public class DSPhimDangChieu extends Fragment {
                     Phim.setTenPhim(TenPhim);
                     Phim.setTheLoai(LoaiPhim);
                     Phim.setDaoDien(DaoDien);
-                    Phim.setHinhDaoDien(HinhDaoDien);
-                    Phim.setThoiLuong(ThoiLuong);
                     Phim.setDoTuoi(GioiHanTuoi);
-                    Phim.setTrailer(VideoTrailer);
-                    Phim.setTomTat(NoiDung);
                     Phim.setHinhPhim(Hinh);
-                    Phim.setDiem(9.0);
-                    Phim.setNgayKhoiChieu("30-11-2020");
-                    Phim.setNhaSanXuat(NhaSanXuat);
-
+                    Phim.setNgayKhoiChieu(NgayKhoiChieu);
 
                     try {
                         SimpleDateFormat sdf = new SimpleDateFormat("d-MM-yyyy");
                         Date strDate = sdf.parse(Phim.getNgayKhoiChieu());
                         String currentTime = sdf.format(Calendar.getInstance().getTime());
 
-                        int b = 0;
                         Date currentDay = sdf.parse(currentTime);
-                        if(strDate.before(currentDay) || currentTime.equals(Phim.getNgayKhoiChieu()))
+                        if (strDate.before(currentDay) || currentTime.equals(Phim.getNgayKhoiChieu()))
                             mWordList.addLast(Phim);
-                    }catch (Exception e)
-                    {
+                    } catch (Exception e) {
                         e.printStackTrace();
                     }
-
                 }
 
                 mAdapter=new AdapterListPhimItem(getContext(),getActivity(),mWordList);
@@ -252,6 +239,8 @@ public class DSPhimDangChieu extends Fragment {
                 mRecyclerview.setAdapter(mAdapter);
 
                 mRecyclerview.setLayoutManager(new LinearLayoutManager(getActivity()));
+
+
 
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -261,5 +250,7 @@ public class DSPhimDangChieu extends Fragment {
 
         }
     }
+
+
 
 }

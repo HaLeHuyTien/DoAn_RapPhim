@@ -40,7 +40,8 @@ public class ThongTinFragment extends Fragment {
 
     private TrangChiTiet trangChiTiet;
 
-    private  String jsonURL = "http://0306181355.pixelcent.com/Cinema/Phim.php";
+    private  String jsonURL ;
+    private  String ChiTietPhim = "http://0306181355.pixelcent.com/Cinema/ChiTietPhim.php?IDPhim=";
     private  String jsonURLDV;
     private  String value= "http://0306181355.pixelcent.com/Cinema/DienVienTheoPhim.php?idphim=";
 
@@ -86,6 +87,8 @@ public class ThongTinFragment extends Fragment {
         trangChiTiet = (TrangChiTiet) getActivity();
 
         jsonURLDV = value + trangChiTiet.getIdPhim().toString();
+
+        jsonURL = ChiTietPhim + trangChiTiet.getIdPhim().toString();
 
 
         //TrangChiTiet
@@ -217,7 +220,7 @@ public class ThongTinFragment extends Fragment {
                 JSONArray jsonArray = jsonObject.getJSONArray("DanhSach");
 
 
-                    JSONObject jsonObject1 = jsonArray.getJSONObject(trangChiTiet.getIdPhim()-1);
+                    JSONObject jsonObject1 = jsonArray.getJSONObject(0);
                     String id = jsonObject1.getString("id");
                     String TenPhim = jsonObject1.getString("TenPhim");
                     String LoaiPhim = jsonObject1.getString("LoaiPhim");
@@ -229,16 +232,18 @@ public class ThongTinFragment extends Fragment {
                     String NoiDung = jsonObject1.getString("NoiDung");
                     String Hinh = jsonObject1.getString("Hinh");
                     String NhaSanXuat = jsonObject1.getString("NhaSanXuat");
+                    Double Diem = jsonObject1.getDouble("Diem");
+                    String NgayKhoiChieu = jsonObject1.getString("NgayKhoiChieu");
 
                     int resId = getContext().getResources().getIdentifier(Hinh,"drawable",getContext().getPackageName());
                     imgHinhPhim.setImageResource(resId);
                     txtTenPhim.setText(TenPhim);
                     txtTomTat.setText(NoiDung);
-                    txtNgayKhoiChieu.setText("30/11/2020");
+                    txtNgayKhoiChieu.setText(NgayKhoiChieu);
                     txtThoiLuong.setText(ThoiLuong);
                     txtTheLoai.setText(LoaiPhim);
                     txtNhaSanXuat.setText(NhaSanXuat);
-                    txtDiem.setText("9.0");
+                    txtDiem.setText(Diem.toString());
                     txtDoTuoi.setText(GioiHanTuoi);
                     ytbTrailer.addYouTubePlayerListener(new AbstractYouTubePlayerListener() {
                         @Override

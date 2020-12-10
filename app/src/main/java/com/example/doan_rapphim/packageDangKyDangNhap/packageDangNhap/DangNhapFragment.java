@@ -16,12 +16,17 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentStatePagerAdapter;
+import androidx.viewpager.widget.ViewPager;
 
+import com.example.doan_rapphim.MainActivity;
 import com.example.doan_rapphim.R;
+import com.example.doan_rapphim.ViewPagerAdapter_TrangChu;
 import com.example.doan_rapphim.packageDangKyDangNhap.packageDangKy.DangKyActivity;
 import com.example.doan_rapphim.packageDangKyDangNhap.packageDangNhap.packageThongTinUser.ReadThongTinUserJson;
 import com.example.doan_rapphim.packageDangKyDangNhap.packageDangNhap.packageThongTinUser.TabTaiKhoan;
 import com.example.doan_rapphim.packageDangKyDangNhap.packageDangNhap.packageThongTinUser.ThongTinUser;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import org.json.JSONException;
 
@@ -35,6 +40,9 @@ private ImageButton imgHidePass;
 private String Email,MatKhau;
 private TextView txtQuenMatKhau;
 private Integer x = 0;
+private BottomNavigationView navigationView;
+private MainActivity mainActivity;
+
     private final LinkedList<ThongTinUser> mWordList = new LinkedList<>();
     @Nullable
     @Override
@@ -44,6 +52,8 @@ private Integer x = 0;
         edtEmail=view.findViewById(R.id.txtEmailDN);
         edtMatKhau=view.findViewById(R.id.txtPassDN);
         txtQuenMatKhau=view.findViewById(R.id.txtQuenMK);
+        mainActivity = (MainActivity)getActivity();
+        navigationView = view.findViewById(R.id.bottom_nav);
         txtQuenMatKhau.setOnClickListener(new View.OnClickListener(){
 
             @Override
@@ -72,10 +82,14 @@ private Integer x = 0;
                         Email = thongTinUser.getEmail();
                         MatKhau = thongTinUser.getMatKhau();
                         if (edtEmail.getText().toString().equals(Email) && edtMatKhau.getText().toString().equals(MatKhau)) {
-                            IDUser.idUser = i;
+                            IDUser.idUser = i+1;
+
                            Intent intent=new Intent(getActivity() , TabTaiKhoan.class);
                             startActivity(intent);
                             a = 1;
+                            mainActivity.setup_view_pager();
+                            mainActivity.viewPager.setCurrentItem(0);
+                            mainActivity.navigationView.getMenu().findItem(R.id.button_home).setChecked(true);
                             break;
                         }
                     }

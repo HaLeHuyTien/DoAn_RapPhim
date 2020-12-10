@@ -40,6 +40,9 @@ import java.util.Date;
  * create an instance of this fragment.
  */
 public class TaiKhoan_ThongTinFragment extends Fragment {
+
+
+
     private Button ThayDoiThongTin;
     private Button ThayDoiMatKhau;
 
@@ -91,7 +94,8 @@ public class TaiKhoan_ThongTinFragment extends Fragment {
         }
 
     }
-    private static String jsonURL = "http://0306181355.pixelcent.com/Cinema/ThongTinKhachHang.php?ID=1";
+    private static String jsonURL;
+    private String iduser = "http://0306181355.pixelcent.com/Cinema/ThongTinKhachHang.php?ID=";
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -124,6 +128,7 @@ public class TaiKhoan_ThongTinFragment extends Fragment {
             }
         });
 
+        jsonURL = iduser + IDUser.idUser.toString();
         GetThongTinKH getThongTinKH = new GetThongTinKH();
         getThongTinKH.execute();
         return view;
@@ -207,7 +212,7 @@ public class TaiKhoan_ThongTinFragment extends Fragment {
                     String XaPhuong = jsonObject1.getString("Phuong");
                     String HuyenQuan = jsonObject1.getString("Quan");
                     String TinhThanhPho = jsonObject1.getString("ThanhPho");
-                    String MatKhau = jsonObject1.getString("MatKhau");
+                    //String MatKhau = jsonObject1.getString("MatKhau");
                     String Anh = jsonObject1.getString("Anh");
                     Integer TrangThai = jsonObject1.getInt("TrangThai");
 

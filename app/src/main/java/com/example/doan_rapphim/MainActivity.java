@@ -13,8 +13,8 @@ import android.view.View;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
-    private  BottomNavigationView navigationView;
-    private ViewPager viewPager;
+    public   BottomNavigationView navigationView;
+    public ViewPager viewPager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void setup_view_pager(){
+    public void setup_view_pager(){
         ViewPagerAdapter_TrangChu viewPagerAdapter_trangChu = new ViewPagerAdapter_TrangChu(getSupportFragmentManager(), FragmentStatePagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
         viewPager.setAdapter(viewPagerAdapter_trangChu);
 

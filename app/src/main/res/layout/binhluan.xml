@@ -27,15 +27,19 @@
                 android:background="@drawable/edit_text_border"
                 android:ems="10"
                 android:hint="Thêm bình luận..."
-                android:inputType="textPersonName"
+                android:inputType="textMultiLine"
                 android:padding="5dp"
+                android:lines="8"
+                android:minLines="6"
+                android:gravity="top|left"
+                android:maxLines="10"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toEndOf="@+id/imageView"
+                app:layout_constraintStart_toEndOf="@+id/imgNguoiDangBinhLuan"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
-                android:id="@+id/imageView"
+                android:id="@+id/imgNguoiDangBinhLuan"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_marginStart="16dp"
@@ -59,6 +63,15 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/editTextBinhLuan" />
+
+            <TextView
+                android:id="@+id/txtThongBaoBL"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#FF0000"
+                app:layout_constraintStart_toStartOf="@+id/editTextBinhLuan"
+                app:layout_constraintTop_toBottomOf="@+id/editTextBinhLuan" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.recyclerview.widget.RecyclerView

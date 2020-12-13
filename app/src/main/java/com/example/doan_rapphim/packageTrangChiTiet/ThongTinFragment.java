@@ -1,6 +1,8 @@
 package com.example.doan_rapphim.packageTrangChiTiet;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -10,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -18,8 +21,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.borjabravo.readmoretextview.ReadMoreTextView;
-import com.example.doan_rapphim.AdapterListPhimItem;
+import com.example.doan_rapphim.MainActivity;
 import com.example.doan_rapphim.R;
+import com.example.doan_rapphim.packageDangKyDangNhap.packageDangNhap.IDUser;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView;
@@ -59,6 +63,11 @@ public class ThongTinFragment extends Fragment {
     private ImageView imgXH3;
     private ImageView imgXH4;
     private ImageView imgXH5;
+    private ImageView imgXH6;
+    private ImageView imgXH7;
+    private ImageView imgXH8;
+    private ImageView imgXH9;
+    private ImageView imgXH10;
     private TextView txtDiem;
     private TextView txtDoTuoi;
     private YouTubePlayerView ytbTrailer;
@@ -104,11 +113,70 @@ public class ThongTinFragment extends Fragment {
         imgXH3 = view.findViewById(R.id.imgXH3);
         imgXH4 = view.findViewById(R.id.imgXH4);
         imgXH5 = view.findViewById(R.id.imgXH5);
+        imgXH6 = view.findViewById(R.id.imgXH6);
+        imgXH7 = view.findViewById(R.id.imgXH7);
+        imgXH8 = view.findViewById(R.id.imgXH8);
+        imgXH9 = view.findViewById(R.id.imgXH9);
+        imgXH10 = view.findViewById(R.id.imgXH10);
         txtDiem = view.findViewById(R.id.txtDiem);
         txtDoTuoi = view.findViewById(R.id.txtDoTuoi);
         ytbTrailer = view.findViewById(R.id.youtube_player_view);
 
+
+
         rvDienVien = view.findViewById(R.id.rvDienVien);
+
+        View.OnClickListener onClickListener = new View.OnClickListener(){
+
+            @Override
+            public void onClick(View v) {
+
+                String a = getResources().getResourceEntryName(v.getId()).substring(5);
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+
+                // Set a title for alert dialog
+                builder.setTitle("Đánh Giá");
+
+                // Ask the final question
+                builder.setMessage("Bạn muốn đánh giá phim này " + a + " điểm");
+
+                // Set the alert dialog yes button click listener
+                builder.setPositiveButton("Có", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // Do something when user clicked the Yes button
+                        // Set the TextView visibility GONE
+
+                    }
+                });
+
+                // Set the alert dialog no button click listener
+                builder.setNegativeButton("Không", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // Do something when No button clicked
+
+                    }
+                });
+
+                AlertDialog dialog = builder.create();
+                // Display the alert dialog on interface
+                dialog.show();
+            }
+        };
+
+        imgXH1.setOnClickListener(onClickListener);
+        imgXH2.setOnClickListener(onClickListener);
+        imgXH3.setOnClickListener(onClickListener);
+        imgXH4.setOnClickListener(onClickListener);
+        imgXH5.setOnClickListener(onClickListener);
+        imgXH6.setOnClickListener(onClickListener);
+        imgXH7.setOnClickListener(onClickListener);
+        imgXH8.setOnClickListener(onClickListener);
+        imgXH9.setOnClickListener(onClickListener);
+        imgXH10.setOnClickListener(onClickListener);
+
 
         //Gan vao` Trang Chi Tiet
        /* try {
@@ -155,6 +223,11 @@ public class ThongTinFragment extends Fragment {
         getTrangChiTet.execute();
         GetDienVien getDienVien = new GetDienVien();
         getDienVien.execute();
+
+
+
+        //DanhGiaDiem();
+        String a = imgXH1.getResources().getResourceEntryName(imgXH1.getId());
 
 
         btnDatVe = view.findViewById(R.id.btnDatVe);
@@ -254,7 +327,8 @@ public class ThongTinFragment extends Fragment {
 
 
                     });
-
+                int x = Integer.parseInt(txtDiem.getText().toString().substring(0,1));
+                DanhGiaDiem(x);
                 DienVienJson daodien = new DienVienJson();
                 daodien.setTenDV(DaoDien);
                 daodien.setHinhDV(HinhDaoDien);
@@ -336,6 +410,33 @@ public class ThongTinFragment extends Fragment {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
+        }
+    }
+
+    private void DanhGiaDiem(int a){
+        switch (a){
+            case 10:
+                imgXH10.setImageResource(R.drawable.yellowstar);
+            case 9:
+                imgXH9.setImageResource(R.drawable.yellowstar);
+            case 8:
+                imgXH8.setImageResource(R.drawable.yellowstar);
+            case 7:
+                imgXH7.setImageResource(R.drawable.yellowstar);
+            case 6:
+                imgXH6.setImageResource(R.drawable.yellowstar);
+            case 5:
+                imgXH5.setImageResource(R.drawable.yellowstar);
+            case 4:
+                imgXH4.setImageResource(R.drawable.yellowstar);
+            case 3:
+                imgXH3.setImageResource(R.drawable.yellowstar);
+            case 2:
+                imgXH2.setImageResource(R.drawable.yellowstar);
+            case 1:
+                imgXH1.setImageResource(R.drawable.yellowstar);
+
+
         }
     }
 }

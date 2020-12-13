@@ -145,20 +145,13 @@
                 android:padding="10sp">
 
                 <ImageView
-                    android:id="@+id/imgXH3"
+                    android:id="@+id/imgXH1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:layout_constraintStart_toEndOf="@+id/imgXH2"
+                    android:layout_marginStart="50dp"
+                    app:layout_constraintStart_toEndOf="@+id/textView13"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/yellowstar" />
-
-                <ImageView
-                    android:id="@+id/imgXH4"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintStart_toEndOf="@+id/imgXH3"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/yellowstar" />
+                    app:srcCompat="@drawable/blackstar" />
 
                 <ImageView
                     android:id="@+id/imgXH2"
@@ -166,7 +159,55 @@
                     android:layout_height="wrap_content"
                     app:layout_constraintStart_toEndOf="@+id/imgXH1"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/yellowstar" />
+                    app:srcCompat="@drawable/blackstar" />
+
+                <ImageView
+                    android:id="@+id/imgXH3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toEndOf="@+id/imgXH2"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/blackstar" />
+
+                <ImageView
+                    android:id="@+id/imgXH4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toEndOf="@+id/imgXH3"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/blackstar" />
+
+                <ImageView
+                    android:id="@+id/imgXH5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toEndOf="@+id/imgXH4"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/blackstar" />
+
+                <ImageView
+                    android:id="@+id/imgXH8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toEndOf="@+id/imgXH7"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/blackstar" />
+
+                <ImageView
+                    android:id="@+id/imgXH9"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toEndOf="@+id/imgXH8"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/blackstar" />
+
+                <ImageView
+                    android:id="@+id/imgXH7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toEndOf="@+id/imgXH6"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/blackstar" />
 
                 <TextView
                     android:id="@+id/textView13"
@@ -177,19 +218,18 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <ImageView
-                    android:id="@+id/imgXH1"
+                    android:id="@+id/imgXH6"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="68dp"
-                    app:layout_constraintStart_toEndOf="@+id/textView13"
+                    app:layout_constraintStart_toEndOf="@+id/imgXH5"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/yellowstar" />
+                    app:srcCompat="@drawable/blackstar" />
 
                 <ImageView
-                    android:id="@+id/imgXH5"
+                    android:id="@+id/imgXH10"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:layout_constraintStart_toEndOf="@+id/imgXH4"
+                    app:layout_constraintStart_toEndOf="@+id/imgXH9"
                     app:layout_constraintTop_toTopOf="parent"
                     app:srcCompat="@drawable/blackstar" />
 
@@ -200,7 +240,7 @@
                     android:textSize="18sp"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/imgXH5"
+                    app:layout_constraintStart_toEndOf="@+id/imgXH10"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
@@ -219,7 +259,7 @@
                     android:layout_marginStart="68dp"
                     android:layout_marginTop="16dp"
                     app:layout_constraintStart_toEndOf="@+id/textView15"
-                    app:layout_constraintTop_toBottomOf="@+id/imgXH1" />
+                    app:layout_constraintTop_toBottomOf="@+id/imgXH6" />
 
                 <TextView
                     android:id="@+id/textView17"

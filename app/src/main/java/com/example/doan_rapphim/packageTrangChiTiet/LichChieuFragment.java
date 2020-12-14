@@ -219,15 +219,15 @@ public class LichChieuFragment extends Fragment {
                 mWordList.clear();
                 JSONObject jsonObject = new JSONObject(s);
                 JSONArray jsonArray = jsonObject.getJSONArray("DanhSach");
-                for(int i = 0; i < jsonArray.length()/8; i++) {
+                for(int i = 0; i < jsonArray.length()/6; i++) {
 
                         JSONObject jsonObject1 = jsonArray.getJSONObject(i*8);
                         String NgayChieu = jsonObject1.getString("NgayChieu");
                         String TenPhong = jsonObject1.getString("TenPhong");
                         String TenRap = jsonObject1.getString("TenRap");
-                        String []XuatChieu = new String[8];
+                        String []XuatChieu = new String[6];
                         int a = 0;
-                        for(int j = (i*8); j < (i+1)*8;j++) {
+                        for(int j = (i*6); j < (i+1)*6;j++) {
                             JSONObject jsonObject2 = jsonArray.getJSONObject(j);
                             XuatChieu[a] = jsonObject2.getString("GioChieu");
                             a++;

@@ -1,6 +1,8 @@
 package com.example.doan_rapphim.packageTrangChiTiet;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.AsyncTask;
 import android.os.Bundle;
 
@@ -9,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,6 +23,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.doan_rapphim.R;
+import com.example.doan_rapphim.packageDangKyDangNhap.packageDangNhap.IDUser;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -47,6 +51,7 @@ public class BinhLuanFragment extends Fragment {
     private EditText txtNDBinhLuan;
     private Button btnBinhLuan;
     private TextView txtThongBaoBL;
+    private ImageView imgNguoiDangBinhLuan;
 
     //RecyclerView
     private final LinkedList<BinhLuan_Json> mWordList = new LinkedList<>();
@@ -73,8 +78,18 @@ public class BinhLuanFragment extends Fragment {
         btnBinhLuan = view.findViewById(R.id.btnDangBinhLuan);
         txtNDBinhLuan = view.findViewById(R.id.editTextBinhLuan);
         txtThongBaoBL = view.findViewById(R.id.txtThongBaoBL);
+        imgNguoiDangBinhLuan = view.findViewById(R.id.imgNguoiDangBinhLuan);
         mtrangChiTiet = (TrangChiTiet) getActivity();
         jsonURLBL = value + mtrangChiTiet.getIdPhim().toString();
+        if(IDUser.idUser < 0) {
+            txtNDBinhLuan.setEnabled(false);
+            txtNDBinhLuan.setHint("Đăng nhập để bình luận phim !!");
+        }
+        else
+        {
+            int ResID = getContext().getResources().getIdentifier(IDUser.HinhUser,"drawable",getContext().getPackageName());
+            imgNguoiDangBinhLuan.setImageResource(ResID);
+        }
 
 
 
@@ -84,22 +99,49 @@ public class BinhLuanFragment extends Fragment {
         btnBinhLuan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(txtNDBinhLuan.getText().toString().replace(" ","").equals(""))
+                if(IDUser.idUser < 0)
                 {
-                    txtThongBaoBL.setText("Bạn phải nhập bình luận");
-                }
-                else{
-                    DateFormat df = new SimpleDateFormat("yyyy-MM-d");
-                    String date = df.format(Calendar.getInstance().getTime());
-                    DateFormat df2 = new SimpleDateFormat("HH:mm");
-                    String time = df2.format(Calendar.getInstance().getTime());
-                    jsonURLDangBL = valueDangBL + "1"+ "&IDPhim=" + mtrangChiTiet.getIdPhim() +"&Ngay="+date+"&Gio="+time+"&NoiDung=" + txtNDBinhLuan.getText().toString();
-                    DangBinhLuan dangBinhLuan = new DangBinhLuan();
-                    dangBinhLuan.execute();
-                    GetBinhLuan getBinhLuan1 = new GetBinhLuan();
-                    getBinhLuan1.execute();
-                    txtThongBaoBL.setText("");
-                    txtNDBinhLuan.setText("");
+
+                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+
+                    // Set a title for alert dialog
+                    builder.setTitle("Thông Báo");
+
+                    // Ask the final question
+                    builder.setMessage("Vui lòng đăng nhập để bình luận phim");
+
+                    // Set the alert dialog yes button click listener
+                    builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            // Do something when user clicked the Yes button
+                            // Set the TextView visibility GONE
+                        }
+                    });
+
+                    // Set the alert dialog no button click listener
+
+
+                    AlertDialog dialog = builder.create();
+                    // Display the alert dialog on interface
+                    dialog.show();
+                }else {
+
+                    if (txtNDBinhLuan.getText().toString().replace(" ", "").equals("")) {
+                        txtThongBaoBL.setText("Bạn phải nhập bình luận");
+                    } else {
+                        DateFormat df = new SimpleDateFormat("yyyy-MM-d");
+                        String date = df.format(Calendar.getInstance().getTime());
+                        DateFormat df2 = new SimpleDateFormat("HH:mm");
+                        String time = df2.format(Calendar.getInstance().getTime());
+                        jsonURLDangBL = valueDangBL + IDUser.idUser + "&IDPhim=" + mtrangChiTiet.getIdPhim() + "&Ngay=" + date + "&Gio=" + time + "&NoiDung=" + txtNDBinhLuan.getText().toString();
+                        DangBinhLuan dangBinhLuan = new DangBinhLuan();
+                        dangBinhLuan.execute();
+                        GetBinhLuan getBinhLuan1 = new GetBinhLuan();
+                        getBinhLuan1.execute();
+                        txtThongBaoBL.setText("");
+                        txtNDBinhLuan.setText("");
+                    }
                 }
             }
         });
@@ -185,10 +227,11 @@ public class BinhLuanFragment extends Fragment {
                     String NoiDung = jsonObject1.getString("NoiDung");
                     String Ngay = jsonObject1.getString("Ngay");
                     String Gio = jsonObject1.getString("Gio");
+                    String Hinh = jsonObject1.getString("Hinh");
 
                     BinhLuan_Json binhLuan_json = new BinhLuan_Json();
                     binhLuan_json.setNgayBinhLuan(Ngay);
-                    binhLuan_json.setAnhNguoiBinhLuan("dienvien");
+                    binhLuan_json.setAnhNguoiBinhLuan(Hinh);
                     binhLuan_json.setTenNguoiBinhLuan(HoTen);
                     binhLuan_json.setNoiDungBinhLuan(NoiDung);
                     binhLuan_json.setGioBinhLuan(Gio);

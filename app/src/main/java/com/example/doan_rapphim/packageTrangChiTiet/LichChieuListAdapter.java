@@ -45,7 +45,7 @@ public class LichChieuListAdapter extends RecyclerView.Adapter<LichChieuListAdap
 
     public class LichChieuViewHolder extends RecyclerView.ViewHolder {
         public final TextView txtTenRap;
-        public final Button btnGioChieu[] = new Button[8];
+        public final Button btnGioChieu[] = new Button[6];
         final LichChieuListAdapter mAdapter;
         public LichChieuViewHolder(View itemView, LichChieuListAdapter adapter){
             super(itemView);
@@ -56,8 +56,6 @@ public class LichChieuListAdapter extends RecyclerView.Adapter<LichChieuListAdap
             btnGioChieu[3] = itemView.findViewById(R.id.btnGioChieu4);
             btnGioChieu[4] = itemView.findViewById(R.id.btnGioChieu5);
             btnGioChieu[5] = itemView.findViewById(R.id.btnGioChieu6);
-            btnGioChieu[6] = itemView.findViewById(R.id.btnGioChieu7);
-            btnGioChieu[7] = itemView.findViewById(R.id.btnGioChieu8);
             this.mAdapter = adapter;
         }
     }

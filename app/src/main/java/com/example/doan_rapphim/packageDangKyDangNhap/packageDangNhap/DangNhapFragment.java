@@ -83,6 +83,7 @@ private MainActivity mainActivity;
                         MatKhau = thongTinUser.getMatKhau();
                         if (edtEmail.getText().toString().equals(Email) && edtMatKhau.getText().toString().equals(MatKhau)) {
                             IDUser.idUser = i+1;
+                            IDUser.HinhUser = "luffy";
 
                            Intent intent=new Intent(getActivity() , TabTaiKhoan.class);
                             startActivity(intent);

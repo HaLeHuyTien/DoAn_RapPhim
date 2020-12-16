@@ -1,4 +1,4 @@
-package com.example.doan_rapphim.packageTrangChiTiet.packageThanhToan;
+package com.example.doan_rapphim.packageTrangChiTiet.packageThanhToan.packageThanhToan;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -32,7 +32,7 @@ public class SoDoGhe extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-            Intent intent = new Intent(SoDoGhe.this, com.example.doan_rapphim.packageTrangChiTiet.packageThanhToan.ThanhToan.class);
+            Intent intent = new Intent(SoDoGhe.this, ThanhToan.class);
             startActivity(intent);
         }
         });

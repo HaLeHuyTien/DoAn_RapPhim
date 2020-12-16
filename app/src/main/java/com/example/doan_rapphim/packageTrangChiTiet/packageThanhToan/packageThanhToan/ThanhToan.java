@@ -1,24 +1,14 @@
-package com.example.doan_rapphim.packageTrangChiTiet.packageThanhToan;
+package com.example.doan_rapphim.packageTrangChiTiet.packageThanhToan.packageThanhToan;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.doan_rapphim.R;
-import com.example.doan_rapphim.packageTrangChiTiet.BinhLuanListAdapter;
-import com.example.doan_rapphim.packageTrangChiTiet.BinhLuan_Json;
-import com.example.doan_rapphim.packageTrangChiTiet.ReadBinhLuanJson;
-import com.example.doan_rapphim.packageTrangChiTiet.ReadThongTinJson;
-import com.example.doan_rapphim.packageTrangChiTiet.ThongTinJson;
 
 public class ThanhToan extends AppCompatActivity {
 
-    private Button btnThanhToan;
     private TextView txtTT_TenPhim;
     private TextView txtTT_LuuY;
     private TextView txtTT_Ngay;
@@ -40,14 +30,6 @@ public class ThanhToan extends AppCompatActivity {
         txtTT_Ghe = findViewById(R.id.txtSoGhe);
         txtTT_TTien = findViewById(R.id.txtTien2);
         txtTT_Sl = findViewById(R.id.txtSoluong);
-        btnThanhToan = findViewById(R.id.btnThanhToan);
-        btnThanhToan.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(ThanhToan.this, com.example.doan_rapphim.packageTrangChiTiet.packageThanhToan.ThongTinVe.class);
-                startActivity(intent);
-            }
-        });
         HiennThiDanhSach();
     }
 

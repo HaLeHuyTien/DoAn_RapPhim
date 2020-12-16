@@ -13,8 +13,10 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.doan_rapphim.AdapterListPhimItem;
+import com.example.doan_rapphim.MainActivity;
 import com.example.doan_rapphim.R;
 import com.example.doan_rapphim.packageDangKyDangNhap.packageDangNhap.IDUser;
 import com.example.doan_rapphim.packageTrangChiTiet.ThongTinFragment;
@@ -45,6 +47,7 @@ public class TaiKhoan_ThongTinFragment extends Fragment {
 
     private Button ThayDoiThongTin;
     private Button ThayDoiMatKhau;
+    private Button DangXuat;
 
 
     private ImageView txtanhDaiDien;
@@ -53,6 +56,8 @@ public class TaiKhoan_ThongTinFragment extends Fragment {
     private TextView txtSDT;
     private TextView txtNgaySinh;
     private TextView txtDiaChi;
+
+    private MainActivity mainActivity;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -125,6 +130,18 @@ public class TaiKhoan_ThongTinFragment extends Fragment {
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), com.example.doan_rapphim.packageDangKyDangNhap.packageDangNhap.packageThongTinUser.ThayDoiMatKhau.class);
                 startActivity(intent);
+            }
+        });
+        DangXuat = view.findViewById(R.id.btnDangXuat);
+        DangXuat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                IDUser.idUser = 0;
+                Toast.makeText(getContext(),"Đăng xuất thành công !",Toast.LENGTH_LONG).show();
+                mainActivity.setup_view_pager();
+                mainActivity.viewPager.setCurrentItem(0);
+                mainActivity.navigationView.getMenu().findItem(R.id.button_home).setChecked(true);
+
             }
         });
 
@@ -204,25 +221,22 @@ public class TaiKhoan_ThongTinFragment extends Fragment {
                 JSONArray jsonArray = jsonObject.getJSONArray("DanhSach");
 
                     JSONObject jsonObject1 = jsonArray.getJSONObject(0);
-                    Integer Id = jsonObject1.getInt("ID");
-                    String HVT = jsonObject1.getString("HoVaTen");
+                    Integer id = jsonObject1.getInt("id");
+                    String HoTen = jsonObject1.getString("HoTen");
                     String Email = jsonObject1.getString("Email");
                     String SDT = jsonObject1.getString("SDT");
                     String NgaySinh = jsonObject1.getString("NgaySinh");
-                    String XaPhuong = jsonObject1.getString("Phuong");
-                    String HuyenQuan = jsonObject1.getString("Quan");
-                    String TinhThanhPho = jsonObject1.getString("ThanhPho");
-                    //String MatKhau = jsonObject1.getString("MatKhau");
-                    String Anh = jsonObject1.getString("Anh");
+                    String DiaChi = jsonObject1.getString("DiaChi");
+                    String MatKhau = jsonObject1.getString("MatKhau");
+                    String Hinh = jsonObject1.getString("Hinh");
                     Integer TrangThai = jsonObject1.getInt("TrangThai");
 
                 txtEmail.setText(Email);
-                int resID = getContext().getResources().getIdentifier(Anh,"drawable",getContext().getPackageName());
+                int resID = getContext().getResources().getIdentifier(Hinh,"drawable",getContext().getPackageName());
                 txtanhDaiDien.setImageResource(resID);
-                txtHoVaTen.setText(HVT);
+                txtHoVaTen.setText(HoTen);
                 txtSDT.setText(SDT);
-                txtNgaySinh.setText(NgaySinh);
-                txtDiaChi.setText(XaPhuong+", " + HuyenQuan+", "+ TinhThanhPho);
+                txtNgaySinh.setText(NgaySinh);txtDiaChi.setText(DiaChi);
             } catch (JSONException e) {
                 e.printStackTrace();
             }

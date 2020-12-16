@@ -1,4 +1,4 @@
-package com.example.doan_rapphim.packageDangKyDangNhap.packageDangNhap;
+ package com.example.doan_rapphim.packageDangKyDangNhap.packageDangNhap;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -40,7 +40,6 @@ private ImageButton imgHidePass;
 private String Email,MatKhau;
 private TextView txtQuenMatKhau;
 private Integer x = 0;
-private BottomNavigationView navigationView;
 private MainActivity mainActivity;
 
     private final LinkedList<ThongTinUser> mWordList = new LinkedList<>();
@@ -53,7 +52,6 @@ private MainActivity mainActivity;
         edtMatKhau=view.findViewById(R.id.txtPassDN);
         txtQuenMatKhau=view.findViewById(R.id.txtQuenMK);
         mainActivity = (MainActivity)getActivity();
-        navigationView = view.findViewById(R.id.bottom_nav);
         txtQuenMatKhau.setOnClickListener(new View.OnClickListener(){
 
             @Override

@@ -28,8 +28,7 @@
         <activity android:name=".packageTrangChiTiet.TrangChiTiet" />
         <activity android:name=".packageDangKyDangNhap.packageDangNhap.packageThongTinUser.ThayDoiThongTin" />
         <activity android:name=".packageDangKyDangNhap.packageDangNhap.packageThongTinUser.ThayDoiMatKhau" />
-
-        <activity android:name=".packageTrangChiTiet.packageThanhToan.SoDoGhe"/>
+        <activity android:name=".packageTrangChiTiet.packageThanhToan.SoDoGhe" />
         <activity
             android:name=".packageTrangChiTiet.packageThanhToan.ThanhToan"
             android:label="THANH TOÁN"

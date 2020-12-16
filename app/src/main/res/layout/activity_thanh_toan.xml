@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    >
+    android:backgroundTint="#C24FCF">
 
     <ImageView
         android:id="@+id/imgHinh"
@@ -101,20 +101,6 @@
         app:layout_constraintTop_toBottomOf="@+id/txtDiaDiem" />
 
     <TextView
-        android:id="@+id/txtTong"
-        android:layout_width="106dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="12dp"
-        android:drawableTint="#F40F0F"
-        android:text="Tổng cộng: "
-        android:textColor="#FA0707"
-        android:textColorLink="#FFFFFF"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toEndOf="@+id/imgHinh"
-        app:layout_constraintTop_toBottomOf="@+id/txtSoGhe" />
-
-    <TextView
         android:id="@+id/TextView"
         android:layout_width="102dp"
         android:layout_height="27dp"
@@ -141,7 +127,7 @@
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toStartOf="@+id/txtTien2"
-        app:layout_constraintHorizontal_bias="0.102"
+        app:layout_constraintHorizontal_bias="0.125"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/TextView" />
 
@@ -149,7 +135,7 @@
         android:id="@+id/txtSoluong"
         android:layout_width="102dp"
         android:layout_height="27dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="60dp"
         android:drawableTint="#F40F0F"
         android:gravity="center"
         android:textColor="#AC8D8D"
@@ -157,7 +143,7 @@
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtTien" />
+        app:layout_constraintTop_toBottomOf="@+id/txtSoGhe" />
 
     <TextView
         android:id="@+id/txtTien2"
@@ -165,27 +151,12 @@
         android:layout_height="27dp"
         android:drawableTint="#F40F0F"
         android:gravity="center"
-        android:text="150.000 đ"
-        android:textColor="#AC8D8D"
+        android:textColor="#F30B0B"
         android:textColorLink="#FFFFFF"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtSoluong" />
-
-    <TextView
-        android:id="@+id/txtTien"
-        android:layout_width="106dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="12dp"
-        android:drawableTint="#F40F0F"
-        android:textColor="#FA0707"
-        android:textColorLink="#FFFFFF"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/txtTong"
-        app:layout_constraintTop_toBottomOf="@+id/txtSoGhe" />
 
     <TextView
         android:id="@+id/textView18"
@@ -243,10 +214,10 @@
         android:id="@+id/btnThanhToan"
         android:layout_width="360dp"
         android:layout_height="47dp"
-        android:background="#F6F2F2"
-        android:backgroundTint="#F4EEEE"
+        android:background="#F8F5F8"
+        android:backgroundTint="#F10A0A"
         android:text="THANH TOÁN"
-        android:textColor="#ED0D0D"
+        android:textColor="#F3ECEC"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"

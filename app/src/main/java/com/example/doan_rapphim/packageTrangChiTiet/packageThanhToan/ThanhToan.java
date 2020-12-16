@@ -34,7 +34,7 @@ public class ThanhToan extends AppCompatActivity {
         txtTT_KhungGio = findViewById(R.id.txtGio);
         txtTT_Rap = findViewById(R.id.txtDiaDiem);
         txtTT_Ghe = findViewById(R.id.txtSoGhe);
-        txtTT_TTien = findViewById(R.id.txtTien);
+        txtTT_TTien = findViewById(R.id.txtTien2);
         txtTT_Sl = findViewById(R.id.txtSoluong);
         HiennThiDanhSach();
     }

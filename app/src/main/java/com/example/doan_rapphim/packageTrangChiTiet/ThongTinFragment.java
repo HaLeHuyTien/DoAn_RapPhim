@@ -24,6 +24,7 @@ import com.borjabravo.readmoretextview.ReadMoreTextView;
 import com.example.doan_rapphim.MainActivity;
 import com.example.doan_rapphim.R;
 import com.example.doan_rapphim.packageDangKyDangNhap.packageDangNhap.IDUser;
+import com.example.doan_rapphim.packageTrangChiTiet.packageThanhToan.ThongTinVe;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView;
@@ -46,6 +47,7 @@ import java.util.LinkedList;
 public class ThongTinFragment extends Fragment {
 
     private TrangChiTiet trangChiTiet;
+    private ThongTinVe thongTinVe;
 
     private  String jsonURL ;
     private  String ChiTietPhim = "http://0306181355.pixelcent.com/Cinema/ChiTietPhim.php?IDPhim=";
@@ -295,7 +297,10 @@ public class ThongTinFragment extends Fragment {
         btnDatVe.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), com.example.doan_rapphim.packageTrangChiTiet.packageThanhToan.ThanhToan.class);
+                ThongTinVe.tenPhim = txtTenPhim.getText().toString();
+                ThongTinVe.suatChieu ="17:00";
+                ThongTinVe.tenHinh="onepiece";
+                Intent intent = new Intent(getActivity(), com.example.doan_rapphim.packageTrangChiTiet.packageThanhToan.SoDoGhe.class);
                 startActivity(intent);
             }
         });

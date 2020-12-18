@@ -18,6 +18,7 @@ import android.widget.Toast;
 import com.example.doan_rapphim.AdapterListPhimItem;
 import com.example.doan_rapphim.MainActivity;
 import com.example.doan_rapphim.R;
+import com.example.doan_rapphim.packageDangKyDangNhap.packageDangNhap.DangNhapFragment;
 import com.example.doan_rapphim.packageDangKyDangNhap.packageDangNhap.IDUser;
 import com.example.doan_rapphim.packageTrangChiTiet.ThongTinFragment;
 import com.example.doan_rapphim.packageTrangChiTiet.ThongTinJson;
@@ -50,6 +51,7 @@ public class TaiKhoan_ThongTinFragment extends Fragment {
     private Button DangXuat;
 
 
+
     private ImageView txtanhDaiDien;
     private TextView txtHoVaTen;
     private TextView txtEmail;
@@ -57,7 +59,7 @@ public class TaiKhoan_ThongTinFragment extends Fragment {
     private TextView txtNgaySinh;
     private TextView txtDiaChi;
 
-    private MainActivity mainActivity;
+
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -92,6 +94,7 @@ public class TaiKhoan_ThongTinFragment extends Fragment {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
@@ -112,6 +115,7 @@ public class TaiKhoan_ThongTinFragment extends Fragment {
         txtSDT = view.findViewById(R.id.txtSDTTT);
         txtNgaySinh = view.findViewById(R.id.txtNgaySinhTT);
         txtDiaChi = view.findViewById(R.id.txtDiaChiTT);
+
 
 
         //HienThiUser();
@@ -137,10 +141,11 @@ public class TaiKhoan_ThongTinFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 IDUser.idUser = 0;
-                Toast.makeText(getContext(),"Đăng xuất thành công !",Toast.LENGTH_LONG).show();
-                mainActivity.setup_view_pager();
-                mainActivity.viewPager.setCurrentItem(0);
-                mainActivity.navigationView.getMenu().findItem(R.id.button_home).setChecked(true);
+                IDUser.HinhUser = "dienvien";
+
+                Intent intent = new Intent(getActivity(),MainActivity.class);
+                startActivity(intent);
+
 
             }
         });

@@ -7,6 +7,7 @@ import androidx.fragment.app.FragmentStatePagerAdapter;
 
 import com.example.doan_rapphim.packageDangKyDangNhap.packageDangNhap.DangNhapFragment;
 import com.example.doan_rapphim.packageDangKyDangNhap.packageDangNhap.IDUser;
+import com.example.doan_rapphim.packageDangKyDangNhap.packageDangNhap.packageThongTinUser.TabTaiKhoan_Fragment;
 import com.example.doan_rapphim.packageDangKyDangNhap.packageDangNhap.packageThongTinUser.TaiKhoan_ThongTinFragment;
 
 public class ViewPagerAdapter_TrangChu extends FragmentStatePagerAdapter {
@@ -26,10 +27,9 @@ public class ViewPagerAdapter_TrangChu extends FragmentStatePagerAdapter {
                 return new timPhimFragment();
             case 3:
                 if(IDUser.idUser>0)
-                    return new TaiKhoan_ThongTinFragment();
+                    return new TabTaiKhoan_Fragment();
                 else
                     return new DangNhapFragment();
-
             default:
                 return new TrangChuFragment();
 

@@ -8,6 +8,7 @@
     android:orientation="vertical"
     android:paddingStart="40dp"
     android:paddingEnd="40dp"
+    android:id="@+id/DangNhap_Fragment_layout"
     tools:context=".MainActivity">
 
     <ScrollView

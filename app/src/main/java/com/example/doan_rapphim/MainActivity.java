@@ -36,12 +36,13 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.button_list_movie:
                         viewPager.setCurrentItem(1);
                         break;
-                    case R.id.button_user:
+                    case R.id.button_TimPhim:
                         viewPager.setCurrentItem(2);
                         break;
-                    case R.id.button_TimPhim:
+                    case R.id.button_user:
                         viewPager.setCurrentItem(3);
                         break;
+
                 }
                 return true;
             }
@@ -68,11 +69,12 @@ public class MainActivity extends AppCompatActivity {
                         navigationView.getMenu().findItem(R.id.button_list_movie).setChecked(true);
                         break;
                     case 2:
-                        navigationView.getMenu().findItem(R.id.button_user).setChecked(true);
-                        break;
-                    case 3:
                         navigationView.getMenu().findItem(R.id.button_TimPhim).setChecked(true);
                         break;
+                    case 3:
+                        navigationView.getMenu().findItem(R.id.button_user).setChecked(true);
+                        break;
+
                 }
             }
 

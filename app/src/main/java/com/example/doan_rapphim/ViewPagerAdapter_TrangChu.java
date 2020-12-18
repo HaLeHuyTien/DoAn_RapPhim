@@ -23,12 +23,13 @@ public class ViewPagerAdapter_TrangChu extends FragmentStatePagerAdapter {
             case 1:
                 return new DanhSachPhimFragment();
             case 2:
+                return new timPhimFragment();
+            case 3:
                 if(IDUser.idUser>0)
                     return new TaiKhoan_ThongTinFragment();
                 else
                     return new DangNhapFragment();
-            case 3:
-                return new timPhimFragment();
+
             default:
                 return new TrangChuFragment();
 

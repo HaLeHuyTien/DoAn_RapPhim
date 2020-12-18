@@ -202,8 +202,10 @@ public class ThongTinFragment extends Fragment {
                             Diem = a;
                             DangDanhGia dangDanhGia = new DangDanhGia();
                             dangDanhGia.execute();
+
                             GetDanhGia getDanhGia = new GetDanhGia();
                             getDanhGia.execute();
+
                             GetTrangChiTet getTrangChiTet = new GetTrangChiTet();
                             getTrangChiTet.execute();
                         }
@@ -391,7 +393,16 @@ public class ThongTinFragment extends Fragment {
 
 
                     });
-                int x = Integer.parseInt(txtDiem.getText().toString().substring(0,1));
+                int x = 0;
+                    if(Double.parseDouble(txtDiem.getText().toString()) < 10)
+                    {
+                      x   = Integer.parseInt(txtDiem.getText().toString().substring(0,1));
+                    }
+                    else
+                    {
+                        x   = Integer.parseInt(txtDiem.getText().toString().substring(0,2));
+                    }
+
                 DanhGiaDiem(x);
                 DienVienJson daodien = new DienVienJson();
                 daodien.setTenDV(DaoDien);
@@ -499,7 +510,28 @@ public class ThongTinFragment extends Fragment {
                 imgXH2.setImageResource(R.drawable.yellowstar);
             case 1:
                 imgXH1.setImageResource(R.drawable.yellowstar);
-
+        }
+        switch (a){
+            case 0:
+                imgXH1.setImageResource(R.drawable.blackstar);
+            case 1:
+                imgXH2.setImageResource(R.drawable.blackstar);
+            case 2:
+                imgXH3.setImageResource(R.drawable.blackstar);
+            case 3:
+                imgXH4.setImageResource(R.drawable.blackstar);
+            case 4:
+                imgXH5.setImageResource(R.drawable.blackstar);
+            case 5:
+                imgXH6.setImageResource(R.drawable.blackstar);
+            case 6:
+                imgXH7.setImageResource(R.drawable.blackstar);
+            case 7:
+                imgXH8.setImageResource(R.drawable.blackstar);
+            case 8:
+                imgXH9.setImageResource(R.drawable.blackstar);
+            case 9:
+                imgXH10.setImageResource(R.drawable.blackstar);
 
         }
     }

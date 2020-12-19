@@ -2,6 +2,8 @@ package com.example.doan_rapphim.packageDangKyDangNhap.packageDangNhap.packageTh
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
@@ -11,8 +13,11 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.example.doan_rapphim.R;
+import com.example.doan_rapphim.packageDangKyDangNhap.packageDangNhap.IDUser;
 import com.google.android.material.tabs.TabItem;
 import com.google.android.material.tabs.TabLayout;
+
+import java.util.Objects;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -63,19 +68,29 @@ public class TabTaiKhoan_Fragment extends Fragment {
     private Button btnThayDoiThongTin;
 
     @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_tab_tai_khoan_, container, false);
 
-        TabLayout tabLayout = view.findViewById(R.id.tabBar_Fragment);
+
         TabItem tabThongTin = view.findViewById(R.id.tabThongTin_Fragment);
         TabItem tabGiaoDich = view.findViewById(R.id.tabGiaoDich_Fragment);
-        final ViewPager viewPager = view.findViewById(R.id.viewPagerTabTaiKhoan_Fragment);
-
-        TaiKhoan_Adapter pagerAdapter = new TaiKhoan_Adapter(getActivity().getSupportFragmentManager(), tabLayout.getTabCount());
-
+        TabLayout tabLayout = view.findViewById(R.id.tabBar_Fragment);
+        ViewPager viewPager = view.findViewById(R.id.viewPagerTabTaiKhoan_Fragment);
+        TaiKhoan_Adapter pagerAdapter = new TaiKhoan_Adapter(getChildFragmentManager(), tabLayout.getTabCount());
         viewPager.setAdapter(pagerAdapter);
+        tabLayout.setupWithViewPager(viewPager);
+
+
+
+
 //        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
 //            @Override
 //            public void onTabSelected(TabLayout.Tab tab) {
@@ -94,7 +109,7 @@ public class TabTaiKhoan_Fragment extends Fragment {
 //
 //            }
 //        });
-        tabLayout.setupWithViewPager(viewPager);
+
         return view;
     }
 }

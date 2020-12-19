@@ -17,19 +17,14 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentStatePagerAdapter;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.viewpager.widget.ViewPager;
 
 import com.example.doan_rapphim.MainActivity;
 import com.example.doan_rapphim.R;
-import com.example.doan_rapphim.ViewPagerAdapter_TrangChu;
 import com.example.doan_rapphim.packageDangKyDangNhap.packageDangKy.DangKyActivity;
 import com.example.doan_rapphim.packageDangKyDangNhap.packageDangNhap.packageThongTinUser.ReadThongTinUserJson;
-import com.example.doan_rapphim.packageDangKyDangNhap.packageDangNhap.packageThongTinUser.TabTaiKhoan;
 import com.example.doan_rapphim.packageDangKyDangNhap.packageDangNhap.packageThongTinUser.TabTaiKhoan_Fragment;
 import com.example.doan_rapphim.packageDangKyDangNhap.packageDangNhap.packageThongTinUser.ThongTinUser;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import org.json.JSONException;
 
@@ -86,13 +81,11 @@ private MainActivity mainActivity;
                             IDUser.idUser = i+1;
                             IDUser.HinhUser = "luffy";
                             a = 1;
-                            mainActivity.setup_view_pager();
-                            mainActivity.viewPager.setCurrentItem(3);
-                            mainActivity.navigationView.getMenu().findItem(R.id.button_user).setChecked(true);
 
-                           Intent intent = new Intent(getActivity(),TabTaiKhoan.class);
-                           startActivity(intent);
-
+                            replaceFragmentContent(new TabTaiKhoan_Fragment());
+//                            mainActivity.setup_view_pager();
+//                            mainActivity.viewPager.setCurrentItem(0);
+//                            mainActivity.navigationView.getMenu().findItem(R.id.button_home).setChecked(true);
                             break;
                         }
                     }
@@ -127,5 +120,22 @@ private MainActivity mainActivity;
 
         return view;
     }
+
+    protected void replaceFragmentContent(Fragment fragment) {
+
+        if (fragment != null) {
+
+            FragmentManager fmgr = getActivity().getSupportFragmentManager();
+
+            FragmentTransaction ft = fmgr.beginTransaction();
+
+            ft.replace(R.id.container_body, fragment);
+
+            ft.commit();
+
+        }
+
+    }
+
 
 }

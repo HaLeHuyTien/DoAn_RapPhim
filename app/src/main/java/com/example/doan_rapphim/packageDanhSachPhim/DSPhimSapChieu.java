@@ -3,6 +3,8 @@ package com.example.doan_rapphim.packageDanhSachPhim;
 import android.os.AsyncTask;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -86,13 +88,19 @@ public class DSPhimSapChieu extends Fragment {
     private static String jsonURL = "http://0306181355.pixelcent.com/Cinema/Phim.php";
 
     @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        GetPhim getPhim = new GetPhim();
+        getPhim.execute();
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_d_s_phim_sap_chieu, container, false);
         mRecyclerview=view.findViewById(R.id.RVDSPhimSapChieu);
-        GetPhim getPhim = new GetPhim();
-        getPhim.execute();
+
         //HienthiDanhSach(view);
         return  view;
     }
@@ -176,57 +184,58 @@ public class DSPhimSapChieu extends Fragment {
 
         @Override
         protected void onPostExecute(String s) {
-            try {
-                JSONObject jsonObject = new JSONObject(s);
-                JSONArray jsonArray = jsonObject.getJSONArray("DanhSach");
+            if(isAdded()) {
+                try {
+                    JSONObject jsonObject = new JSONObject(s);
+                    JSONArray jsonArray = jsonObject.getJSONArray("DanhSach");
 
-                for(int i = 0; i < jsonArray.length(); i++) {
-                    JSONObject jsonObject1 = jsonArray.getJSONObject(i);
-                    String id = jsonObject1.getString("id");
-                    String TenPhim = jsonObject1.getString("TenPhim");
-                    String LoaiPhim = jsonObject1.getString("LoaiPhim");
-                    String DaoDien = jsonObject1.getString("DaoDien");
-                    String GioiHanTuoi = jsonObject1.getString("GioiHanTuoi");
-                    String Hinh = jsonObject1.getString("Hinh");
-                    String NgayKhoiChieu = jsonObject1.getString("NgayKhoiChieu");
-                    Integer a = Integer.parseInt(id);
+                    for (int i = 0; i < jsonArray.length(); i++) {
+                        JSONObject jsonObject1 = jsonArray.getJSONObject(i);
+                        String id = jsonObject1.getString("id");
+                        String TenPhim = jsonObject1.getString("TenPhim");
+                        String LoaiPhim = jsonObject1.getString("LoaiPhim");
+                        String DaoDien = jsonObject1.getString("DaoDien");
+                        String GioiHanTuoi = jsonObject1.getString("GioiHanTuoi");
+                        String Hinh = jsonObject1.getString("Hinh");
+                        String NgayKhoiChieu = jsonObject1.getString("NgayKhoiChieu");
+                        Integer a = Integer.parseInt(id);
 
-                    ThongTinJson Phim = new ThongTinJson();
-                    Phim.setIDPhim(a);
-                    Phim.setTenPhim(TenPhim);
-                    Phim.setTheLoai(LoaiPhim);
-                    Phim.setDaoDien(DaoDien);
-                    Phim.setDoTuoi(GioiHanTuoi);
-                    Phim.setHinhPhim(Hinh);
-                    Phim.setNgayKhoiChieu(NgayKhoiChieu);
+                        ThongTinJson Phim = new ThongTinJson();
+                        Phim.setIDPhim(a);
+                        Phim.setTenPhim(TenPhim);
+                        Phim.setTheLoai(LoaiPhim);
+                        Phim.setDaoDien(DaoDien);
+                        Phim.setDoTuoi(GioiHanTuoi);
+                        Phim.setHinhPhim(Hinh);
+                        Phim.setNgayKhoiChieu(NgayKhoiChieu);
 
 
-                    try {
-                        SimpleDateFormat sdf = new SimpleDateFormat("d-MM-yyyy");
-                        Date strDate = sdf.parse(Phim.getNgayKhoiChieu());
-                        String currentTime = sdf.format(Calendar.getInstance().getTime());
-                        Date currentDay = sdf.parse(currentTime);
-                        if(strDate.after(currentDay))
-                            mWordList.addLast(Phim);
-                    }catch (Exception e)
-                    {
-                        e.printStackTrace();
+                        try {
+                            SimpleDateFormat sdf = new SimpleDateFormat("d-MM-yyyy");
+                            Date strDate = sdf.parse(Phim.getNgayKhoiChieu());
+                            String currentTime = sdf.format(Calendar.getInstance().getTime());
+                            Date currentDay = sdf.parse(currentTime);
+                            if (strDate.after(currentDay))
+                                mWordList.addLast(Phim);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+
                     }
 
+                    mAdapter = new AdapterListPhimItem(getContext(), getActivity(), mWordList);
+
+                    mRecyclerview.setAdapter(mAdapter);
+                    mRecyclerview.setHasFixedSize(true);
+
+                    mRecyclerview.setLayoutManager(new LinearLayoutManager(getContext()));
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
                 }
 
-                mAdapter=new AdapterListPhimItem(getContext(),getActivity(),mWordList);
 
-                mRecyclerview.setAdapter(mAdapter);
-
-                mRecyclerview.setLayoutManager(new LinearLayoutManager(getActivity()));
-
-            } catch (JSONException e) {
-                e.printStackTrace();
             }
-
-
-
         }
     }
 }

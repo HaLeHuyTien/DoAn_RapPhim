@@ -28,10 +28,11 @@ public class AdapterListPhimItem extends RecyclerView.Adapter<AdapterListPhimIte
 
 
     public AdapterListPhimItem(Context context,Activity activity,LinkedList<ThongTinJson> wordList){
-        mInflater=LayoutInflater.from(context);
+
         this.mWordList=wordList;
         this.context = context;
         this.activity = activity;
+        mInflater=LayoutInflater.from(this.context);
     }
     @NonNull
     @Override

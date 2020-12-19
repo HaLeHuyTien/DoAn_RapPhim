@@ -4,8 +4,9 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.fragment.app.FragmentStatePagerAdapter;
 
-public class TaiKhoan_Adapter extends FragmentPagerAdapter {
+public class TaiKhoan_Adapter extends FragmentStatePagerAdapter {
     private int numOfTabs;
 
     public TaiKhoan_Adapter(FragmentManager fm, int numOfTabs) {

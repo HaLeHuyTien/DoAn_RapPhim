@@ -5,6 +5,8 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.view.LayoutInflater;
@@ -49,6 +51,7 @@ public class TaiKhoan_ThongTinFragment extends Fragment {
     private Button ThayDoiThongTin;
     private Button ThayDoiMatKhau;
     private Button DangXuat;
+
 
 
 
@@ -118,6 +121,7 @@ public class TaiKhoan_ThongTinFragment extends Fragment {
 
 
 
+
         //HienThiUser();
         // Inflate the layout for this fragment
         ThayDoiThongTin = view.findViewById(R.id.btnThayDoiTT);
@@ -140,16 +144,15 @@ public class TaiKhoan_ThongTinFragment extends Fragment {
         DangXuat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                IDUser.idUser = 0;
+                IDUser.idUser = -1;
                 IDUser.HinhUser = "dienvien";
 
-                Intent intent = new Intent(getActivity(),MainActivity.class);
-                startActivity(intent);
+                replaceFragmentContent(new DangNhapFragment());
+
 
 
             }
         });
-
         jsonURL = iduser + IDUser.idUser.toString();
         GetThongTinKH getThongTinKH = new GetThongTinKH();
         getThongTinKH.execute();
@@ -250,4 +253,20 @@ public class TaiKhoan_ThongTinFragment extends Fragment {
 
         }
     }
+    protected void replaceFragmentContent(Fragment fragment) {
+
+        if (fragment != null) {
+
+            FragmentManager fmgr = getActivity().getSupportFragmentManager();
+
+            FragmentTransaction ft = fmgr.beginTransaction();
+
+            ft.replace(R.id.container_body, fragment);
+
+            ft.commit();
+
+        }
+
+    }
+
 }

@@ -10,20 +10,13 @@
         android:icon="@mipmap/ic_launcher"
         android:label="RẠP PHIM"
         android:networkSecurityConfig="@xml/network_security_config"
+        android:hardwareAccelerated="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.DoAn_RapPhim">
         <activity android:name=".packageTrangChiTiet.packageThanhToan.ThongTinVe"></activity>
         <activity android:name=".MainActivity" />
         <activity android:name=".packageDangKyDangNhap.packageDangNhap.QuenMatKhauActivity" />
-        <activity
-            android:name=".packageDangKyDangNhap.packageDangNhap.packageThongTinUser.TabTaiKhoan"
-            android:label="THÔNG TIN"
-            android:parentActivityName=".packageDangKyDangNhap.packageDangKy.DangKyActivity">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".packageDangKyDangNhap.packageDangKy.DangKyActivity" />
-        </activity>
         <activity android:name=".packageDangKyDangNhap.packageDangKy.DangKyActivity" />
         <activity android:name=".packageTrangChiTiet.TrangChiTiet" />
         <activity android:name=".packageDangKyDangNhap.packageDangNhap.packageThongTinUser.ThayDoiThongTin" />

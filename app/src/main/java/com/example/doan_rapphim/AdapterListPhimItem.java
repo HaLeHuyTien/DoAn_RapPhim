@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.doan_rapphim.packageTrangChiTiet.IDPhim;
 import com.example.doan_rapphim.packageTrangChiTiet.ThongTinJson;
 import com.example.doan_rapphim.packageTrangChiTiet.TrangChiTiet;
+import com.example.doan_rapphim.packageTrangChiTiet.packageThanhToan.ThongTinSoDoGhe;
 
 import java.util.LinkedList;
 
@@ -58,6 +59,8 @@ public class AdapterListPhimItem extends RecyclerView.Adapter<AdapterListPhimIte
             public void onClick(View v) {
 
                 IDPhim.ID = mCurrent.getIDPhim();
+                ThongTinSoDoGhe.tenPhim = mCurrent.getTenPhim();
+                ThongTinSoDoGhe.tenHinh = mCurrent.getHinhPhim();
                 Intent intent=new Intent(activity ,TrangChiTiet.class);
                 activity.startActivity(intent);
             }

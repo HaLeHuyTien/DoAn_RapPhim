@@ -115,28 +115,16 @@
             app:layout_constraintTop_toTopOf="@+id/txtTuoi" />
 
         <Button
-            android:id="@+id/btnMuave"
-            android:layout_width="86dp"
-            android:layout_height="37dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="20dp"
-            android:backgroundTint="#F44336"
-            android:text="Mua Vé"
-            android:textSize="10sp"
-            app:layout_constraintStart_toEndOf="@+id/imgRVHinhPhim"
-            app:layout_constraintTop_toBottomOf="@+id/txtTuoi" />
-
-        <Button
             android:id="@+id/btnRVChiTiet"
-            android:layout_width="86dp"
+            android:layout_width="100dp"
             android:layout_height="37dp"
+            android:layout_marginTop="16dp"
             android:backgroundTint="#F44336"
             android:text="Chi Tiết"
             android:textSize="10sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/btnMuave"
-            app:layout_constraintTop_toTopOf="@+id/btnMuave"
-            />
+            app:layout_constraintStart_toEndOf="@+id/imgRVHinhPhim"
+            app:layout_constraintTop_toBottomOf="@+id/txtTuoi" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

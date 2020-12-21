@@ -45,7 +45,7 @@ import java.util.LinkedList;
 public class ThongTinFragment extends Fragment {
 
     private TrangChiTiet trangChiTiet;
-    private ThongTinSoDoGhe thongTinVe;
+
 
     private  String jsonURL ;
     private  String ChiTietPhim = "http://0306181355.pixelcent.com/Cinema/ChiTietPhim.php?IDPhim=";
@@ -93,7 +93,7 @@ public class ThongTinFragment extends Fragment {
     private String Diem;
 
 
-    private Button btnDatVe;
+
     public static ThongTinFragment getInstance(){
         ThongTinFragment thongTinFragment = new ThongTinFragment();
         return  thongTinFragment;
@@ -293,17 +293,7 @@ public class ThongTinFragment extends Fragment {
         String a = imgXH1.getResources().getResourceEntryName(imgXH1.getId());
 
 
-        btnDatVe = view.findViewById(R.id.btnDatVe);
-        btnDatVe.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ThongTinSoDoGhe.tenPhim = txtTenPhim.getText().toString();
-                ThongTinSoDoGhe.suatChieu ="17:00";
-                ThongTinSoDoGhe.tenHinh="onepiece";
-                Intent intent = new Intent(getActivity(), com.example.doan_rapphim.packageTrangChiTiet.packageThanhToan.SoDoGhe.class);
-                startActivity(intent);
-            }
-        });
+
         return view;
 
     }

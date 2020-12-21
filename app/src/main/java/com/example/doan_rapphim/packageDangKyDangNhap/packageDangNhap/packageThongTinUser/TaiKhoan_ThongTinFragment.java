@@ -144,10 +144,11 @@ public class TaiKhoan_ThongTinFragment extends Fragment {
         DangXuat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 IDUser.idUser = -1;
                 IDUser.HinhUser = "dienvien";
-
                 replaceFragmentContent(new DangNhapFragment());
+                Toast.makeText(getContext(),"Đăng xuất thành công !",Toast.LENGTH_LONG).show();
 
 
 

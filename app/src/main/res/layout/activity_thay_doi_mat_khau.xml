@@ -13,8 +13,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="70dp"
         android:layout_marginTop="50dp"
-        android:text="Lưu"
         android:background="@drawable/custom_button"
+        android:text="Lưu"
+        android:textColor="@color/white"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextNLMKTT" />
 
@@ -26,6 +27,7 @@
         android:layout_marginEnd="70dp"
         android:background="@drawable/custom_button"
         android:text="Thoát"
+        android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextNLMKTT" />
 

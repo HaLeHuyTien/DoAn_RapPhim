@@ -101,7 +101,21 @@ public class Frame_Layout_Fragment extends Fragment {
         ft.replace(R.id.container_body, firstFragment);
 
         ft.commit();
+    }
 
+    protected void replaceFragmentContent(Fragment fragment) {
+
+        if (fragment != null) {
+
+            FragmentManager fmgr = getActivity().getSupportFragmentManager();
+
+            FragmentTransaction ft = fmgr.beginTransaction();
+
+            ft.replace(R.id.container_body, fragment);
+
+            ft.commit();
+
+        }
 
     }
 }

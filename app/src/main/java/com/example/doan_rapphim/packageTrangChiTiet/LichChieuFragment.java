@@ -160,7 +160,7 @@ public class LichChieuFragment extends Fragment {
                     mWordList.addLast(lichChieu_json);
                 }
             }
-            mAdapter = new LichChieuListAdapter(getActivity(),mWordList);
+            mAdapter = new LichChieuListAdapter(getContext(),getActivity(),mWordList);
             mRecyclerView.setAdapter(mAdapter);
             mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
@@ -241,7 +241,7 @@ public class LichChieuFragment extends Fragment {
                         mWordList.addLast(lichChieu_json);
                     }
                 }
-                mAdapter = new LichChieuListAdapter(getActivity(),mWordList);
+                mAdapter = new LichChieuListAdapter(getContext(),getActivity(),mWordList);
                 mRecyclerView.setAdapter(mAdapter);
                 mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
             } catch (JSONException e) {

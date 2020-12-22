@@ -77,17 +77,14 @@ private String URLDangNhap = "http://0306181355.pixelcent.com/Cinema/KiemTraDang
                 startActivity(intent);
             }
         });
-
-        btnDN=view.findViewById(R.id.btnDN);
+        btnDN = view.findViewById(R.id.btnDN);
         btnDN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 KiemTraDangNhap kiemTraDangNhap = new KiemTraDangNhap();
                 kiemTraDangNhap.execute();
-
             }
         });
-
         imgHidePass=view.findViewById(R.id.imgHidePassDN);
         imgHidePass.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -173,32 +170,27 @@ private String URLDangNhap = "http://0306181355.pixelcent.com/Cinema/KiemTraDang
         @Override
         protected void onPostExecute(String s) {
             try {
+            mWordList.clear();
+            JSONObject jsonObject = new JSONObject(s);
+            JSONArray jsonArray = jsonObject.getJSONArray("DanhSach");
+            int a = 0;
 
-                mWordList.clear();
-
-                JSONObject jsonObject = new JSONObject(s);
-                JSONArray jsonArray = jsonObject.getJSONArray("DanhSach");
-                int a= 0;
-                for (int i = 0; i < jsonArray.length(); i++)
+                for(int i =0;i<jsonArray.length();i++)
                 {
-                    JSONObject jsonObject1 = jsonArray.getJSONObject(i);
-                    Integer ID = jsonObject1.getInt("ID");
-                    String Hinh = jsonObject1.getString("Hinh");
-                    String Email = jsonObject1.getString("Email");
-                    String MatKhau = jsonObject1.getString("MatKhau");
-                    if (edtEmail.getText().toString().equals(Email) && edtMatKhau.getText().toString().equals(MatKhau)) {
+                JSONObject jsonObject1 = jsonArray.getJSONObject(i);
+                Integer ID = jsonObject1.getInt("ID");
+                String MatKhau = jsonObject1.getString("MatKhau");
+                String Email = jsonObject1.getString("Email");
+                String Hinh = jsonObject1.getString("Hinh");
 
-                        a = 1;
-
-                        replaceFragmentContent(new TabTaiKhoan_Fragment(),ID,Hinh);
-                        break;
-                    }
+                if(edtMatKhau.getText().toString().equals(MatKhau) && edtEmail.getText().toString().equals(Email)) {
+                    a = 1;
+                    replaceFragmentContent(new TabTaiKhoan_Fragment(),ID,Hinh);
+                    break;
+                }
                 }
                 if(a == 0)
-                    Toast.makeText(getContext(), "That bai", Toast.LENGTH_SHORT).show();
-
-
-
+                    Toast.makeText(getContext(),"Đăng nhập thất bại !",Toast.LENGTH_SHORT).show();
             } catch (JSONException e) {
                 e.printStackTrace();
             }

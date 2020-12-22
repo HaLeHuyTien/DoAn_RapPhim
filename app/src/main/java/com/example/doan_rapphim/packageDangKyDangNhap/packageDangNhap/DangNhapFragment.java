@@ -1,6 +1,7 @@
  package com.example.doan_rapphim.packageDangKyDangNhap.packageDangNhap;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
@@ -18,6 +19,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.doan_rapphim.MainActivity;
 import com.example.doan_rapphim.R;
@@ -25,10 +27,19 @@ import com.example.doan_rapphim.packageDangKyDangNhap.packageDangKy.DangKyActivi
 import com.example.doan_rapphim.packageDangKyDangNhap.packageDangNhap.packageThongTinUser.ReadThongTinUserJson;
 import com.example.doan_rapphim.packageDangKyDangNhap.packageDangNhap.packageThongTinUser.TabTaiKhoan_Fragment;
 import com.example.doan_rapphim.packageDangKyDangNhap.packageDangNhap.packageThongTinUser.ThongTinUser;
+import com.example.doan_rapphim.packageTrangChiTiet.BinhLuanListAdapter;
+import com.example.doan_rapphim.packageTrangChiTiet.BinhLuan_Json;
 
+import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.LinkedList;
 
 public class DangNhapFragment extends Fragment {
@@ -39,6 +50,7 @@ private String Email,MatKhau;
 private TextView txtQuenMatKhau;
 private Integer x = 0;
 private MainActivity mainActivity;
+private String URLDangNhap = "http://0306181355.pixelcent.com/Cinema/KiemTraDangNhap.php";
 
     private final LinkedList<ThongTinUser> mWordList = new LinkedList<>();
     @Nullable
@@ -70,32 +82,8 @@ private MainActivity mainActivity;
         btnDN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int a = 0;
-                try {
-                    int soluongUser = ReadThongTinUserJson.SoLuongTaiKhoan(getActivity());
-                    for(int i = 0; i < soluongUser; i ++) {
-                        ThongTinUser thongTinUser = ReadThongTinUserJson.readThongTinUserFile(getActivity(), i);
-                        Email = thongTinUser.getEmail();
-                        MatKhau = thongTinUser.getMatKhau();
-                        if (edtEmail.getText().toString().equals(Email) && edtMatKhau.getText().toString().equals(MatKhau)) {
-                            IDUser.idUser = i+1;
-                            IDUser.HinhUser = "luffy";
-                            a = 1;
-
-                            replaceFragmentContent(new TabTaiKhoan_Fragment());
-//                            mainActivity.setup_view_pager();
-//                            mainActivity.viewPager.setCurrentItem(0);
-//                            mainActivity.navigationView.getMenu().findItem(R.id.button_home).setChecked(true);
-                            break;
-                        }
-                    }
-                    if(a == 0)
-                    Toast.makeText(getContext(), "That bai", Toast.LENGTH_SHORT).show();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
+                KiemTraDangNhap kiemTraDangNhap = new KiemTraDangNhap();
+                kiemTraDangNhap.execute();
 
             }
         });
@@ -121,7 +109,7 @@ private MainActivity mainActivity;
         return view;
     }
 
-    protected void replaceFragmentContent(Fragment fragment) {
+    protected void replaceFragmentContent(Fragment fragment,int ID, String Hinh) {
 
         if (fragment != null) {
 
@@ -130,11 +118,91 @@ private MainActivity mainActivity;
             FragmentTransaction ft = fmgr.beginTransaction();
 
             ft.replace(R.id.container_body, fragment);
+            IDUser.idUser = ID;
+            IDUser.HinhUser = Hinh;
 
             ft.commit();
 
         }
 
+    }
+
+    private class KiemTraDangNhap extends AsyncTask<String, String, String> {
+
+
+        @Override
+        protected String doInBackground(String... strings) {
+            String current = "";
+
+            try {
+                URL url;
+                HttpURLConnection urlConnection = null;
+
+
+                try {
+                    url = new URL(URLDangNhap);
+                    urlConnection = (HttpURLConnection) url.openConnection();
+
+                    InputStream in = urlConnection.getInputStream();
+                    InputStreamReader isr = new InputStreamReader(in);
+
+                    int data = isr.read();
+                    while (data != -1) {
+                        current += (char) data;
+                        data = isr.read();
+                    }
+
+                    return current;
+
+                } catch (MalformedURLException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } finally {
+                    if (urlConnection != null) {
+                        urlConnection.disconnect();
+                    }
+                }
+
+            }catch (Exception e) {
+                e.printStackTrace();
+            }
+            return current;
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            try {
+
+                mWordList.clear();
+
+                JSONObject jsonObject = new JSONObject(s);
+                JSONArray jsonArray = jsonObject.getJSONArray("DanhSach");
+                int a= 0;
+                for (int i = 0; i < jsonArray.length(); i++)
+                {
+                    JSONObject jsonObject1 = jsonArray.getJSONObject(i);
+                    Integer ID = jsonObject1.getInt("ID");
+                    String Hinh = jsonObject1.getString("Hinh");
+                    String Email = jsonObject1.getString("Email");
+                    String MatKhau = jsonObject1.getString("MatKhau");
+                    if (edtEmail.getText().toString().equals(Email) && edtMatKhau.getText().toString().equals(MatKhau)) {
+
+                        a = 1;
+
+                        replaceFragmentContent(new TabTaiKhoan_Fragment(),ID,Hinh);
+                        break;
+                    }
+                }
+                if(a == 0)
+                    Toast.makeText(getContext(), "That bai", Toast.LENGTH_SHORT).show();
+
+
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
 

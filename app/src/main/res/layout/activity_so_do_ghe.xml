@@ -42,9 +42,10 @@
 
         <TableLayout
             android:id="@+id/tableLayout"
-            android:layout_width="306dp"
-            android:layout_height="206dp"
+            android:layout_width="280dp"
+            android:layout_height="225dp"
             android:layout_marginTop="64dp"
+
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.518"
             app:layout_constraintStart_toStartOf="parent"
@@ -52,46 +53,47 @@
 
             <TableRow
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                >
 
                 <Button
                     android:id="@+id/btnA1"
-                    android:layout_width="60dp"
+                    android:layout_width="50dp"
                     android:layout_height="match_parent"
-                    android:background="@drawable/custom_ghe"
-                    android:backgroundTint="#F8F2F2"
+                    android:background="#F8F2F2"
+                    android:layout_margin="3dp"
                     android:text="1" />
 
                 <Button
                     android:id="@+id/btnA2"
-                    android:layout_width="60dp"
+                    android:layout_width="50dp"
                     android:layout_height="match_parent"
-                    android:background="@drawable/custom_ghe"
-                    android:backgroundTint="#F8F2F2"
+                    android:background="#F8F2F2"
+                    android:layout_margin="3dp"
                     android:text="2" />
 
                 <Button
                     android:id="@+id/btnA3"
-                    android:layout_width="60dp"
+                    android:layout_width="50dp"
                     android:layout_height="match_parent"
-                    android:background="@drawable/custom_ghe"
-                    android:backgroundTint="#F8F2F2"
+                    android:background="#F8F2F2"
+                    android:layout_margin="3dp"
                     android:text="3" />
 
                 <Button
                     android:id="@+id/btnA4"
-                    android:layout_width="60dp"
+                    android:layout_width="50dp"
                     android:layout_height="match_parent"
-                    android:background="@drawable/custom_ghe"
-                    android:backgroundTint="#F8F2F2"
+                    android:background="#F8F2F2"
+                    android:layout_margin="3dp"
                     android:text="4" />
 
                 <Button
                     android:id="@+id/btnA5"
-                    android:layout_width="60dp"
+                    android:layout_width="50dp"
                     android:layout_height="match_parent"
-                    android:background="@drawable/custom_ghe"
-                    android:backgroundTint="#F8F2F2"
+                    android:background="#F8F2F2"
+                    android:layout_margin="3dp"
                     android:text="5" />
 
             </TableRow>
@@ -102,42 +104,42 @@
 
                 <Button
                     android:id="@+id/btnB1"
-                    android:layout_width="60dp"
+                    android:layout_width="50dp"
                     android:layout_height="match_parent"
-                    android:background="@drawable/custom_ghe"
-                    android:backgroundTint="#F8F2F2"
+                    android:background="#F8F2F2"
+                    android:layout_margin="3dp"
                     android:text="1" />
 
                 <Button
                     android:id="@+id/btnB2"
-                    android:layout_width="60dp"
+                    android:layout_width="50dp"
                     android:layout_height="match_parent"
-                    android:background="@drawable/custom_ghe"
-                    android:backgroundTint="#F8F2F2"
+                    android:background="#F8F2F2"
+                    android:layout_margin="3dp"
                     android:text="2" />
 
                 <Button
                     android:id="@+id/btnB3"
-                    android:layout_width="60dp"
+                    android:layout_width="50dp"
                     android:layout_height="match_parent"
-                    android:background="@drawable/custom_ghe"
-                    android:backgroundTint="#F8F2F2"
+                    android:background="#F8F2F2"
+                    android:layout_margin="3dp"
                     android:text="3" />
 
                 <Button
                     android:id="@+id/btnB4"
-                    android:layout_width="60dp"
+                    android:layout_width="50dp"
                     android:layout_height="match_parent"
-                    android:background="@drawable/custom_ghe"
-                    android:backgroundTint="#F8F2F2"
+                    android:background="#F8F2F2"
+                    android:layout_margin="3dp"
                     android:text="4" />
 
                 <Button
                     android:id="@+id/btnB5"
-                    android:layout_width="60dp"
+                    android:layout_width="50dp"
                     android:layout_height="match_parent"
-                    android:background="@drawable/custom_ghe"
-                    android:backgroundTint="#F8F2F2"
+                    android:background="#F8F2F2"
+                    android:layout_margin="3dp"
                     android:text="5" />
             </TableRow>
 
@@ -148,42 +150,42 @@
 
                 <Button
                     android:id="@+id/btnC1"
-                    android:layout_width="60dp"
+                    android:layout_width="50dp"
                     android:layout_height="match_parent"
-                    android:background="@drawable/custom_ghe"
-                    android:backgroundTint="#F8F2F2"
+                    android:background="#F8F2F2"
+                    android:layout_margin="3dp"
                     android:text="1" />
 
                 <Button
                     android:id="@+id/btnC2"
-                    android:layout_width="60dp"
+                    android:layout_width="50dp"
                     android:layout_height="match_parent"
-                    android:background="@drawable/custom_ghe"
-                    android:backgroundTint="#F8F2F2"
+                    android:background="#F8F2F2"
+                    android:layout_margin="3dp"
                     android:text="2" />
 
                 <Button
                     android:id="@+id/btnC3"
-                    android:layout_width="60dp"
+                    android:layout_width="50dp"
                     android:layout_height="match_parent"
-                    android:background="@drawable/custom_ghe"
-                    android:backgroundTint="#F8F2F2"
+                    android:background="#F8F2F2"
+                    android:layout_margin="3dp"
                     android:text="3" />
 
                 <Button
                     android:id="@+id/btnC4"
-                    android:layout_width="60dp"
+                    android:layout_width="50dp"
                     android:layout_height="match_parent"
-                    android:background="@drawable/custom_ghe"
-                    android:backgroundTint="#F8F2F2"
+                    android:background="#F8F2F2"
+                    android:layout_margin="3dp"
                     android:text="4" />
 
                 <Button
                     android:id="@+id/btnC5"
-                    android:layout_width="60dp"
+                    android:layout_width="50dp"
                     android:layout_height="match_parent"
-                    android:background="@drawable/custom_ghe"
-                    android:backgroundTint="#F8F2F2"
+                    android:background="#F8F2F2"
+                    android:layout_margin="3dp"
                     android:text="5" />
             </TableRow>
 
@@ -193,42 +195,42 @@
 
                 <Button
                     android:id="@+id/btnD1"
-                    android:layout_width="60dp"
+                    android:layout_width="50dp"
                     android:layout_height="match_parent"
-                    android:background="@drawable/custom_ghe"
-                    android:backgroundTint="#F8F2F2"
+                    android:background="#F8F2F2"
+                    android:layout_margin="3dp"
                     android:text="1" />
 
                 <Button
                     android:id="@+id/btnD2"
-                    android:layout_width="60dp"
+                    android:layout_width="50dp"
                     android:layout_height="match_parent"
-                    android:background="@drawable/custom_ghe"
-                    android:backgroundTint="#F8F2F2"
+                    android:background="#F8F2F2"
+                    android:layout_margin="3dp"
                     android:text="2" />
 
                 <Button
                     android:id="@+id/btnD3"
-                    android:layout_width="60dp"
+                    android:layout_width="50dp"
                     android:layout_height="match_parent"
-                    android:background="@drawable/custom_ghe"
-                    android:backgroundTint="#F8F2F2"
+                    android:background="#F8F2F2"
+                    android:layout_margin="3dp"
                     android:text="3" />
 
                 <Button
                     android:id="@+id/btnD4"
-                    android:layout_width="60dp"
+                    android:layout_width="50dp"
                     android:layout_height="match_parent"
-                    android:background="@drawable/custom_ghe"
-                    android:backgroundTint="#F8F2F2"
+                    android:background="#F8F2F2"
+                    android:layout_margin="3dp"
                     android:text="4" />
 
                 <Button
                     android:id="@+id/btnD5"
-                    android:layout_width="60dp"
+                    android:layout_width="50dp"
                     android:layout_height="match_parent"
-                    android:background="@drawable/custom_ghe"
-                    android:backgroundTint="#F8F2F2"
+                    android:background="#F8F2F2"
+                    android:layout_margin="3dp"
                     android:text="5" />
             </TableRow>
         </TableLayout>
@@ -260,10 +262,10 @@
             android:id="@+id/textView"
             android:layout_width="51dp"
             android:layout_height="40dp"
-            android:layout_marginTop="72dp"
+            android:layout_marginTop="80dp"
             android:text="A"
             app:layout_constraintEnd_toStartOf="@+id/tableLayout"
-            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintHorizontal_bias="0.842"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -282,7 +284,7 @@
             android:id="@+id/textView3"
             android:layout_width="51dp"
             android:layout_height="40dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="10dp"
             android:text="C"
             app:layout_constraintEnd_toStartOf="@+id/tableLayout"
             app:layout_constraintHorizontal_bias="1.0"
@@ -293,7 +295,7 @@
             android:id="@+id/textView6"
             android:layout_width="51dp"
             android:layout_height="40dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="10dp"
             android:text="D"
             app:layout_constraintEnd_toStartOf="@+id/tableLayout"
             app:layout_constraintHorizontal_bias="1.0"

@@ -37,6 +37,8 @@ public class SoDoGhe extends AppCompatActivity {
      private Button btnD3;
      private Button btnD4;
      private Button btnD5;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -77,27 +79,79 @@ public class SoDoGhe extends AppCompatActivity {
             startActivity(intent);
         }
         });
+        ThongTinSoDoGhe.sl = 0;
+        for(int i = 0; i < 4; i++)
+
+        {
+            for (Integer j = 0; j < 5; j++) {
+                ThongTinSoDoGhe.Ghe[i][j] = false;
+            }
+        }
 
         View.OnClickListener onClickListener = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Button btn = findViewById(v.getId());
-               
+                String Hang = getResources().getResourceEntryName(v.getId()).substring(3,4);
+                Integer Cot = Integer.parseInt(getResources().getResourceEntryName(v.getId()).substring(4));
+                if(btn.isSelected() == true)
+                {
+                   ThongTinSoDoGhe.sl--;
+                    btn.setSelected(false);
+                    if(Hang.equals("A")){
+                        ThongTinSoDoGhe.Ghe[0][Cot-1] = false;
+                    }else
+                    if(Hang.equals("B")){
+                        ThongTinSoDoGhe.Ghe[1][Cot-1] = false;
+                    }else
+                    if (Hang.equals("C")){
+                        ThongTinSoDoGhe.Ghe[2][Cot-1] = false;
+                    }
+                    else if (Hang.equals("D")){
+                        ThongTinSoDoGhe.Ghe[3][Cot-1] = false;
+                    }
 
 
 
+                }else {
+                    ThongTinSoDoGhe.sl++;
+                    btn.setSelected(true);
+                    if(Hang.equals("A")){
+                        ThongTinSoDoGhe.Ghe[0][Cot-1] = true;
+                    }else
+                    if(Hang.equals("B")){
+                        ThongTinSoDoGhe.Ghe[1][Cot-1] = true;
+                    }else
+                    if (Hang.equals("C")){
+                        ThongTinSoDoGhe.Ghe[2][Cot-1] = true;
+                    }
+                    else if (Hang.equals("D")){
+                        ThongTinSoDoGhe.Ghe[3][Cot-1] = true;
+                    }
 
-
-
-
-
-
-
-
-
+                }
             }
         };
         btnA1.setOnClickListener(onClickListener);
+        btnA2.setOnClickListener(onClickListener);
+        btnA3.setOnClickListener(onClickListener);
+        btnA4.setOnClickListener(onClickListener);
+        btnA5.setOnClickListener(onClickListener);
+        btnB1.setOnClickListener(onClickListener);
+        btnB2.setOnClickListener(onClickListener);
+        btnB3.setOnClickListener(onClickListener);
+        btnB4.setOnClickListener(onClickListener);
+        btnB5.setOnClickListener(onClickListener);
+        btnC1.setOnClickListener(onClickListener);
+        btnC2.setOnClickListener(onClickListener);
+        btnC3.setOnClickListener(onClickListener);
+        btnC4.setOnClickListener(onClickListener);
+        btnC5.setOnClickListener(onClickListener);
+        btnD1.setOnClickListener(onClickListener);
+        btnD2.setOnClickListener(onClickListener);
+        btnD3.setOnClickListener(onClickListener);
+        btnD4.setOnClickListener(onClickListener);
+        btnD5.setOnClickListener(onClickListener);
     }
 
 

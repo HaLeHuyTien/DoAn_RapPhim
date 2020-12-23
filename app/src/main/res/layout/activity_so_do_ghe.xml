@@ -53,47 +53,46 @@
 
             <TableRow
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                >
+                android:layout_height="match_parent">
 
                 <Button
                     android:id="@+id/btnA1"
                     android:layout_width="50dp"
                     android:layout_height="match_parent"
-                    android:background="#F8F2F2"
                     android:layout_margin="3dp"
+                    android:backgroundTint="@color/button_background"
                     android:text="1" />
 
                 <Button
                     android:id="@+id/btnA2"
                     android:layout_width="50dp"
                     android:layout_height="match_parent"
-                    android:background="#F8F2F2"
                     android:layout_margin="3dp"
+                    android:backgroundTint="@color/button_background"
                     android:text="2" />
 
                 <Button
                     android:id="@+id/btnA3"
                     android:layout_width="50dp"
                     android:layout_height="match_parent"
-                    android:background="#F8F2F2"
                     android:layout_margin="3dp"
+                    android:backgroundTint="@color/button_background"
                     android:text="3" />
 
                 <Button
                     android:id="@+id/btnA4"
                     android:layout_width="50dp"
                     android:layout_height="match_parent"
-                    android:background="#F8F2F2"
                     android:layout_margin="3dp"
+                    android:backgroundTint="@color/button_background"
                     android:text="4" />
 
                 <Button
                     android:id="@+id/btnA5"
                     android:layout_width="50dp"
                     android:layout_height="match_parent"
-                    android:background="#F8F2F2"
                     android:layout_margin="3dp"
+                    android:backgroundTint="@color/button_background"
                     android:text="5" />
 
             </TableRow>
@@ -106,7 +105,7 @@
                     android:id="@+id/btnB1"
                     android:layout_width="50dp"
                     android:layout_height="match_parent"
-                    android:background="#F8F2F2"
+                    android:backgroundTint="@color/button_background"
                     android:layout_margin="3dp"
                     android:text="1" />
 
@@ -114,7 +113,7 @@
                     android:id="@+id/btnB2"
                     android:layout_width="50dp"
                     android:layout_height="match_parent"
-                    android:background="#F8F2F2"
+                    android:backgroundTint="@color/button_background"
                     android:layout_margin="3dp"
                     android:text="2" />
 
@@ -122,7 +121,7 @@
                     android:id="@+id/btnB3"
                     android:layout_width="50dp"
                     android:layout_height="match_parent"
-                    android:background="#F8F2F2"
+                    android:backgroundTint="@color/button_background"
                     android:layout_margin="3dp"
                     android:text="3" />
 
@@ -130,7 +129,7 @@
                     android:id="@+id/btnB4"
                     android:layout_width="50dp"
                     android:layout_height="match_parent"
-                    android:background="#F8F2F2"
+                    android:backgroundTint="@color/button_background"
                     android:layout_margin="3dp"
                     android:text="4" />
 
@@ -138,7 +137,7 @@
                     android:id="@+id/btnB5"
                     android:layout_width="50dp"
                     android:layout_height="match_parent"
-                    android:background="#F8F2F2"
+                    android:backgroundTint="@color/button_background"
                     android:layout_margin="3dp"
                     android:text="5" />
             </TableRow>
@@ -152,7 +151,7 @@
                     android:id="@+id/btnC1"
                     android:layout_width="50dp"
                     android:layout_height="match_parent"
-                    android:background="#F8F2F2"
+                    android:backgroundTint="@color/button_background"
                     android:layout_margin="3dp"
                     android:text="1" />
 
@@ -160,7 +159,7 @@
                     android:id="@+id/btnC2"
                     android:layout_width="50dp"
                     android:layout_height="match_parent"
-                    android:background="#F8F2F2"
+                    android:backgroundTint="@color/button_background"
                     android:layout_margin="3dp"
                     android:text="2" />
 
@@ -168,7 +167,7 @@
                     android:id="@+id/btnC3"
                     android:layout_width="50dp"
                     android:layout_height="match_parent"
-                    android:background="#F8F2F2"
+                    android:backgroundTint="@color/button_background"
                     android:layout_margin="3dp"
                     android:text="3" />
 
@@ -176,7 +175,7 @@
                     android:id="@+id/btnC4"
                     android:layout_width="50dp"
                     android:layout_height="match_parent"
-                    android:background="#F8F2F2"
+                    android:backgroundTint="@color/button_background"
                     android:layout_margin="3dp"
                     android:text="4" />
 
@@ -184,7 +183,7 @@
                     android:id="@+id/btnC5"
                     android:layout_width="50dp"
                     android:layout_height="match_parent"
-                    android:background="#F8F2F2"
+                    android:backgroundTint="@color/button_background"
                     android:layout_margin="3dp"
                     android:text="5" />
             </TableRow>
@@ -197,7 +196,7 @@
                     android:id="@+id/btnD1"
                     android:layout_width="50dp"
                     android:layout_height="match_parent"
-                    android:background="#F8F2F2"
+                    android:backgroundTint="@color/button_background"
                     android:layout_margin="3dp"
                     android:text="1" />
 
@@ -205,7 +204,7 @@
                     android:id="@+id/btnD2"
                     android:layout_width="50dp"
                     android:layout_height="match_parent"
-                    android:background="#F8F2F2"
+                    android:backgroundTint="@color/button_background"
                     android:layout_margin="3dp"
                     android:text="2" />
 
@@ -213,7 +212,7 @@
                     android:id="@+id/btnD3"
                     android:layout_width="50dp"
                     android:layout_height="match_parent"
-                    android:background="#F8F2F2"
+                    android:backgroundTint="@color/button_background"
                     android:layout_margin="3dp"
                     android:text="3" />
 
@@ -221,7 +220,7 @@
                     android:id="@+id/btnD4"
                     android:layout_width="50dp"
                     android:layout_height="match_parent"
-                    android:background="#F8F2F2"
+                    android:backgroundTint="@color/button_background"
                     android:layout_margin="3dp"
                     android:text="4" />
 
@@ -229,7 +228,7 @@
                     android:id="@+id/btnD5"
                     android:layout_width="50dp"
                     android:layout_height="match_parent"
-                    android:background="#F8F2F2"
+                    android:backgroundTint="@color/button_background"
                     android:layout_margin="3dp"
                     android:text="5" />
             </TableRow>
@@ -242,6 +241,7 @@
             android:background="#FF5722"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.421"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView4"
             app:layout_constraintVertical_bias="1.0" />
@@ -250,7 +250,7 @@
             android:id="@+id/textView4"
             android:layout_width="87dp"
             android:layout_height="18dp"
-            android:layout_marginTop="84dp"
+            android:layout_marginTop="64dp"
             android:gravity="center|center_vertical"
             android:text="Màn Hình"
             app:layout_constraintEnd_toEndOf="parent"
@@ -262,10 +262,10 @@
             android:id="@+id/textView"
             android:layout_width="51dp"
             android:layout_height="40dp"
-            android:layout_marginTop="80dp"
+            android:layout_marginTop="64dp"
             android:text="A"
             app:layout_constraintEnd_toStartOf="@+id/tableLayout"
-            app:layout_constraintHorizontal_bias="0.842"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -273,7 +273,7 @@
             android:id="@+id/textView2"
             android:layout_width="51dp"
             android:layout_height="40dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="16dp"
             android:text="B"
             app:layout_constraintEnd_toStartOf="@+id/tableLayout"
             app:layout_constraintHorizontal_bias="1.0"
@@ -284,7 +284,7 @@
             android:id="@+id/textView3"
             android:layout_width="51dp"
             android:layout_height="40dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="16dp"
             android:text="C"
             app:layout_constraintEnd_toStartOf="@+id/tableLayout"
             app:layout_constraintHorizontal_bias="1.0"
@@ -295,79 +295,13 @@
             android:id="@+id/textView6"
             android:layout_width="51dp"
             android:layout_height="40dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="16dp"
             android:text="D"
             app:layout_constraintEnd_toStartOf="@+id/tableLayout"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
-        <TextView
-            android:id="@+id/textView34"
-            android:layout_width="20dp"
-            android:layout_height="16dp"
-            android:layout_marginStart="56dp"
-            android:layout_marginTop="15dp"
-            android:background="#E8D109"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView25" />
-
-        <TextView
-            android:id="@+id/textView25"
-            android:layout_width="20dp"
-            android:layout_height="16dp"
-            android:layout_marginStart="56dp"
-            android:layout_marginTop="24dp"
-            android:background="#F8F2F2"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tableLayout" />
-
-        <TextView
-            android:id="@+id/textView27"
-            android:layout_width="20dp"
-            android:layout_height="16dp"
-            android:layout_marginStart="40dp"
-            android:layout_marginTop="24dp"
-            android:background="#0BE13B"
-            app:layout_constraintStart_toEndOf="@+id/textView29"
-            app:layout_constraintTop_toBottomOf="@+id/tableLayout" />
-
-        <TextView
-            android:id="@+id/textView29"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="36dp"
-            android:layout_marginTop="24dp"
-            android:text="Chưa đặt"
-            android:textStyle="bold"
-            app:layout_constraintStart_toEndOf="@+id/textView25"
-            app:layout_constraintTop_toBottomOf="@+id/tableLayout" />
-
-        <TextView
-            android:id="@+id/textView31"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="25dp"
-            android:layout_marginTop="24dp"
-            android:text="Đang chọn"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.043"
-            app:layout_constraintStart_toEndOf="@+id/textView27"
-            app:layout_constraintTop_toBottomOf="@+id/tableLayout" />
-
-        <TextView
-            android:textStyle="bold"
-            android:id="@+id/textView33"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="36dp"
-            android:layout_marginTop="12dp"
-            android:text="Đặt rồi"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toEndOf="@+id/textView34"
-            app:layout_constraintTop_toBottomOf="@+id/textView29" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -395,7 +329,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
+        app:layout_constraintVertical_bias="0.78" />
 
     <ImageView
         android:id="@+id/imgTenHinh"
@@ -407,5 +342,77 @@
         app:layout_constraintStart_toEndOf="@+id/txtTenPhim"
         app:layout_constraintTop_toTopOf="parent"
         tools:src="@tools:sample/avatars" />
+
+    <TextView
+        android:id="@+id/textView34"
+        android:layout_width="20dp"
+        android:layout_height="16dp"
+        android:layout_marginStart="112dp"
+        android:layout_marginTop="10dp"
+        android:background="#E8D109"
+        app:layout_constraintBottom_toTopOf="@+id/btnTiepTuc"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView25"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/textView25"
+        android:layout_width="20dp"
+        android:layout_height="16dp"
+        android:layout_marginStart="112dp"
+        android:layout_marginTop="16dp"
+        android:background="#F8F2F2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
+
+    <TextView
+        android:id="@+id/textView27"
+        android:layout_width="20dp"
+        android:layout_height="16dp"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="16dp"
+        android:background="#0BE13B"
+        app:layout_constraintBottom_toTopOf="@+id/btnTiepTuc"
+        app:layout_constraintStart_toEndOf="@+id/textView29"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/textView29"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="16dp"
+        android:text="Chưa đặt"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/textView25"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
+
+    <TextView
+        android:id="@+id/textView31"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:text="Đang chọn"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/textView34"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/textView34"
+        app:layout_constraintTop_toTopOf="@+id/textView34" />
+
+    <TextView
+        android:id="@+id/textView33"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="Đặt rồi"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/btnTiepTuc"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/textView27"
+        app:layout_constraintTop_toTopOf="@+id/textView27"
+        app:layout_constraintVertical_bias="0.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -27,6 +27,7 @@ import android.widget.Button;
 
 import com.example.doan_rapphim.AdapterListPhimItem;
 import com.example.doan_rapphim.R;
+import com.example.doan_rapphim.packageTrangChiTiet.packageThanhToan.ThongTinSoDoGhe;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -118,6 +119,7 @@ public class LichChieuFragment extends Fragment {
         DateFormat df = new SimpleDateFormat("d-MM-yyyy");
         String date = df.format(Calendar.getInstance().getTime());
         EditNgay.setText(date);
+        ThongTinSoDoGhe.NgayChieu = date;
 
        /* addDiaDiem();
         addRap();*/
@@ -282,6 +284,7 @@ public class LichChieuFragment extends Fragment {
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                 int thang = month + 1;
                 EditNgay.setText(dayOfMonth +"-" + thang + "-" + year);
+                ThongTinSoDoGhe.NgayChieu = EditNgay.getText().toString();
                 lastSelectedYear = year;
                 lastSelectedMonth = month;
                 lastSelectedDayOfMonth = dayOfMonth;

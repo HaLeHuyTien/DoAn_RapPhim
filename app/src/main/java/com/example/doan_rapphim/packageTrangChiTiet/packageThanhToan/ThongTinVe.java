@@ -14,6 +14,7 @@ public class ThongTinVe extends AppCompatActivity {
 private Button btnThayDoi;
 private TextView txtTTGD;
 private  TextView txtSL;
+private TextView txtTTGDtong;
 private String GheDaChon = "";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,8 +22,9 @@ private String GheDaChon = "";
         setContentView(R.layout.activity_thong_tin_ve);
         btnThayDoi= findViewById(R.id.btnTroVe);
         txtSL = findViewById(R.id.txtTTGDSoLuong);
-        txtSL.setText(ThongTinSoDoGhe.sl.toString());
+        txtTTGDtong = findViewById((R.id.txtTTGDTongTien));
         txtTTGD = findViewById(R.id.txtTTGDGhe);
+        Hienthids();
         btnThayDoi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -64,6 +66,9 @@ private String GheDaChon = "";
         }
         txtTTGD.setText("");
         txtTTGD.setText(GheDaChon);
-
+    }
+    private void Hienthids(){
+        txtSL.setText(ThongTinSoDoGhe.sl.toString());
+        txtTTGDtong.setText(ThongTinSoDoGhe.tongTien.toString());
     }
 }

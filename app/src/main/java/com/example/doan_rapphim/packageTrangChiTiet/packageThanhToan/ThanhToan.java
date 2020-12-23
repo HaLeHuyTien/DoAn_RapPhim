@@ -30,6 +30,7 @@ public class ThanhToan extends AppCompatActivity {
     private TextView txtTT_TTien;
     private TextView txtTT_Sl;
     private String GheDaChon = "";
+    private Integer donGia = 85000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +48,7 @@ public class ThanhToan extends AppCompatActivity {
         imgTenHinh = findViewById(R.id.imgHinh);
         int ResiD = this.getResources().getIdentifier(ThongTinSoDoGhe.tenHinh,"drawable",this.getPackageName());
         imgTenHinh.setImageResource(ResiD);
+        ThongTinSoDoGhe.tongTien = donGia * ThongTinSoDoGhe.sl;
         btnThanhToan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -99,7 +101,7 @@ public class ThanhToan extends AppCompatActivity {
             txtTT_Ngay.setText(ThongTinSoDoGhe.NgayChieu);
             txtTT_KhungGio.setText(thanhToanJson.getKhungGio());
             txtTT_Rap.setText(thanhToanJson.getRap());
-            txtTT_TTien.setText(thanhToanJson.getTong().toString());
+            txtTT_TTien.setText(ThongTinSoDoGhe.tongTien.toString());
             txtTT_Sl.setText(ThongTinSoDoGhe.sl.toString());
 
         } catch (Exception e) {

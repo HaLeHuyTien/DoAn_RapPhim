@@ -8,6 +8,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Message;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -16,6 +17,7 @@ import com.example.doan_rapphim.R;
 import com.example.doan_rapphim.packageDangKyDangNhap.packageDangNhap.IDUser;
 import com.example.doan_rapphim.packageTrangChiTiet.DienVienJson;
 import com.example.doan_rapphim.packageTrangChiTiet.DienVienListAdapter;
+import com.example.doan_rapphim.packageTrangChiTiet.ThongTinFragment;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -55,23 +57,38 @@ public class ThayDoiMatKhau extends AppCompatActivity {
         else if (editTextMKM.getText().toString().equals(editTextNLMK.getText().toString())){
             if (editTextMKC.getText().toString().equals(matKhau)) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                builder.setTitle("Thông Báo");
+
+                // Set a title for alert dialog
+                builder.setTitle("Thông báo !");
 
                 // Ask the final question
-                builder.setMessage("Đồng ý lưu thay đổi mật khẩu ?");
+                builder.setMessage("Bạn muốn lưu thay đổi mật khẩu mới ?");
 
                 // Set the alert dialog yes button click listener
-                builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                builder.setPositiveButton("Có", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         // Do something when user clicked the Yes button
                         // Set the TextView visibility GONE
+                        getThayDoiMatKhau getThayDoiMatKhau = new getThayDoiMatKhau();
+                        getThayDoiMatKhau.execute();
+                        finish();
+                    }
+
+                });
+                // Set the alert dialog no button click listener
+                builder.setNegativeButton("Không", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // Do something when No button clicked
+
                     }
                 });
-                getThayDoiMatKhau getThayDoiMatKhau = new getThayDoiMatKhau();
-                getThayDoiMatKhau.execute();
-                Toast.makeText(this, "Thay đổi mật khẩu thành công.", Toast.LENGTH_SHORT).show();
-                this.finish();
+
+                AlertDialog dialog = builder.create();
+                // Display the alert dialog on interface
+                dialog.show();
+
             } else {
                 Toast.makeText(this, "Mật khẩu cũ không chính xác !", Toast.LENGTH_SHORT).show();
             }

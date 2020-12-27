@@ -80,6 +80,7 @@ public class SoDoGhe extends AppCompatActivity {
         }
         });
         ThongTinSoDoGhe.sl = 0;
+        ThongTinSoDoGhe.tongTien = 0;
         for(int i = 0; i < 4; i++)
 
         {

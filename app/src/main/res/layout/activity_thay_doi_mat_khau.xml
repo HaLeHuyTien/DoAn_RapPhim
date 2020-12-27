@@ -61,6 +61,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
+    <ImageButton
+        android:id="@+id/imgHideMKC"
+        android:onClick="HideAndShowMKC"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/txtPassDN"
+        android:layout_marginBottom="6dp"
+        android:padding="5dp"
+        android:src="@drawable/ic_baseline_remove_red_eye_24"
+        app:layout_constraintBottom_toBottomOf="@+id/editTextMKCuTT"
+        app:layout_constraintEnd_toEndOf="@+id/editTextMKCuTT" />
+
     <EditText
         android:id="@+id/editTextMKMoiTT"
         android:layout_width="0dp"
@@ -75,6 +87,18 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextMKCuTT" />
+
+    <ImageButton
+        android:id="@+id/imgHideMKM"
+        android:onClick="HideAndShowMKM"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/txtPassDN"
+        android:layout_marginTop="6dp"
+        android:padding="5dp"
+        android:src="@drawable/ic_baseline_remove_red_eye_24"
+        app:layout_constraintEnd_toEndOf="@+id/editTextMKMoiTT"
+        app:layout_constraintTop_toTopOf="@+id/editTextMKMoiTT" />
 
     <EditText
         android:id="@+id/editTextNLMKTT"

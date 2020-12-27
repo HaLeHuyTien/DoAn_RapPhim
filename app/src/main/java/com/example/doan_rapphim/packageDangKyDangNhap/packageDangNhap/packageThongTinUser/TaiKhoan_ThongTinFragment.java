@@ -180,7 +180,7 @@ public class TaiKhoan_ThongTinFragment extends Fragment {
 
     }
 
-    private class GetThongTinKH extends AsyncTask<String, String, String> {
+    public class GetThongTinKH extends AsyncTask<String, String, String> {
 
 
         @Override
@@ -224,7 +224,7 @@ public class TaiKhoan_ThongTinFragment extends Fragment {
         }
 
         @Override
-        protected void onPostExecute(String s) {
+        public void onPostExecute(String s) {
             try {
                 JSONObject jsonObject = new JSONObject(s);
                 JSONArray jsonArray = jsonObject.getJSONArray("DanhSach");
@@ -254,7 +254,7 @@ public class TaiKhoan_ThongTinFragment extends Fragment {
 
         }
     }
-    protected void replaceFragmentContent(Fragment fragment) {
+    public void replaceFragmentContent(Fragment fragment) {
 
         if (fragment != null) {
 

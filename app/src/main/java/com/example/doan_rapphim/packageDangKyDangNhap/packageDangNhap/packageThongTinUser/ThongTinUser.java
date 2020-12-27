@@ -1,7 +1,5 @@
 package com.example.doan_rapphim.packageDangKyDangNhap.packageDangNhap.packageThongTinUser;
 
-import android.content.Intent;
-
 public class ThongTinUser {
     private int ID;
     private String HoVaTen;
@@ -47,7 +45,9 @@ public class ThongTinUser {
     public void setNgaySinh(String ngaySinh) { this.NgaySinh = ngaySinh;}
     public String getNgaySinh(){return this.NgaySinh;}
 
-    public void setMatKhau(String matKhau) { this.MatKhau = matKhau;}
+    public String setMatKhau(String matKhau) { this.MatKhau = matKhau;
+        return matKhau;
+    }
     public String getMatKhau(){return this.MatKhau;}
 
     public void setAnh(String anh) { this.Anh = anh;}

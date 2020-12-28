@@ -1,5 +1,7 @@
 package com.example.doan_rapphim.packageDanhSachPhim;
 
+import android.widget.Spinner;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -7,6 +9,9 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 
 public class DSPhimAdapter extends FragmentStatePagerAdapter {
+
+
+
     public DSPhimAdapter(@NonNull FragmentManager fm, int behavior) {
         super(fm, behavior);
     }

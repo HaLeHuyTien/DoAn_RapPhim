@@ -12,6 +12,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.doan_rapphim.AdapterListPhimItem;
@@ -84,14 +87,16 @@ public class DSPhimSapChieu extends Fragment {
     private final LinkedList<ThongTinJson> mWordList=new LinkedList<>();
     private RecyclerView mRecyclerview;
     private AdapterListPhimItem mAdapter;
+    private Spinner spinnerSC;
+    private String jsonURLLoaiPhim = "http://0306181355.pixelcent.com/Cinema/LoaiPhim.php";
+    private String[] ListLoaiPhim;
 
     private static String jsonURL = "http://0306181355.pixelcent.com/Cinema/Phim.php";
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        GetPhim getPhim = new GetPhim();
-        getPhim.execute();
+
     }
 
     @Override
@@ -100,6 +105,27 @@ public class DSPhimSapChieu extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_d_s_phim_sap_chieu, container, false);
         mRecyclerview=view.findViewById(R.id.RVDSPhimSapChieu);
+
+        spinnerSC = view.findViewById(R.id.spnDSPhimSC);
+
+        GetPhim getPhim = new GetPhim();
+        getPhim.execute();
+
+        GetLoaiPhim getLoaiPhim = new GetLoaiPhim();
+        getLoaiPhim.execute();
+
+        spinnerSC.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                GetPhim getPhim2 = new GetPhim();
+                getPhim2.execute();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
 
         //HienthiDanhSach(view);
         return  view;
@@ -185,6 +211,7 @@ public class DSPhimSapChieu extends Fragment {
         @Override
         protected void onPostExecute(String s) {
             if(isAdded()) {
+                mWordList.clear();
                 try {
                     JSONObject jsonObject = new JSONObject(s);
                     JSONArray jsonArray = jsonObject.getJSONArray("DanhSach");
@@ -216,7 +243,10 @@ public class DSPhimSapChieu extends Fragment {
                             String currentTime = sdf.format(Calendar.getInstance().getTime());
                             Date currentDay = sdf.parse(currentTime);
                             if (strDate.after(currentDay))
-                                mWordList.addLast(Phim);
+                                if(spinnerSC.getSelectedItem().toString().equals("Tất cả") || Phim.getTheLoai().equals(spinnerSC.getSelectedItem().toString())) {
+                                    mWordList.addLast(Phim);
+                                }
+
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
@@ -229,6 +259,78 @@ public class DSPhimSapChieu extends Fragment {
                     mRecyclerview.setHasFixedSize(true);
 
                     mRecyclerview.setLayoutManager(new LinearLayoutManager(getContext()));
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+
+            }
+        }
+    }
+
+    private class GetLoaiPhim extends AsyncTask<String, String, String> {
+        @Override
+        protected String doInBackground(String... strings) {
+            String current = "";
+
+            try {
+                URL url;
+                HttpURLConnection urlConnection = null;
+
+
+                try {
+                    url = new URL(jsonURLLoaiPhim);
+                    urlConnection = (HttpURLConnection) url.openConnection();
+
+                    InputStream in = urlConnection.getInputStream();
+                    InputStreamReader isr = new InputStreamReader(in);
+
+                    int data = isr.read();
+                    while (data != -1) {
+                        current += (char) data;
+                        data = isr.read();
+                    }
+
+                    return current;
+
+                } catch (MalformedURLException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } finally {
+                    if (urlConnection != null) {
+                        urlConnection.disconnect();
+                    }
+                }
+
+            }catch (Exception e) {
+                e.printStackTrace();
+            }
+            return current;
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            if (isAdded()){
+                try {
+                    JSONObject jsonObject = new JSONObject(s);
+                    JSONArray jsonArray = jsonObject.getJSONArray("DanhSach");
+                    ListLoaiPhim = new String[jsonArray.length() + 1];
+
+                    ListLoaiPhim[0] = "Tất cả";
+                    for (int i = 0; i < jsonArray.length(); i++) {
+                        JSONObject jsonObject1 = jsonArray.getJSONObject(i);
+                        String LoaiPhim = jsonObject1.getString("TenLoai");
+
+                        ListLoaiPhim[i + 1] = LoaiPhim;
+                    }
+
+                    ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_dropdown_item, ListLoaiPhim);
+                    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+                    spinnerSC.setAdapter(adapter);
+
 
                 } catch (JSONException e) {
                     e.printStackTrace();

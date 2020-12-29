@@ -5,177 +5,214 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@drawable/p5"
     tools:context=".packageDangKyDangNhap.packageDangNhap.packageThongTinUser.ThayDoiThongTin">
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-    <ImageView
-        android:id="@+id/imgHinhDaiDienThayDoi"
-        android:layout_width="149dp"
-        android:layout_height="147dp"
-        android:layout_marginTop="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/admin" />
 
-    <Button
-        android:id="@+id/btnDoiAnhTT"
-        android:layout_width="65dp"
-        android:layout_height="51dp"
-        android:layout_marginTop="32dp"
-        android:text="Đổi"
-        android:background="@drawable/custom_button"
-        android:textColor="@color/white"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imgHinhDaiDienThayDoi"
-        app:layout_constraintTop_toTopOf="parent" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-    <EditText
-        android:id="@+id/editTextHVT"
-        android:layout_width="0dp"
-        android:layout_height="45dp"
-        android:background="@drawable/custom_input"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="32dp"
-        android:ems="10"
-        android:hint="Họ và Tên"
-        android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imgHinhDaiDienThayDoi" />
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:gravity="center_horizontal"
+                android:text="Thay đổi thông tin Tài khoản"
+                android:textColor="#F44336"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/editTextSDTTT"
-        android:layout_width="0dp"
-        android:layout_height="45dp"
-        android:background="@drawable/custom_input"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="32dp"
-        android:ems="10"
-        android:hint="Số điện thoại"
-        android:inputType="number"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextHVT" />
+            <EditText
+                android:id="@+id/editTextHVT"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="32dp"
+                android:background="@drawable/custom_input"
+                android:drawableStart="@drawable/baseline_account_circle_24"
+                android:drawablePadding="12dp"
+                android:ems="10"
+                android:hint="Họ và Tên"
+                android:inputType="textEmailAddress"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageButtonDoiAnh" />
 
-    <Button
-        android:id="@+id/btnThoat"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:layout_marginEnd="70dp"
-        android:background="@drawable/custom_button"
-        android:text="Thoát"
-        android:textColor="@color/white"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinnerXaPhuong" />
+            <EditText
+                android:id="@+id/editTextSDTTT"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="32dp"
+                android:background="@drawable/custom_input"
+                android:drawableStart="@drawable/ic_baseline_phone_24"
+                android:drawablePadding="12dp"
+                android:ems="10"
+                android:hint="Số điện thoại"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.2"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editTextHVT" />
 
-    <Spinner
-        android:id="@+id/spinnerQuanHuyen"
-        android:layout_width="0dp"
-        android:layout_height="45dp"
-        android:background="@drawable/custom_input"
-        android:layout_marginTop="12dp"
-        app:layout_constraintEnd_toEndOf="@+id/spinnerThanhPho"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/spinnerThanhPho"
-        app:layout_constraintTop_toBottomOf="@+id/spinnerThanhPho" />
+            <EditText
+                android:id="@+id/editTextDateTT"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
 
-    <Spinner
-        android:id="@+id/spinnerThanhPho"
-        android:layout_width="254dp"
-        android:layout_height="45dp"
-        android:background="@drawable/custom_input"
-        android:layout_marginTop="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.796"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextDateTT" />
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="32dp"
+                android:background="@drawable/custom_input"
+                android:drawableStart="@drawable/ic_baseline_date_range_24"
+                android:drawablePadding="12dp"
+                android:ems="10"
+                android:hint="Ngày sinh"
+                android:paddingStart="12dp"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editTextSDTTT" />
 
-                <TextView
-                    android:id="@+id/textView13"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="28dp"
-                    android:text="TP/Tỉnh"
-                    android:textColor="#FFFFFF"
-                    android:textSize="16sp"
-                    app:layout_constraintEnd_toStartOf="@+id/spinnerThanhPho"
-                    app:layout_constraintHorizontal_bias="0.666"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/editTextDateTT" />
+            <ImageButton
+                android:id="@+id/imgHidePassDN"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/editTextDateTT"
+                android:layout_alignRight="@+id/editTextDateTT"
+                android:layout_alignBottom="@+id/editTextDateTT"
+                android:padding="5dp"
+                android:src="@drawable/ic_baseline_calendar_today_24"
+                app:layout_constraintBottom_toBottomOf="@+id/editTextDateTT"
+                app:layout_constraintEnd_toEndOf="@+id/editTextDateTT"
+                app:layout_constraintTop_toTopOf="@+id/editTextDateTT" />
 
-    <Spinner
-        android:id="@+id/spinnerXaPhuong"
-        android:layout_width="0dp"
-        android:layout_height="45dp"
-        android:background="@drawable/custom_input"
-        android:layout_marginTop="24dp"
-        app:layout_constraintEnd_toEndOf="@+id/spinnerQuanHuyen"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/spinnerQuanHuyen"
-        app:layout_constraintTop_toBottomOf="@+id/spinnerQuanHuyen" />
+            <Button
+                android:id="@+id/btnThoatTD"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:layout_marginEnd="70dp"
+                android:background="@drawable/custom_button"
+                android:text="Thoát"
+                android:textColor="@color/white"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/spinnerXaPhuong" />
 
-                <TextView
-                    android:id="@+id/textView15"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="48dp"
-                    android:text="Phường/Xã"
-                    android:textColor="#FFFFFF"
-                    android:textSize="16sp"
-                    app:layout_constraintEnd_toStartOf="@+id/spinnerXaPhuong"
-                    app:layout_constraintHorizontal_bias="0.736"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView14" />
+            <Spinner
+                android:id="@+id/spinnerQuanHuyen"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/custom_input"
+                app:layout_constraintEnd_toEndOf="@+id/spinnerThanhPho"
+                app:layout_constraintStart_toStartOf="@+id/spinnerThanhPho"
+                app:layout_constraintTop_toBottomOf="@+id/spinnerThanhPho" />
 
-                <TextView
-                    android:id="@+id/textView14"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="34dp"
-                    android:text="Quận/Huyện"
-                    android:textColor="#FFFFFF"
-                    android:textSize="16sp"
-                    app:layout_constraintEnd_toStartOf="@+id/spinnerQuanHuyen"
-                    app:layout_constraintHorizontal_bias="0.775"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView13" />
+            <Spinner
+                android:id="@+id/spinnerThanhPho"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="150dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="32dp"
+                android:background="@drawable/custom_input"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.796"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editTextDateTT" />
 
-    <Button
-        android:id="@+id/btnLuu"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="70dp"
-        android:layout_marginTop="40dp"
-        android:background="@drawable/custom_button"
-        android:text="Lưu"
-        android:textColor="@color/white"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinnerXaPhuong" />
+            <TextView
+                android:id="@+id/textView13"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="32dp"
+                android:text="TP/Tỉnh"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toStartOf="@+id/spinnerThanhPho"
+                app:layout_constraintHorizontal_bias="0.344"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editTextDateTT" />
 
-    <EditText
-        android:id="@+id/editTextDateTT"
-        android:layout_width="0dp"
-        android:layout_height="45dp"
-        android:background="@drawable/custom_input"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="32dp"
-        android:ems="10"
-        android:hint="Ngày sinh"
-        android:inputType="date"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextSDTTT" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
+            <Spinner
+                android:id="@+id/spinnerXaPhuong"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/custom_input"
+                app:layout_constraintEnd_toEndOf="@+id/spinnerQuanHuyen"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/spinnerQuanHuyen"
+                app:layout_constraintTop_toBottomOf="@+id/spinnerQuanHuyen" />
+
+            <TextView
+                android:id="@+id/textView15"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="44dp"
+                android:text="Phường/Xã"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toStartOf="@+id/spinnerXaPhuong"
+                app:layout_constraintHorizontal_bias="0.542"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView14" />
+
+            <TextView
+                android:id="@+id/textView14"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="36dp"
+                android:text="Quận/Huyện"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toStartOf="@+id/spinnerQuanHuyen"
+                app:layout_constraintHorizontal_bias="0.64"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView13" />
+
+            <Button
+                android:id="@+id/btnLuuTD"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="70dp"
+                android:layout_marginTop="40dp"
+                android:background="@drawable/custom_button"
+                android:text="Lưu"
+                android:textColor="@color/white"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/spinnerXaPhuong" />
+
+            <ImageButton
+                android:id="@+id/imageButtonDoiAnh"
+                android:layout_width="150dp"
+                android:layout_height="165dp"
+                android:layout_marginTop="24dp"
+                android:scaleType="centerCrop"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.498"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView"
+                app:srcCompat="@drawable/admin" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 </LinearLayout>

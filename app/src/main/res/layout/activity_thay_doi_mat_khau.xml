@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/p5"
     tools:context=".packageDangKyDangNhap.packageDangNhap.packageThongTinUser.ThayDoiMatKhau">
 
     <Button
@@ -12,10 +11,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="70dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="40dp"
         android:background="@drawable/custom_button"
-        android:text="Lưu"
         android:onClick="LuuThayDoi"
+        android:text="Lưu"
         android:textColor="@color/white"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextNLMKTT" />
@@ -24,11 +23,11 @@
         android:id="@+id/btnThoatTT"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="40dp"
         android:layout_marginEnd="70dp"
         android:background="@drawable/custom_button"
-        android:text="Thoát"
         android:onClick="Thoat"
+        android:text="Thoát"
         android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextNLMKTT" />
@@ -38,7 +37,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="150dp"
-        android:text="Đổi Mật Khẩu"
+        android:text="Đổi Mật khẩu"
         android:textColor="#F44336"
         android:textSize="24sp"
         android:textStyle="bold"
@@ -63,6 +62,7 @@
 
     <ImageButton
         android:id="@+id/imgHideMKC"
+
         android:onClick="HideAndShowMKC"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

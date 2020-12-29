@@ -43,9 +43,9 @@ public class DangKyActivity extends AppCompatActivity {
         setContentView(R.layout.activity_dang_ky);
         btnDangKy = findViewById(R.id.btnDangKyFormDK);
         edtHoTenDK = findViewById(R.id.txtHoTenDK);
-        edtNgaySinh=findViewById(R.id.txtNgaySinhDK);
+        edtNgaySinh=findViewById(R.id.editTextDateTT);
         edtEmailDK=findViewById(R.id.txtEmailDK);
-        edtSDTDangKy=findViewById(R.id.txtSDTDangKy);
+        edtSDTDangKy=findViewById(R.id.editTextSDTTT);
         edtDiaChiDK=findViewById(R.id.txtDiaChiDK);
         edtMatKhauDK=findViewById(R.id.txtMatKhauDK);
         edtNhapLaiMatKhauDK=findViewById(R.id.txtNhapLaiMatKhauDK);

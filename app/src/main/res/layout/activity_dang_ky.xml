@@ -77,7 +77,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/txtHoTenDK" />
 
                 <EditText
-                    android:id="@+id/txtSDTDangKy"
+                    android:id="@+id/editTextSDTTT"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:layout_marginTop="8dp"
@@ -104,11 +104,11 @@
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
 
-                    app:layout_constraintTop_toBottomOf="@+id/txtSDTDangKy">
+                    app:layout_constraintTop_toBottomOf="@+id/editTextSDTTT">
 
 
                     <EditText
-                        android:id="@+id/txtNgaySinhDK"
+                        android:id="@+id/editTextDateTT"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
 
@@ -119,13 +119,14 @@
                         android:hint="Ngày sinh"
                         android:paddingStart="12dp"
                         android:textSize="18sp" />
+
                     <ImageButton
                         android:id="@+id/imgHidePassDN"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_alignTop="@+id/txtNgaySinhDK"
-                        android:layout_alignRight="@+id/txtNgaySinhDK"
-                        android:layout_alignBottom="@+id/txtNgaySinhDK"
+                        android:layout_alignTop="@+id/editTextDateTT"
+                        android:layout_alignRight="@+id/editTextDateTT"
+                        android:layout_alignBottom="@+id/editTextDateTT"
                         android:padding="5dp"
                         android:src="@drawable/ic_baseline_calendar_today_24" />
 

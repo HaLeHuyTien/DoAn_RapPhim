@@ -11,11 +11,13 @@ import android.widget.TextView;
 import com.example.doan_rapphim.R;
 
 public class ThongTinVe extends AppCompatActivity {
-private Button btnThayDoi;
-private TextView txtTTGD;
-private  TextView txtSL;
-private TextView txtTTGDtong;
-private String GheDaChon = "";
+    private Button btnThayDoi;
+    private TextView txtTTGD;
+    private  TextView txtSL;
+    private TextView txtTTGDtong;
+    private String GheDaChon = "";
+    private  String InsertVe = "http://0306181355.pixelcent.com/Cinema/VePhim.php?IDKhachHang=";
+    private String jsonURL;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,4 +73,5 @@ private String GheDaChon = "";
         txtSL.setText(ThongTinSoDoGhe.sl.toString());
         txtTTGDtong.setText(ThongTinSoDoGhe.tongTien.toString());
     }
+
 }

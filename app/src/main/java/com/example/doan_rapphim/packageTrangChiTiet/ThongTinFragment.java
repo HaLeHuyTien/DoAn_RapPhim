@@ -89,9 +89,7 @@ public class ThongTinFragment extends Fragment {
 
     private String date;
     private String time;
-
     private String Diem;
-
 
 
     public static ThongTinFragment getInstance(){
@@ -146,9 +144,6 @@ public class ThongTinFragment extends Fragment {
         txtDiem = view.findViewById(R.id.txtDiem);
         txtDoTuoi = view.findViewById(R.id.txtDoTuoi);
         ytbTrailer = view.findViewById(R.id.youtube_player_view);
-
-
-
         rvDienVien = view.findViewById(R.id.rvDienVien);
 
         View.OnClickListener onClickListener = new View.OnClickListener(){

@@ -5,7 +5,7 @@ public class ThongTinUser {
     private String HoVaTen;
     private String Email;
     private String SDT;
-    private String NgaySinh ;
+    private String NgaySinh;
     private String XaPhuong;
     private String HuyenQuan;
     private String TinhTP;

@@ -168,12 +168,10 @@ public class LichChieuFragment extends Fragment {
 
         }catch (Exception e){
             EditNgay.setText("b");
-
         }
     }
 
     private class GetXuatChieu extends AsyncTask<String, String, String> {
-
 
         @Override
         protected String doInBackground(String... strings) {

@@ -47,12 +47,10 @@ public class BinhLuanFragment extends Fragment {
     private  String value= "http://0306181355.pixelcent.com/Cinema/BinhLuanTheoPhim.php?IDPhim=";
     private  String jsonURLDangBL;
     private  String valueDangBL = "http://0306181355.pixelcent.com/Cinema/DangBinhLuan.php?IDNguoiBinhLuan=";
-
     private EditText txtNDBinhLuan;
     private Button btnBinhLuan;
     private TextView txtThongBaoBL;
     private ImageView imgNguoiDangBinhLuan;
-
     //RecyclerView
     private final LinkedList<BinhLuan_Json> mWordList = new LinkedList<>();
     private RecyclerView recyclerView;
@@ -120,8 +118,6 @@ public class BinhLuanFragment extends Fragment {
                     });
 
                     // Set the alert dialog no button click listener
-
-
                     AlertDialog dialog = builder.create();
                     // Display the alert dialog on interface
                     dialog.show();

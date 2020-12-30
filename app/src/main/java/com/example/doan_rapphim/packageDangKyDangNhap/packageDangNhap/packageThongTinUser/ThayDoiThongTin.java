@@ -1,17 +1,29 @@
 package com.example.doan_rapphim.packageDangKyDangNhap.packageDangNhap.packageThongTinUser;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.DatePickerDialog;
+import android.content.DialogInterface;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.doan_rapphim.MainActivity;
 import com.example.doan_rapphim.R;
 import com.example.doan_rapphim.packageDangKyDangNhap.packageDangNhap.IDUser;
 
@@ -33,16 +45,22 @@ public class ThayDoiThongTin extends AppCompatActivity {
     private Spinner spnHuyenQuan;
     private Spinner spnXaPhuong;
 
+
     private ImageButton imageButtonDoiAnh;
+    private ImageButton imageButtonDate;
     private EditText editTextHoVaTen;
     private EditText editTextSDT;
     private EditText editTextNgaySinh;
     private Button btnThoat;
     private Button btnLuu;
+    private int lastSelectedYear;
+    private int lastSelectedMonth;
+    private int lastSelectedDayOfMonth;
+
 
 
     private String UpdateTT;
-    private String URLUpdateTTTK = "";
+    private String URLUpdateTTTK = "http://0306181355.pixelcent.com/Cinema/ThayDoiThongTinThanhVien.php?HoTen=";
     private String LayTT;
     private String URLLayTTTK = "http://0306181355.pixelcent.com/Cinema/ThongTinKhachHang.php?ID=";
     @Override
@@ -56,21 +74,39 @@ public class ThayDoiThongTin extends AppCompatActivity {
         editTextHoVaTen = findViewById(R.id.editTextHVT);
         editTextSDT = findViewById(R.id.editTextSDTTT);
         editTextNgaySinh = findViewById(R.id.editTextDateTT);
-        btnThoat = findViewById(R.id.btnThoatTD);
-        btnThoat.setOnClickListener(new View.OnClickListener() {
+        btnLuu = findViewById(R.id.btnLuuTD);
+
+        btnLuu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
+                LuuThayDoi(v);
+            }
+        });
+
+
+        //Nút thoát
+        btnThoat = findViewById(R.id.btnThoatTD);
+
+        //Nút chọn ngày
+        imageButtonDate = findViewById(R.id.imgButtonDate);
+        imageButtonDate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ChonNgaySinh();
             }
         });
 
         chonTP();
         chonQuan();
         chonPhuong();
+
+
+        //HienThiThongTinUser();
         HienThiThongTin hienThiThongTin = new HienThiThongTin();
         hienThiThongTin.execute();
-       //HienThiThongTinUser();
+
     }
+
 
     /*private void HienThiThongTinUser() {
         try {
@@ -84,6 +120,29 @@ public class ThayDoiThongTin extends AppCompatActivity {
 
     }*/
 
+    //Chọn ngày sinh
+    public void ChonNgaySinh(){
+        DatePickerDialog.OnDateSetListener dateSetListener = new DatePickerDialog.OnDateSetListener() {
+
+            @Override
+            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                int thang = month + 1;
+                if(dayOfMonth > 9)
+                    editTextNgaySinh.setText(year +"-" + thang + "-" + dayOfMonth);
+                else
+                    editTextNgaySinh.setText( year + "-" + thang+ "-" + "0" + dayOfMonth);
+                lastSelectedYear = year;
+                lastSelectedMonth = month;
+                lastSelectedDayOfMonth = dayOfMonth;
+
+
+            }
+        };
+        DatePickerDialog datePickerDialog = null;
+        datePickerDialog = new DatePickerDialog(this, dateSetListener, lastSelectedYear, lastSelectedMonth, lastSelectedDayOfMonth);
+        datePickerDialog.show();
+    }
+
     public void chonTP() {
         List<String> list = new ArrayList<>();
         list.add("");
@@ -95,6 +154,7 @@ public class ThayDoiThongTin extends AppCompatActivity {
         adapter.setDropDownViewResource(android.R.layout.simple_list_item_single_choice);
         spnTinhTp.setAdapter(adapter);
     }
+
     public void chonQuan() {
         List<String> list = new ArrayList<>();
         list.add("");
@@ -107,6 +167,7 @@ public class ThayDoiThongTin extends AppCompatActivity {
         adapter.setDropDownViewResource(android.R.layout.simple_list_item_single_choice);
         spnHuyenQuan.setAdapter(adapter);
     }
+
     public void chonPhuong() {
         List<String> list = new ArrayList<>();
         list.add("");
@@ -119,6 +180,51 @@ public class ThayDoiThongTin extends AppCompatActivity {
         spnXaPhuong.setAdapter(adapter);
     }
 
+    //Nút thoát
+    public void Thoat(View view) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Thông Báo");
+
+        // Ask the final question
+        builder.setMessage("Đồng ý thoát ?");
+
+        // Set the alert dialog yes button click listener
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                // Do something when user clicked the Yes button
+                // Set the TextView visibility GONE
+                finish();
+            }
+        });
+
+        // Set the alert dialog no button click listener
+        builder.setNegativeButton("Không", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                // Do something when No button clicked
+
+            }
+        });
+
+        AlertDialog dialog = builder.create();
+        // Display the alert dialog on interface
+        dialog.show();
+    }
+
+    //Nút Lưu thay đổi
+    public void LuuThayDoi(View view) {
+        getThayDoiThongTin getThayDoiThongTin = new getThayDoiThongTin();
+        getThayDoiThongTin.execute();
+
+
+        Toast.makeText(this,"Lưu thay đổi thành công !",Toast.LENGTH_SHORT).show();
+        finish();
+    }
+
+
+
+    //Hiển thị thông tin Thành Viên
     private class HienThiThongTin extends AsyncTask<String, String, String> {
 
         @Override
@@ -185,4 +291,60 @@ public class ThayDoiThongTin extends AppCompatActivity {
             }
         }
     }
+
+
+
+    //ThayDoiThongTinThanhVien
+    private class getThayDoiThongTin extends AsyncTask<String, String, String> {
+
+        @Override
+        protected String doInBackground(String... strings) {
+            String current = "";
+
+            try {
+                URL url;
+                HttpURLConnection urlConnection = null;
+
+
+                try {
+                    UpdateTT = URLUpdateTTTK + editTextHoVaTen.getText().toString() +
+                            "&SDT=" + editTextSDT.getText().toString() +
+                            "&NgaySinh=" + editTextNgaySinh.getText().toString() +
+                            "&id=" + IDUser.idUser.toString();
+                    url = new URL(UpdateTT);
+
+                    urlConnection = (HttpURLConnection) url.openConnection();
+
+                    InputStream in = urlConnection.getInputStream();
+                    InputStreamReader isr = new InputStreamReader(in);
+
+                    int data = isr.read();
+                    while (data != -1) {
+                        current += (char) data;
+                        data = isr.read();
+                    }
+
+                    return current;
+
+                } catch (MalformedURLException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } finally {
+                    if (urlConnection != null) {
+                        urlConnection.disconnect();
+                    }
+                }
+
+            }catch (Exception e) {
+                e.printStackTrace();
+            }
+            return current;
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+        }
+    }
+
 }

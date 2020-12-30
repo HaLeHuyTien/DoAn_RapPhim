@@ -49,7 +49,7 @@ public class DangKyActivity extends AppCompatActivity {
         edtDiaChiDK=findViewById(R.id.txtDiaChiDK);
         edtMatKhauDK=findViewById(R.id.txtMatKhauDK);
         edtNhapLaiMatKhauDK=findViewById(R.id.txtNhapLaiMatKhauDK);
-        imgLichNgaySinhFormDangKy=findViewById(R.id.imgHidePassDN);
+        imgLichNgaySinhFormDangKy=findViewById(R.id.imgButtonDate);
         imgLichNgaySinhFormDangKy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

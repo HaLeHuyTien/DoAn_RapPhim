@@ -102,9 +102,6 @@ public class ThayDoiMatKhau extends AppCompatActivity {
                 AlertDialog dialog = builder.create();
                 // Display the alert dialog on interface
                 dialog.show();
-
-
-
             } else {
                 Toast.makeText(this, "Mật khẩu cũ không chính xác !", Toast.LENGTH_SHORT).show();
             }
@@ -115,7 +112,34 @@ public class ThayDoiMatKhau extends AppCompatActivity {
 
 
     public void Thoat(View view) {
-        this.finish();
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Thông Báo");
+
+        // Ask the final question
+        builder.setMessage("Đồng ý thoát ?");
+
+        // Set the alert dialog yes button click listener
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                // Do something when user clicked the Yes button
+                // Set the TextView visibility GONE
+                finish();
+            }
+        });
+
+        // Set the alert dialog no button click listener
+        builder.setNegativeButton("Không", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                // Do something when No button clicked
+
+            }
+        });
+
+        AlertDialog dialog = builder.create();
+        // Display the alert dialog on interface
+        dialog.show();
     }
 
     public void HideAndShowMKC(View view) {

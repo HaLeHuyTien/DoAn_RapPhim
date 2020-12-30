@@ -1,5 +1,9 @@
 package com.example.doan_rapphim.packageDangKyDangNhap.packageDangNhap.packageThongTinUser;
 
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -105,8 +109,8 @@ public class TaiKhoan_ThongTinFragment extends Fragment {
         }
 
     }
-    private static String jsonURL;
-    private String iduser = "http://0306181355.pixelcent.com/Cinema/ThongTinKhachHang.php?ID=";
+    public static String jsonURL = "http://0306181355.pixelcent.com/Cinema/ThongTinKhachHang.php?ID=" + IDUser.idUser.toString();
+    private String iduser;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -114,7 +118,7 @@ public class TaiKhoan_ThongTinFragment extends Fragment {
         //mRecyclerView = view.findViewById(R.id.recycler_view_thongtin);
         txtanhDaiDien = view.findViewById(R.id.imgHinhDaiDienTT1);
         txtHoVaTen = view.findViewById(R.id.txtHoVaTenTT);
-        txtEmail = view.findViewById(R.id.txtEmailTT);
+        txtEmail =  view.findViewById(R.id.txtEmailTT);
         txtSDT = view.findViewById(R.id.txtSDTTT);
         txtNgaySinh = view.findViewById(R.id.txtNgaySinhTT);
         txtDiaChi = view.findViewById(R.id.txtDiaChiTT);
@@ -144,45 +148,45 @@ public class TaiKhoan_ThongTinFragment extends Fragment {
         DangXuat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                builder.setTitle("Thông Báo");
 
-                IDUser.idUser = -1;
-                IDUser.HinhUser = "dienvien";
-                replaceFragmentContent(new DangNhapFragment());
-                Toast.makeText(getContext(),"Đăng xuất thành công !",Toast.LENGTH_LONG).show();
+                // Ask the final question
+                builder.setMessage("Đồng ý Đăng xuất ?");
 
+                // Set the alert dialog yes button click listener
+                builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // Do something when user clicked the Yes button
+                        // Set the TextView visibility GONE
+                        IDUser.idUser = -1;
+                        IDUser.HinhUser = "dienvien";
+                        replaceFragmentContent(new DangNhapFragment());
+                        Toast.makeText(getContext(),"Đăng xuất thành công !",Toast.LENGTH_LONG).show();
+                    }
+                });
 
+                // Set the alert dialog no button click listener
+                builder.setNegativeButton("Không", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // Do something when No button clicked
 
+                    }
+                });
+                AlertDialog dialog = builder.create();
+                // Display the alert dialog on interface
+                dialog.show();
             }
         });
-        jsonURL = iduser + IDUser.idUser.toString();
+
         GetThongTinKH getThongTinKH = new GetThongTinKH();
         getThongTinKH.execute();
         return view;
     }
 
-    private void HienThiUser() {
-        try {
-
-            //for(int i = 0; i < soluong ; i ++) {
-                ThongTinUser thongTinUser = ReadThongTinUserJson.readThongTinUserFile(getActivity(), IDUser.idUser);
-                //Truyen Id if(thongTinUser.getID() == )
-                txtEmail.setText(thongTinUser.getEmail());
-                int resID = this.getContext().getResources().getIdentifier(thongTinUser.getAnh(),"drawable",this.getContext().getPackageName());
-                txtanhDaiDien.setImageResource(resID);
-                txtHoVaTen.setText(thongTinUser.getHoVaTen());
-                txtSDT.setText(thongTinUser.getSDT());
-                txtNgaySinh.setText(thongTinUser.getNgaySinh());
-                txtDiaChi.setText(thongTinUser.getXaPhuong()+", " + thongTinUser.getHuyenQuan()+", "+thongTinUser.getTinhTP());
-            //}
-        }catch (Exception e){
-            txtEmail.setText("Error");
-        }
-
-    }
-
     public class GetThongTinKH extends AsyncTask<String, String, String> {
-
-
         @Override
         protected String doInBackground(String... strings) {
             String current = "";
@@ -231,6 +235,7 @@ public class TaiKhoan_ThongTinFragment extends Fragment {
 
                     JSONObject jsonObject1 = jsonArray.getJSONObject(0);
                     Integer id = jsonObject1.getInt("id");
+
                     String HoTen = jsonObject1.getString("HoTen");
                     String Email = jsonObject1.getString("Email");
                     String SDT = jsonObject1.getString("SDT");
@@ -240,12 +245,16 @@ public class TaiKhoan_ThongTinFragment extends Fragment {
                     String Hinh = jsonObject1.getString("Hinh");
                     Integer TrangThai = jsonObject1.getInt("TrangThai");
 
+
+
                 txtEmail.setText(Email);
                 int resID = getContext().getResources().getIdentifier(Hinh,"drawable",getContext().getPackageName());
                 txtanhDaiDien.setImageResource(resID);
                 txtHoVaTen.setText(HoTen);
                 txtSDT.setText(SDT);
-                txtNgaySinh.setText(NgaySinh);txtDiaChi.setText(DiaChi);
+                txtNgaySinh.setText(NgaySinh);
+                txtDiaChi.setText(DiaChi);
+
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -269,5 +278,12 @@ public class TaiKhoan_ThongTinFragment extends Fragment {
         }
 
     }
+
+
+
+
+
+
+
 
 }

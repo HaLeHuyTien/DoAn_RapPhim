@@ -19,16 +19,12 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.doan_rapphim.MainActivity;
 import com.example.doan_rapphim.R;
 import com.example.doan_rapphim.packageDangKyDangNhap.packageDangKy.DangKyActivity;
-import com.example.doan_rapphim.packageDangKyDangNhap.packageDangNhap.packageThongTinUser.ReadThongTinUserJson;
 import com.example.doan_rapphim.packageDangKyDangNhap.packageDangNhap.packageThongTinUser.TabTaiKhoan_Fragment;
 import com.example.doan_rapphim.packageDangKyDangNhap.packageDangNhap.packageThongTinUser.ThongTinUser;
-import com.example.doan_rapphim.packageTrangChiTiet.BinhLuanListAdapter;
-import com.example.doan_rapphim.packageTrangChiTiet.BinhLuan_Json;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -85,7 +81,7 @@ private String URLDangNhap = "http://0306181355.pixelcent.com/Cinema/KiemTraDang
                 kiemTraDangNhap.execute();
             }
         });
-        imgHidePass=view.findViewById(R.id.imgHidePassDN);
+        imgHidePass=view.findViewById(R.id.imgButtonDate);
         imgHidePass.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

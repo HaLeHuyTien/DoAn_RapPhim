@@ -132,6 +132,7 @@ public class TaiKhoan_ThongTinFragment extends Fragment {
         ThayDoiThongTin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                ThongTinContext.context = getContext();
                 Intent intent = new Intent(getContext(), com.example.doan_rapphim.packageDangKyDangNhap.packageDangNhap.packageThongTinUser.ThayDoiThongTin.class);
                 startActivity(intent);
             }
@@ -280,7 +281,9 @@ public class TaiKhoan_ThongTinFragment extends Fragment {
     }
 
 
-
+    public void Test(String a){
+        txtHoVaTen.setText(a);
+    }
 
 
 

@@ -79,7 +79,7 @@ public class ThayDoiThongTin extends AppCompatActivity {
         btnLuu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                LuuThayDoi(v);
+                LuuThayDoi();
             }
         });
 
@@ -213,10 +213,16 @@ public class ThayDoiThongTin extends AppCompatActivity {
     }
 
     //Nút Lưu thay đổi
-    public void LuuThayDoi(View view) {
+    public void LuuThayDoi() {
         getThayDoiThongTin getThayDoiThongTin = new getThayDoiThongTin();
         getThayDoiThongTin.execute();
 
+        TextView txtHoTen = ((Activity)ThongTinContext.context).findViewById(R.id.txtHoVaTenTT);
+        TextView txtSDT =  ((Activity)ThongTinContext.context).findViewById(R.id.txtNgaySinhTT);
+        TextView txtNgaySinh = ((Activity)ThongTinContext.context).findViewById(R.id.txtNgaySinhTT);
+        txtHoTen.setText(editTextHoVaTen.getText().toString());
+        txtSDT.setText(editTextSDT.getText().toString());
+        txtNgaySinh.setText(editTextNgaySinh.getText().toString());
 
         Toast.makeText(this,"Lưu thay đổi thành công !",Toast.LENGTH_SHORT).show();
         finish();
@@ -346,5 +352,7 @@ public class ThayDoiThongTin extends AppCompatActivity {
         protected void onPostExecute(String s) {
         }
     }
+
+
 
 }

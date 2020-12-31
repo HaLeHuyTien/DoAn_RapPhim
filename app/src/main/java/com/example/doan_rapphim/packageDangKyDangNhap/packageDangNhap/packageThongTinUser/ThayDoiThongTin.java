@@ -9,6 +9,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
@@ -56,6 +57,12 @@ public class ThayDoiThongTin extends AppCompatActivity {
     private EditText editTextNgaySinh;
     private Button btnThoat;
     private Button btnLuu;
+
+    private String Hinhkt;
+    private String HoVaTenkt;
+    private String SDTkt;
+    private String NgaySinhkt;
+
     private int lastSelectedYear;
     private int lastSelectedMonth;
     private int lastSelectedDayOfMonth;
@@ -216,6 +223,9 @@ public class ThayDoiThongTin extends AppCompatActivity {
         else if (editTextSDT.getText().length()<10 || editTextSDT.getText().length()>10) {
             Toast.makeText(this,"Số điện thoại phải đúng 10 ký tự !",Toast.LENGTH_SHORT).show();
         }
+        else if (editTextHoVaTen.getText().toString().equals(HoVaTenkt) && editTextSDT.getText().toString().equals(SDTkt) && editTextNgaySinh.getText().toString().equals(NgaySinhkt)) {
+            Toast.makeText(this,"Bạn chưa thay đổi gì cả !",Toast.LENGTH_SHORT).show();
+        }
         else {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setTitle("Thông Báo");
@@ -238,7 +248,9 @@ public class ThayDoiThongTin extends AppCompatActivity {
                     txtHoTen.setText(editTextHoVaTen.getText().toString());
                     txtSDT.setText(editTextSDT.getText().toString());
                     txtNgaySinh.setText(editTextNgaySinh.getText().toString());
+
                     finish();
+
                 }
             });
 
@@ -313,6 +325,11 @@ public class ThayDoiThongTin extends AppCompatActivity {
                     String HoTen = jsonObject1.getString("HoTen");
                     String NgaySinh = jsonObject1.getString("NgaySinh");
                     String SDT = jsonObject1.getString("SDT");
+
+                    Hinhkt = Hinh;
+                    HoVaTenkt = HoTen;
+                    NgaySinhkt = NgaySinh;
+                    SDTkt = SDT;
 
                     int resID =getResources().getIdentifier(Hinh,"drawable",getPackageName());
                     imageButtonDoiAnh.setImageResource(resID);

@@ -1,19 +1,17 @@
 package com.example.doan_rapphim.packageDangKyDangNhap.packageDangNhap.packageThongTinUser;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
-import android.view.Window;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -23,8 +21,8 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+import com.squareup.picasso.Picasso;
 
-import com.example.doan_rapphim.MainActivity;
 import com.example.doan_rapphim.R;
 import com.example.doan_rapphim.packageDangKyDangNhap.packageDangNhap.IDUser;
 
@@ -38,10 +36,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 
 public class ThayDoiThongTin extends AppCompatActivity {
@@ -50,13 +45,14 @@ public class ThayDoiThongTin extends AppCompatActivity {
     private Spinner spnXaPhuong;
 
 
-    private ImageButton imageButtonDoiAnh;
+    private ImageView imageViewDoiAnh;
     private ImageButton imageButtonDate;
     private EditText editTextHoVaTen;
     private EditText editTextSDT;
     private EditText editTextNgaySinh;
     private Button btnThoat;
     private Button btnLuu;
+    private Button btnDoiAnh;
 
     private String Hinhkt;
     private String HoVaTenkt;
@@ -68,6 +64,7 @@ public class ThayDoiThongTin extends AppCompatActivity {
     private int lastSelectedDayOfMonth;
 
     private TextView txtNgayHienTai;
+    public final static int PICK_IMAGE_REQUEST = 1;
 
 
     private String UpdateTT;
@@ -81,7 +78,7 @@ public class ThayDoiThongTin extends AppCompatActivity {
         spnTinhTp = findViewById(R.id.spinnerThanhPho);
         spnHuyenQuan = findViewById(R.id.spinnerQuanHuyen);
         spnXaPhuong = findViewById(R.id.spinnerXaPhuong);
-        imageButtonDoiAnh = findViewById(R.id.imageButtonDoiAnh);
+        imageViewDoiAnh = findViewById(R.id.imageViewDoiAnh);
         editTextHoVaTen = findViewById(R.id.editTextHVT);
         editTextSDT = findViewById(R.id.editTextSDTTT);
         editTextNgaySinh = findViewById(R.id.editTextDateTT);
@@ -104,6 +101,14 @@ public class ThayDoiThongTin extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 ChonNgaySinh();
+            }
+        });
+
+        btnDoiAnh = findViewById(R.id.btnDoiAnh);
+        btnDoiAnh.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                pickImage();
             }
         });
 
@@ -223,9 +228,6 @@ public class ThayDoiThongTin extends AppCompatActivity {
         else if (editTextSDT.getText().length()<10 || editTextSDT.getText().length()>10) {
             Toast.makeText(this,"Số điện thoại phải đúng 10 ký tự !",Toast.LENGTH_SHORT).show();
         }
-        else if (editTextHoVaTen.getText().toString().equals(HoVaTenkt) && editTextSDT.getText().toString().equals(SDTkt) && editTextNgaySinh.getText().toString().equals(NgaySinhkt)) {
-            Toast.makeText(this,"Bạn chưa thay đổi gì cả !",Toast.LENGTH_SHORT).show();
-        }
         else {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setTitle("Thông Báo");
@@ -268,6 +270,23 @@ public class ThayDoiThongTin extends AppCompatActivity {
         }
     }
 
+    //Click đổi ảnh
+    private void pickImage()
+    {
+        Intent intent = new Intent();
+        intent.setType("image/*");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(Intent.createChooser(intent, "Select a file to Upload"),PICK_IMAGE_REQUEST);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null){
+            Uri uri = data.getData();
+            imageViewDoiAnh.setImageURI(uri);
+        }
+    }
 
 
     //Hiển thị thông tin Thành Viên
@@ -331,8 +350,9 @@ public class ThayDoiThongTin extends AppCompatActivity {
                     NgaySinhkt = NgaySinh;
                     SDTkt = SDT;
 
-                    int resID =getResources().getIdentifier(Hinh,"drawable",getPackageName());
-                    imageButtonDoiAnh.setImageResource(resID);
+                    Picasso.get().load("http://0306181355.pixelcent.com/rapphim/public/images/" + Hinh).into(imageViewDoiAnh);
+                    //int resID =getResources().getIdentifier(Hinh,"drawable",getPackageName());
+                    //imageButtonDoiAnh.setImageResource(resID);
                     editTextHoVaTen.setText(HoTen);
                     editTextSDT.setText(SDT);
                     editTextNgaySinh.setText(NgaySinh);

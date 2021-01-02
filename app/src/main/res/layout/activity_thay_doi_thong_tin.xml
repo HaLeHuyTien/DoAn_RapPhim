@@ -48,7 +48,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageButtonDoiAnh" />
+                app:layout_constraintTop_toBottomOf="@+id/imageViewDoiAnh" />
 
             <EditText
                 android:id="@+id/editTextSDTTT"
@@ -204,8 +204,8 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/spinnerXaPhuong" />
 
-            <ImageButton
-                android:id="@+id/imageButtonDoiAnh"
+            <com.makeramen.roundedimageview.RoundedImageView
+                android:id="@+id/imageViewDoiAnh"
                 android:layout_width="150dp"
                 android:layout_height="165dp"
                 android:layout_marginTop="24dp"
@@ -214,7 +214,25 @@
                 app:layout_constraintHorizontal_bias="0.498"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView"
-                app:srcCompat="@drawable/admin" />
+                android:src="@drawable/admin"
+                app:riv_corner_radius="20dp">
+
+            </com.makeramen.roundedimageview.RoundedImageView>
+
+            <Button
+                android:id="@+id/btnDoiAnh"
+                android:layout_width="52dp"
+                android:layout_height="33dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="8dp"
+                android:text="Đổi"
+                android:textColor="@color/white"
+                android:background="@drawable/custom_button"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.412"
+                app:layout_constraintStart_toEndOf="@+id/imageViewDoiAnh"
+                app:layout_constraintTop_toBottomOf="@+id/textView" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 </LinearLayout>

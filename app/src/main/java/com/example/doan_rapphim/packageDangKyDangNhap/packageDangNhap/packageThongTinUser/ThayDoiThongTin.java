@@ -9,6 +9,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
@@ -37,7 +38,10 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 public class ThayDoiThongTin extends AppCompatActivity {
@@ -53,10 +57,17 @@ public class ThayDoiThongTin extends AppCompatActivity {
     private EditText editTextNgaySinh;
     private Button btnThoat;
     private Button btnLuu;
+
+    private String Hinhkt;
+    private String HoVaTenkt;
+    private String SDTkt;
+    private String NgaySinhkt;
+
     private int lastSelectedYear;
     private int lastSelectedMonth;
     private int lastSelectedDayOfMonth;
 
+    private TextView txtNgayHienTai;
 
 
     private String UpdateTT;
@@ -96,6 +107,7 @@ public class ThayDoiThongTin extends AppCompatActivity {
             }
         });
 
+
         chonTP();
         chonQuan();
         chonPhuong();
@@ -107,18 +119,6 @@ public class ThayDoiThongTin extends AppCompatActivity {
 
     }
 
-
-    /*private void HienThiThongTinUser() {
-        try {
-            ThongTinUser thongTinUser = ReadThongTinUserJson.readThongTinUserFile(this, IDUser.idUser);
-            txtHoVaTen.setText(thongTinUser.getHoVaTen());
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
-    }*/
 
     //Chọn ngày sinh
     public void ChonNgaySinh(){
@@ -214,18 +214,58 @@ public class ThayDoiThongTin extends AppCompatActivity {
 
     //Nút Lưu thay đổi
     public void LuuThayDoi() {
-        getThayDoiThongTin getThayDoiThongTin = new getThayDoiThongTin();
-        getThayDoiThongTin.execute();
+        if(editTextHoVaTen.getText().toString().equals("") || editTextNgaySinh.getText().toString().equals("") || editTextSDT.getText().toString().equals("")) {
+            Toast.makeText(this,"Bạn chưa nhập đủ thông tin !",Toast.LENGTH_SHORT).show();
+        }
+        else if (editTextHoVaTen.getText().length()<3) {
+            Toast.makeText(this,"Họ và tên phải trên 3 ký tự !",Toast.LENGTH_SHORT).show();
+        }
+        else if (editTextSDT.getText().length()<10 || editTextSDT.getText().length()>10) {
+            Toast.makeText(this,"Số điện thoại phải đúng 10 ký tự !",Toast.LENGTH_SHORT).show();
+        }
+        else if (editTextHoVaTen.getText().toString().equals(HoVaTenkt) && editTextSDT.getText().toString().equals(SDTkt) && editTextNgaySinh.getText().toString().equals(NgaySinhkt)) {
+            Toast.makeText(this,"Bạn chưa thay đổi gì cả !",Toast.LENGTH_SHORT).show();
+        }
+        else {
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle("Thông Báo");
 
-        TextView txtHoTen = ((Activity)ThongTinContext.context).findViewById(R.id.txtHoVaTenTT);
-        TextView txtSDT =  ((Activity)ThongTinContext.context).findViewById(R.id.txtNgaySinhTT);
-        TextView txtNgaySinh = ((Activity)ThongTinContext.context).findViewById(R.id.txtNgaySinhTT);
-        txtHoTen.setText(editTextHoVaTen.getText().toString());
-        txtSDT.setText(editTextSDT.getText().toString());
-        txtNgaySinh.setText(editTextNgaySinh.getText().toString());
+            // Ask the final question
+            builder.setMessage("Đồng ý lưu thay đổi thông tin ?");
 
-        Toast.makeText(this,"Lưu thay đổi thành công !",Toast.LENGTH_SHORT).show();
-        finish();
+            // Set the alert dialog yes button click listener
+            builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    // Do something when user clicked the Yes button
+                    // Set the TextView visibility GONE
+                    getThayDoiThongTin getThayDoiThongTin = new getThayDoiThongTin();
+                    getThayDoiThongTin.execute();
+
+                    TextView txtHoTen = ((Activity) ThongTinContext.context).findViewById(R.id.txtHoVaTenTT);
+                    TextView txtSDT = ((Activity) ThongTinContext.context).findViewById(R.id.txtSDTTT);
+                    TextView txtNgaySinh = ((Activity) ThongTinContext.context).findViewById(R.id.txtNgaySinhTT);
+                    txtHoTen.setText(editTextHoVaTen.getText().toString());
+                    txtSDT.setText(editTextSDT.getText().toString());
+                    txtNgaySinh.setText(editTextNgaySinh.getText().toString());
+
+                    finish();
+
+                }
+            });
+
+            // Set the alert dialog no button click listener
+            builder.setNegativeButton("Không", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    // Do something when No button clicked
+                }
+            });
+
+            AlertDialog dialog = builder.create();
+            // Display the alert dialog on interface
+            dialog.show();
+        }
     }
 
 
@@ -285,6 +325,11 @@ public class ThayDoiThongTin extends AppCompatActivity {
                     String HoTen = jsonObject1.getString("HoTen");
                     String NgaySinh = jsonObject1.getString("NgaySinh");
                     String SDT = jsonObject1.getString("SDT");
+
+                    Hinhkt = Hinh;
+                    HoVaTenkt = HoTen;
+                    NgaySinhkt = NgaySinh;
+                    SDTkt = SDT;
 
                     int resID =getResources().getIdentifier(Hinh,"drawable",getPackageName());
                     imageButtonDoiAnh.setImageResource(resID);

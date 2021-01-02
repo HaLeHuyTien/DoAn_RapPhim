@@ -139,7 +139,7 @@ public class TaiKhoan_ThongTinFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 ThongTinContext.context = getContext();
-                Intent intent = new Intent(getContext(), com.example.doan_rapphim.packageDangKyDangNhap.packageDangNhap.packageThongTinUser.ThayDoiThongTin.class);
+                Intent intent = new Intent(getContext(), com.example.doan_rapphim.packageDangKyDangNhap.packageDangNhap.packageThongTinUser.XacThucMatKhauActivity.class);
                 startActivity(intent);
             }
         });
@@ -201,7 +201,7 @@ public class TaiKhoan_ThongTinFragment extends Fragment {
         return view;
     }
 
-    public class GetThongTinKH extends AsyncTask<String, String, String> {
+    private class GetThongTinKH extends AsyncTask<String, String, String> {
         @Override
         protected String doInBackground(String... strings) {
             String current = "";
@@ -243,7 +243,7 @@ public class TaiKhoan_ThongTinFragment extends Fragment {
         }
 
         @Override
-        public void onPostExecute(String s) {
+        protected void onPostExecute(String s) {
             try {
                 JSONObject jsonObject = new JSONObject(s);
                 JSONArray jsonArray = jsonObject.getJSONArray("DanhSach");

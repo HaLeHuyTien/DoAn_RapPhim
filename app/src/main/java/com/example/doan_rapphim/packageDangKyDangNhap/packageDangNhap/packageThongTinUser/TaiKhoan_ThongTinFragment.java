@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 
@@ -13,6 +14,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,6 +30,7 @@ import com.example.doan_rapphim.packageDangKyDangNhap.packageDangNhap.DangNhapFr
 import com.example.doan_rapphim.packageDangKyDangNhap.packageDangNhap.IDUser;
 import com.example.doan_rapphim.packageTrangChiTiet.ThongTinFragment;
 import com.example.doan_rapphim.packageTrangChiTiet.ThongTinJson;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -65,6 +68,9 @@ public class TaiKhoan_ThongTinFragment extends Fragment {
     private TextView txtSDT;
     private TextView txtNgaySinh;
     private TextView txtDiaChi;
+
+    SharedPreferences sharedPreferences;
+    SharedPreferences.Editor editor;
 
 
     // TODO: Rename parameter arguments, choose names that match
@@ -133,7 +139,7 @@ public class TaiKhoan_ThongTinFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 ThongTinContext.context = getContext();
-                Intent intent = new Intent(getContext(), com.example.doan_rapphim.packageDangKyDangNhap.packageDangNhap.packageThongTinUser.ThayDoiThongTin.class);
+                Intent intent = new Intent(getContext(), com.example.doan_rapphim.packageDangKyDangNhap.packageDangNhap.packageThongTinUser.XacThucMatKhauActivity.class);
                 startActivity(intent);
             }
         });
@@ -145,6 +151,9 @@ public class TaiKhoan_ThongTinFragment extends Fragment {
                 startActivity(intent);
             }
         });
+
+        initPreferences();
+
         DangXuat = view.findViewById(R.id.btnDangXuat);
         DangXuat.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -161,8 +170,13 @@ public class TaiKhoan_ThongTinFragment extends Fragment {
                     public void onClick(DialogInterface dialog, int which) {
                         // Do something when user clicked the Yes button
                         // Set the TextView visibility GONE
+                        editor.putInt("DATA1",-1);
+                        editor.putString("DATA2","dienvien");
                         IDUser.idUser = -1;
                         IDUser.HinhUser = "dienvien";
+                        editor.commit();
+                        //IDUser.idUser = -1;
+                        //IDUser.HinhUser = "dienvien";
                         replaceFragmentContent(new DangNhapFragment());
                         Toast.makeText(getContext(),"Đăng xuất thành công !",Toast.LENGTH_LONG).show();
                     }
@@ -187,7 +201,7 @@ public class TaiKhoan_ThongTinFragment extends Fragment {
         return view;
     }
 
-    public class GetThongTinKH extends AsyncTask<String, String, String> {
+    private class GetThongTinKH extends AsyncTask<String, String, String> {
         @Override
         protected String doInBackground(String... strings) {
             String current = "";
@@ -229,7 +243,7 @@ public class TaiKhoan_ThongTinFragment extends Fragment {
         }
 
         @Override
-        public void onPostExecute(String s) {
+        protected void onPostExecute(String s) {
             try {
                 JSONObject jsonObject = new JSONObject(s);
                 JSONArray jsonArray = jsonObject.getJSONArray("DanhSach");
@@ -249,8 +263,9 @@ public class TaiKhoan_ThongTinFragment extends Fragment {
 
 
                 txtEmail.setText(Email);
-                int resID = getContext().getResources().getIdentifier(Hinh,"drawable",getContext().getPackageName());
-                txtanhDaiDien.setImageResource(resID);
+                Picasso.get().load("http://0306181355.pixelcent.com/rapphim/public/images/" + Hinh).into(txtanhDaiDien);
+                //int resID = getContext().getResources().getIdentifier(Hinh,"drawable",getContext().getPackageName());
+                //txtanhDaiDien.setImageResource(resID);
                 txtHoVaTen.setText(HoTen);
                 txtSDT.setText(SDT);
                 txtNgaySinh.setText(NgaySinh);
@@ -281,8 +296,9 @@ public class TaiKhoan_ThongTinFragment extends Fragment {
     }
 
 
-    public void Test(String a){
-        txtHoVaTen.setText(a);
+    private void initPreferences(){
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        editor = sharedPreferences.edit();
     }
 
 

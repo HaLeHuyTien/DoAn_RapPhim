@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.doan_rapphim.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.LinkedList;
 
@@ -38,8 +39,9 @@ public class BinhLuanListAdapter extends RecyclerView.Adapter<BinhLuanListAdapte
         holder.txtNoiDungBinhLuan.setText(mCurrent.getNoiDungBinhLuan());
         holder.txtNgayBinhLuan.setText(mCurrent.getNgayBinhLuan());
         holder.txtGioBinhLuan.setText(mCurrent.getGioBinhLuan());
-        int resID = this.context.getResources().getIdentifier(mCurrent.getAnhNguoiBinhLuan(),"drawable",this.context.getPackageName());
-        holder.imgNguoiBinhLuan.setImageResource(resID);
+        Picasso.get().load("http://0306181355.pixelcent.com/rapphim/public/images/" + mCurrent.getAnhNguoiBinhLuan()).into(holder.imgNguoiBinhLuan);
+        //int resID = this.context.getResources().getIdentifier(mCurrent.getAnhNguoiBinhLuan(),"drawable",this.context.getPackageName());
+        //holder.imgNguoiBinhLuan.setImageResource(resID);
     }
 
     @Override

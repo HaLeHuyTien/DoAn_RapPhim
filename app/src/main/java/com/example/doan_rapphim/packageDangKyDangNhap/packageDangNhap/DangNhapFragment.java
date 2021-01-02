@@ -1,8 +1,11 @@
  package com.example.doan_rapphim.packageDangKyDangNhap.packageDangNhap;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
 import android.view.LayoutInflater;
@@ -47,6 +50,8 @@ private TextView txtQuenMatKhau;
 private Integer x = 0;
 private MainActivity mainActivity;
 private String URLDangNhap = "http://0306181355.pixelcent.com/Cinema/KiemTraDangNhap.php";
+    SharedPreferences sharedPreferences;
+    SharedPreferences.Editor editor;
 
     private final LinkedList<ThongTinUser> mWordList = new LinkedList<>();
     @Nullable
@@ -99,6 +104,11 @@ private String URLDangNhap = "http://0306181355.pixelcent.com/Cinema/KiemTraDang
             }
         });
 
+        initPreferences();
+
+
+
+
         return view;
     }
 
@@ -111,8 +121,14 @@ private String URLDangNhap = "http://0306181355.pixelcent.com/Cinema/KiemTraDang
             FragmentTransaction ft = fmgr.beginTransaction();
 
             ft.replace(R.id.container_body, fragment);
+            editor.putInt("DATA1",ID);
+            editor.putString("DATA2",Hinh);
             IDUser.idUser = ID;
             IDUser.HinhUser = Hinh;
+            editor.commit();
+
+            //IDUser.idUser = ID;
+            //IDUser.HinhUser = Hinh;
 
             ft.commit();
 
@@ -191,6 +207,12 @@ private String URLDangNhap = "http://0306181355.pixelcent.com/Cinema/KiemTraDang
                 e.printStackTrace();
             }
         }
+    }
+
+
+    private void initPreferences(){
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        editor = sharedPreferences.edit();
     }
 
 

@@ -17,6 +17,7 @@ import com.example.doan_rapphim.packageTrangChiTiet.IDPhim;
 import com.example.doan_rapphim.packageTrangChiTiet.ThongTinJson;
 import com.example.doan_rapphim.packageTrangChiTiet.TrangChiTiet;
 import com.example.doan_rapphim.packageTrangChiTiet.packageThanhToan.ThongTinSoDoGhe;
+import com.squareup.picasso.Picasso;
 
 import java.util.LinkedList;
 
@@ -52,8 +53,10 @@ public class AdapterListPhimItem extends RecyclerView.Adapter<AdapterListPhimIte
         holder.txtTuoi.setText(mCurrent.getDoTuoi());
 
        // holder.wordTextView3.setText(mCurrent.getNoiDung());
-        int resID = this.context.getResources().getIdentifier(mCurrent.getHinhPhim(),"drawable",this.context.getPackageName());
-        holder.img2.setImageResource(resID);
+        Picasso.get().load("http://0306181355.pixelcent.com/rapphim/public/images/" + mCurrent.getHinhPhim()).into(holder.img2);
+
+       // int resID = this.context.getResources().getIdentifier(mCurrent.getHinhPhim(),"drawable",this.context.getPackageName());
+       // holder.img2.setImageResource(resID);
         holder.btnChiTiet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

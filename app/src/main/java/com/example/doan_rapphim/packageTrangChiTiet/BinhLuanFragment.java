@@ -24,6 +24,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.doan_rapphim.R;
 import com.example.doan_rapphim.packageDangKyDangNhap.packageDangNhap.IDUser;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -85,8 +86,10 @@ public class BinhLuanFragment extends Fragment {
         }
         else
         {
-            int ResID = getContext().getResources().getIdentifier(IDUser.HinhUser,"drawable",getContext().getPackageName());
-            imgNguoiDangBinhLuan.setImageResource(ResID);
+            String a = IDUser.HinhUser;
+            Picasso.get().load("http://0306181355.pixelcent.com/rapphim/public/images/" + IDUser.HinhUser).into(imgNguoiDangBinhLuan);
+            //int ResID = getContext().getResources().getIdentifier(IDUser.HinhUser,"drawable",getContext().getPackageName());
+            //imgNguoiDangBinhLuan.setImageResource(ResID);
         }
 
 

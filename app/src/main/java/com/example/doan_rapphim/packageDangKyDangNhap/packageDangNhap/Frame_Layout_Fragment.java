@@ -58,6 +58,8 @@ public class Frame_Layout_Fragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
+
         if(IDUser.idUser < 0) {
         KhoiTao();
         }

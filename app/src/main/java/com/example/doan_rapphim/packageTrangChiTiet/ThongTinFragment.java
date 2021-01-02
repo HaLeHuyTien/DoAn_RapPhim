@@ -26,6 +26,7 @@ import com.example.doan_rapphim.packageTrangChiTiet.packageThanhToan.ThongTinSoD
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -359,8 +360,10 @@ public class ThongTinFragment extends Fragment {
                     Double Diem = jsonObject1.getDouble("Diem");
                     String NgayKhoiChieu = jsonObject1.getString("NgayKhoiChieu");
 
-                    int resId = getContext().getResources().getIdentifier(Hinh,"drawable",getContext().getPackageName());
-                    imgHinhPhim.setImageResource(resId);
+
+                    Picasso.get().load("http://0306181355.pixelcent.com/rapphim/public/images/" + Hinh).into(imgHinhPhim);
+                    //int resId = getContext().getResources().getIdentifier(Hinh,"drawable",getContext().getPackageName());
+                    //imgHinhPhim.setImageResource(resId);
                     txtTenPhim.setText(TenPhim);
                     txtTomTat.setText(NoiDung);
                     txtNgayKhoiChieu.setText(NgayKhoiChieu);

@@ -6,19 +6,32 @@ import androidx.fragment.app.FragmentStatePagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.example.doan_rapphim.packageDangKyDangNhap.packageDangNhap.IDUser;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
     public   BottomNavigationView navigationView;
     public ViewPager viewPager;
+
+    SharedPreferences sharedPreferences;
+    SharedPreferences.Editor editor;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        initPreferences();
+
+        int savedID = sharedPreferences.getInt("DATA1",-1);
+        String savedHinh = sharedPreferences.getString("DATA2","dienvien");
+        IDUser.idUser = savedID;
+        IDUser.HinhUser = savedHinh;
 
 
 
@@ -83,6 +96,11 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    private void initPreferences(){
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        editor = sharedPreferences.edit();
     }
 
 

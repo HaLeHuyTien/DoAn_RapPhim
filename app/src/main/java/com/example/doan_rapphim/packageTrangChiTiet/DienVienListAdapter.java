@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.doan_rapphim.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.LinkedList;
 
@@ -37,8 +38,9 @@ public class DienVienListAdapter extends RecyclerView.Adapter<DienVienListAdapte
     public void onBindViewHolder(@NonNull DienVienListAdapter.DienVienViewHolder holder, int position) {
         DienVienJson mCurrent = mDienVienList.get(position);
         holder.txtTenDV.setText(mCurrent.getTenDV());
-        int resID = this.context.getResources().getIdentifier(mCurrent.getHinhDV(),"drawable",this.context.getPackageName());
-        holder.imgHinhDV.setImageResource(resID);
+        Picasso.get().load("http://0306181355.pixelcent.com/rapphim/public/images/" + mCurrent.getHinhDV()).into(holder.imgHinhDV);
+        //int resID = this.context.getResources().getIdentifier(mCurrent.getHinhDV(),"drawable",this.context.getPackageName());
+        //holder.imgHinhDV.setImageResource(resID);
     }
 
     @Override

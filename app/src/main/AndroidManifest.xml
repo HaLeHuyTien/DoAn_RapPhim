@@ -14,8 +14,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.DoAn_RapPhim">
+
+        <activity android:name=".packageTrangChiTiet.packageThanhToan.ThongTinGiaoDich"></activity>
+
         <activity android:name=".packageDangKyDangNhap.packageDangNhap.packageThongTinUser.XacThucMatKhauActivity"></activity>
-        <activity android:name=".packageTrangChiTiet.packageThanhToan.ThongTinVe" />
+
+
         <activity android:name=".MainActivity" />
         <activity android:name=".packageDangKyDangNhap.packageDangNhap.QuenMatKhauActivity" />
         <activity android:name=".packageDangKyDangNhap.packageDangKy.DangKyActivity" />

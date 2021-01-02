@@ -94,7 +94,7 @@ public class LichChieuFragment extends Fragment {
 
         trangChiTiet = (TrangChiTiet) getActivity();
 
-        jsonURL = value + trangChiTiet.getIdPhim().toString();
+        value = value + trangChiTiet.getIdPhim().toString();
 
 
         EditNgay = view.findViewById(R.id.txtLichChieu);
@@ -116,7 +116,7 @@ public class LichChieuFragment extends Fragment {
         this.lastSelectedMonth = c.get(Calendar.MONTH);
         this.lastSelectedDayOfMonth = c.get(Calendar.DAY_OF_MONTH);
 
-        DateFormat df = new SimpleDateFormat("d-MM-yyyy");
+        DateFormat df = new SimpleDateFormat("dd-MM-yyyy");
         String date = df.format(Calendar.getInstance().getTime());
         EditNgay.setText(date);
         ThongTinSoDoGhe.NgayChieu = date;
@@ -130,6 +130,11 @@ public class LichChieuFragment extends Fragment {
 
         //spnDiaDiem.setOnItemSelectedListener(myListener);
         //spnRap.setOnItemSelectedListener(myListener);
+
+        DateFormat df2 = new SimpleDateFormat("yyyy-MM-dd");
+        String date2 = df2.format(Calendar.getInstance().getTime());
+
+        jsonURL = value + "&NgayChieu=" + date2;
 
         GetXuatChieu getXuatChieu = new GetXuatChieu();
         getXuatChieu.execute();
@@ -286,6 +291,13 @@ public class LichChieuFragment extends Fragment {
                 lastSelectedYear = year;
                 lastSelectedMonth = month;
                 lastSelectedDayOfMonth = dayOfMonth;
+                if(dayOfMonth < 10)
+                {
+                    jsonURL = value + "&NgayChieu=" + year + "-" + thang + "-" + "0"+dayOfMonth;
+                }
+                else {
+                    jsonURL = value + "&NgayChieu=" + year + "-" + month + "-" +dayOfMonth;
+                }
                 GetXuatChieu getXuatChieu = new GetXuatChieu();
                 getXuatChieu.execute();
 

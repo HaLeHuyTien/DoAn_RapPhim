@@ -12,8 +12,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 public class ReadThanhToanJson {
-    public static ThanhToanJson readThanhToanJsonFile(Context context) throws IOException, JSONException{
-        ThanhToanJson thanhToanJson = new ThanhToanJson();
+     public static ThanhToanJson readThanhToanJsonFile(Context context) throws IOException, JSONException{
+       ThanhToanJson thanhToanJson = new ThanhToanJson();
         String jsonText = readText(context,R.raw.thanhtoan);
         JSONObject jsonRoot = new JSONObject(jsonText);
         Integer idPhim = jsonRoot.getInt("ID");

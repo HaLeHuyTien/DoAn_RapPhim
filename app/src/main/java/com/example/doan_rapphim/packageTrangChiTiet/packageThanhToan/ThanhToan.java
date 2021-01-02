@@ -8,14 +8,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.doan_rapphim.R;
-import com.example.doan_rapphim.packageTrangChiTiet.BinhLuanListAdapter;
-import com.example.doan_rapphim.packageTrangChiTiet.BinhLuan_Json;
-import com.example.doan_rapphim.packageTrangChiTiet.ReadBinhLuanJson;
-import com.example.doan_rapphim.packageTrangChiTiet.ReadThongTinJson;
-import com.example.doan_rapphim.packageTrangChiTiet.ThongTinJson;
 
 public class ThanhToan extends AppCompatActivity {
 
@@ -52,7 +46,7 @@ public class ThanhToan extends AppCompatActivity {
         btnThanhToan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ThanhToan.this, com.example.doan_rapphim.packageTrangChiTiet.packageThanhToan.ThongTinVe.class);
+                Intent intent = new Intent(ThanhToan.this, ThongTinGiaoDich.class);
                 startActivity(intent);
             }
         });

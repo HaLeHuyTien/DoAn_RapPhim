@@ -35,6 +35,8 @@
                         android:layout_height="match_parent"
                         android:background="@drawable/edit_text_border"
                         android:ems="10"
+                        android:focusable="false"
+
                         android:inputType="textPersonName"
                         android:padding="2dp"
                         android:text="Name"

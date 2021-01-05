@@ -48,6 +48,7 @@ public class ThongTinGiaoDich extends AppCompatActivity {
         txtSL = findViewById(R.id.txtTTGDSoLuong);
         txtTTGDtong = findViewById((R.id.txtTTGDTongTien));
         txtTTGD = findViewById(R.id.txtTTGDGhe);
+
         Hienthids();
         GetGhe getGhe = new GetGhe();
         getGhe.execute();
@@ -65,13 +66,13 @@ public class ThongTinGiaoDich extends AppCompatActivity {
                                            @Override
                                            public void onClick(View v) {
                                                for (int i = 0; i < ThongTinSoDoGhe.sl; i++) {
-                                                   InsertVe = "http://0306181355.pixelcent.com/Cinema/VePhim.php?IDKhachHang=" + ThongTinSoDoGhe.IDKhachHang + "&IDPhim="+ IDPhim.ID +"&IDRap="+ThongTinSoDoGhe.IDRap+"&IDPhong="+ ThongTinSoDoGhe.IDPhong+ "&IDXuatChieu="+ThongTinSoDoGhe.IDXuatChieu+"&IDGhe="+GheID[i]+"&tongtien="+ThongTinSoDoGhe.tongTien+"&ngaydatve="+ThongTinSoDoGhe.NgayChieu+"&ngaychieuphim="+ThongTinSoDoGhe.NgayChieuPhim;
-                                                   INSERT_VE insert_ve = new INSERT_VE();
+                                                       INSERT_VE insert_ve = new INSERT_VE(GheID[i]);
                                                    insert_ve.execute();
                                                }
                                            }
                                        }
         );
+
         Integer x=0;
         for(int i = 0; i < 4; i++){
             Integer hang = 0;
@@ -189,6 +190,11 @@ public class ThongTinGiaoDich extends AppCompatActivity {
     }
     private class INSERT_VE extends AsyncTask<String, String, String> {
 
+        Integer idGhe;
+
+        public INSERT_VE(Integer idGhe){
+            this.idGhe = idGhe;
+        }
 
         @Override
         protected String doInBackground(String... strings) {
@@ -200,17 +206,21 @@ public class ThongTinGiaoDich extends AppCompatActivity {
 
 
                 try {
+                    InsertVe = "http://0306181355.pixelcent.com/Cinema/VePhim.php?IDKhachHang=" + ThongTinSoDoGhe.IDKhachHang + "&IDPhim="+ IDPhim.ID +"&IDRap="+ThongTinSoDoGhe.IDRap+"&IDPhong="+ ThongTinSoDoGhe.IDPhong+ "&IDXuatChieu="+ThongTinSoDoGhe.IDXuatChieu+"&IDGhe="+idGhe+"&tongtien="+ThongTinSoDoGhe.tongTien+"&ngaydatve="+ThongTinSoDoGhe.NgayChieu+"&ngaychieuphim="+ThongTinSoDoGhe.NgayChieuPhim;
+
                     url = new URL(InsertVe);
-                    urlConnection = (HttpURLConnection) url.openConnection();
+                        urlConnection = (HttpURLConnection) url.openConnection();
 
-                    InputStream in = urlConnection.getInputStream();
-                    InputStreamReader isr = new InputStreamReader(in);
+                        InputStream in = urlConnection.getInputStream();
+                        InputStreamReader isr = new InputStreamReader(in);
 
-                    int data = isr.read();
-                    while (data != -1) {
-                        current += (char) data;
-                        data = isr.read();
-                    }
+                        int data = isr.read();
+                        while (data != -1) {
+                            current += (char) data;
+                            data = isr.read();
+                        }
+
+
 
                     return current;
 

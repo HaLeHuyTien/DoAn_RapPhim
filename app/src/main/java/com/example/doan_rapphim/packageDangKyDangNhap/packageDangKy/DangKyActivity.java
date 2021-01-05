@@ -1,14 +1,18 @@
 package com.example.doan_rapphim.packageDangKyDangNhap.packageDangKy;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.doan_rapphim.R;
@@ -37,6 +41,9 @@ public class DangKyActivity extends AppCompatActivity {
     private int lastSelectedYear;
     private int lastSelectedMonth;
     private int lastSelectedDayOfMonth;
+    private Button btnTaiHinhDK;
+    private ImageView imgDK;
+    public final static int PICK_IMAGE_REQUEST = 1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,6 +56,14 @@ public class DangKyActivity extends AppCompatActivity {
         edtDiaChiDK=findViewById(R.id.txtDiaChiDK);
         edtMatKhauDK=findViewById(R.id.txtMatKhauDK);
         edtNhapLaiMatKhauDK=findViewById(R.id.txtNhapLaiMatKhauDK);
+        btnTaiHinhDK=findViewById(R.id.btnTaiHinh);
+        imgDK=findViewById(R.id.imgDK);
+        btnTaiHinhDK.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                pickImage();
+            }
+        });
         imgLichNgaySinhFormDangKy=findViewById(R.id.imgButtonDate);
         imgLichNgaySinhFormDangKy.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -152,6 +167,23 @@ public class DangKyActivity extends AppCompatActivity {
         if(tam>2)
             return false;
         else return true;
+    }
+    //Click đổi ảnh
+    private void pickImage()
+    {
+        Intent intent = new Intent();
+        intent.setType("image/*");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(Intent.createChooser(intent, "Select a file to Upload"),PICK_IMAGE_REQUEST);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null){
+            Uri uri = data.getData();
+            imgDK.setImageURI(uri);
+        }
     }
 
 

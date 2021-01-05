@@ -55,7 +55,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/imgNguoiDangBinhLuan" />
+                    app:layout_constraintTop_toBottomOf="@+id/imgDK" />
 
                 <EditText
                     android:id="@+id/txtEmailDK"
@@ -209,7 +209,7 @@
 
 
                 <ImageView
-                    android:id="@+id/imgNguoiDangBinhLuan"
+                    android:id="@+id/imgDK"
                     android:layout_width="94dp"
                     android:layout_height="110dp"
                     android:layout_marginTop="4dp"

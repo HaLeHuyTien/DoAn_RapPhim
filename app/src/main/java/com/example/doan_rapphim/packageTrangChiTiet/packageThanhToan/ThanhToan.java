@@ -10,11 +10,12 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.doan_rapphim.R;
+import com.squareup.picasso.Picasso;
 
 public class ThanhToan extends AppCompatActivity {
 
     private Button btnThanhToan;
-    private ImageView imgTenHinh;
+    private ImageView imgTHinh;
     private TextView txtTT_TenPhim;
     private TextView txtTT_LuuY;
     private TextView txtTT_Ngay;
@@ -39,9 +40,8 @@ public class ThanhToan extends AppCompatActivity {
         txtTT_TTien = findViewById(R.id.txtTien2);
         txtTT_Sl = findViewById(R.id.txtSoluong);
         btnThanhToan = findViewById(R.id.btnThanhToan);
-        imgTenHinh = findViewById(R.id.imgHinh);
-        int ResiD = this.getResources().getIdentifier(ThongTinSoDoGhe.tenHinh,"drawable",this.getPackageName());
-        imgTenHinh.setImageResource(ResiD);
+        imgTHinh = findViewById(R.id.imgHinhThanhToan);
+        Picasso.get().load("http://0306181355.pixelcent.com/rapphim/public/images/" + ThongTinSoDoGhe.tenHinh).into(imgTHinh);
         ThongTinSoDoGhe.tongTien = donGia * ThongTinSoDoGhe.sl;
         btnThanhToan.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -52,20 +52,30 @@ public class ThanhToan extends AppCompatActivity {
         });
         HiennThiDanhSach();
         for(int i = 0; i < 4; i++){
+            Integer hang = 0;
             for(Integer j = 0; j < 5 ; j++){
                 if(ThongTinSoDoGhe.Ghe[i][j] == true){
                     String Hang = "";
-                    if(i == 0)
+                    if(i == 0) {
                         Hang = "A";
-                    if(i == 1)
+                        hang = 0;
+                    }
+                    if(i == 1){
+                        hang = 4;
                         Hang = "B";
-                    if(i == 2)
+                    }
+                    if(i == 2) {
                         Hang = "C";
-                    if(i == 3)
+                        hang = 10;
+                    }
+                    if(i == 3) {
                         Hang = "D";
+                        hang = 15;
+                    }
                     Integer Cot = j + 1;
+                    Integer idGhe = Cot + hang;
                     GheDaChon = GheDaChon + Hang + Cot.toString() + ",";
-
+                    
                 }
             }
         }

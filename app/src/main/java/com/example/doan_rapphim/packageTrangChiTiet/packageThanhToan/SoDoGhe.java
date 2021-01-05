@@ -15,6 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.doan_rapphim.R;
 import com.example.doan_rapphim.packageDangKyDangNhap.packageDangNhap.IDUser;
+import com.squareup.picasso.Picasso;
 
 public class SoDoGhe extends AppCompatActivity {
     private Button btntiepTuc;
@@ -73,8 +74,7 @@ public class SoDoGhe extends AppCompatActivity {
         btnD3 = findViewById(R.id.btnD3);
         btnD4 = findViewById(R.id.btnD4);
         btnD5 = findViewById(R.id.btnD5);
-        int ResiD = this.getResources().getIdentifier(ThongTinSoDoGhe.tenHinh, "drawable", this.getPackageName());
-        imgTenHinh.setImageResource(ResiD);
+        Picasso.get().load("http://0306181355.pixelcent.com/rapphim/public/images/" + ThongTinSoDoGhe.tenHinh).into(imgTenHinh);
         btntiepTuc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -103,7 +103,7 @@ public class SoDoGhe extends AppCompatActivity {
                     // Display the alert dialog on interface
                     dialog.show();
                 } else {
-
+                    ThongTinSoDoGhe.IDKhachHang = IDUser.idUser;
                     Intent intent = new Intent(SoDoGhe.this, com.example.doan_rapphim.packageTrangChiTiet.packageThanhToan.ThanhToan.class);
                     startActivity(intent);
                 }

@@ -135,6 +135,7 @@ public class LichChieuFragment extends Fragment {
         String date2 = df2.format(Calendar.getInstance().getTime());
 
         jsonURL = value + "&NgayChieu=" + date2;
+        ThongTinSoDoGhe.NgayChieuPhim = date2;
 
         GetXuatChieu getXuatChieu = new GetXuatChieu();
         getXuatChieu.execute();
@@ -230,6 +231,8 @@ public class LichChieuFragment extends Fragment {
                         String NgayChieu = jsonObject1.getString("NgayChieu");
                         String TenPhong = jsonObject1.getString("TenPhong");
                         String TenRap = jsonObject1.getString("TenRap");
+                        Integer IDPhong = jsonObject1.getInt("idphong");
+                        Integer IDRap = jsonObject1.getInt("idrap");
                         String []XuatChieu = new String[6];
                         int a = 0;
                         for(int j = (i*6); j < (i+1)*6;j++) {
@@ -238,6 +241,8 @@ public class LichChieuFragment extends Fragment {
                             a++;
                         }
                         LichChieu_Json lichChieu_json = new LichChieu_Json();
+                        lichChieu_json.setIDPhong(IDPhong);
+                        lichChieu_json.setIDRap(IDRap);
                         lichChieu_json.setNgayChieu(NgayChieu);
                         lichChieu_json.setXuatChieu(XuatChieu);
                         lichChieu_json.setTenPhong(TenPhong);
@@ -291,12 +296,15 @@ public class LichChieuFragment extends Fragment {
                 lastSelectedYear = year;
                 lastSelectedMonth = month;
                 lastSelectedDayOfMonth = dayOfMonth;
+
                 if(dayOfMonth < 10)
                 {
                     jsonURL = value + "&NgayChieu=" + year + "-" + thang + "-" + "0"+dayOfMonth;
+                    ThongTinSoDoGhe.NgayChieuPhim = year + "-" + thang + "-" + "0"+dayOfMonth;
                 }
                 else {
                     jsonURL = value + "&NgayChieu=" + year + "-" + month + "-" +dayOfMonth;
+                    ThongTinSoDoGhe.NgayChieuPhim = year + "-" + thang + "-" +dayOfMonth;
                 }
                 GetXuatChieu getXuatChieu = new GetXuatChieu();
                 getXuatChieu.execute();

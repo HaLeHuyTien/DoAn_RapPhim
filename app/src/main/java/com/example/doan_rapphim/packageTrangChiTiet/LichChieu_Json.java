@@ -17,6 +17,26 @@ public class LichChieu_Json {
     private String NgayChieu;
     private String TenPhong;
 
+    public Integer getIDPhong() {
+        return IDPhong;
+    }
+
+    public void setIDPhong(Integer IDPhong) {
+        this.IDPhong = IDPhong;
+    }
+
+    private Integer IDPhong;
+
+    private Integer IDRap;
+
+    public Integer getIDRap() {
+        return IDRap;
+    }
+
+    public void setIDRap(Integer IDRap) {
+        this.IDRap = IDRap;
+    }
+
     public String getTenPhong() {
         return TenPhong;
     }

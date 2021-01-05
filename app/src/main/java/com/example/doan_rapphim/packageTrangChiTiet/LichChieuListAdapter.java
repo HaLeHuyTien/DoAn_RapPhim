@@ -63,6 +63,30 @@ public class LichChieuListAdapter extends RecyclerView.Adapter<LichChieuListAdap
                 @Override
                 public void onClick(View v) {
                     ThongTinSoDoGhe.suatChieu = a[value];
+                    ThongTinSoDoGhe.IDPhong = mCurrent.getIDPhong();
+                    ThongTinSoDoGhe.TenPhong = mCurrent.getTenPhong();
+                    ThongTinSoDoGhe.IDRap = mCurrent.getIDRap();
+                    ThongTinSoDoGhe.NgayChieuPhim = mCurrent.getNgayChieu();
+                    switch (v.getId()) {
+                        case R.id.btnGioChieu1:
+                            ThongTinSoDoGhe.IDXuatChieu = 1;
+                            break;
+                        case R.id.btnGioChieu2:
+                            ThongTinSoDoGhe.IDXuatChieu = 2;
+                            break;
+                        case R.id.btnGioChieu3:
+                            ThongTinSoDoGhe.IDXuatChieu = 3;
+                            break;
+                        case R.id.btnGioChieu4:
+                            ThongTinSoDoGhe.IDXuatChieu = 4;
+                            break;
+                        case R.id.btnGioChieu5:
+                            ThongTinSoDoGhe.IDXuatChieu = 5;
+                            break;
+                        case R.id.btnGioChieu6:
+                            ThongTinSoDoGhe.IDXuatChieu = 6;
+                            break;
+                    }
                     Intent intent = new Intent(activity, SoDoGhe.class);
                     activity.startActivity(intent);
                 }

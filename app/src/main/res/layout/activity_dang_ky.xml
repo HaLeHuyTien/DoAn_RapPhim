@@ -6,8 +6,6 @@
     android:layout_height="match_parent"
     android:paddingStart="40dp"
     android:paddingEnd="40dp"
-    android:background="@drawable/p5"
-
     android:orientation="vertical">
 
     <ScrollView

@@ -54,7 +54,7 @@ import java.util.Calendar;
 public class LichChieuFragment extends Fragment {
 
     private  String jsonURL;
-    private static String value = "http://0306181355.pixelcent.com/Cinema/XuatChieuTheoPhim.php?IDPhim=";
+    private  String value;
 
     private TrangChiTiet trangChiTiet;
 
@@ -94,7 +94,7 @@ public class LichChieuFragment extends Fragment {
 
         trangChiTiet = (TrangChiTiet) getActivity();
 
-        value = value + trangChiTiet.getIdPhim().toString();
+        value = "http://0306181355.pixelcent.com/Cinema/XuatChieuTheoPhim.php?IDPhim=" + trangChiTiet.getIdPhim().toString();
 
 
         EditNgay = view.findViewById(R.id.txtLichChieu);
@@ -116,10 +116,10 @@ public class LichChieuFragment extends Fragment {
         this.lastSelectedMonth = c.get(Calendar.MONTH);
         this.lastSelectedDayOfMonth = c.get(Calendar.DAY_OF_MONTH);
 
-        DateFormat df = new SimpleDateFormat("dd-MM-yyyy");
+        DateFormat df = new SimpleDateFormat("d-M-yyyy");
         String date = df.format(Calendar.getInstance().getTime());
         EditNgay.setText(date);
-
+      
 
        /* addDiaDiem();
         addRap();*/
@@ -227,7 +227,7 @@ public class LichChieuFragment extends Fragment {
                 JSONArray jsonArray = jsonObject.getJSONArray("DanhSach");
                 for(int i = 0; i < jsonArray.length()/6; i++) {
 
-                        JSONObject jsonObject1 = jsonArray.getJSONObject(i*8);
+                        JSONObject jsonObject1 = jsonArray.getJSONObject(i*6);
                         String NgayChieu = jsonObject1.getString("NgayChieu");
                         String TenPhong = jsonObject1.getString("TenPhong");
                         String TenRap = jsonObject1.getString("TenRap");
@@ -262,6 +262,8 @@ public class LichChieuFragment extends Fragment {
         }
     }
 
+
+
    /* public void addDiaDiem() {
         List<String> list = new ArrayList<>();
         list.add("Cả nước");
@@ -292,18 +294,31 @@ public class LichChieuFragment extends Fragment {
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                 int thang = month + 1;
                 EditNgay.setText(dayOfMonth +"-" + thang + "-" + year);
-               // ThongTinSoDoGhe.NgayChieuPhim = EditNgay.getText().toString();
+
+
                 lastSelectedYear = year;
                 lastSelectedMonth = month;
                 lastSelectedDayOfMonth = dayOfMonth;
 
+
+
+
+
                 if(dayOfMonth < 10)
                 {
-                    jsonURL = value + "&NgayChieu=" + year + "-" + thang + "-" + "0"+dayOfMonth;
-                    ThongTinSoDoGhe.NgayChieuPhim = year + "-" + thang + "-" + "0"+dayOfMonth;
+                    if(thang < 10)
+                    jsonURL = value + "&NgayChieu=" + year + "-" + "0"+ thang + "-" + "0"+dayOfMonth;
+                    else
+                        jsonURL = value + "&NgayChieu=" + year + "-" + thang + "-" + "0"+dayOfMonth;
+
+                    ThongTinSoDoGhe.NgayChieuPhim = year + "-" + "0"+ thang + "-" + "0"+dayOfMonth;
+
                 }
                 else {
-                    jsonURL = value + "&NgayChieu=" + year + "-" + month + "-" +dayOfMonth;
+                    if(thang < 10)
+                        jsonURL = value + "&NgayChieu=" + year + "-" + "0"+ thang + "-" + dayOfMonth;
+                    else
+                        jsonURL = value + "&NgayChieu=" + year + "-" + thang + "-" + dayOfMonth;
                     ThongTinSoDoGhe.NgayChieuPhim = year + "-" + thang + "-" +dayOfMonth;
                 }
                 GetXuatChieu getXuatChieu = new GetXuatChieu();

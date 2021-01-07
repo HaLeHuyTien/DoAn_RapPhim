@@ -256,7 +256,7 @@ public class DSPhimDangChieu extends Fragment {
                         Phim.setNgayKhoiChieu(NgayKhoiChieu);
 
                         try {
-                            SimpleDateFormat sdf = new SimpleDateFormat("d-MM-yyyy");
+                            SimpleDateFormat sdf = new SimpleDateFormat("d-M-yyyy");
                             Date strDate = sdf.parse(Phim.getNgayKhoiChieu());
                             String currentTime = sdf.format(Calendar.getInstance().getTime());
 

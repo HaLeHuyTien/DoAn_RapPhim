@@ -6,7 +6,6 @@ public class ThongTinSoDoGhe {
     public static String tenHinh;
     public static Integer sl = 0;
     public static Integer tongTien = 0;
-    public static String NgayChieu;
     public static Integer IDKhachHang;
     public static Integer IDPhong;
     public static String TenPhong;

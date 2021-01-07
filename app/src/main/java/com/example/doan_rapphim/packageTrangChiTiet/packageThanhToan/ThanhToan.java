@@ -102,7 +102,7 @@ public class ThanhToan extends AppCompatActivity {
             ThanhToanJson thanhToanJson = ReadThanhToanJson.readThanhToanJsonFile(this);
             txtTT_TenPhim.setText(ThongTinSoDoGhe.tenPhim);
             txtTT_LuuY.setText(thanhToanJson.getLuuY());
-            txtTT_Ngay.setText(ThongTinSoDoGhe.NgayChieu);
+            txtTT_Ngay.setText(ThongTinSoDoGhe.NgayChieuPhim);
             txtTT_KhungGio.setText(thanhToanJson.getKhungGio());
             txtTT_Rap.setText(thanhToanJson.getRap());
             txtTT_TTien.setText(ThongTinSoDoGhe.tongTien.toString());

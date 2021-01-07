@@ -66,7 +66,6 @@ public class LichChieuListAdapter extends RecyclerView.Adapter<LichChieuListAdap
                     ThongTinSoDoGhe.IDPhong = mCurrent.getIDPhong();
                     ThongTinSoDoGhe.TenPhong = mCurrent.getTenPhong();
                     ThongTinSoDoGhe.IDRap = mCurrent.getIDRap();
-                    ThongTinSoDoGhe.NgayChieuPhim = mCurrent.getNgayChieu();
                     switch (v.getId()) {
                         case R.id.btnGioChieu1:
                             ThongTinSoDoGhe.IDXuatChieu = 1;

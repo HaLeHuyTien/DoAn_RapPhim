@@ -23,6 +23,9 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.LinkedList;
 
 public class ThongTinGiaoDich extends AppCompatActivity {
@@ -35,9 +38,10 @@ public class ThongTinGiaoDich extends AppCompatActivity {
     private String GheDaChon = "";
     private  String InsertVe = "http://0306181355.pixelcent.com/Cinema/VePhim.php?IDKhachHang=";
     private String DataGhe = "http://0306181355.pixelcent.com/Cinema/Ghe.php";
-    Integer GheID[] = new Integer[ThongTinSoDoGhe.sl];
+    public Integer GheID[] = new Integer[ThongTinSoDoGhe.sl];
     private final LinkedList<Ghe> mWordList = new LinkedList<>();
     String chuoi = "Ds: ";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -191,7 +195,8 @@ public class ThongTinGiaoDich extends AppCompatActivity {
     private class INSERT_VE extends AsyncTask<String, String, String> {
 
         Integer idGhe;
-
+        DateFormat df2 = new SimpleDateFormat("yyyy-MM-dd");
+        String date2 = df2.format(Calendar.getInstance().getTime());
         public INSERT_VE(Integer idGhe){
             this.idGhe = idGhe;
         }
@@ -206,7 +211,7 @@ public class ThongTinGiaoDich extends AppCompatActivity {
 
 
                 try {
-                    InsertVe = "http://0306181355.pixelcent.com/Cinema/VePhim.php?IDKhachHang=" + ThongTinSoDoGhe.IDKhachHang + "&IDPhim="+ IDPhim.ID +"&IDRap="+ThongTinSoDoGhe.IDRap+"&IDPhong="+ ThongTinSoDoGhe.IDPhong+ "&IDXuatChieu="+ThongTinSoDoGhe.IDXuatChieu+"&IDGhe="+idGhe+"&tongtien="+ThongTinSoDoGhe.tongTien+"&ngaydatve="+ThongTinSoDoGhe.NgayChieu+"&ngaychieuphim="+ThongTinSoDoGhe.NgayChieuPhim;
+                    InsertVe = "http://0306181355.pixelcent.com/Cinema/VePhim.php?IDKhachHang=" + ThongTinSoDoGhe.IDKhachHang + "&IDPhim="+ IDPhim.ID +"&IDRap="+ThongTinSoDoGhe.IDRap+"&IDPhong="+ ThongTinSoDoGhe.IDPhong+ "&IDXuatChieu="+ThongTinSoDoGhe.IDXuatChieu+"&IDGhe="+idGhe+"&tongtien="+ThongTinSoDoGhe.tongTien+"&ngaydatve="+date2+"&ngaychieuphim="+ThongTinSoDoGhe.NgayChieuPhim;
 
                     url = new URL(InsertVe);
                         urlConnection = (HttpURLConnection) url.openConnection();

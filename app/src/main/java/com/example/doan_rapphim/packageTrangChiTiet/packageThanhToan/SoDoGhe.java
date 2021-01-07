@@ -74,14 +74,13 @@ public class SoDoGhe extends AppCompatActivity {
         btnD3 = findViewById(R.id.btnD3);
         btnD4 = findViewById(R.id.btnD4);
         btnD5 = findViewById(R.id.btnD5);
-        Picasso.get().load("http://0306181355.pixelcent.com/rapphim/public/images/" + ThongTinSoDoGhe.tenHinh).into(imgTenHinh);
+        Picasso.get().load("http://0306181355.cenpixelt.com/rapphim/public/images/" + ThongTinSoDoGhe.tenHinh).into(imgTenHinh);
         btntiepTuc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (IDUser.idUser < 0) {
 
                     AlertDialog.Builder builder = new AlertDialog.Builder(SoDoGhe.this);
-
                     // Set a title for alert dialog
                     builder.setTitle("Thông Báo");
 

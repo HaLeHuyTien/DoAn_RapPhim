@@ -119,7 +119,7 @@ public class LichChieuFragment extends Fragment {
         DateFormat df = new SimpleDateFormat("d-M-yyyy");
         String date = df.format(Calendar.getInstance().getTime());
         EditNgay.setText(date);
-      
+
 
        /* addDiaDiem();
         addRap();*/
@@ -299,10 +299,6 @@ public class LichChieuFragment extends Fragment {
                 lastSelectedYear = year;
                 lastSelectedMonth = month;
                 lastSelectedDayOfMonth = dayOfMonth;
-
-
-
-
 
                 if(dayOfMonth < 10)
                 {

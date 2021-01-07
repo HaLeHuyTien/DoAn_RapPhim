@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -25,14 +26,22 @@ import com.example.doan_rapphim.packageDangKyDangNhap.packageDangNhap.packageTho
 import com.example.doan_rapphim.packageDangKyDangNhap.packageDangNhap.packageThongTinUser.ReadThongTinUserJson;
 import com.example.doan_rapphim.packageDangKyDangNhap.packageDangNhap.packageThongTinUser.ThayDoiThongTin;
 import com.example.doan_rapphim.packageDangKyDangNhap.packageDangNhap.packageThongTinUser.ThongTinUser;
+import com.example.doan_rapphim.packageTrangChiTiet.IDPhim;
+import com.example.doan_rapphim.packageTrangChiTiet.packageThanhToan.ThongTinSoDoGhe;
 
 import org.json.JSONException;
 
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 
 public class DangKyActivity extends AppCompatActivity {
     private Spinner spnTinhTp;
@@ -50,7 +59,7 @@ public class DangKyActivity extends AppCompatActivity {
     private EditText edtHoTenDK;
     private EditText edtEmailDK;
     private EditText edtSDTDangKy;
-    private EditText edtDiaChiDK;
+
     private EditText edtMatKhauDK;
     private EditText edtNhapLaiMatKhauDK;
     private EditText edtNgaySinh;
@@ -62,6 +71,8 @@ public class DangKyActivity extends AppCompatActivity {
     private Button btnTaiHinhDK;
     private ImageView imgDK;
     public final static int PICK_IMAGE_REQUEST = 1;
+    //API
+    private  String InsertKhachHang ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -97,11 +108,19 @@ public class DangKyActivity extends AppCompatActivity {
         this.lastSelectedMonth = c.get(Calendar.MONTH);
         this.lastSelectedDayOfMonth = c.get(Calendar.DAY_OF_MONTH);
 
-        DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
         String date = df.format(Calendar.getInstance().getTime());
         edtNgaySinh.setText(date);
 
         SpinnerView();
+        btnDangKy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DangKy(v);
+
+
+            }
+        });
     }
 
     public void ChonNgaySinh(){
@@ -111,9 +130,9 @@ public class DangKyActivity extends AppCompatActivity {
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                 int thang = month + 1;
                 if(dayOfMonth > 9)
-                    edtNgaySinh.setText(dayOfMonth +"/" + thang + "/" + year);
+                    edtNgaySinh.setText(year +"-" + thang + "-" + dayOfMonth);
                 else
-                    edtNgaySinh.setText("0" + dayOfMonth + "/" + thang+ "/" + year);
+                    edtNgaySinh.setText(year +"-" + thang + "-" +"0"+ dayOfMonth);
                 lastSelectedYear = year;
                 lastSelectedMonth = month;
                 lastSelectedDayOfMonth = dayOfMonth;
@@ -348,7 +367,7 @@ public class DangKyActivity extends AppCompatActivity {
         String HoTen=edtHoTenDK.getText().toString();
         String Email=edtEmailDK.getText().toString();
         String SDT=edtSDTDangKy.getText().toString();
-        String DiaChi=edtDiaChiDK.getText().toString();
+        String DiaChi= spnXaPhuong.getSelectedItem().toString()+","+spnHuyenQuan.getSelectedItem().toString()+","+spnTinhTp.getSelectedItem().toString();
         String MatKhau=edtMatKhauDK.getText().toString();
         String NhapLaiMatKhau=edtNhapLaiMatKhauDK.getText().toString();
         if(HoTen.equals("")){
@@ -373,28 +392,32 @@ public class DangKyActivity extends AppCompatActivity {
             Toast.makeText(this,"Bạn chưa Nhập lại mật khẩu cho form Đăng ký!",Toast.LENGTH_SHORT).show();
         }
         else {
-            Toast.makeText(this,"Bạn chưa nhập đúng trong form Đăng ký!",Toast.LENGTH_SHORT).show();
-        }
-        int a = 0;
-        try {
-            int soluongUser = ReadThongTinUserJson.SoLuongTaiKhoan(this);
-            for(int i = 0; i < soluongUser; i ++) {
-                ThongTinUser thongTinUser = ReadThongTinUserJson.readThongTinUserFile(this, i);
-                Email = thongTinUser.getEmail();
-                if (edtEmailDK.getText().toString().equals(Email) ) {
-                    IDUser.idUser = i;
-                    Toast.makeText(this, "Email bạn nhập đã tồn tại, hãy nhập Email khác!", Toast.LENGTH_SHORT).show();
-                    a = 1;
-                    break;
+            int a = 0;
+            try {
+                int soluongUser = ReadThongTinUserJson.SoLuongTaiKhoan(this);
+                for(int i = 0; i < soluongUser; i ++) {
+                    ThongTinUser thongTinUser = ReadThongTinUserJson.readThongTinUserFile(this, i);
+                    Email = thongTinUser.getEmail();
+                    if (edtEmailDK.getText().toString().equals(Email) ) {
+                        IDUser.idUser = i;
+                        Toast.makeText(this, "Email bạn nhập đã tồn tại, hãy nhập Email khác!", Toast.LENGTH_SHORT).show();
+                        a = 1;
+                        break;
+                    }
                 }
+                if(a == 0) {
+                    Toast.makeText(this, "Thành công", Toast.LENGTH_SHORT).show();
+                    //INSERT_KHACHHANG insert_khachhang=new INSERT_KHACHHANG();
+                    //insert_khachhang.execute();
+                    finish();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (JSONException e) {
+                e.printStackTrace();
             }
-            if(a == 0)
-                Toast.makeText(this, "Thành công", Toast.LENGTH_SHORT).show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (JSONException e) {
-            e.printStackTrace();
         }
+
 
     }
     public static boolean kiemTraNhapDung3Tu(final String kt){
@@ -425,6 +448,55 @@ public class DangKyActivity extends AppCompatActivity {
         if(requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null){
             Uri uri = data.getData();
             imgDK.setImageURI(uri);
+        }
+    }
+    private class INSERT_KHACHHANG extends AsyncTask<String, String, String> {
+        @Override
+        protected String doInBackground(String... strings) {
+            String current = "";
+
+            try {
+                URL url;
+                HttpURLConnection urlConnection = null;
+
+
+                try {
+                    //InsertKhachHang = "http://0306181355.pixelcent.com/rapphim/public/api/themkhachhang/"+edtHoTenDK.getText().toString()+"/"+edtEmailDK.getText().toString()+"/"+edtSDTDangKy.getText().toString()+"/"+edtNgaySinh.getText().toString()+"/"+spnXaPhuong.getSelectedItem().toString()+","+spnHuyenQuan.getSelectedItem().toString()+","+spnTinhTp.getSelectedItem().toString()+"/"+edtMatKhauDK.getText().toString()+"/"+edtSDTDangKy.getText().toString()+".jpg";
+                     url = new URL(InsertKhachHang);
+                    urlConnection = (HttpURLConnection) url.openConnection();
+
+                    InputStream in = urlConnection.getInputStream();
+                    InputStreamReader isr = new InputStreamReader(in);
+
+                    int data = isr.read();
+                    while (data != -1) {
+                        current += (char) data;
+                        data = isr.read();
+                    }
+
+
+
+                    return current;
+
+                } catch (MalformedURLException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } finally {
+                    if (urlConnection != null) {
+                        urlConnection.disconnect();
+                    }
+                }
+
+            }catch (Exception e) {
+                e.printStackTrace();
+            }
+            return current;
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+
         }
     }
 

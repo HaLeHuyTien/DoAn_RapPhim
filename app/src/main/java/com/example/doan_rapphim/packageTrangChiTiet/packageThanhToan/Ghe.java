@@ -1,23 +1,17 @@
 package com.example.doan_rapphim.packageTrangChiTiet.packageThanhToan;
 
 public class Ghe {
-    private String Hang;
-    private String Cot;
-    public String getHang() {
-        return Hang;
+    public Integer getIdGhe() {
+        return idGhe;
     }
 
-    public void setHang(String hang) {
-        Hang = hang;
+    public void setIdGhe(Integer idGhe) {
+        this.idGhe = idGhe;
     }
 
-    public String getCot() {
-        return Cot;
-    }
+    private Integer idGhe;
 
-    public void setCot(String cot) {
-        Cot = cot;
-    }
+
 
 
 

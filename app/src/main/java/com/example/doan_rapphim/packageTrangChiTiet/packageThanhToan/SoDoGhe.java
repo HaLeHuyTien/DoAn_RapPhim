@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -13,13 +14,27 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.doan_rapphim.Phim;
 import com.example.doan_rapphim.R;
 import com.example.doan_rapphim.packageDangKyDangNhap.packageDangNhap.IDUser;
+import com.example.doan_rapphim.packageTrangChiTiet.IDPhim;
 import com.squareup.picasso.Picasso;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 public class SoDoGhe extends AppCompatActivity {
     private Button btntiepTuc;
     private TextView txtTenPhim;
+    private TextView txtPhong;
     private TextView txtSuatChieu;
     private ImageView imgTenHinh;
     private Button btnA1;
@@ -42,16 +57,22 @@ public class SoDoGhe extends AppCompatActivity {
     private Button btnD3;
     private Button btnD4;
     private Button btnD5;
+   String LayGhe=" http://0306181355.pixelcent.com/Cinema/LayGhe.php?IDPhim="+ IDPhim.ID + "&IDRap="+ThongTinSoDoGhe.IDRap+"&IDPhong="+ThongTinSoDoGhe.IDPhong+"&IDXuatChieu="+ThongTinSoDoGhe.IDXuatChieu;
+    Integer[]Ghe = new Integer[20];
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        GetGhe getGhe = new GetGhe();
+        getGhe.execute();
         setContentView(R.layout.activity_so_do_ghe);
+        txtPhong = findViewById(R.id.txtPhongSDG);
         txtTenPhim = findViewById(R.id.txtTenPhim);
         txtSuatChieu = findViewById(R.id.txtGio);
         imgTenHinh = findViewById(R.id.imgTenHinh);
         btntiepTuc = findViewById(R.id.btnTiepTuc);
+        txtPhong.setText(ThongTinSoDoGhe.TenPhong);
         txtTenPhim.setText(ThongTinSoDoGhe.tenPhim);
         txtSuatChieu.setText(ThongTinSoDoGhe.suatChieu);
         btnA1 = findViewById(R.id.btnA1);
@@ -74,7 +95,9 @@ public class SoDoGhe extends AppCompatActivity {
         btnD3 = findViewById(R.id.btnD3);
         btnD4 = findViewById(R.id.btnD4);
         btnD5 = findViewById(R.id.btnD5);
-        Picasso.get().load("http://0306181355.cenpixelt.com/rapphim/public/images/" + ThongTinSoDoGhe.tenHinh).into(imgTenHinh);
+        Picasso.get().load("http://0306181355.pixelcent.com/rapphim/public/images/" + ThongTinSoDoGhe.tenHinh).into(imgTenHinh);
+
+
         btntiepTuc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -121,6 +144,7 @@ public class SoDoGhe extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Button btn = findViewById(v.getId());
+
                 String Hang = getResources().getResourceEntryName(v.getId()).substring(3, 4);
                 Integer Cot = Integer.parseInt(getResources().getResourceEntryName(v.getId()).substring(4));
                 if (btn.isSelected() == true) {
@@ -175,6 +199,104 @@ public class SoDoGhe extends AppCompatActivity {
         btnD5.setOnClickListener(onClickListener);
     }
 
+    private class GetGhe extends AsyncTask<String, String, String> {
+        @Override
+        protected String doInBackground(String... strings) {
+            String current = "";
 
+            try {
+                URL url;
+                HttpURLConnection urlConnection = null;
+
+
+                try {
+                    url = new URL(LayGhe);
+                    urlConnection = (HttpURLConnection) url.openConnection();
+
+                    InputStream in = urlConnection.getInputStream();
+                    InputStreamReader isr = new InputStreamReader(in);
+
+                    int data = isr.read();
+                    while (data != -1) {
+                        current += (char) data;
+                        data = isr.read();
+                    }
+
+                    return current;
+
+                } catch (MalformedURLException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } finally {
+                    if (urlConnection != null) {
+                        urlConnection.disconnect();
+                    }
+                }
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return current;
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            try {
+                JSONObject jsonObject = new JSONObject(s);
+                JSONArray jsonArray = jsonObject.getJSONArray("DanhSach");
+                for (int i = 0; i < jsonArray.length(); i++) {
+                    JSONObject jsonObject1 = jsonArray.getJSONObject(i);
+                    Integer idghe = jsonObject1.getInt("id_ghe");
+                    Ghe ghe = new Ghe();
+                    ghe.setIdGhe(idghe);
+                   if(15<ghe.getIdGhe())
+                   {
+                       Integer g = ghe.getIdGhe() - 15;
+                       String y = "btn" + "D" + g;
+                       int resID = getResources().getIdentifier(y, "id", getPackageName());
+                       Button btn= findViewById(resID);
+                       btn.setText("X");
+                       btn.setEnabled(false);
+
+
+                   }else
+                    if(10<ghe.getIdGhe())
+                    {
+                        Integer g = ghe.getIdGhe() - 10;
+                        String y = "btn" + "C" + g;
+                        int resID = getResources().getIdentifier(y, "id", getPackageName());
+                        Button btn= findViewById(resID);
+                        btn.setText("X");
+                        btn.setEnabled(false);
+
+                    }else
+                    if(5<ghe.getIdGhe())
+                    {
+                        Integer g = ghe.getIdGhe() - 5;
+                        String y = "btn" + "B" + g;
+                        int resID = getResources().getIdentifier(y, "id", getPackageName());
+                        Button btn= findViewById(resID);
+                        btn.setText("X");
+                        btn.setEnabled(false);
+
+                    }else
+                    if(0<ghe.getIdGhe())
+                    {
+                        Integer g = ghe.getIdGhe();
+                        String y = "btn" + "A" + g;
+                        int resID = getResources().getIdentifier(y, "id", getPackageName());
+                        Button btn= findViewById(resID);
+                        btn.setText("X");
+                        btn.setEnabled(false);
+
+                    }
+                }
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 
         }

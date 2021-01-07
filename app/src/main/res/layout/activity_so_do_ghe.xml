@@ -9,14 +9,18 @@
 
     <TextView
         android:id="@+id/txtTenPhim"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="33dp"
         android:gravity="center_vertical"
+        android:inputType="textMultiLine"
         android:text="One Piece: Đại Hội Hải Tặc"
         android:textColor="#121111"
         android:textSize="18sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/imgTenHinh"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -25,18 +29,31 @@
         android:id="@+id/txtSuatChieu"
         android:layout_width="80dp"
         android:layout_height="41dp"
+        android:layout_marginStart="5dp"
         android:gravity="center_vertical"
         android:text="Suất Chiếu:"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtTenPhim" />
 
+    <TextView
+        android:id="@+id/txtPHONGCHIEU"
+        android:layout_width="80dp"
+        android:layout_height="41dp"
+        android:layout_marginStart="5dp"
+        android:gravity="center_vertical"
+        android:text="Phòng: "
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtSuatChieu" />
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
-        android:layout_width="416dp"
-        android:layout_height="379dp"
+        android:layout_width="404dp"
+        android:layout_height="318dp"
+        android:layout_marginTop="40dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.428"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imgTenHinh">
 
@@ -47,7 +64,7 @@
             android:layout_marginTop="64dp"
 
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.518"
+            app:layout_constraintHorizontal_bias="0.588"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
@@ -105,40 +122,40 @@
                     android:id="@+id/btnB1"
                     android:layout_width="50dp"
                     android:layout_height="match_parent"
-                    android:backgroundTint="@color/button_background"
                     android:layout_margin="3dp"
+                    android:backgroundTint="@color/button_background"
                     android:text="1" />
 
                 <Button
                     android:id="@+id/btnB2"
                     android:layout_width="50dp"
                     android:layout_height="match_parent"
-                    android:backgroundTint="@color/button_background"
                     android:layout_margin="3dp"
+                    android:backgroundTint="@color/button_background"
                     android:text="2" />
 
                 <Button
                     android:id="@+id/btnB3"
                     android:layout_width="50dp"
                     android:layout_height="match_parent"
-                    android:backgroundTint="@color/button_background"
                     android:layout_margin="3dp"
+                    android:backgroundTint="@color/button_background"
                     android:text="3" />
 
                 <Button
                     android:id="@+id/btnB4"
                     android:layout_width="50dp"
                     android:layout_height="match_parent"
-                    android:backgroundTint="@color/button_background"
                     android:layout_margin="3dp"
+                    android:backgroundTint="@color/button_background"
                     android:text="4" />
 
                 <Button
                     android:id="@+id/btnB5"
                     android:layout_width="50dp"
                     android:layout_height="match_parent"
-                    android:backgroundTint="@color/button_background"
                     android:layout_margin="3dp"
+                    android:backgroundTint="@color/button_background"
                     android:text="5" />
             </TableRow>
 
@@ -151,40 +168,40 @@
                     android:id="@+id/btnC1"
                     android:layout_width="50dp"
                     android:layout_height="match_parent"
-                    android:backgroundTint="@color/button_background"
                     android:layout_margin="3dp"
+                    android:backgroundTint="@color/button_background"
                     android:text="1" />
 
                 <Button
                     android:id="@+id/btnC2"
                     android:layout_width="50dp"
                     android:layout_height="match_parent"
-                    android:backgroundTint="@color/button_background"
                     android:layout_margin="3dp"
+                    android:backgroundTint="@color/button_background"
                     android:text="2" />
 
                 <Button
                     android:id="@+id/btnC3"
                     android:layout_width="50dp"
                     android:layout_height="match_parent"
-                    android:backgroundTint="@color/button_background"
                     android:layout_margin="3dp"
+                    android:backgroundTint="@color/button_background"
                     android:text="3" />
 
                 <Button
                     android:id="@+id/btnC4"
                     android:layout_width="50dp"
                     android:layout_height="match_parent"
-                    android:backgroundTint="@color/button_background"
                     android:layout_margin="3dp"
+                    android:backgroundTint="@color/button_background"
                     android:text="4" />
 
                 <Button
                     android:id="@+id/btnC5"
                     android:layout_width="50dp"
                     android:layout_height="match_parent"
-                    android:backgroundTint="@color/button_background"
                     android:layout_margin="3dp"
+                    android:backgroundTint="@color/button_background"
                     android:text="5" />
             </TableRow>
 
@@ -196,40 +213,40 @@
                     android:id="@+id/btnD1"
                     android:layout_width="50dp"
                     android:layout_height="match_parent"
-                    android:backgroundTint="@color/button_background"
                     android:layout_margin="3dp"
+                    android:backgroundTint="@color/button_background"
                     android:text="1" />
 
                 <Button
                     android:id="@+id/btnD2"
                     android:layout_width="50dp"
                     android:layout_height="match_parent"
-                    android:backgroundTint="@color/button_background"
                     android:layout_margin="3dp"
+                    android:backgroundTint="@color/button_background"
                     android:text="2" />
 
                 <Button
                     android:id="@+id/btnD3"
                     android:layout_width="50dp"
                     android:layout_height="match_parent"
-                    android:backgroundTint="@color/button_background"
                     android:layout_margin="3dp"
+                    android:backgroundTint="@color/button_background"
                     android:text="3" />
 
                 <Button
                     android:id="@+id/btnD4"
                     android:layout_width="50dp"
                     android:layout_height="match_parent"
-                    android:backgroundTint="@color/button_background"
                     android:layout_margin="3dp"
+                    android:backgroundTint="@color/button_background"
                     android:text="4" />
 
                 <Button
                     android:id="@+id/btnD5"
                     android:layout_width="50dp"
                     android:layout_height="match_parent"
-                    android:backgroundTint="@color/button_background"
                     android:layout_margin="3dp"
+                    android:backgroundTint="@color/button_background"
                     android:text="5" />
             </TableRow>
         </TableLayout>
@@ -238,25 +255,26 @@
             android:id="@+id/textView5"
             android:layout_width="302dp"
             android:layout_height="7dp"
+            android:layout_marginStart="57dp"
+            android:layout_marginEnd="57dp"
             android:background="#FF5722"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.421"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView4"
-            app:layout_constraintVertical_bias="1.0" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/textView4"
             android:layout_width="87dp"
             android:layout_height="18dp"
-            android:layout_marginTop="64dp"
             android:gravity="center|center_vertical"
             android:text="Màn Hình"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.501"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tableLayout" />
+            app:layout_constraintBottom_toTopOf="@+id/tableLayout"
+            app:layout_constraintEnd_toEndOf="@+id/textView5"
+            app:layout_constraintHorizontal_bias="0.502"
+            app:layout_constraintStart_toStartOf="@+id/textView5"
+            app:layout_constraintTop_toBottomOf="@+id/textView5"
+            app:layout_constraintVertical_bias="0.0" />
 
         <TextView
             android:id="@+id/textView"
@@ -310,11 +328,22 @@
         android:layout_width="80dp"
         android:layout_height="41dp"
         android:gravity="center|fill_horizontal|center_vertical"
-        android:text="17:00"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/imgTenHinh"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/txtSuatChieu"
         app:layout_constraintTop_toBottomOf="@+id/txtTenPhim" />
+
+    <TextView
+        android:id="@+id/txtPhongSDG"
+        android:layout_width="15dp"
+        android:layout_height="40dp"
+        android:layout_marginEnd="68dp"
+        android:backgroundTint="#FFFFFF"
+        android:gravity="center|fill_horizontal"
+        app:layout_constraintEnd_toStartOf="@+id/imgTenHinh"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/txtPHONGCHIEU"
+        app:layout_constraintTop_toBottomOf="@+id/txtGio" />
 
     <Button
 
@@ -336,10 +365,10 @@
         android:id="@+id/imgTenHinh"
         android:layout_width="165dp"
         android:layout_height="211dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="5dp"
         android:scaleType="centerCrop"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/txtTenPhim"
         app:layout_constraintTop_toTopOf="parent"
         tools:src="@tools:sample/avatars" />
 
@@ -371,7 +400,8 @@
         android:layout_height="16dp"
         android:layout_marginStart="44dp"
         android:layout_marginTop="16dp"
-        android:background="#0BE13B"
+        android:gravity="center"
+        android:text="X"
         app:layout_constraintBottom_toTopOf="@+id/btnTiepTuc"
         app:layout_constraintStart_toEndOf="@+id/textView29"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout"

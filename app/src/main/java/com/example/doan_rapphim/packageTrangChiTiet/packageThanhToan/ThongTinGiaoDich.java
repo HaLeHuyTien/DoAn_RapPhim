@@ -37,7 +37,6 @@ public class ThongTinGiaoDich extends AppCompatActivity {
     private TextView txtTTGDtong;
     private String GheDaChon = "";
     private  String InsertVe = "http://0306181355.pixelcent.com/Cinema/VePhim.php?IDKhachHang=";
-    private String DataGhe = "http://0306181355.pixelcent.com/Cinema/Ghe.php";
     public Integer GheID[] = new Integer[ThongTinSoDoGhe.sl];
     private final LinkedList<Ghe> mWordList = new LinkedList<>();
     String chuoi = "Ds: ";
@@ -54,8 +53,6 @@ public class ThongTinGiaoDich extends AppCompatActivity {
         txtTTGD = findViewById(R.id.txtTTGDGhe);
 
         Hienthids();
-        GetGhe getGhe = new GetGhe();
-        getGhe.execute();
 
         btnThayDoi.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -128,70 +125,7 @@ public class ThongTinGiaoDich extends AppCompatActivity {
         txtSL.setText(ThongTinSoDoGhe.sl.toString());
         txtTTGDtong.setText(ThongTinSoDoGhe.tongTien.toString());
     }
-    private class GetGhe extends AsyncTask<String, String, String> {
 
-
-        @Override
-        protected String doInBackground(String... strings) {
-            String current = "";
-
-            try {
-                URL url;
-                HttpURLConnection urlConnection = null;
-
-
-                try {
-                    url = new URL(DataGhe);
-                    urlConnection = (HttpURLConnection) url.openConnection();
-
-                    InputStream in = urlConnection.getInputStream();
-                    InputStreamReader isr = new InputStreamReader(in);
-
-                    int data = isr.read();
-                    while (data != -1) {
-                        current += (char) data;
-                        data = isr.read();
-                    }
-
-                    return current;
-
-                } catch (MalformedURLException e) {
-                    e.printStackTrace();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                } finally {
-                    if (urlConnection != null) {
-                        urlConnection.disconnect();
-                    }
-                }
-
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            return current;
-        }
-        
-            @Override
-            protected void onPostExecute(String s) {
-                mWordList.clear();
-                try {
-                    JSONObject jsonObject = new JSONObject(s);
-                    JSONArray jsonArray = jsonObject.getJSONArray("DanhSach");
-                    for (int i = 0; i < jsonArray.length(); i++) {
-                        JSONObject jsonObject1 = jsonArray.getJSONObject(i);
-                        String Cot = jsonObject1.getString("SoCot");
-                        String Hang = jsonObject1.getString("SoHang");
-                        Ghe ghe = new Ghe();
-                        ghe.setCot(Cot);
-                        ghe.setHang(Hang);
-                        chuoi +=  ghe.getCot().toString() + ghe.getHang().toString() + "; ";
-                    }
-
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-    }
     private class INSERT_VE extends AsyncTask<String, String, String> {
 
         Integer idGhe;

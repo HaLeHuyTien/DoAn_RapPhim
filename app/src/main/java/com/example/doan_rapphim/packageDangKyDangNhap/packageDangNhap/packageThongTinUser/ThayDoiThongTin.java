@@ -19,12 +19,11 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.doan_rapphim.MainActivity;
+import com.example.doan_rapphim.packageDangKyDangNhap.packageDangKy.DangKyActivity;
 import com.squareup.picasso.Picasso;
 
 import com.example.doan_rapphim.R;
@@ -42,7 +41,6 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Timer;
 
 public class ThayDoiThongTin extends AppCompatActivity {
     private Spinner spnTinhTp;
@@ -51,7 +49,6 @@ public class ThayDoiThongTin extends AppCompatActivity {
     private ArrayAdapter<QuanHuyen> spinnerListArrayAdapterQuanHuyen;
     private ArrayAdapter<PhuongXa> spinnerListArrayAdapterPhuongXa;
     private String[] categories = {"Hà Nội", "TP.HCM" , "Đà Nẵng"};
-    private int IDThanhPhoTinh;
 
     private ImageView imageViewDoiAnh;
     private ImageButton imageButtonDate;
@@ -130,12 +127,14 @@ public class ThayDoiThongTin extends AppCompatActivity {
         HienThiThongTin hienThiThongTin = new HienThiThongTin();
         hienThiThongTin.execute();
 
+
         SpinnerView();
 
     }
 
+    DangKyActivity dangKyActivity = new DangKyActivity();
     //Hiển thị các spinner
-    private void SpinnerView() {
+    public void SpinnerView() {
 
         //Load Dữ liệu và spinner TpTinh
         spnTinhTp.setAdapter(new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,categories));
@@ -143,7 +142,6 @@ public class ThayDoiThongTin extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 if(position>=0 ) {
-                    IDThanhPhoTinh = position;
                     getSelectedQuanHuyen(position);
                 }
                 else {
@@ -184,7 +182,7 @@ public class ThayDoiThongTin extends AppCompatActivity {
     }
 
     //Dữ liệu của QuanHuyen
-    private ArrayList<QuanHuyen> getQuanHuyenList() {
+    public ArrayList<QuanHuyen> getQuanHuyenList() {
         ArrayList<QuanHuyen> data = new ArrayList<>();
         data.clear();
 
@@ -246,7 +244,7 @@ public class ThayDoiThongTin extends AppCompatActivity {
     }
 
     //Dữ liệu của Xã phường
-    private ArrayList<PhuongXa> getXaPhuongList() {
+    public ArrayList<PhuongXa> getXaPhuongList() {
         ArrayList<PhuongXa> data = new ArrayList<>();
         data.clear();
 
@@ -322,10 +320,10 @@ public class ThayDoiThongTin extends AppCompatActivity {
     }
 
     //Add DL vào spinner QuanHuyen
-    private void getSelectedQuanHuyen(int IDThanhPho) {
+    public void getSelectedQuanHuyen(int IDThanhPho) {
         ArrayList<QuanHuyen> quanHuyens = new ArrayList<>();
             for (QuanHuyen quanHuyen : getQuanHuyenList()) {
-                if(quanHuyen.getIDThanhPhoTinh() == IDThanhPho) {
+                if(quanHuyen.getIDThanhPhoTinh() == IDThanhPho && dangKyActivity.IDThanhPhoTinh==IDThanhPho) {
                     quanHuyens.add(quanHuyen);
 
                 }
@@ -338,11 +336,12 @@ public class ThayDoiThongTin extends AppCompatActivity {
 
 
     //Add DL vào spinner XaPhuong,,,
-    private void getSelectedXaPhuong(int IDQuanHuyen) {
+    public void getSelectedXaPhuong(int IDQuanHuyen) {
         ArrayList<PhuongXa> phuongXas = new ArrayList<>();
 
+
         for (PhuongXa phuongXa : getXaPhuongList()) {
-            if(phuongXa.getIDQuanHuyen()== IDQuanHuyen && phuongXa.getIDThanhPhoTinh() == IDThanhPhoTinh) {
+            if(phuongXa.getIDQuanHuyen()== IDQuanHuyen && phuongXa.getIDThanhPhoTinh() == dangKyActivity.IDThanhPhoTinh) {
                phuongXas.add(phuongXa);
             }
         }

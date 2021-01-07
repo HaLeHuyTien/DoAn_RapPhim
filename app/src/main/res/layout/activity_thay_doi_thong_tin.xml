@@ -109,8 +109,8 @@
                 android:layout_marginTop="40dp"
                 android:layout_marginEnd="70dp"
                 android:background="@drawable/custom_button"
-                android:text="Thoát"
                 android:onClick="Thoat"
+                android:text="Thoát"
                 android:textColor="@color/white"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/spinnerXaPhuong" />
@@ -210,11 +210,11 @@
                 android:layout_height="165dp"
                 android:layout_marginTop="24dp"
                 android:scaleType="centerCrop"
+                android:src="@drawable/admin"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.498"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView"
-                android:src="@drawable/admin"
                 app:riv_corner_radius="20dp">
 
             </com.makeramen.roundedimageview.RoundedImageView>

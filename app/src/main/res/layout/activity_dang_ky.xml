@@ -6,8 +6,6 @@
     android:layout_height="match_parent"
     android:paddingStart="40dp"
     android:paddingEnd="40dp"
-    android:background="@drawable/p5"
-
     android:orientation="vertical">
 
     <ScrollView
@@ -132,24 +130,52 @@
 
                 </RelativeLayout>
 
-                <EditText
-                    android:id="@+id/txtDiaChiDK"
+                <TextView
+                    android:id="@+id/txtDiaChi"
                     android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:text="Chọn địa chỉ "
+                    android:textSize="18sp"
+                    android:textColor="@color/black"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/reLayoutDK">
+
+                </TextView>
+
+                <Spinner
+                    android:id="@+id/spinnerThanhPhoDK"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:background="@drawable/custom_input"
+                    android:drawablePadding="12dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/txtDiaChi" />
+
+                <Spinner
+                    android:id="@+id/spinnerQuanHuyenDK"
+                    android:layout_width="0dp"
                     android:layout_height="50dp"
                     android:layout_marginTop="8dp"
                     android:background="@drawable/custom_input"
-                    android:drawableStart="@drawable/baseline_home_24"
-                    android:drawablePadding="12dp"
-                    android:ems="10"
-                    android:hint="Địa Chỉ"
-                    android:paddingStart="12dp"
-                    android:paddingEnd="12dp"
-                    android:textSize="18sp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.2"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/reLayoutDK" />
+                    app:layout_constraintEnd_toEndOf="@+id/spinnerThanhPhoDK"
+                    app:layout_constraintStart_toStartOf="@+id/spinnerThanhPhoDK"
+                    app:layout_constraintTop_toBottomOf="@+id/spinnerThanhPhoDK" />
 
+                <Spinner
+                    android:id="@+id/spinnerXaPhuongDK"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/custom_input"
+                    app:layout_constraintEnd_toEndOf="@+id/spinnerQuanHuyenDK"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="@+id/spinnerQuanHuyenDK"
+                    app:layout_constraintTop_toBottomOf="@+id/spinnerQuanHuyenDK" />
                 <EditText
                     android:id="@+id/txtMatKhauDK"
                     android:layout_width="match_parent"
@@ -167,7 +193,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.562"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/txtDiaChiDK" />
+                    app:layout_constraintTop_toBottomOf="@+id/spinnerXaPhuongDK" />
 
 
                 <Button

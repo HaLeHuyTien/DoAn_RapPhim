@@ -12,6 +12,7 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -21,6 +22,8 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.doan_rapphim.packageDangKyDangNhap.packageDangKy.DangKyActivity;
 import com.squareup.picasso.Picasso;
 
 import com.example.doan_rapphim.R;
@@ -43,7 +46,9 @@ public class ThayDoiThongTin extends AppCompatActivity {
     private Spinner spnTinhTp;
     private Spinner spnHuyenQuan;
     private Spinner spnXaPhuong;
-
+    private ArrayAdapter<QuanHuyen> spinnerListArrayAdapterQuanHuyen;
+    private ArrayAdapter<PhuongXa> spinnerListArrayAdapterPhuongXa;
+    private String[] categories = {"Hà Nội", "TP.HCM" , "Đà Nẵng"};
 
     private ImageView imageViewDoiAnh;
     private ImageButton imageButtonDate;
@@ -113,20 +118,241 @@ public class ThayDoiThongTin extends AppCompatActivity {
         });
 
 
-        chonTP();
-        chonQuan();
-        chonPhuong();
+        //chonTP();
+        //chonQuan();
+        //chonPhuong();
 
 
         //HienThiThongTinUser();
         HienThiThongTin hienThiThongTin = new HienThiThongTin();
         hienThiThongTin.execute();
 
+
+        SpinnerView();
+
+    }
+
+    DangKyActivity dangKyActivity = new DangKyActivity();
+    //Hiển thị các spinner
+    public void SpinnerView() {
+
+        //Load Dữ liệu và spinner TpTinh
+        spnTinhTp.setAdapter(new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,categories));
+        spnTinhTp.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if(position>=0 ) {
+                    getSelectedQuanHuyen(position);
+                }
+                else {
+                    Toast.makeText(ThayDoiThongTin.this,"Selected",Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+
+
+        //Load Dữ liệu và spinner QuanHuyen
+        spnHuyenQuan.setAdapter(new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,getQuanHuyenList()));
+        spnHuyenQuan.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if(position>=0 ) {
+                    getSelectedXaPhuong(position);
+                }
+                else {
+                    Toast.makeText(ThayDoiThongTin.this,"Selected",Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        // Loat dữ liệu XaPhuong
+        spnXaPhuong.setAdapter(new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,getXaPhuongList()));
+
+    }
+
+    //Dữ liệu của QuanHuyen
+    public ArrayList<QuanHuyen> getQuanHuyenList() {
+        ArrayList<QuanHuyen> data = new ArrayList<>();
+        data.clear();
+
+        //Quận của TP.HCM
+        data.add(new QuanHuyen("1",1));
+        data.add(new QuanHuyen("2", 1));
+        data.add(new QuanHuyen("3", 1));
+        data.add(new QuanHuyen("4", 1));
+        data.add(new QuanHuyen("5", 1));
+        data.add(new QuanHuyen("6", 1));
+        data.add(new QuanHuyen("7", 1));
+        data.add(new QuanHuyen("8", 1));
+        data.add(new QuanHuyen("9", 1));
+        data.add(new QuanHuyen("10", 1));
+        data.add(new QuanHuyen("11", 1));
+        data.add(new QuanHuyen("12", 1));
+        data.add(new QuanHuyen("Bình Tân", 1));
+        data.add(new QuanHuyen("Bình Thạnh", 1));
+        data.add(new QuanHuyen("Gò Vấp", 1));
+        data.add(new QuanHuyen("Phú Nhuận", 1));
+        data.add(new QuanHuyen("Tân Bình", 1));
+        data.add(new QuanHuyen("Tân Phú", 1));
+        data.add(new QuanHuyen("Thủ Đức", 1));
+        data.add(new QuanHuyen("Bình Chánh", 1));
+        data.add(new QuanHuyen("Cần Giờ", 1));
+        data.add(new QuanHuyen("Củ Chi", 1));
+        data.add(new QuanHuyen("Hóc Môn", 1));
+        data.add(new QuanHuyen("Nhà Bè", 1));
+
+        //Quận của Hà Nội
+        data.add(new QuanHuyen("Bắc Từ Liêm",0));
+        data.add(new QuanHuyen("Ba Đình",0));
+        data.add(new QuanHuyen("Cầu Giấy",0));
+        data.add(new QuanHuyen("Đống Đa",0));
+        data.add(new QuanHuyen("Hai Bà Trưng",0));
+        data.add(new QuanHuyen("Hoàn Kiếm",0));
+        data.add(new QuanHuyen("Hà Đông",0));
+        data.add(new QuanHuyen("Hoàng Mai",0));
+        data.add(new QuanHuyen("Long Biên",0));
+        data.add(new QuanHuyen("Thanh Xuân",0));
+        data.add(new QuanHuyen("Tây Hồ",0));
+        data.add(new QuanHuyen("Nam Từ Liêm",0));
+
+        //Các Huyện của Đà Nẵng
+        data.add(new QuanHuyen("Ngũ Hành Sơn",2));
+        data.add(new QuanHuyen("Hòa Vang",2));
+        data.add(new QuanHuyen("Hoàng Sa",2));
+        data.add(new QuanHuyen("Thanh Khê",2));
+        data.add(new QuanHuyen("Sơn Trà",2));
+        data.add(new QuanHuyen("Liên Chiểu",2));
+        data.add(new QuanHuyen("Hải Châu",2));
+        data.add(new QuanHuyen("Cẩm Lệ",2));
+
+
+
+        return data;
+
+
+    }
+
+    //Dữ liệu của Xã phường
+    public ArrayList<PhuongXa> getXaPhuongList() {
+        ArrayList<PhuongXa> data = new ArrayList<>();
+        data.clear();
+
+        //Phường Xã của Quận 1
+        data.add(new PhuongXa("Bến Nghé",1,0));
+        data.add(new PhuongXa("Bến Thành",1,0));
+        data.add(new PhuongXa("Cô Giang",1,0));
+        data.add(new PhuongXa("Cầu Kho",1,0));
+        data.add(new PhuongXa("Cầu Ông Lãnh",1,0));
+        data.add(new PhuongXa("Đa Kao",1,0));
+        data.add(new PhuongXa("Nguyễn Cư Trinh",1,0));
+        data.add(new PhuongXa("Nguyễn Thái Bình",1,0));
+        data.add(new PhuongXa("Phạm Ngũ Lão",1,0));
+        data.add(new PhuongXa("Tân Định",1,0));
+        data.add(new PhuongXa("An Khánh",1,0));
+
+        //Phường Xã của Quận 2
+        data.add(new PhuongXa("An Khánh",1,1));
+        data.add(new PhuongXa("An Lợi Đông",1,1));
+        data.add(new PhuongXa("An Phú",1,1));
+        data.add(new PhuongXa("Bình An",1,1));
+        data.add(new PhuongXa("Bình Khánh",1,1));
+        data.add(new PhuongXa("Bình Trưng Đông",1,1));
+        data.add(new PhuongXa("Bình Trưng Tây",1,1));
+        data.add(new PhuongXa("Cát Lái",1,1));
+        data.add(new PhuongXa("Thạch Mỹ Lợi",1,1));
+        data.add(new PhuongXa("Thảo Điền",1,1));
+        data.add(new PhuongXa("Thủ Khiêm",1,1));
+
+        //Phường Xã của Quận Bắc Từ Liêm
+        data.add(new PhuongXa("Cổ Nhuế 1",0,0));
+        data.add(new PhuongXa("Cổ Nhuế 2",0,0));
+        data.add(new PhuongXa("Đức Thắng",0,0));
+        data.add(new PhuongXa("Đông Ngạc",0,0));
+        data.add(new PhuongXa("Thụy Phương",0,0));
+        data.add(new PhuongXa("Liên Mạc",0,0));
+        data.add(new PhuongXa("Thượng Cát",0,0));
+        data.add(new PhuongXa("Tây Tựu",0,0));
+        data.add(new PhuongXa("Minh Khai",0,0));
+        data.add(new PhuongXa("Phú Diễn",0,0));
+        data.add(new PhuongXa("Xuân Đỉnh",0,0));
+        data.add(new PhuongXa("Xuân Tảo",0,0));
+
+        // Phường Xã của Quận Ba Đình
+        data.add(new PhuongXa("Cống Vị",0,1));
+        data.add(new PhuongXa("Điện Biên",0,1));
+        data.add(new PhuongXa("Đội Cấn",0,1));
+        data.add(new PhuongXa("Giảng Võ",0,1));
+        data.add(new PhuongXa("Kim Mã",0,1));
+        data.add(new PhuongXa("Liễu Giai",0,1));
+        data.add(new PhuongXa("Ngọc Hà",0,1));
+        data.add(new PhuongXa("Ngọc Khánh",0,1));
+        data.add(new PhuongXa("Nguyễn Trung Trực",0,1));
+        data.add(new PhuongXa("Phúc Xá",0,1));
+        data.add(new PhuongXa("Quán Thánh",0,1));
+        data.add(new PhuongXa("Thành Công",0,1));
+        data.add(new PhuongXa("Trúc Bạch",0,1));
+        data.add(new PhuongXa("Vĩnh Phúc",0,1));
+
+        //Phường Xã của Quận Ngũ Hành Sơn
+        data.add(new PhuongXa("Hòa Hải",2,0));
+        data.add(new PhuongXa("Hòa Quý",2,0));
+        data.add(new PhuongXa("Hòa Khuê Mỹ",2,0));
+        data.add(new PhuongXa("Mỹ An",2,0));
+
+        //Phường Xã của Quận Hòa Vang
+        data.add(new PhuongXa("Hòa Châu",2,1));
+        data.add(new PhuongXa("Hòa Tiến",2,1));
+        data.add(new PhuongXa("Hòa Phước",2,1));
+        data.add(new PhuongXa("Hòa Phong",2,1));
+
+        return data;
+    }
+
+    //Add DL vào spinner QuanHuyen
+    public void getSelectedQuanHuyen(int IDThanhPho) {
+        ArrayList<QuanHuyen> quanHuyens = new ArrayList<>();
+            for (QuanHuyen quanHuyen : getQuanHuyenList()) {
+                if(quanHuyen.getIDThanhPhoTinh() == IDThanhPho && dangKyActivity.IDThanhPhoTinh==IDThanhPho) {
+                    quanHuyens.add(quanHuyen);
+
+                }
+            }
+
+            spinnerListArrayAdapterQuanHuyen = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,quanHuyens);
+
+        spnHuyenQuan.setAdapter(spinnerListArrayAdapterQuanHuyen);
+    }
+
+
+    //Add DL vào spinner XaPhuong,,,
+    public void getSelectedXaPhuong(int IDQuanHuyen) {
+        ArrayList<PhuongXa> phuongXas = new ArrayList<>();
+
+
+        for (PhuongXa phuongXa : getXaPhuongList()) {
+            if(phuongXa.getIDQuanHuyen()== IDQuanHuyen && phuongXa.getIDThanhPhoTinh() == dangKyActivity.IDThanhPhoTinh) {
+               phuongXas.add(phuongXa);
+            }
+        }
+        spinnerListArrayAdapterPhuongXa = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,phuongXas);
+
+        spnXaPhuong.setAdapter(spinnerListArrayAdapterPhuongXa);
     }
 
 
     //Chọn ngày sinh
-    public void ChonNgaySinh(){
+    private void ChonNgaySinh(){
         DatePickerDialog.OnDateSetListener dateSetListener = new DatePickerDialog.OnDateSetListener() {
 
             @Override
@@ -160,7 +386,7 @@ public class ThayDoiThongTin extends AppCompatActivity {
         spnTinhTp.setAdapter(adapter);
     }
 
-    public void chonQuan() {
+    /*public void chonQuan() {
         List<String> list = new ArrayList<>();
         list.add("");
         list.add("Quận 1");
@@ -171,9 +397,9 @@ public class ThayDoiThongTin extends AppCompatActivity {
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, list);
         adapter.setDropDownViewResource(android.R.layout.simple_list_item_single_choice);
         spnHuyenQuan.setAdapter(adapter);
-    }
+    }*/
 
-    public void chonPhuong() {
+    /*public void chonPhuong() {
         List<String> list = new ArrayList<>();
         list.add("");
         list.add("TP.Hồ Chí Minh");
@@ -183,7 +409,7 @@ public class ThayDoiThongTin extends AppCompatActivity {
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, list);
         adapter.setDropDownViewResource(android.R.layout.simple_list_item_single_choice);
         spnXaPhuong.setAdapter(adapter);
-    }
+    }*/
 
     //Nút thoát
     public void Thoat(View view) {

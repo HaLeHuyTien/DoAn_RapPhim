@@ -9,11 +9,11 @@
 
     <TextView
         android:id="@+id/txtHVTGD"
-        android:layout_width="190dp"
-        android:layout_height="42dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginTop="100dp"
         android:gravity="center|center_vertical"
-        android:text="Họ Và Tên"
+        android:text="Tổng số tiền mua vé xem phim"
         android:textColor="#F44336"
         android:textSize="24sp"
         android:textStyle="bold"
@@ -23,37 +23,14 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView7"
-        android:layout_width="112dp"
-        android:layout_height="49dp"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="36dp"
-        android:text="Danh sách các đơn đặt lịch"
-        android:textColor="@color/cardview_dark_background"
-        android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView8" />
-
-    <ListView
-        android:id="@+id/listDonDat"
-        android:layout_width="0dp"
-        android:layout_height="164dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="36dp"
-        android:layout_marginEnd="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/textView7"
-        app:layout_constraintTop_toBottomOf="@+id/txtTTThang" />
-
-    <TextView
         android:id="@+id/txtTTNam"
         android:layout_width="0dp"
         android:layout_height="40sp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="64dp"
+        android:layout_marginTop="60dp"
         android:layout_marginEnd="16dp"
         android:gravity="center_vertical"
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/textView2"
@@ -61,13 +38,14 @@
 
     <TextView
         android:id="@+id/textView8"
-        android:layout_width="110dp"
-        android:layout_height="41dp"
-        android:layout_marginStart="28dp"
+        android:layout_width="115dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="36dp"
         android:text="Tổng tiền mua vé theo tháng"
         android:textColor="@color/cardview_dark_background"
         android:textSize="16sp"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
@@ -76,9 +54,10 @@
         android:layout_width="0dp"
         android:layout_height="40sp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="48dp"
         android:layout_marginEnd="16dp"
         android:gravity="center_vertical"
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/spinnerThang"
         app:layout_constraintTop_toBottomOf="@+id/txtTTNam" />
@@ -88,7 +67,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="48dp"
         android:layout_marginEnd="8dp"
         app:layout_constraintEnd_toStartOf="@+id/txtTTThang"
         app:layout_constraintStart_toEndOf="@+id/textView8"
@@ -96,14 +75,31 @@
 
     <TextView
         android:id="@+id/textView2"
-        android:layout_width="111dp"
-        android:layout_height="45dp"
-        android:layout_marginStart="28dp"
+        android:layout_width="115dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="63dp"
-        android:text="Tổng tiền mua vé theo năm"
+        android:text="Tổng tiền mua vé trong năm"
         android:textColor="@color/cardview_dark_background"
         android:textSize="16sp"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtHVTGD" />
+
+    <Button
+        android:id="@+id/btnLichSuDatVe"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/custom_button"
+        android:text="Lịch sử đặt vé"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView8"
+        tools:ignore="OnClick" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

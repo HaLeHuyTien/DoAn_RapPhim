@@ -1,5 +1,6 @@
 package com.example.doan_rapphim.packageDangKyDangNhap.packageDangNhap.packageThongTinUser;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -8,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -33,6 +35,7 @@ public class GiaoDichFragment extends Fragment {
     private String mParam1;
     private String mParam2;
     private Spinner spnThang;
+    private Button btnLichSuDV;
 
     public GiaoDichFragment() {
         // Required empty public constructor
@@ -72,26 +75,25 @@ public class GiaoDichFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_giao_dich, container, false);
         spnThang = view.findViewById(R.id.spinnerThang);
         txtHVT = view.findViewById(R.id.txtHVTGD);
+        btnLichSuDV = view.findViewById(R.id.btnLichSuDatVe);
+
+        btnLichSuDV.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ChuyenTrangDSLSDatVe();
+            }
+        });
+
         chonThang();
-        HienThiGiaoDich();
         return view;
 
 
     }
 
-    private void HienThiGiaoDich() {
-        try {
-
-            //for(int i = 0; i < soluong ; i ++) {
-            ThongTinUser thongTinUser = ReadThongTinUserJson.readThongTinUserFile(getActivity(), IDUser.idUser);
-            //Truyen Id if(thongTinUser.getID() == )
-            txtHVT.setText(thongTinUser.getHoVaTen());
-            //}
-        }catch (Exception e){
-            txtHVT.setText("Error");
-        }
+    public void ChuyenTrangDSLSDatVe() {
+        Intent intent = new Intent(getActivity(),DSLichSuDatVeActivity.class);
+        startActivity(intent);
     }
-
     public void chonThang() {
         List<String> list = new ArrayList<>();
         for(int i = 0;i<13;i++) {

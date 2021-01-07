@@ -5,9 +5,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Base64;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -19,6 +21,11 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.doan_rapphim.R;
 import com.example.doan_rapphim.packageDangKyDangNhap.packageDangNhap.IDUser;
 import com.example.doan_rapphim.packageDangKyDangNhap.packageDangNhap.packageThongTinUser.PhuongXa;
@@ -31,6 +38,7 @@ import com.example.doan_rapphim.packageTrangChiTiet.packageThanhToan.ThongTinSoD
 
 import org.json.JSONException;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -42,6 +50,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 public class DangKyActivity extends AppCompatActivity {
     private Spinner spnTinhTp;
@@ -70,6 +80,7 @@ public class DangKyActivity extends AppCompatActivity {
     private int lastSelectedDayOfMonth;
     private Button btnTaiHinhDK;
     private ImageView imgDK;
+    private String HinhBase64;
     public final static int PICK_IMAGE_REQUEST = 1;
     //API
     private  String InsertKhachHang ;
@@ -116,6 +127,7 @@ public class DangKyActivity extends AppCompatActivity {
         btnDangKy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 DangKy(v);
 
 
@@ -407,8 +419,10 @@ public class DangKyActivity extends AppCompatActivity {
                 }
                 if(a == 0) {
                     Toast.makeText(this, "Thành công", Toast.LENGTH_SHORT).show();
-                    //INSERT_KHACHHANG insert_khachhang=new INSERT_KHACHHANG();
-                    //insert_khachhang.execute();
+                    INSERT_KHACHHANG insert_khachhang=new INSERT_KHACHHANG();
+                    insert_khachhang.execute();
+                    UploadHinh(view);
+
                     finish();
                 }
             } catch (IOException e) {
@@ -448,6 +462,14 @@ public class DangKyActivity extends AppCompatActivity {
         if(requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null){
             Uri uri = data.getData();
             imgDK.setImageURI(uri);
+
+            ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+            imgDK.setDrawingCacheEnabled(true);
+            Bitmap bitmap = imgDK.getDrawingCache();
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream);
+            byte[] imageBytes = byteArrayOutputStream.toByteArray();
+            String imageString = Base64.encodeToString(imageBytes, Base64.DEFAULT);
+            HinhBase64 = imageString;
         }
     }
     private class INSERT_KHACHHANG extends AsyncTask<String, String, String> {
@@ -461,7 +483,7 @@ public class DangKyActivity extends AppCompatActivity {
 
 
                 try {
-                    //InsertKhachHang = "http://0306181355.pixelcent.com/rapphim/public/api/themkhachhang/"+edtHoTenDK.getText().toString()+"/"+edtEmailDK.getText().toString()+"/"+edtSDTDangKy.getText().toString()+"/"+edtNgaySinh.getText().toString()+"/"+spnXaPhuong.getSelectedItem().toString()+","+spnHuyenQuan.getSelectedItem().toString()+","+spnTinhTp.getSelectedItem().toString()+"/"+edtMatKhauDK.getText().toString()+"/"+edtSDTDangKy.getText().toString()+".jpg";
+                    InsertKhachHang = "http://0306181355.pixelcent.com/rapphim/public/api/themkhachhang/"+edtHoTenDK.getText().toString()+"/"+edtEmailDK.getText().toString()+"/"+edtSDTDangKy.getText().toString()+"/"+edtNgaySinh.getText().toString()+"/"+spnXaPhuong.getSelectedItem().toString()+","+spnHuyenQuan.getSelectedItem().toString()+","+spnTinhTp.getSelectedItem().toString()+"/"+edtMatKhauDK.getText().toString()+"/"+edtSDTDangKy.getText().toString()+".png";
                      url = new URL(InsertKhachHang);
                     urlConnection = (HttpURLConnection) url.openConnection();
 
@@ -498,6 +520,25 @@ public class DangKyActivity extends AppCompatActivity {
         protected void onPostExecute(String s) {
 
         }
+    }
+
+    public void UploadHinh(View view){
+        RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
+        StringRequest stringRequest = new StringRequest(Request.Method.POST,
+                "http://0306181355.pixelcent.com/rapphim/public/api/addhinh",
+                response -> {},error -> {}){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String,String> params = new HashMap<>();
+                params.put("hinh",HinhBase64);
+                params.put("TenHinh",edtSDTDangKy.getText().toString());
+                return params;
+            }
+        };
+
+
+        //stringRequest.setRetryPolicy(new DefaultRetryPolicy(MY_SOCKET_TIMEOUT_MS, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        requestQueue.add(stringRequest);
     }
 
 

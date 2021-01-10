@@ -91,7 +91,7 @@ public class DSPhimSapChieu extends Fragment {
     private String jsonURLLoaiPhim = "http://0306181355.pixelcent.com/Cinema/LoaiPhim.php";
     private String[] ListLoaiPhim;
 
-    private static String jsonURL = "http://0306181355.pixelcent.com/Cinema/Phim.php";
+    private static String jsonURL = "http://0306181355.pixelcent.com/Cinema/PhimSapChieu.php";
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -238,11 +238,11 @@ public class DSPhimSapChieu extends Fragment {
 
 
                         try {
-                            SimpleDateFormat sdf = new SimpleDateFormat("d-MM-yyyy");
-                            Date strDate = sdf.parse(Phim.getNgayKhoiChieu());
-                            String currentTime = sdf.format(Calendar.getInstance().getTime());
-                            Date currentDay = sdf.parse(currentTime);
-                            if (strDate.after(currentDay))
+//                            SimpleDateFormat sdf = new SimpleDateFormat("d-MM-yyyy");
+//                            Date strDate = sdf.parse(Phim.getNgayKhoiChieu());
+//                            String currentTime = sdf.format(Calendar.getInstance().getTime());
+//                            Date currentDay = sdf.parse(currentTime);
+//                            if (strDate.after(currentDay))
                                 if(spinnerSC.getSelectedItem().toString().equals("Tất cả") || Phim.getTheLoai().equals(spinnerSC.getSelectedItem().toString())) {
                                     mWordList.addLast(Phim);
                                 }

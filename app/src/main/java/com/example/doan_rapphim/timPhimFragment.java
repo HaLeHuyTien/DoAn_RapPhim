@@ -46,7 +46,9 @@ import java.util.LinkedList;
  */
 public class timPhimFragment extends Fragment implements AdapterView.OnItemSelectedListener {
 
-    private  String jsonURL= "http://0306181355.pixelcent.com/Cinema/Phim.php";
+
+    private  String jsonURLDangChieu= "http://0306181355.pixelcent.com/Cinema/PhimDangChieu.php";
+    private  String jsonURLSapChieu= "http://0306181355.pixelcent.com/Cinema/PhimSapChieu.php";
     private final LinkedList<ThongTinJson> mWordList=new LinkedList<>();
     private RecyclerView mRecyclerview;
     private AdapterListPhimItem mAdapter;
@@ -174,7 +176,10 @@ public class timPhimFragment extends Fragment implements AdapterView.OnItemSelec
 
 
                 try {
-                    url = new URL(jsonURL);
+                    if(Trangthai.equals("dangchieu"))
+                    url = new URL(jsonURLDangChieu);
+                    else
+                        url = new URL(jsonURLSapChieu);
                     urlConnection = (HttpURLConnection) url.openConnection();
 
                     InputStream in = urlConnection.getInputStream();
@@ -235,23 +240,18 @@ public class timPhimFragment extends Fragment implements AdapterView.OnItemSelec
 
 
                     try {
-                        SimpleDateFormat sdf = new SimpleDateFormat("d-MM-yyyy");
-                        Date strDate = sdf.parse(Phim.getNgayKhoiChieu());
-                        String currentTime = sdf.format(Calendar.getInstance().getTime());
+//                        SimpleDateFormat sdf = new SimpleDateFormat("d-MM-yyyy");
+//                        Date strDate = sdf.parse(Phim.getNgayKhoiChieu());
+//                        String currentTime = sdf.format(Calendar.getInstance().getTime());
+//
+//
+//                        Date currentDay = sdf.parse(currentTime);
 
-                        int b = 0;
-                        Date currentDay = sdf.parse(currentTime);
-                        if(Trangthai.equals("dangchieu")) {
-                            if (strDate.before(currentDay) || currentTime.equals(Phim.getNgayKhoiChieu()))
-
+                            //if (strDate.before(currentDay) || currentTime.equals(Phim.getNgayKhoiChieu()))
+                            //if (strDate.after(currentDay))
                                 if(txtTim.getText().toString().replace(" ","").equals("") || Phim.getTenPhim().toLowerCase().indexOf(txtTim.getText().toString().toLowerCase()) > -1)
                                 mWordList.addLast(Phim);
-                        }
-                        else{
-                            if (strDate.after(currentDay))
-                                if(txtTim.getText().toString().replace(" ","").equals("") || Phim.getTenPhim().toLowerCase().indexOf(txtTim.getText().toString().toLowerCase()) > -1)
-                                mWordList.addLast(Phim);
-                        }
+
                     }catch (Exception e)
                     {
                         e.printStackTrace();

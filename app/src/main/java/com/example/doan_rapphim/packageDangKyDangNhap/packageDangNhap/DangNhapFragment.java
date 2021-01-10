@@ -1,6 +1,8 @@
  package com.example.doan_rapphim.packageDangKyDangNhap.packageDangNhap;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
@@ -49,7 +51,8 @@ private String Email,MatKhau;
 private TextView txtQuenMatKhau;
 private Integer x = 0;
 private MainActivity mainActivity;
-private String URLDangNhap = "http://0306181355.pixelcent.com/Cinema/KiemTraDangNhap.php";
+private String URLDangNhap;
+private String value = "http://0306181355.pixelcent.com/Cinema/KiemTraDangNhap.php?Email=";
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
 
@@ -149,6 +152,7 @@ private String URLDangNhap = "http://0306181355.pixelcent.com/Cinema/KiemTraDang
 
 
                 try {
+                    URLDangNhap = value + edtEmail.getText().toString() +"&MatKhau=" + edtMatKhau.getText().toString();
                     url = new URL(URLDangNhap);
                     urlConnection = (HttpURLConnection) url.openConnection();
 
@@ -190,19 +194,39 @@ private String URLDangNhap = "http://0306181355.pixelcent.com/Cinema/KiemTraDang
                 for(int i =0;i<jsonArray.length();i++)
                 {
                 JSONObject jsonObject1 = jsonArray.getJSONObject(i);
-                Integer ID = jsonObject1.getInt("ID");
-                String MatKhau = jsonObject1.getString("MatKhau");
-                String Email = jsonObject1.getString("Email");
-                String Hinh = jsonObject1.getString("Hinh");
+                Integer KiemTra = jsonObject1.getInt("KiemTra");
 
-                if(edtMatKhau.getText().toString().equals(MatKhau) && edtEmail.getText().toString().equals(Email)) {
+                if(KiemTra == 1) {
                     a = 1;
+                    Integer ID = jsonObject1.getInt("id");
+                    String Hinh = jsonObject1.getString("Hinh");
                     replaceFragmentContent(new TabTaiKhoan_Fragment(),ID,Hinh);
                     break;
                 }
                 }
-                if(a == 0)
-                    Toast.makeText(getContext(),"Đăng nhập thất bại !",Toast.LENGTH_SHORT).show();
+                if(a == 0) {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+
+                    // Set a title for alert dialog
+                    builder.setTitle("Thông Báo");
+
+                    // Ask the final question
+                    builder.setMessage("Tài khoản hoặc mật khẩu không trùng khớp !!!");
+
+                    // Set the alert dialog yes button click listener
+                    builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            // Do something when user clicked the Yes button
+                            // Set the TextView visibility GONE
+                        }
+                    });
+
+                    // Set the alert dialog no button click listener
+                    AlertDialog dialog = builder.create();
+                    // Display the alert dialog on interface
+                    dialog.show();
+                }
             } catch (JSONException e) {
                 e.printStackTrace();
             }

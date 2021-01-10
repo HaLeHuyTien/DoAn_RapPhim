@@ -2,6 +2,8 @@ package com.example.doan_rapphim.packageTrangChiTiet.packageThanhToan;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -29,7 +31,10 @@ import java.util.Calendar;
 import java.util.LinkedList;
 
 public class ThongTinGiaoDich extends AppCompatActivity {
-
+    private  TextView txtTenPhim;
+    private  TextView txtPhong;
+    private  TextView txtSuatChieu;
+    private  TextView txtTenRap;
     private Button btnThayDoi;
     private Button btnXacNhan;
     private TextView txtTTGD;
@@ -51,6 +56,10 @@ public class ThongTinGiaoDich extends AppCompatActivity {
         txtSL = findViewById(R.id.txtTTGDSoLuong);
         txtTTGDtong = findViewById((R.id.txtTTGDTongTien));
         txtTTGD = findViewById(R.id.txtTTGDGhe);
+        txtPhong = findViewById(R.id.txtTTGDPhong);
+        txtSuatChieu = findViewById(R.id.txtTTGDSuatChieu);
+        txtTenPhim = findViewById(R.id.txtTTGDTenPhim);
+        txtTenRap = findViewById(R.id.txtTTGDTenrap);
 
         Hienthids();
 
@@ -70,6 +79,30 @@ public class ThongTinGiaoDich extends AppCompatActivity {
                                                        INSERT_VE insert_ve = new INSERT_VE(GheID[i]);
                                                    insert_ve.execute();
                                                }
+                                               AlertDialog.Builder builder = new AlertDialog.Builder(ThongTinGiaoDich.this);
+                                               // Set a title for alert dialog
+                                               builder.setTitle("Thông Báo");
+
+                                               // Ask the final question
+                                               builder.setMessage("ĐẶT GHẾ THÀNH CÔNG !!!");
+
+                                               // Set the alert dialog yes button click listener
+                                               builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                                   @Override
+                                                   public void onClick(DialogInterface dialog, int which) {
+                                                       // Do something when user clicked the Yes button
+                                                       // Set the TextView visibility GONE
+                                                       Intent intent = new Intent(builder.getContext(), com.example.doan_rapphim.MainActivity.class);
+                                                       startActivity(intent);
+                                                   }
+                                               });
+                                               // Set the alert dialog no button click listener
+
+
+                                               AlertDialog dialog = builder.create();
+                                               // Display the alert dialog on interface
+                                               dialog.show();
+
                                            }
                                        }
         );
@@ -124,6 +157,9 @@ public class ThongTinGiaoDich extends AppCompatActivity {
     private void Hienthids(){
         txtSL.setText(ThongTinSoDoGhe.sl.toString());
         txtTTGDtong.setText(ThongTinSoDoGhe.tongTien.toString());
+        txtPhong.setText(ThongTinSoDoGhe.TenPhong);
+        txtTenPhim.setText(ThongTinSoDoGhe.tenPhim);
+        txtSuatChieu.setText(ThongTinSoDoGhe.suatChieu);
     }
 
     private class INSERT_VE extends AsyncTask<String, String, String> {

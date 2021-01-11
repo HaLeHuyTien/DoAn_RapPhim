@@ -144,9 +144,6 @@ public class ThayDoiThongTin extends AppCompatActivity {
                 if(position>=0 ) {
                     getSelectedQuanHuyen(position);
                 }
-                else {
-                    Toast.makeText(ThayDoiThongTin.this,"Selected",Toast.LENGTH_SHORT).show();
-                }
             }
 
             @Override
@@ -164,9 +161,6 @@ public class ThayDoiThongTin extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 if(position>=0 ) {
                     getSelectedXaPhuong(position);
-                }
-                else {
-                    Toast.makeText(ThayDoiThongTin.this,"Selected",Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -323,7 +317,7 @@ public class ThayDoiThongTin extends AppCompatActivity {
     public void getSelectedQuanHuyen(int IDThanhPho) {
         ArrayList<QuanHuyen> quanHuyens = new ArrayList<>();
             for (QuanHuyen quanHuyen : getQuanHuyenList()) {
-                if(quanHuyen.getIDThanhPhoTinh() == IDThanhPho && dangKyActivity.IDThanhPhoTinh==IDThanhPho) {
+                if(quanHuyen.getIDThanhPhoTinh() == IDThanhPho) {
                     quanHuyens.add(quanHuyen);
 
                 }
@@ -341,7 +335,7 @@ public class ThayDoiThongTin extends AppCompatActivity {
 
 
         for (PhuongXa phuongXa : getXaPhuongList()) {
-            if(phuongXa.getIDQuanHuyen()== IDQuanHuyen && phuongXa.getIDThanhPhoTinh() == dangKyActivity.IDThanhPhoTinh) {
+            if(phuongXa.getIDQuanHuyen()== IDQuanHuyen) {
                phuongXas.add(phuongXa);
             }
         }

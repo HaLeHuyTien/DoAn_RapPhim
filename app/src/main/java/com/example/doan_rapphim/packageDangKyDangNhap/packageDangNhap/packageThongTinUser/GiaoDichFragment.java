@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
@@ -54,8 +55,12 @@ public class GiaoDichFragment extends Fragment {
     private TextView txtTTNam;
     private TextView txtTTThang;
 
-    private String URLTongTien;
-    private String URLValue = "http://0306181355.pixelcent.com/Cinema/TongTienTheoNam.php?IDKhachHang=";
+    private String URLTongTienTN;
+    private String URLValueNam = "http://0306181355.pixelcent.com/Cinema/TongTienTheoNam.php?IDKhachHang=";
+    private String URLTongTienTT;
+    private String URLValueThang = "http://0306181355.pixelcent.com/Cinema/TongTienTheoThang.php?IDKhachHang=";
+    private Integer Thang = 0;
+
     public GiaoDichFragment() {
         // Required empty public constructor
     }
@@ -107,22 +112,41 @@ public class GiaoDichFragment extends Fragment {
         });
 
         chonThang();
+        spnThang.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                Thang = position+1;
+                txtTTThang.setText("0 VND");
+                GetTongTienTheoThang getTongTienTheoThang = new GetTongTienTheoThang();
+                getTongTienTheoThang.execute();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
 
         GetTongTienTheoNam getTongTienTheoNam = new GetTongTienTheoNam();
         getTongTienTheoNam.execute();
+
+        GetTongTienTheoThang getTongTienTheoThang = new GetTongTienTheoThang();
+        getTongTienTheoThang.execute();
         return view;
 
 
     }
 
+    //Chuyen trang Xem Lich su dat ve
     public void ChuyenTrangDSLSDatVe() {
         Intent intent = new Intent(getActivity(),DSLichSuDatVeActivity.class);
         startActivity(intent);
     }
 
+    //List thangs
     public void chonThang() {
         List<String> list = new ArrayList<>();
-        for(int i = 0;i<13;i++) {
+        for(int i = 1;i<13;i++) {
             list.add("T "+ i);
         }
         ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_item, list);
@@ -130,6 +154,7 @@ public class GiaoDichFragment extends Fragment {
         spnThang.setAdapter(adapter);
     }
 
+    //Lay danh sach Tong Tien theo nam
     private class GetTongTienTheoNam extends AsyncTask<String, String, String> {
 
 
@@ -143,8 +168,8 @@ public class GiaoDichFragment extends Fragment {
 
 
                 try {
-                    URLTongTien = URLValue + IDUser.idUser;
-                    url = new URL(URLTongTien);
+                    URLTongTienTN = URLValueNam + IDUser.idUser;
+                    url = new URL(URLTongTienTN);
                     urlConnection = (HttpURLConnection) url.openConnection();
 
                     InputStream in = urlConnection.getInputStream();
@@ -185,6 +210,78 @@ public class GiaoDichFragment extends Fragment {
                     String TongTien = jsonObject1.getString("TongTien");
 
                     txtTTNam.setText(TongTien + " VND");
+
+                }
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+
+
+    //Lay danh sach Tong Tien theo Thang
+    private class GetTongTienTheoThang extends AsyncTask<String, String, String> {
+
+
+        @Override
+        protected String doInBackground(String... strings) {
+            String current = "";
+
+            try {
+                URL url;
+                HttpURLConnection urlConnection = null;
+
+
+                try {
+                    URLTongTienTT = URLValueThang + IDUser.idUser +"&Thang=" + Thang;
+                    url = new URL(URLTongTienTT);
+                    urlConnection = (HttpURLConnection) url.openConnection();
+
+                    InputStream in = urlConnection.getInputStream();
+                    InputStreamReader isr = new InputStreamReader(in);
+
+                    int data = isr.read();
+                    while (data != -1) {
+                        current += (char) data;
+                        data = isr.read();
+                    }
+
+                    return current;
+
+                } catch (MalformedURLException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } finally {
+                    if (urlConnection != null) {
+                        urlConnection.disconnect();
+                    }
+                }
+
+            }catch (Exception e) {
+                e.printStackTrace();
+            }
+            return current;
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            try {
+                JSONObject jsonObject = new JSONObject(s);
+                JSONArray jsonArray = jsonObject.getJSONArray("DanhSach");
+
+                for(int i = 0; i<jsonArray.length(); i++) {
+                    JSONObject jsonObject1 = jsonArray.getJSONObject(i);
+                    String TongTien = jsonObject1.getString("TongTien");
+
+                    Integer tongTien = Integer.parseInt(TongTien);
+                    if(tongTien>0){
+                    txtTTThang.setText(TongTien + " VND");}
+                    else {
+                        txtTTThang.setText("0 VND");
+                    }
 
                 }
 

@@ -129,11 +129,7 @@ public class GiaoDichFragment extends Fragment {
 
         GetTongTienTheoNam getTongTienTheoNam = new GetTongTienTheoNam();
         getTongTienTheoNam.execute();
-
-        GetTongTienTheoThang getTongTienTheoThang = new GetTongTienTheoThang();
-        getTongTienTheoThang.execute();
         return view;
-
 
     }
 

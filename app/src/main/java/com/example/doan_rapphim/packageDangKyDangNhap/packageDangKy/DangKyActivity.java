@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -35,6 +36,7 @@ import com.example.doan_rapphim.packageDangKyDangNhap.packageDangNhap.packageTho
 import com.example.doan_rapphim.packageDangKyDangNhap.packageDangNhap.packageThongTinUser.ThongTinUser;
 import com.example.doan_rapphim.packageTrangChiTiet.IDPhim;
 import com.example.doan_rapphim.packageTrangChiTiet.packageThanhToan.ThongTinSoDoGhe;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONException;
 
@@ -59,7 +61,7 @@ public class DangKyActivity extends AppCompatActivity {
     private Spinner spnXaPhuong;
     private ArrayAdapter<QuanHuyen> spinnerListArrayAdapterQuanHuyen;
     private ArrayAdapter<PhuongXa> spinnerListArrayAdapterPhuongXa;
-    private String[] categories = {"Hà Nội", "TP.HCM" , "Đà Nẵng"};
+    private String[] categories = {"TP Hà Nội", "TP Hồ Chí Minh" , "TP Đà Nẵng"};
     public int IDThanhPhoTinh;
     public int IDThanhPhoQuanHuyen;
     public int IDThanhPhoPhuongXa;
@@ -81,6 +83,7 @@ public class DangKyActivity extends AppCompatActivity {
     private Button btnTaiHinhDK;
     private ImageView imgDK;
     private String HinhBase64;
+
     public final static int PICK_IMAGE_REQUEST = 1;
     //API
     private  String InsertKhachHang ;
@@ -100,7 +103,18 @@ public class DangKyActivity extends AppCompatActivity {
         edtMatKhauDK=findViewById(R.id.txtMatKhauDK);
         edtNhapLaiMatKhauDK=findViewById(R.id.txtNhapLaiMatKhauDK);
         btnTaiHinhDK=findViewById(R.id.btnTaiHinh);
+
         imgDK=findViewById(R.id.imgDK);
+        imgDK.setImageResource(R.drawable.admin);
+
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.admin);
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream);
+        byte[] imageBytes = byteArrayOutputStream.toByteArray();
+        String imageString = Base64.encodeToString(imageBytes, Base64.DEFAULT);
+        HinhBase64 = imageString;
+
+
         btnTaiHinhDK.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -135,6 +149,8 @@ public class DangKyActivity extends AppCompatActivity {
         });
     }
 
+
+
     public void ChonNgaySinh(){
         DatePickerDialog.OnDateSetListener dateSetListener = new DatePickerDialog.OnDateSetListener() {
 
@@ -168,9 +184,6 @@ public class DangKyActivity extends AppCompatActivity {
                     IDThanhPhoTinh = position;
                     getSelectedQuanHuyen(position);
                 }
-                else {
-                    Toast.makeText(DangKyActivity.this,"Selected",Toast.LENGTH_SHORT).show();
-                }
             }
 
             @Override
@@ -188,9 +201,6 @@ public class DangKyActivity extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 if(position>=0 ) {
                     getSelectedXaPhuong(position);
-                }
-                else {
-                    Toast.makeText(DangKyActivity.this,"Selected",Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -211,56 +221,54 @@ public class DangKyActivity extends AppCompatActivity {
         data.clear();
 
         //Quận của TP.HCM
-        data.add(new QuanHuyen("1",1));
-        data.add(new QuanHuyen("2", 1));
-        data.add(new QuanHuyen("3", 1));
-        data.add(new QuanHuyen("4", 1));
-        data.add(new QuanHuyen("5", 1));
-        data.add(new QuanHuyen("6", 1));
-        data.add(new QuanHuyen("7", 1));
-        data.add(new QuanHuyen("8", 1));
-        data.add(new QuanHuyen("9", 1));
-        data.add(new QuanHuyen("10", 1));
-        data.add(new QuanHuyen("11", 1));
-        data.add(new QuanHuyen("12", 1));
-        data.add(new QuanHuyen("Bình Tân", 1));
-        data.add(new QuanHuyen("Bình Thạnh", 1));
-        data.add(new QuanHuyen("Gò Vấp", 1));
-        data.add(new QuanHuyen("Phú Nhuận", 1));
-        data.add(new QuanHuyen("Tân Bình", 1));
-        data.add(new QuanHuyen("Tân Phú", 1));
-        data.add(new QuanHuyen("Thủ Đức", 1));
-        data.add(new QuanHuyen("Bình Chánh", 1));
-        data.add(new QuanHuyen("Cần Giờ", 1));
-        data.add(new QuanHuyen("Củ Chi", 1));
-        data.add(new QuanHuyen("Hóc Môn", 1));
-        data.add(new QuanHuyen("Nhà Bè", 1));
+        data.add(new QuanHuyen("Quận 1",1));
+        data.add(new QuanHuyen("Quận 2", 1));
+        data.add(new QuanHuyen("Quận 3", 1));
+        data.add(new QuanHuyen("Quận 4", 1));
+        data.add(new QuanHuyen("Quận 5", 1));
+        data.add(new QuanHuyen("Quận 6", 1));
+        data.add(new QuanHuyen("Quận 7", 1));
+        data.add(new QuanHuyen("Quận 8", 1));
+        data.add(new QuanHuyen("Quận 9", 1));
+        data.add(new QuanHuyen("Quận 10", 1));
+        data.add(new QuanHuyen("Quận 11", 1));
+        data.add(new QuanHuyen("Quận 12", 1));
+        data.add(new QuanHuyen("Quận Bình Tân", 1));
+        data.add(new QuanHuyen("Quận Bình Thạnh", 1));
+        data.add(new QuanHuyen("Quận Gò Vấp", 1));
+        data.add(new QuanHuyen("Quận Phú Nhuận", 1));
+        data.add(new QuanHuyen("Quận ân Bình", 1));
+        data.add(new QuanHuyen("Quận Tân Phú", 1));
+        data.add(new QuanHuyen("Quận Thủ Đức", 1));
+        data.add(new QuanHuyen("Quận Bình Chánh", 1));
+        data.add(new QuanHuyen("Quận Cần Giờ", 1));
+        data.add(new QuanHuyen("Quận Củ Chi", 1));
+        data.add(new QuanHuyen("Quận Hóc Môn", 1));
+        data.add(new QuanHuyen("Quận Nhà Bè", 1));
 
         //Quận của Hà Nội
-        data.add(new QuanHuyen("Bắc Từ Liêm",0));
-        data.add(new QuanHuyen("Ba Đình",0));
-        data.add(new QuanHuyen("Cầu Giấy",0));
-        data.add(new QuanHuyen("Đống Đa",0));
-        data.add(new QuanHuyen("Hai Bà Trưng",0));
-        data.add(new QuanHuyen("Hoàn Kiếm",0));
-        data.add(new QuanHuyen("Hà Đông",0));
-        data.add(new QuanHuyen("Hoàng Mai",0));
-        data.add(new QuanHuyen("Long Biên",0));
-        data.add(new QuanHuyen("Thanh Xuân",0));
-        data.add(new QuanHuyen("Tây Hồ",0));
-        data.add(new QuanHuyen("Nam Từ Liêm",0));
+        data.add(new QuanHuyen("Quận Bắc Từ Liêm",0));
+        data.add(new QuanHuyen("Quận Ba Đình",0));
+        data.add(new QuanHuyen("Quận Cầu Giấy",0));
+        data.add(new QuanHuyen("Quận Đống Đa",0));
+        data.add(new QuanHuyen("Quận Hai Bà Trưng",0));
+        data.add(new QuanHuyen("Quận Hoàn Kiếm",0));
+        data.add(new QuanHuyen("Quận Hà Đông",0));
+        data.add(new QuanHuyen("Quận Hoàng Mai",0));
+        data.add(new QuanHuyen("Quận Long Biên",0));
+        data.add(new QuanHuyen("Quận Thanh Xuân",0));
+        data.add(new QuanHuyen("Quận Tây Hồ",0));
+        data.add(new QuanHuyen("Quận Nam Từ Liêm",0));
 
         //Các Huyện của Đà Nẵng
-        data.add(new QuanHuyen("Ngũ Hành Sơn",2));
-        data.add(new QuanHuyen("Hòa Vang",2));
-        data.add(new QuanHuyen("Hoàng Sa",2));
-        data.add(new QuanHuyen("Thanh Khê",2));
-        data.add(new QuanHuyen("Sơn Trà",2));
-        data.add(new QuanHuyen("Liên Chiểu",2));
-        data.add(new QuanHuyen("Hải Châu",2));
-        data.add(new QuanHuyen("Cẩm Lệ",2));
-
-
+        data.add(new QuanHuyen("Quận Ngũ Hành Sơn",2));
+        data.add(new QuanHuyen("Huyện Hòa Vang",2));
+        data.add(new QuanHuyen("Huyện Hoàng Sa",2));
+        data.add(new QuanHuyen("Quận Thanh Khê",2));
+        data.add(new QuanHuyen("Quận Sơn Trà",2));
+        data.add(new QuanHuyen("Quận Liên Chiểu",2));
+        data.add(new QuanHuyen("Quận Hải Châu",2));
+        data.add(new QuanHuyen("Quận Cẩm Lệ",2));
 
         return data;
 
@@ -273,72 +281,72 @@ public class DangKyActivity extends AppCompatActivity {
         data.clear();
 
         //Phường Xã của Quận 1
-        data.add(new PhuongXa("Bến Nghé",1,0));
-        data.add(new PhuongXa("Bến Thành",1,0));
-        data.add(new PhuongXa("Cô Giang",1,0));
-        data.add(new PhuongXa("Cầu Kho",1,0));
-        data.add(new PhuongXa("Cầu Ông Lãnh",1,0));
-        data.add(new PhuongXa("Đa Kao",1,0));
-        data.add(new PhuongXa("Nguyễn Cư Trinh",1,0));
-        data.add(new PhuongXa("Nguyễn Thái Bình",1,0));
-        data.add(new PhuongXa("Phạm Ngũ Lão",1,0));
-        data.add(new PhuongXa("Tân Định",1,0));
-        data.add(new PhuongXa("An Khánh",1,0));
+        data.add(new PhuongXa("Phường Bến Nghé",1,0));
+        data.add(new PhuongXa("Phường Bến Thành",1,0));
+        data.add(new PhuongXa("Phường Cô Giang",1,0));
+        data.add(new PhuongXa("Phường Cầu Kho",1,0));
+        data.add(new PhuongXa("Phường Cầu Ông Lãnh",1,0));
+        data.add(new PhuongXa("Phường Đa Kao",1,0));
+        data.add(new PhuongXa("Phường Nguyễn Cư Trinh",1,0));
+        data.add(new PhuongXa("Phường Nguyễn Thái Bình",1,0));
+        data.add(new PhuongXa("Phường Phạm Ngũ Lão",1,0));
+        data.add(new PhuongXa("Phường Tân Định",1,0));
+        data.add(new PhuongXa("Phường An Khánh",1,0));
 
         //Phường Xã của Quận 2
-        data.add(new PhuongXa("An Khánh",1,1));
-        data.add(new PhuongXa("An Lợi Đông",1,1));
-        data.add(new PhuongXa("An Phú",1,1));
-        data.add(new PhuongXa("Bình An",1,1));
-        data.add(new PhuongXa("Bình Khánh",1,1));
-        data.add(new PhuongXa("Bình Trưng Đông",1,1));
-        data.add(new PhuongXa("Bình Trưng Tây",1,1));
-        data.add(new PhuongXa("Cát Lái",1,1));
-        data.add(new PhuongXa("Thạch Mỹ Lợi",1,1));
-        data.add(new PhuongXa("Thảo Điền",1,1));
-        data.add(new PhuongXa("Thủ Khiêm",1,1));
+        data.add(new PhuongXa("Phường An Khánh",1,1));
+        data.add(new PhuongXa("Phường An Lợi Đông",1,1));
+        data.add(new PhuongXa("Phường An Phú",1,1));
+        data.add(new PhuongXa("Phường Bình An",1,1));
+        data.add(new PhuongXa("Phường Bình Khánh",1,1));
+        data.add(new PhuongXa("Phường Bình Trưng Đông",1,1));
+        data.add(new PhuongXa("Phường Bình Trưng Tây",1,1));
+        data.add(new PhuongXa("Phường Cát Lái",1,1));
+        data.add(new PhuongXa("Phường Thạch Mỹ Lợi",1,1));
+        data.add(new PhuongXa("Phường Thảo Điền",1,1));
+        data.add(new PhuongXa("Phường Thủ Khiêm",1,1));
 
         //Phường Xã của Quận Bắc Từ Liêm
-        data.add(new PhuongXa("Cổ Nhuế 1",0,0));
-        data.add(new PhuongXa("Cổ Nhuế 2",0,0));
-        data.add(new PhuongXa("Đức Thắng",0,0));
-        data.add(new PhuongXa("Đông Ngạc",0,0));
-        data.add(new PhuongXa("Thụy Phương",0,0));
-        data.add(new PhuongXa("Liên Mạc",0,0));
-        data.add(new PhuongXa("Thượng Cát",0,0));
-        data.add(new PhuongXa("Tây Tựu",0,0));
-        data.add(new PhuongXa("Minh Khai",0,0));
-        data.add(new PhuongXa("Phú Diễn",0,0));
-        data.add(new PhuongXa("Xuân Đỉnh",0,0));
-        data.add(new PhuongXa("Xuân Tảo",0,0));
+        data.add(new PhuongXa("Phường Cổ Nhuế 1",0,0));
+        data.add(new PhuongXa("Phường Cổ Nhuế 2",0,0));
+        data.add(new PhuongXa("Phường Đức Thắng",0,0));
+        data.add(new PhuongXa("Phường Đông Ngạc",0,0));
+        data.add(new PhuongXa("Phường Thụy Phương",0,0));
+        data.add(new PhuongXa("Phường Liên Mạc",0,0));
+        data.add(new PhuongXa("Phường Thượng Cát",0,0));
+        data.add(new PhuongXa("Phường Tây Tựu",0,0));
+        data.add(new PhuongXa("Phường Minh Khai",0,0));
+        data.add(new PhuongXa("Phường Phú Diễn",0,0));
+        data.add(new PhuongXa("Phường Xuân Đỉnh",0,0));
+        data.add(new PhuongXa("Phường Xuân Tảo",0,0));
 
         // Phường Xã của Quận Ba Đình
-        data.add(new PhuongXa("Cống Vị",0,1));
-        data.add(new PhuongXa("Điện Biên",0,1));
-        data.add(new PhuongXa("Đội Cấn",0,1));
-        data.add(new PhuongXa("Giảng Võ",0,1));
-        data.add(new PhuongXa("Kim Mã",0,1));
-        data.add(new PhuongXa("Liễu Giai",0,1));
-        data.add(new PhuongXa("Ngọc Hà",0,1));
-        data.add(new PhuongXa("Ngọc Khánh",0,1));
-        data.add(new PhuongXa("Nguyễn Trung Trực",0,1));
-        data.add(new PhuongXa("Phúc Xá",0,1));
-        data.add(new PhuongXa("Quán Thánh",0,1));
-        data.add(new PhuongXa("Thành Công",0,1));
-        data.add(new PhuongXa("Trúc Bạch",0,1));
-        data.add(new PhuongXa("Vĩnh Phúc",0,1));
+        data.add(new PhuongXa("Phường Cống Vị",0,1));
+        data.add(new PhuongXa("Phường Điện Biên",0,1));
+        data.add(new PhuongXa("Phường Đội Cấn",0,1));
+        data.add(new PhuongXa("Phường Giảng Võ",0,1));
+        data.add(new PhuongXa("Phường Kim Mã",0,1));
+        data.add(new PhuongXa("Phường Liễu Giai",0,1));
+        data.add(new PhuongXa("Phường Ngọc Hà",0,1));
+        data.add(new PhuongXa("Phường Ngọc Khánh",0,1));
+        data.add(new PhuongXa("Phường Nguyễn Trung Trực",0,1));
+        data.add(new PhuongXa("Phường Phúc Xá",0,1));
+        data.add(new PhuongXa("Phường Quán Thánh",0,1));
+        data.add(new PhuongXa("Phường Thành Công",0,1));
+        data.add(new PhuongXa("Phường Trúc Bạch",0,1));
+        data.add(new PhuongXa("Phường Vĩnh Phúc",0,1));
 
         //Phường Xã của Quận Ngũ Hành Sơn
-        data.add(new PhuongXa("Hòa Hải",2,0));
-        data.add(new PhuongXa("Hòa Quý",2,0));
-        data.add(new PhuongXa("Hòa Khuê Mỹ",2,0));
-        data.add(new PhuongXa("Mỹ An",2,0));
+        data.add(new PhuongXa("Phường Hòa Hải",2,0));
+        data.add(new PhuongXa("Phường Hòa Quý",2,0));
+        data.add(new PhuongXa("Phường Hòa Khuê Mỹ",2,0));
+        data.add(new PhuongXa("Phường Mỹ An",2,0));
 
         //Phường Xã của Quận Hòa Vang
-        data.add(new PhuongXa("Hòa Châu",2,1));
-        data.add(new PhuongXa("Hòa Tiến",2,1));
-        data.add(new PhuongXa("Hòa Phước",2,1));
-        data.add(new PhuongXa("Hòa Phong",2,1));
+        data.add(new PhuongXa("Phường Hòa Châu",2,1));
+        data.add(new PhuongXa("Phường Hòa Tiến",2,1));
+        data.add(new PhuongXa("Phường Hòa Phước",2,1));
+        data.add(new PhuongXa("Phường Hòa Phong",2,1));
 
         return data;
     }
@@ -379,7 +387,7 @@ public class DangKyActivity extends AppCompatActivity {
         String HoTen=edtHoTenDK.getText().toString();
         String Email=edtEmailDK.getText().toString();
         String SDT=edtSDTDangKy.getText().toString();
-        String DiaChi= spnXaPhuong.getSelectedItem().toString()+","+spnHuyenQuan.getSelectedItem().toString()+","+spnTinhTp.getSelectedItem().toString();
+        String DiaChi=spnXaPhuong.getSelectedItem().toString() + ", " +spnHuyenQuan.getSelectedItem().toString() + ", " + spnTinhTp.getSelectedItem().toString();
         String MatKhau=edtMatKhauDK.getText().toString();
         String NhapLaiMatKhau=edtNhapLaiMatKhauDK.getText().toString();
         if(HoTen.equals("")){
@@ -470,6 +478,7 @@ public class DangKyActivity extends AppCompatActivity {
             byte[] imageBytes = byteArrayOutputStream.toByteArray();
             String imageString = Base64.encodeToString(imageBytes, Base64.DEFAULT);
             HinhBase64 = imageString;
+
         }
     }
     private class INSERT_KHACHHANG extends AsyncTask<String, String, String> {

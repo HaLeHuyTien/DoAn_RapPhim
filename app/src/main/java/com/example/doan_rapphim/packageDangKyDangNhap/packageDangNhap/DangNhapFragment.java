@@ -121,6 +121,7 @@ private String value = "http://0306181355.pixelcent.com/Cinema/KiemTraDangNhap.p
 
             FragmentManager fmgr = getActivity().getSupportFragmentManager();
 
+
             FragmentTransaction ft = fmgr.beginTransaction();
 
             ft.replace(R.id.container_body, fragment);

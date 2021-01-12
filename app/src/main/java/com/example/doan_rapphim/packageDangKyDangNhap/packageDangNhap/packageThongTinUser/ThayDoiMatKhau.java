@@ -87,6 +87,7 @@ public class ThayDoiMatKhau extends AppCompatActivity {
                         getThayDoiMatKhau getThayDoiMatKhau = new getThayDoiMatKhau();
                         getThayDoiMatKhau.execute();
                         finish();
+                        Toast.makeText(ThayDoiMatKhau.this,"Thay đổi mật khẩu thành công !",Toast.LENGTH_SHORT).show();
                     }
                 });
 

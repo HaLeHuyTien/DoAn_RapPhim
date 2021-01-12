@@ -115,7 +115,7 @@ public class TaiKhoan_ThongTinFragment extends Fragment {
         }
 
     }
-    public static String jsonURL = "http://0306181355.pixelcent.com/Cinema/ThongTinKhachHang.php?ID=" + IDUser.idUser.toString();
+    public static String jsonURL ;
     private String iduser;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -139,8 +139,11 @@ public class TaiKhoan_ThongTinFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 ThongTinContext.context = getContext();
+                //TabTaiKhoan_Fragment tabTaiKhoan_fragment = new TabTaiKhoan_Fragment();
+                //tabTaiKhoan_fragment.getActivity().finish();
                 Intent intent = new Intent(getContext(), com.example.doan_rapphim.packageDangKyDangNhap.packageDangNhap.packageThongTinUser.XacThucMatKhauActivity.class);
                 startActivity(intent);
+
             }
         });
         ThayDoiMatKhau = view.findViewById(R.id.btnThayDoiMK);
@@ -212,6 +215,7 @@ public class TaiKhoan_ThongTinFragment extends Fragment {
 
 
                 try {
+                    jsonURL = "http://0306181355.pixelcent.com/Cinema/ThongTinKhachHang.php?ID=" + IDUser.idUser.toString();
                     url = new URL(jsonURL);
                     urlConnection = (HttpURLConnection) url.openConnection();
 

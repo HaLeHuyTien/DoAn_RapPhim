@@ -3,6 +3,7 @@ package com.example.doan_rapphim.packageDangKyDangNhap.packageDangKy;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -32,13 +33,16 @@ import com.example.doan_rapphim.packageDangKyDangNhap.packageDangNhap.IDUser;
 import com.example.doan_rapphim.packageDangKyDangNhap.packageDangNhap.packageThongTinUser.PhuongXa;
 import com.example.doan_rapphim.packageDangKyDangNhap.packageDangNhap.packageThongTinUser.QuanHuyen;
 import com.example.doan_rapphim.packageDangKyDangNhap.packageDangNhap.packageThongTinUser.ReadThongTinUserJson;
+import com.example.doan_rapphim.packageDangKyDangNhap.packageDangNhap.packageThongTinUser.TaiKhoan_ThongTinFragment;
 import com.example.doan_rapphim.packageDangKyDangNhap.packageDangNhap.packageThongTinUser.ThayDoiThongTin;
 import com.example.doan_rapphim.packageDangKyDangNhap.packageDangNhap.packageThongTinUser.ThongTinUser;
 import com.example.doan_rapphim.packageTrangChiTiet.IDPhim;
 import com.example.doan_rapphim.packageTrangChiTiet.packageThanhToan.ThongTinSoDoGhe;
 import com.squareup.picasso.Picasso;
 
+import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -54,6 +58,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.regex.Pattern;
 
 public class DangKyActivity extends AppCompatActivity {
     private Spinner spnTinhTp;
@@ -84,7 +89,15 @@ public class DangKyActivity extends AppCompatActivity {
     private ImageView imgDK;
     private String HinhBase64;
 
+    private Integer EmailKT=0;
+    private Integer SDTKT=0;
+
+    private String jsonURL="http://0306181355.pixelcent.com/Cinema/KiemTraEmailSDT.php?Email=";
+    private String URLKTDK;
     public final static int PICK_IMAGE_REQUEST = 1;
+    private static final Pattern EMAIL_PATTERN = Pattern
+            .compile("^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
+
     //API
     private  String InsertKhachHang ;
     @Override
@@ -147,6 +160,8 @@ public class DangKyActivity extends AppCompatActivity {
 
             }
         });
+
+
     }
 
 
@@ -381,6 +396,10 @@ public class DangKyActivity extends AppCompatActivity {
 
         spnXaPhuong.setAdapter(spinnerListArrayAdapterPhuongXa);
     }
+    private boolean CheckEmail(String sEmailId) {
+
+        return EMAIL_PATTERN.matcher(sEmailId).matches();
+    }
 
 
     public void DangKy(View view){
@@ -390,71 +409,48 @@ public class DangKyActivity extends AppCompatActivity {
         String DiaChi=spnXaPhuong.getSelectedItem().toString() + ", " +spnHuyenQuan.getSelectedItem().toString() + ", " + spnTinhTp.getSelectedItem().toString();
         String MatKhau=edtMatKhauDK.getText().toString();
         String NhapLaiMatKhau=edtNhapLaiMatKhauDK.getText().toString();
+
+
+
         if(HoTen.equals("")){
             Toast.makeText(this,"Bạn chưa nhập Họ và Tên cho form Đăng ký!",Toast.LENGTH_SHORT).show();
         }
-        else if(kiemTraNhapDung3Tu(HoTen)==true){
-            Toast.makeText(this,"Bạn chưa nhập đúng 3 từ Họ và Tên trong form Đăng ký!",Toast.LENGTH_SHORT).show();
+        else if(HoTen.length()<3 || HoTen.length()>20){
+            Toast.makeText(this,"Họ và tên phải lớn hơn 3 ký tự và bé hơn 20 ký tự !",Toast.LENGTH_SHORT).show();
         }
         else if(Email.equals("")){
             Toast.makeText(this,"Bạn chưa nhập Email cho form Đăng ký!",Toast.LENGTH_SHORT).show();
         }
+        else if(!CheckEmail(Email)){
+            Toast.makeText(this, "Bạn nhập Email chưa đúng định dạng!", Toast.LENGTH_SHORT).show();
+        }else if(EmailKT==1){
+            Toast.makeText(this, "Email đã sử dụng, bạn hãy dùng Email khác !", Toast.LENGTH_SHORT).show();
+        }
         else if(SDT.equals("")){
             Toast.makeText(this,"Bạn chưa nhập Số điện thoại cho form Đăng ký!",Toast.LENGTH_SHORT).show();
         }
-        else if(DiaChi.equals("")){
-            Toast.makeText(this,"Bạn chưa nhập Địa chỉ cho form Đăng ký!",Toast.LENGTH_SHORT).show();
+        else if(SDT.length()<10){
+            Toast.makeText(this,"Số điện thoại phải 10 ký tự!",Toast.LENGTH_SHORT).show();
+        }else if(SDTKT==1){
+            Toast.makeText(this,"Số điện thoại đã sử dụng, bạn hãy dùng số điện thoại khác !",Toast.LENGTH_SHORT).show();
         }
         else if(MatKhau.equals("")){
             Toast.makeText(this,"Bạn chưa nhập Mật khẩu cho form Đăng ký!",Toast.LENGTH_SHORT).show();
         }
         else if(NhapLaiMatKhau.equals("")){
-            Toast.makeText(this,"Bạn chưa Nhập lại mật khẩu cho form Đăng ký!",Toast.LENGTH_SHORT).show();
+            Toast.makeText(this,"Bạn chưa Nhập lại Mật khẩu cho form Đăng ký!",Toast.LENGTH_SHORT).show();
+        }
+        else if(NhapLaiMatKhau.equals(MatKhau)){
+                    KiemTraEmail kiemTraEmail = new KiemTraEmail(view,this);
+                    kiemTraEmail.execute();
         }
         else {
-            int a = 0;
-            try {
-                int soluongUser = ReadThongTinUserJson.SoLuongTaiKhoan(this);
-                for(int i = 0; i < soluongUser; i ++) {
-                    ThongTinUser thongTinUser = ReadThongTinUserJson.readThongTinUserFile(this, i);
-                    Email = thongTinUser.getEmail();
-                    if (edtEmailDK.getText().toString().equals(Email) ) {
-                        IDUser.idUser = i;
-                        Toast.makeText(this, "Email bạn nhập đã tồn tại, hãy nhập Email khác!", Toast.LENGTH_SHORT).show();
-                        a = 1;
-                        break;
-                    }
-                }
-                if(a == 0) {
-                    Toast.makeText(this, "Thành công", Toast.LENGTH_SHORT).show();
-                    INSERT_KHACHHANG insert_khachhang=new INSERT_KHACHHANG();
-                    insert_khachhang.execute();
-                    UploadHinh(view);
-
-                    finish();
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
+            Toast.makeText(this,"Nhập lại mật khẩu phải trùng với Mật khẩu vừa nhập!",Toast.LENGTH_SHORT).show();
         }
 
 
     }
-    public static boolean kiemTraNhapDung3Tu(final String kt){
-        int tam=1;
-        if(kt!=null){
-            for(int i=0;i<kt.length();i++){
-                if(Character.isWhitespace(kt.charAt(i))){
-                    tam++;
-                }
-            }
-        }
-        if(tam>2)
-            return false;
-        else return true;
-    }
+
     //Click đổi ảnh
     private void pickImage()
     {
@@ -548,6 +544,89 @@ public class DangKyActivity extends AppCompatActivity {
 
         //stringRequest.setRetryPolicy(new DefaultRetryPolicy(MY_SOCKET_TIMEOUT_MS, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         requestQueue.add(stringRequest);
+    }
+
+    public class KiemTraEmail extends AsyncTask<String, String, String> {
+
+        private View view;
+        private Activity activity;
+
+        public KiemTraEmail(View view, Activity activity){
+            this.view = view;
+            this.activity = activity;
+        }
+
+        @Override
+        protected String doInBackground(String... strings) {
+            String current = "";
+
+            try {
+                URL url;
+                HttpURLConnection urlConnection = null;
+
+
+                try {
+                    URLKTDK = jsonURL +edtEmailDK.getText().toString();
+                    url = new URL(URLKTDK);
+                    urlConnection = (HttpURLConnection) url.openConnection();
+
+                    InputStream in = urlConnection.getInputStream();
+                    InputStreamReader isr = new InputStreamReader(in);
+
+                    int data = isr.read();
+                    while (data != -1) {
+                        current += (char) data;
+                        data = isr.read();
+                    }
+
+                    return current;
+
+                } catch (MalformedURLException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } finally {
+                    if (urlConnection != null) {
+                        urlConnection.disconnect();
+                    }
+                }
+
+            }catch (Exception e) {
+                e.printStackTrace();
+            }
+            return current;
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            try {
+                JSONObject jsonObject = new JSONObject(s);
+                JSONArray jsonArray = jsonObject.getJSONArray("DanhSach");
+
+                JSONObject jsonObject1 = jsonArray.getJSONObject(0);
+                String KetQuaEmail = jsonObject1.getString("KetQuaEmail");
+                //String KetQuaSDT = jsonObject1.getString("KetQuaSDT");
+
+                EmailKT = Integer.parseInt(KetQuaEmail);
+
+                if(EmailKT == 0) {
+                    INSERT_KHACHHANG insert_khachhang = new INSERT_KHACHHANG();
+                    insert_khachhang.execute();
+                    UploadHinh(this.view);
+                    finish();
+                }
+                else
+                {
+                    Toast.makeText(activity,"Email đã tồn tại !!!", Toast.LENGTH_SHORT).show();
+                }
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+
+
+        }
     }
 
 

@@ -57,10 +57,11 @@ public class SoDoGhe extends AppCompatActivity {
     private Button btnD3;
     private Button btnD4;
     private Button btnD5;
+
    String LayGhe=" http://0306181355.pixelcent.com/Cinema/LayGhe.php?IDPhim="+ IDPhim.ID + "&IDRap="+ThongTinSoDoGhe.IDRap+"&IDPhong="+ThongTinSoDoGhe.IDPhong+"&IDXuatChieu="+ThongTinSoDoGhe.IDXuatChieu;
     Integer[]Ghe = new Integer[20];
-
-
+    private String GiaXuatChieu = "http://0306181355.pixelcent.com/Cinema/LayGiaVe.php?IDPhim=" + IDPhim.ID + "&IDXuatChieu=" + ThongTinSoDoGhe.IDXuatChieu + "&IDGhe=";
+String LayGiaGhe = "http://0306181355.pixelcent.com/Cinema/GiaGhe.php";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -96,8 +97,10 @@ public class SoDoGhe extends AppCompatActivity {
         btnD4 = findViewById(R.id.btnD4);
         btnD5 = findViewById(R.id.btnD5);
         Picasso.get().load("http://0306181355.pixelcent.com/rapphim/public/images/" + ThongTinSoDoGhe.tenHinh).into(imgTenHinh);
-
-
+        GetGia getGia = new GetGia();
+        getGia.execute();
+        GetGiaGhe getGiaGhe = new GetGiaGhe();
+        getGiaGhe.execute();
         btntiepTuc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -125,6 +128,33 @@ public class SoDoGhe extends AppCompatActivity {
                     // Display the alert dialog on interface
                     dialog.show();
                 } else {
+                    for(int i = 0; i < 4; i++){
+                        Integer hang = 0;
+                        for(Integer j = 0; j < 5 ; j++){
+                            if(ThongTinSoDoGhe.Ghe[i][j] == true){
+                                String Hang = "";
+                                if(i == 0) {
+                                    Hang = "A";
+                                    hang = 0;
+                                }
+                                if(i == 1){
+                                    hang = 4;
+                                    Hang = "B";
+                                }
+                                if(i == 2) {
+                                    Hang = "C";
+                                    hang = 10;
+                                }
+                                if(i == 3) {
+                                    Hang = "D";
+                                    hang = 15;
+                                }
+                                Integer Cot = j + 1;
+                                Integer idGhe = Cot + hang;
+                                ThongTinSoDoGhe.tongTien += ThongTinSoDoGhe.GiaGhe[idGhe];
+                            }
+                        }
+                    }
                     ThongTinSoDoGhe.IDKhachHang = IDUser.idUser;
                     Intent intent = new Intent(SoDoGhe.this, com.example.doan_rapphim.packageTrangChiTiet.packageThanhToan.ThanhToan.class);
                     startActivity(intent);
@@ -134,6 +164,7 @@ public class SoDoGhe extends AppCompatActivity {
 
         ThongTinSoDoGhe.sl = 0;
         ThongTinSoDoGhe.tongTien = 0;
+        ThongTinSoDoGhe.DonGia = 0;
         for (int i = 0; i < 4; i++) {
             for (Integer j = 0; j < 5; j++) {
                 ThongTinSoDoGhe.Ghe[i][j] = false;
@@ -144,7 +175,6 @@ public class SoDoGhe extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Button btn = findViewById(v.getId());
-
                 String Hang = getResources().getResourceEntryName(v.getId()).substring(3, 4);
                 Integer Cot = Integer.parseInt(getResources().getResourceEntryName(v.getId()).substring(4));
                 if (btn.isSelected() == true) {
@@ -298,5 +328,120 @@ public class SoDoGhe extends AppCompatActivity {
             }
         }
     }
+    private class GetGia extends AsyncTask<String, String, String> {
+        @Override
+        protected String doInBackground(String... strings) {
+            String current = "";
 
+            try {
+                URL url;
+                HttpURLConnection urlConnection = null;
+
+
+                try {
+                    url = new URL(GiaXuatChieu);
+                    urlConnection = (HttpURLConnection) url.openConnection();
+
+                    InputStream in = urlConnection.getInputStream();
+                    InputStreamReader isr = new InputStreamReader(in);
+
+                    int data = isr.read();
+                    while (data != -1) {
+                        current += (char) data;
+                        data = isr.read();
+                    }
+
+                    return current;
+
+                } catch (MalformedURLException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } finally {
+                    if (urlConnection != null) {
+                        urlConnection.disconnect();
+                    }
+                }
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return current;
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            try {
+                JSONObject jsonObject = new JSONObject(s);
+                JSONArray jsonArray = jsonObject.getJSONArray("DanhSach");
+                for (int i = 0; i < jsonArray.length(); i++) {
+                    JSONObject jsonObject1 = jsonArray.getJSONObject(i);
+                    Integer giaXC = jsonObject1.getInt("GiaXuatChieu");
+                    ThongTinSoDoGhe.DonGia = giaXC;
+                }
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    private class GetGiaGhe extends AsyncTask<String, String, String> {
+        @Override
+        protected String doInBackground(String... strings) {
+            String current = "";
+
+            try {
+                URL url;
+                HttpURLConnection urlConnection = null;
+
+
+                try {
+                    url = new URL(LayGiaGhe);
+                    urlConnection = (HttpURLConnection) url.openConnection();
+
+                    InputStream in = urlConnection.getInputStream();
+                    InputStreamReader isr = new InputStreamReader(in);
+
+                    int data = isr.read();
+                    while (data != -1) {
+                        current += (char) data;
+                        data = isr.read();
+                    }
+
+                    return current;
+
+                } catch (MalformedURLException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } finally {
+                    if (urlConnection != null) {
+                        urlConnection.disconnect();
+                    }
+                }
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return current;
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            try {
+                Integer x=0;
+                JSONObject jsonObject = new JSONObject(s);
+                JSONArray jsonArray = jsonObject.getJSONArray("DanhSach");
+                for (int i = 0; i < jsonArray.length(); i++) {
+                    JSONObject jsonObject1 = jsonArray.getJSONObject(i);
+                    Integer gia = jsonObject1.getInt("gia");
+                    ThongTinSoDoGhe.GiaGhe[x] = gia;
+                    x++;
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+    }
         }

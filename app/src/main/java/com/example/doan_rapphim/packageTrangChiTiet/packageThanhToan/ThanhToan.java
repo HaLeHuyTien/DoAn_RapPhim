@@ -1,6 +1,7 @@
 package com.example.doan_rapphim.packageTrangChiTiet.packageThanhToan;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -9,8 +10,21 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.doan_rapphim.Phim;
 import com.example.doan_rapphim.R;
+import com.example.doan_rapphim.packageTrangChiTiet.IDPhim;
 import com.squareup.picasso.Picasso;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 public class ThanhToan extends AppCompatActivity {
 
@@ -25,8 +39,6 @@ public class ThanhToan extends AppCompatActivity {
     private TextView txtTT_TTien;
     private TextView txtTT_Sl;
     private String GheDaChon = "";
-    private Integer donGia = 85000;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,7 +54,12 @@ public class ThanhToan extends AppCompatActivity {
         btnThanhToan = findViewById(R.id.btnThanhToan);
         imgTHinh = findViewById(R.id.imgHinhThanhToan);
         Picasso.get().load("http://0306181355.pixelcent.com/rapphim/public/images/" + ThongTinSoDoGhe.tenHinh).into(imgTHinh);
-        ThongTinSoDoGhe.tongTien = donGia * ThongTinSoDoGhe.sl;
+        if(ThongTinSoDoGhe.sl > 0){
+        ThongTinSoDoGhe.tongTien += ThongTinSoDoGhe.DonGia;}
+        else {
+            ThongTinSoDoGhe.tongTien = 0;
+        }
+        HiennThiDanhSach();
         btnThanhToan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -50,35 +67,8 @@ public class ThanhToan extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        HiennThiDanhSach();
-        for(int i = 0; i < 4; i++){
-            Integer hang = 0;
-            for(Integer j = 0; j < 5 ; j++){
-                if(ThongTinSoDoGhe.Ghe[i][j] == true){
-                    String Hang = "";
-                    if(i == 0) {
-                        Hang = "A";
-                        hang = 0;
-                    }
-                    if(i == 1){
-                        hang = 4;
-                        Hang = "B";
-                    }
-                    if(i == 2) {
-                        Hang = "C";
-                        hang = 10;
-                    }
-                    if(i == 3) {
-                        Hang = "D";
-                        hang = 15;
-                    }
-                    Integer Cot = j + 1;
-                    Integer idGhe = Cot + hang;
-                    GheDaChon = GheDaChon + Hang + Cot.toString() + ",";
-                    
-                }
-            }
-        }
+
+
         String[] separated = GheDaChon.split(",");
         GheDaChon = "";
         for(int i = 0; i < separated.length;i++)
@@ -114,4 +104,5 @@ public class ThanhToan extends AppCompatActivity {
 
 
     }
+
 }

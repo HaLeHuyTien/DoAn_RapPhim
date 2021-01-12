@@ -181,7 +181,7 @@ public class ThongTinGiaoDich extends AppCompatActivity {
 
 
                 try {
-                    InsertVe = "http://0306181355.pixelcent.com/Cinema/VePhim.php?IDKhachHang=" + ThongTinSoDoGhe.IDKhachHang + "&IDPhim="+ IDPhim.ID +"&IDRap="+ThongTinSoDoGhe.IDRap+"&IDPhong="+ ThongTinSoDoGhe.IDPhong+ "&IDXuatChieu="+ThongTinSoDoGhe.IDXuatChieu+"&IDGhe="+idGhe+"&tongtien="+ThongTinSoDoGhe.tongTien+"&ngaydatve="+date2+"&ngaychieuphim="+ThongTinSoDoGhe.NgayChieuPhim;
+                    InsertVe = "http://0306181355.pixelcent.com/Cinema/VePhim.php?IDKhachHang=" + ThongTinSoDoGhe.IDKhachHang + "&IDPhim="+ IDPhim.ID +"&IDRap="+ThongTinSoDoGhe.IDRap+"&IDPhong="+ ThongTinSoDoGhe.IDPhong+ "&IDXuatChieu="+ThongTinSoDoGhe.IDXuatChieu+"&IDGhe="+idGhe+"&tongtien="+ThongTinSoDoGhe.DonGia+"&ngaydatve="+date2+"&ngaychieuphim="+ThongTinSoDoGhe.NgayChieuPhim;
 
                     url = new URL(InsertVe);
                         urlConnection = (HttpURLConnection) url.openConnection();

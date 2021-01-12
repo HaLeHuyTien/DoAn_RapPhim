@@ -7,6 +7,8 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -122,8 +124,27 @@ public class timPhimFragment extends Fragment implements AdapterView.OnItemSelec
         btnTimKiem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(txtTim.isEnabled() == true)
+                    txtTim.setEnabled(false);
+                else
+                    txtTim.setEnabled(true);
+            }
+        });
+
+        txtTim.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
                 GetPhim getPhim1 = new GetPhim();
                 getPhim1.execute();
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
 
             }
         });

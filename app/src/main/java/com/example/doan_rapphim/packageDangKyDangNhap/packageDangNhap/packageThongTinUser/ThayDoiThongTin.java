@@ -433,7 +433,7 @@ public class ThayDoiThongTin extends AppCompatActivity {
                     txtHoTen.setText(editTextHoVaTen.getText().toString());
                     txtSDT.setText(editTextSDT.getText().toString());
                     txtNgaySinh.setText(editTextNgaySinh.getText().toString());
-                    txtDiaChi.setText(spnXaPhuong.getSelectedItem().toString() + ", " +spnHuyenQuan.getSelectedItem().toString()+ ", " + spnTinhTp.getSelectedItem().toString());                                                                                       
+                    txtDiaChi.setText(spnXaPhuong.getSelectedItem().toString() + ", " +spnHuyenQuan.getSelectedItem().toString()+ ", " + spnTinhTp.getSelectedItem().toString());
 
                     Toast.makeText(ThayDoiThongTin.this,"Thay đổi thành công !",Toast.LENGTH_SHORT).show();
                     finish();

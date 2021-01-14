@@ -37,9 +37,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="56dp"
-        android:text="Tìm tài khoản của bạn"
         android:background="@drawable/custom_button"
+        android:text="Tìm tài khoản của bạn"
         android:textAllCaps="false"
+        android:textColor="#FFFFFF"
         android:textSize="18sp"
         app:layout_constraintTop_toBottomOf="@+id/edtNhapEmailQuenMK"
         tools:layout_editor_absoluteX="16dp" />

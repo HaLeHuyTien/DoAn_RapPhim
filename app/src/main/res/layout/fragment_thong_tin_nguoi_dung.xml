@@ -21,16 +21,17 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
+
                 <com.makeramen.roundedimageview.RoundedImageView
                     android:id="@+id/imgHinhDaiDienTT1"
                     android:layout_width="150dp"
                     android:layout_height="165dp"
                     android:layout_marginTop="40dp"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/admin"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/admin"
                     app:layout_goneMarginTop="40dp"
                     app:riv_corner_radius="20dp">
 
@@ -74,7 +75,7 @@
                     android:id="@+id/textView4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="28dp"
+                    android:layout_marginTop="27dp"
                     android:text="Số điện thoại"
                     android:textColor="@color/cardview_dark_background"
                     android:textSize="16sp"

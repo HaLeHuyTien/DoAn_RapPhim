@@ -85,7 +85,7 @@ public class DSPhimSapChieu extends Fragment {
     private final String jsonURLLoaiPhim = "http://0306181355.pixelcent.com/Cinema/LoaiPhim.php";
     private String[] ListLoaiPhim;
 
-    private static final String jsonURL = "http://0306181355.pixelcent.com/Cinema/PhimSapChieu.php";
+    private static final String jsonURL = "http://0306181355.pixelcent.com/rapphim/public/api/danhsachphimsapchieu";
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -180,11 +180,11 @@ public class DSPhimSapChieu extends Fragment {
                         JSONObject jsonObject1 = jsonArray.getJSONObject(i);
                         String id = jsonObject1.getString("id");
                         String TenPhim = jsonObject1.getString("TenPhim");
-                        String LoaiPhim = jsonObject1.getString("LoaiPhim");
-                        String DaoDien = jsonObject1.getString("DaoDien");
+                        String LoaiPhim = jsonObject1.getString("TenLoai");
+                        String DaoDien = jsonObject1.getString("TenDaoDien");
                         String GioiHanTuoi = jsonObject1.getString("GioiHanTuoi");
                         String Hinh = jsonObject1.getString("Hinh");
-                        String NgayKhoiChieu = jsonObject1.getString("NgayKhoiChieu");
+                        //String NgayKhoiChieu = jsonObject1.getString("NgayKhoiChieu");
                         Integer a = Integer.parseInt(id);
 
                         ThongTinJson Phim = new ThongTinJson();
@@ -194,7 +194,7 @@ public class DSPhimSapChieu extends Fragment {
                         Phim.setDaoDien(DaoDien);
                         Phim.setDoTuoi(GioiHanTuoi);
                         Phim.setHinhPhim(Hinh);
-                        Phim.setNgayKhoiChieu(NgayKhoiChieu);
+                        //Phim.setNgayKhoiChieu(NgayKhoiChieu);
 
 
                         try {

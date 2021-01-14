@@ -92,7 +92,7 @@ public class DSPhimDangChieu extends Fragment {
     private Spinner spinnerDC;
     private final String jsonURLLoaiPhim = "http://0306181355.pixelcent.com/Cinema/LoaiPhim.php";
     private String[] ListLoaiPhim;
-    private static final String jsonURL = "http://0306181355.pixelcent.com/Cinema/PhimDangChieu.php";
+    private static final String jsonURL = "http://0306181355.pixelcent.com/rapphim/public/api/danhsachphimdangchieu";
 
 
     @Override
@@ -180,8 +180,8 @@ public class DSPhimDangChieu extends Fragment {
                         JSONObject jsonObject1 = jsonArray.getJSONObject(i);
                         String id = jsonObject1.getString("id");
                         String TenPhim = jsonObject1.getString("TenPhim");
-                        String LoaiPhim = jsonObject1.getString("LoaiPhim");
-                        String DaoDien = jsonObject1.getString("DaoDien");
+                        String LoaiPhim = jsonObject1.getString("TenLoai");
+                        String DaoDien = jsonObject1.getString("TenDaoDien");
                         String GioiHanTuoi = jsonObject1.getString("GioiHanTuoi");
                         String Hinh = jsonObject1.getString("Hinh");
                         String NgayKhoiChieu = jsonObject1.getString("NgayKhoiChieu");

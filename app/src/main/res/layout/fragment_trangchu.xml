@@ -7,27 +7,10 @@
     android:background="@drawable/backrapphim"
 
     >
-
-    <androidx.viewpager.widget.ViewPager
-        android:layout_width="match_parent"
-        android:layout_height="220dp"
-        android:id="@+id/view_pager_slide"
-        />
-
-    <me.relex.circleindicator.CircleIndicator
-        android:layout_width="wrap_content"
-        android:layout_height="8dp"
-        android:id="@+id/circle_slide"
-        android:layout_gravity="center_horizontal"
-
-        android:layout_marginTop="8dp"
-        />
-
-
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tablayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         app:tabSelectedTextColor="@color/black" />
 
             <androidx.viewpager.widget.ViewPager

@@ -36,8 +36,7 @@ public class TrangChuFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_trangchu,container,false);
-        viewPager = view.findViewById(R.id.view_pager_slide);
-        circleIndicator = view.findViewById(R.id.circle_slide);
+
 
         tabLayout=view.findViewById(R.id.tablayout);
         mviewPager=view.findViewById(R.id.trangchu_viewpager);
@@ -46,64 +45,12 @@ public class TrangChuFragment extends Fragment {
         mviewPager.setAdapter(trangChuDSphim_adapter);
         tabLayout.setupWithViewPager(mviewPager);
 
-        photoList = getListPhoto();
-        photo_slide_adapter = new Photo_Slide_Adapter(getActivity(),getListPhoto());
-        viewPager.setAdapter(photo_slide_adapter);
 
-        circleIndicator.setViewPager(viewPager);
-        photo_slide_adapter.registerDataSetObserver(circleIndicator.getDataSetObserver());
-        autoImage();
+
+
         return view;
     }
 
-    private List<Photo> getListPhoto(){
-        List<Photo> list = new ArrayList<>();
-        list.add(new Photo(R.drawable.poster1));
-        list.add(new Photo(R.drawable.poster2));
-        list.add(new Photo(R.drawable.poster3));
-        list.add(new Photo(R.drawable.poster4));
-        list.add(new Photo(R.drawable.poster5));
 
-        return list;
-
-    }
-
-    private void autoImage(){
-        if(photoList == null || photoList.isEmpty() || viewPager == null)
-            return;
-
-        if(timer == null){
-            timer = new Timer();
-        }
-
-        timer.schedule(new TimerTask() {
-            @Override
-            public void run() {
-                new Handler(Looper.getMainLooper()).post(new Runnable() {
-                    @Override
-                    public void run() {
-                        int currentItem = viewPager.getCurrentItem();
-                        int totalItem = photoList.size()-1;
-                        if(currentItem < totalItem) {
-                            currentItem++;
-                            viewPager.setCurrentItem(currentItem);
-                        }else{
-                            viewPager.setCurrentItem(0);
-                        }
-
-                    }
-                });
-            }
-        }, 500, 3000);
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        if(timer != null){
-            timer.cancel();
-            timer = null;
-        }
-    }
 
 }

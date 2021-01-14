@@ -2,13 +2,11 @@ package com.example.doan_rapphim.packageDangKyDangNhap.packageDangNhap.packageTh
 
 import android.content.Context;
 
-import com.example.doan_rapphim.packageTrangChiTiet.ThongTinJson;
-
 public class ThongTinContext {
 
-   static Context context;
+    static Context context;
 
-    public ThongTinContext(Context context){
-        this.context =context;
+    public ThongTinContext(Context context) {
+        ThongTinContext.context = context;
     }
 }

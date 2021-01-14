@@ -1,7 +1,5 @@
 package com.example.doan_rapphim.packageDangKyDangNhap.packageDangNhap.packageThongTinUser;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -11,6 +9,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.doan_rapphim.R;
 import com.example.doan_rapphim.packageDangKyDangNhap.packageDangNhap.IDUser;
@@ -29,7 +29,7 @@ import java.net.URL;
 public class XacThucMatKhauActivity extends AppCompatActivity {
 
     private String jsonMKURL;
-    private String matkhauURL = "http://0306181355.pixelcent.com/Cinema/ThongTinKhachHang.php?ID=";
+    private final String matkhauURL = "http://0306181355.pixelcent.com/Cinema/ThongTinKhachHang.php?ID=";
 
     private EditText editTextNhapMK;
     private Button btnTiepTheo;
@@ -38,6 +38,7 @@ public class XacThucMatKhauActivity extends AppCompatActivity {
     private Integer x = 0;
 
     private String matKhau;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,27 +70,23 @@ public class XacThucMatKhauActivity extends AppCompatActivity {
     }
 
     private void TiepTheo() {
-        if(editTextNhapMK.getText().toString().equals("")) {
-            Toast.makeText(this,"Bạn chưa nhập mật khẩu !",Toast.LENGTH_SHORT).show();
-        }
-        else if(editTextNhapMK.getText().toString().equals(matKhau)) {
-            Intent intent = new Intent(XacThucMatKhauActivity.this,ThayDoiThongTin.class);
+        if (editTextNhapMK.getText().toString().equals("")) {
+            Toast.makeText(this, "Bạn chưa nhập mật khẩu !", Toast.LENGTH_SHORT).show();
+        } else if (editTextNhapMK.getText().toString().equals(matKhau)) {
+            Intent intent = new Intent(XacThucMatKhauActivity.this, ThayDoiThongTin.class);
             startActivity(intent);
             finish();
-        }
-        else {
-            Toast.makeText(this,"Mật khẩu không đúng !",Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(this, "Mật khẩu không đúng !", Toast.LENGTH_SHORT).show();
         }
     }
+
     //Nút hiện mật khẩu
     public void HideAndShowNhapMK(View view) {
-        if(x == 0)
-        {
+        if (x == 0) {
             editTextNhapMK.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
             x = 1;
-        }
-        else
-        {
+        } else {
             editTextNhapMK.setTransformationMethod(PasswordTransformationMethod.getInstance());
 
             x = 0;
@@ -135,7 +132,7 @@ public class XacThucMatKhauActivity extends AppCompatActivity {
                     }
                 }
 
-            }catch (Exception e) {
+            } catch (Exception e) {
                 e.printStackTrace();
             }
             return current;
@@ -147,7 +144,7 @@ public class XacThucMatKhauActivity extends AppCompatActivity {
                 JSONObject jsonObject = new JSONObject(s);
                 JSONArray jsonArray = jsonObject.getJSONArray("DanhSach");
 
-                for(int i = 0; i<jsonArray.length(); i++) {
+                for (int i = 0; i < jsonArray.length(); i++) {
                     JSONObject jsonObject1 = jsonArray.getJSONObject(i);
                     String MatKhau = jsonObject1.getString("MatKhau");
 

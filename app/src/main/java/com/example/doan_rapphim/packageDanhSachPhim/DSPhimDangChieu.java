@@ -1,32 +1,23 @@
 package com.example.doan_rapphim.packageDanhSachPhim;
 
-import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.doan_rapphim.AdapterListPhimItem;
 import com.example.doan_rapphim.R;
-import com.example.doan_rapphim.packageTrangChiTiet.IDPhim;
-import com.example.doan_rapphim.packageTrangChiTiet.ReadThongTinJson;
 import com.example.doan_rapphim.packageTrangChiTiet.ThongTinJson;
-import com.example.doan_rapphim.packageTrangChiTiet.TrangChiTiet;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -38,11 +29,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.LinkedList;
-import java.util.concurrent.ExecutionException;
 
 
 /**
@@ -93,24 +80,19 @@ public class DSPhimDangChieu extends Fragment {
     }
 
 
-
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
     }
 
-    private final LinkedList<ThongTinJson> mWordList=new LinkedList<>();
+    private final LinkedList<ThongTinJson> mWordList = new LinkedList<>();
     private RecyclerView mRecyclerview;
     private AdapterListPhimItem mAdapter;
     private Spinner spinnerDC;
-    private String jsonURLLoaiPhim = "http://0306181355.pixelcent.com/Cinema/LoaiPhim.php";
+    private final String jsonURLLoaiPhim = "http://0306181355.pixelcent.com/Cinema/LoaiPhim.php";
     private String[] ListLoaiPhim;
-
-
-    private static String jsonURL = "http://0306181355.pixelcent.com/Cinema/PhimDangChieu.php";
-
-
+    private static final String jsonURL = "http://0306181355.pixelcent.com/Cinema/PhimDangChieu.php";
 
 
     @Override
@@ -118,17 +100,14 @@ public class DSPhimDangChieu extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_d_s_phim_dang_chieu, container, false);
-        mRecyclerview=view.findViewById(R.id.RVDSPhimDangChieu);
+        mRecyclerview = view.findViewById(R.id.RVDSPhimDangChieu);
         spinnerDC = view.findViewById(R.id.spnDSPhimDC);
-
 
         GetPhim getPhim = new GetPhim();
         getPhim.execute();
 
         GetLoaiPhim getLoaiPhim = new GetLoaiPhim();
         getLoaiPhim.execute();
-
-        //HienthiDanhSach(view);
 
         spinnerDC.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -147,46 +126,8 @@ public class DSPhimDangChieu extends Fragment {
         return view;
     }
 
-    void HienthiDanhSach(View view)
-    {
-        try {
-            LinkedList<ThongTinJson> result=new LinkedList<>();
-            Integer soluongphim = ReadThongTinJson.SoLuongPhim(getActivity());
-            mWordList.clear();
 
-            for(Integer i = 0; i < soluongphim; i++){
-                ThongTinJson thongTinJson = ReadThongTinJson.readThongTinJsonFile(getActivity(),i);
-
-                Calendar cal = Calendar.getInstance();
-                SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-                Date strDate = sdf.parse(thongTinJson.getNgayKhoiChieu());
-                String currentTime = sdf.format(Calendar.getInstance().getTime());
-
-                int b = 0;
-                Date currentDay = sdf.parse(currentTime);
-                if(strDate.before(currentDay) || currentTime.equals(thongTinJson.getNgayKhoiChieu()))
-                    mWordList.addLast(thongTinJson);
-                
-
-
-            }
-
-
-
-            mAdapter=new AdapterListPhimItem(getActivity().getBaseContext(),getActivity(),mWordList);
-
-
-            mRecyclerview.setAdapter(mAdapter);
-
-            mRecyclerview.setLayoutManager(new LinearLayoutManager(getActivity()));
-
-
-        }catch (Exception e){
-            Toast.makeText(getActivity(),"sai",Toast.LENGTH_LONG).show();
-        }
-    }
-
-    private class GetPhim extends AsyncTask<String, String, String>{
+    private class GetPhim extends AsyncTask<String, String, String> {
         @Override
         protected String doInBackground(String... strings) {
             String current = "";
@@ -221,7 +162,7 @@ public class DSPhimDangChieu extends Fragment {
                     }
                 }
 
-            }catch (Exception e) {
+            } catch (Exception e) {
                 e.printStackTrace();
             }
             return current;
@@ -229,7 +170,7 @@ public class DSPhimDangChieu extends Fragment {
 
         @Override
         protected void onPostExecute(String s) {
-            if (isAdded()){
+            if (isAdded()) {
                 mWordList.clear();
                 try {
                     JSONObject jsonObject = new JSONObject(s);
@@ -262,9 +203,9 @@ public class DSPhimDangChieu extends Fragment {
 //
 //                            Date currentDay = sdf.parse(currentTime);
 //                            if (strDate.before(currentDay) || currentTime.equals(Phim.getNgayKhoiChieu()))
-                                if(spinnerDC.getSelectedItem().toString().equals("Tất cả") || Phim.getTheLoai().equals(spinnerDC.getSelectedItem().toString())) {
-                                    mWordList.addLast(Phim);
-                                }
+                            if (spinnerDC.getSelectedItem().toString().equals("Tất cả") || Phim.getTheLoai().equals(spinnerDC.getSelectedItem().toString())) {
+                                mWordList.addLast(Phim);
+                            }
 
                         } catch (Exception e) {
                             e.printStackTrace();
@@ -287,6 +228,7 @@ public class DSPhimDangChieu extends Fragment {
             }
         }
     }
+
 
     private class GetLoaiPhim extends AsyncTask<String, String, String> {
         @Override
@@ -323,7 +265,7 @@ public class DSPhimDangChieu extends Fragment {
                     }
                 }
 
-            }catch (Exception e) {
+            } catch (Exception e) {
                 e.printStackTrace();
             }
             return current;
@@ -331,17 +273,17 @@ public class DSPhimDangChieu extends Fragment {
 
         @Override
         protected void onPostExecute(String s) {
-            if (isAdded()){
+            if (isAdded()) {
                 try {
                     JSONObject jsonObject = new JSONObject(s);
                     JSONArray jsonArray = jsonObject.getJSONArray("DanhSach");
-                    ListLoaiPhim = new String[jsonArray.length()+1];
+                    ListLoaiPhim = new String[jsonArray.length() + 1];
                     ListLoaiPhim[0] = "Tất cả";
                     for (int i = 0; i < jsonArray.length(); i++) {
                         JSONObject jsonObject1 = jsonArray.getJSONObject(i);
                         String LoaiPhim = jsonObject1.getString("TenLoai");
 
-                        ListLoaiPhim[i+1] = LoaiPhim;
+                        ListLoaiPhim[i + 1] = LoaiPhim;
                     }
 
                     ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_dropdown_item, ListLoaiPhim);
@@ -349,16 +291,12 @@ public class DSPhimDangChieu extends Fragment {
 
                     spinnerDC.setAdapter(adapter);
 
-
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
 
-
             }
         }
     }
-
-
 
 }

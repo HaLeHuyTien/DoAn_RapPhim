@@ -1,7 +1,5 @@
 package com.example.doan_rapphim.packageTrangChiTiet.packageThanhToan;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -11,13 +9,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.doan_rapphim.R;
 import com.example.doan_rapphim.packageTrangChiTiet.IDPhim;
-import com.example.doan_rapphim.packageTrangChiTiet.ThongTinFragment;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -28,23 +23,20 @@ import java.net.URL;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.LinkedList;
 
 public class ThongTinGiaoDich extends AppCompatActivity {
-    private  TextView txtTenPhim;
-    private  TextView txtPhong;
-    private  TextView txtSuatChieu;
-    private  TextView txtTenRap;
+    private TextView txtTenPhim;
+    private TextView txtPhong;
+    private TextView txtSuatChieu;
+    private TextView txtTenRap;
     private Button btnThayDoi;
     private Button btnXacNhan;
     private TextView txtTTGD;
-    private  TextView txtSL;
+    private TextView txtSL;
     private TextView txtTTGDtong;
     private String GheDaChon = "";
-    private  String InsertVe = "http://0306181355.pixelcent.com/Cinema/VePhim.php?IDKhachHang=";
-    public Integer GheID[] = new Integer[ThongTinSoDoGhe.sl];
-    private final LinkedList<Ghe> mWordList = new LinkedList<>();
-    String chuoi = "Ds: ";
+    private String InsertVe = "http://0306181355.pixelcent.com/Cinema/VePhim.php?IDKhachHang=";
+    public Integer[] GheID = new Integer[ThongTinSoDoGhe.sl];
 
 
     @Override
@@ -52,7 +44,7 @@ public class ThongTinGiaoDich extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_thong_tin_giao_dich);
         btnXacNhan = findViewById(R.id.btnXacNhan);
-        btnThayDoi= findViewById(R.id.btnTroVe);
+        btnThayDoi = findViewById(R.id.btnTroVe);
         txtSL = findViewById(R.id.txtTTGDSoLuong);
         txtTTGDtong = findViewById((R.id.txtTTGDTongTien));
         txtTTGD = findViewById(R.id.txtTTGDGhe);
@@ -64,74 +56,74 @@ public class ThongTinGiaoDich extends AppCompatActivity {
         Hienthids();
 
         btnThayDoi.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+                                          @Override
+                                          public void onClick(View v) {
 
-               Intent intent = new Intent(ThongTinGiaoDich.this, com.example.doan_rapphim.packageTrangChiTiet.packageThanhToan.SoDoGhe.class);
-                startActivity(intent);
-            }
-        }
+                                              Intent intent = new Intent(ThongTinGiaoDich.this, com.example.doan_rapphim.packageTrangChiTiet.packageThanhToan.SoDoGhe.class);
+                                              startActivity(intent);
+                                          }
+                                      }
         );
-        btnXacNhan.setOnClickListener( new  View.OnClickListener() {
-                                           @Override
-                                           public void onClick(View v) {
-                                               for (int i = 0; i < ThongTinSoDoGhe.sl; i++) {
-                                                       INSERT_VE insert_ve = new INSERT_VE(GheID[i]);
-                                                   insert_ve.execute();
-                                               }
-                                               AlertDialog.Builder builder = new AlertDialog.Builder(ThongTinGiaoDich.this);
-                                               // Set a title for alert dialog
-                                               builder.setTitle("Thông Báo");
+        btnXacNhan.setOnClickListener(new View.OnClickListener() {
+                                          @Override
+                                          public void onClick(View v) {
+                                              for (int i = 0; i < ThongTinSoDoGhe.sl; i++) {
+                                                  INSERT_VE insert_ve = new INSERT_VE(GheID[i]);
+                                                  insert_ve.execute();
+                                              }
+                                              AlertDialog.Builder builder = new AlertDialog.Builder(ThongTinGiaoDich.this);
+                                              // Set a title for alert dialog
+                                              builder.setTitle("Thông Báo");
 
-                                               // Ask the final question
-                                               builder.setMessage("ĐẶT GHẾ THÀNH CÔNG !!!");
+                                              // Ask the final question
+                                              builder.setMessage("ĐẶT GHẾ THÀNH CÔNG !!!");
 
-                                               // Set the alert dialog yes button click listener
-                                               builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                                                   @Override
-                                                   public void onClick(DialogInterface dialog, int which) {
-                                                       // Do something when user clicked the Yes button
-                                                       // Set the TextView visibility GONE
-                                                       Intent intent = new Intent(builder.getContext(), com.example.doan_rapphim.MainActivity.class);
-                                                       startActivity(intent);
-                                                   }
-                                               });
-                                               // Set the alert dialog no button click listener
+                                              // Set the alert dialog yes button click listener
+                                              builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                                  @Override
+                                                  public void onClick(DialogInterface dialog, int which) {
+                                                      // Do something when user clicked the Yes button
+                                                      // Set the TextView visibility GONE
+                                                      Intent intent = new Intent(builder.getContext(), com.example.doan_rapphim.MainActivity.class);
+                                                      startActivity(intent);
+                                                  }
+                                              });
+                                              // Set the alert dialog no button click listener
 
 
-                                               AlertDialog dialog = builder.create();
-                                               // Display the alert dialog on interface
-                                               dialog.show();
+                                              AlertDialog dialog = builder.create();
+                                              // Display the alert dialog on interface
+                                              dialog.show();
 
-                                           }
-                                       }
+                                          }
+                                      }
         );
 
-        Integer x=0;
-        for(int i = 0; i < 4; i++){
+        Integer x = 0;
+        for (int i = 0; i < 4; i++) {
             Integer hang = 0;
-            for(Integer j = 0; j < 5 ; j++){
-                if(ThongTinSoDoGhe.Ghe[i][j] == true){
+            for (Integer j = 0; j < 5; j++) {
+                if (ThongTinSoDoGhe.Ghe[i][j] == true) {
                     String Hang = "";
-                    if(i == 0) {
+                    if (i == 0) {
                         Hang = "A";
                         hang = 0;
                     }
-                    if(i == 1){
+                    if (i == 1) {
                         hang = 5;
                         Hang = "B";
                     }
-                    if(i == 2) {
+                    if (i == 2) {
                         Hang = "C";
                         hang = 10;
                     }
-                    if(i == 3) {
+                    if (i == 3) {
                         Hang = "D";
                         hang = 15;
                     }
                     Integer Cot = j + 1;
                     Integer idGhe = Cot + hang;
-                   GheID[x] = idGhe;
+                    GheID[x] = idGhe;
                     x++;
                     GheDaChon = GheDaChon + Hang + Cot.toString() + ",";
                 }
@@ -140,21 +132,19 @@ public class ThongTinGiaoDich extends AppCompatActivity {
 
         String[] separated = GheDaChon.split(",");
         GheDaChon = "";
-        for(int i = 0; i < separated.length;i++)
-        {
+        for (int i = 0; i < separated.length; i++) {
             GheDaChon = GheDaChon + separated[i];
-            if(i == separated.length-1)
-            {
+            if (i == separated.length - 1) {
                 GheDaChon = GheDaChon + ".";
-            }
-            else {
+            } else {
                 GheDaChon = GheDaChon + ", ";
             }
         }
         txtTTGD.setText("");
         txtTTGD.setText(GheDaChon);
     }
-    private void Hienthids(){
+
+    private void Hienthids() {
         txtSL.setText(ThongTinSoDoGhe.sl.toString());
         txtTTGDtong.setText(ThongTinSoDoGhe.tongTien.toString());
         txtPhong.setText(ThongTinSoDoGhe.TenPhong);
@@ -167,7 +157,8 @@ public class ThongTinGiaoDich extends AppCompatActivity {
         Integer idGhe;
         DateFormat df2 = new SimpleDateFormat("yyyy-MM-dd");
         String date2 = df2.format(Calendar.getInstance().getTime());
-        public INSERT_VE(Integer idGhe){
+
+        public INSERT_VE(Integer idGhe) {
             this.idGhe = idGhe;
         }
 
@@ -182,20 +173,19 @@ public class ThongTinGiaoDich extends AppCompatActivity {
 
                 try {
                     Integer tb = ThongTinSoDoGhe.tongTien / ThongTinSoDoGhe.sl;
-                    InsertVe = "http://0306181355.pixelcent.com/Cinema/VePhim.php?IDKhachHang=" + ThongTinSoDoGhe.IDKhachHang + "&IDPhim="+ IDPhim.ID +"&IDRap="+ThongTinSoDoGhe.IDRap+"&IDPhong="+ ThongTinSoDoGhe.IDPhong+ "&IDXuatChieu="+ThongTinSoDoGhe.IDXuatChieu+"&IDGhe="+idGhe+"&tongtien="+tb+"&ngaydatve="+date2+"&ngaychieuphim="+ThongTinSoDoGhe.NgayChieuPhim;
+                    InsertVe = "http://0306181355.pixelcent.com/Cinema/VePhim.php?IDKhachHang=" + ThongTinSoDoGhe.IDKhachHang + "&IDPhim=" + IDPhim.ID + "&IDRap=" + ThongTinSoDoGhe.IDRap + "&IDPhong=" + ThongTinSoDoGhe.IDPhong + "&IDXuatChieu=" + ThongTinSoDoGhe.IDXuatChieu + "&IDGhe=" + idGhe + "&tongtien=" + tb + "&ngaydatve=" + date2 + "&ngaychieuphim=" + ThongTinSoDoGhe.NgayChieuPhim;
 
                     url = new URL(InsertVe);
-                        urlConnection = (HttpURLConnection) url.openConnection();
+                    urlConnection = (HttpURLConnection) url.openConnection();
 
-                        InputStream in = urlConnection.getInputStream();
-                        InputStreamReader isr = new InputStreamReader(in);
+                    InputStream in = urlConnection.getInputStream();
+                    InputStreamReader isr = new InputStreamReader(in);
 
-                        int data = isr.read();
-                        while (data != -1) {
-                            current += (char) data;
-                            data = isr.read();
-                        }
-
+                    int data = isr.read();
+                    while (data != -1) {
+                        current += (char) data;
+                        data = isr.read();
+                    }
 
 
                     return current;
@@ -210,7 +200,7 @@ public class ThongTinGiaoDich extends AppCompatActivity {
                     }
                 }
 
-            }catch (Exception e) {
+            } catch (Exception e) {
                 e.printStackTrace();
             }
             return current;

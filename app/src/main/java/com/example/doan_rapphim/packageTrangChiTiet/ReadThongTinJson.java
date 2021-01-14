@@ -15,10 +15,10 @@ import java.io.InputStreamReader;
 
 public class ReadThongTinJson {
 
-    public static ThongTinJson readThongTinJsonFile(Context context, int IDPhim) throws IOException,JSONException{
+    public static ThongTinJson readThongTinJsonFile(Context context, int IDPhim) throws IOException, JSONException {
 
         ThongTinJson thongTinJson = new ThongTinJson();
-        String jsonText = readText(context,R.raw.tct_thongtin);
+        String jsonText = readText(context, R.raw.tct_thongtin);
         JSONObject jsonRoot = new JSONObject(jsonText);
         JSONArray jsonArray = jsonRoot.getJSONArray("DanhSach");
 
@@ -55,7 +55,7 @@ public class ReadThongTinJson {
         return thongTinJson;
     }
 
-    public static Integer SoLuongPhim(Context context) throws IOException, JSONException{
+    public static Integer SoLuongPhim(Context context) throws IOException, JSONException {
         String jsonText = readText(context, R.raw.tct_thongtin);
         JSONObject jsonRoot = new JSONObject(jsonText);
         JSONArray jsonArray = jsonRoot.getJSONArray("DanhSach");
@@ -67,7 +67,7 @@ public class ReadThongTinJson {
         BufferedReader br = new BufferedReader(new InputStreamReader(is));
         StringBuilder sb = new StringBuilder();
         String s = null;
-        while ((s = br.readLine()) != null){
+        while ((s = br.readLine()) != null) {
             sb.append(s);
             sb.append("\n");
         }

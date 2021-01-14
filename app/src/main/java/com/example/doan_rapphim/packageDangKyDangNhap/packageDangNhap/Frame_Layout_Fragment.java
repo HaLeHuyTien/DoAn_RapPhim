@@ -1,14 +1,13 @@
 package com.example.doan_rapphim.packageDangKyDangNhap.packageDangNhap;
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
 import com.example.doan_rapphim.R;
 import com.example.doan_rapphim.packageDangKyDangNhap.packageDangNhap.packageThongTinUser.TabTaiKhoan_Fragment;
@@ -60,10 +59,9 @@ public class Frame_Layout_Fragment extends Fragment {
         }
 
 
-        if(IDUser.idUser < 0) {
-        KhoiTao();
-        }
-        else {
+        if (IDUser.idUser < 0) {
+            KhoiTao();
+        } else {
             KhoiTao2();
         }
 
@@ -79,18 +77,19 @@ public class Frame_Layout_Fragment extends Fragment {
     private void KhoiTao() {
 
 
-            DangNhapFragment firstFragment = new DangNhapFragment();
+        DangNhapFragment firstFragment = new DangNhapFragment();
 
-            FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
 
-            FragmentTransaction ft = fragmentManager.beginTransaction();
+        FragmentTransaction ft = fragmentManager.beginTransaction();
 
-            ft.replace(R.id.container_body, firstFragment);
+        ft.replace(R.id.container_body, firstFragment);
 
-            ft.commit();
+        ft.commit();
 
 
     }
+
     private void KhoiTao2() {
 
 

@@ -1,8 +1,5 @@
 package com.example.doan_rapphim.packageDangKyDangNhap.packageDangNhap.packageThongTinUser;
 
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
@@ -23,11 +20,12 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.doan_rapphim.packageDangKyDangNhap.packageDangKy.DangKyActivity;
-import com.squareup.picasso.Picasso;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.doan_rapphim.R;
 import com.example.doan_rapphim.packageDangKyDangNhap.packageDangNhap.IDUser;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -40,7 +38,6 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.List;
 
 public class ThayDoiThongTin extends AppCompatActivity {
     private Spinner spnTinhTp;
@@ -48,7 +45,7 @@ public class ThayDoiThongTin extends AppCompatActivity {
     private Spinner spnXaPhuong;
     private ArrayAdapter<QuanHuyen> spinnerListArrayAdapterQuanHuyen;
     private ArrayAdapter<PhuongXa> spinnerListArrayAdapterPhuongXa;
-    private String[] categories = {"TP Hà Nội", "TP Hồ Chí Minh" , "TP Đà Nẵng"};
+    private final String[] categories = {"TP Hà Nội", "TP Hồ Chí Minh", "TP Đà Nẵng"};
     public int IDThanhPhoTinh;
 
     private ImageView imageViewDoiAnh;
@@ -69,9 +66,10 @@ public class ThayDoiThongTin extends AppCompatActivity {
 
 
     private String UpdateTT;
-    private String URLUpdateTTTK = "http://0306181355.pixelcent.com/Cinema/ThayDoiThongTinThanhVien.php?HoTen=";
+    private final String URLUpdateTTTK = "http://0306181355.pixelcent.com/Cinema/ThayDoiThongTinThanhVien.php?HoTen=";
     private String LayTT;
-    private String URLLayTTTK = "http://0306181355.pixelcent.com/Cinema/ThongTinKhachHang.php?ID=";
+    private final String URLLayTTTK = "http://0306181355.pixelcent.com/Cinema/ThongTinKhachHang.php?ID=";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -113,16 +111,9 @@ public class ThayDoiThongTin extends AppCompatActivity {
             }
         });
 
-
-        //chonTP();
-        //chonQuan();
-        //chonPhuong();
-
-
         //HienThiThongTinUser();
         HienThiThongTin hienThiThongTin = new HienThiThongTin();
         hienThiThongTin.execute();
-
 
         SpinnerView();
 
@@ -133,11 +124,11 @@ public class ThayDoiThongTin extends AppCompatActivity {
     public void SpinnerView() {
 
         //Load Dữ liệu và spinner TpTinh
-        spnTinhTp.setAdapter(new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,categories));
+        spnTinhTp.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, categories));
         spnTinhTp.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if(position>=0 ) {
+                if (position >= 0) {
                     IDThanhPhoTinh = position;
                     getSelectedQuanHuyen(position);
                 }
@@ -150,13 +141,12 @@ public class ThayDoiThongTin extends AppCompatActivity {
         });
 
 
-
         //Load Dữ liệu và spinner QuanHuyen
-        spnHuyenQuan.setAdapter(new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,getQuanHuyenList()));
+        spnHuyenQuan.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, getQuanHuyenList()));
         spnHuyenQuan.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if(position>=0 ) {
+                if (position >= 0) {
                     getSelectedXaPhuong(position);
                 }
             }
@@ -168,7 +158,7 @@ public class ThayDoiThongTin extends AppCompatActivity {
         });
 
         // Loat dữ liệu XaPhuong
-        spnXaPhuong.setAdapter(new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,getXaPhuongList()));
+        spnXaPhuong.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, getXaPhuongList()));
 
     }
 
@@ -178,7 +168,7 @@ public class ThayDoiThongTin extends AppCompatActivity {
         data.clear();
 
         //Quận của TP.HCM
-        data.add(new QuanHuyen("Quận 1",1));
+        data.add(new QuanHuyen("Quận 1", 1));
         data.add(new QuanHuyen("Quận 2", 1));
         data.add(new QuanHuyen("Quận 3", 1));
         data.add(new QuanHuyen("Quận 4", 1));
@@ -204,31 +194,30 @@ public class ThayDoiThongTin extends AppCompatActivity {
         data.add(new QuanHuyen("Quận Nhà Bè", 1));
 
         //Quận của Hà Nội
-        data.add(new QuanHuyen("Quận Bắc Từ Liêm",0));
-        data.add(new QuanHuyen("Quận Ba Đình",0));
-        data.add(new QuanHuyen("Quận Cầu Giấy",0));
-        data.add(new QuanHuyen("Quận Đống Đa",0));
-        data.add(new QuanHuyen("Quận Hai Bà Trưng",0));
-        data.add(new QuanHuyen("Quận Hoàn Kiếm",0));
-        data.add(new QuanHuyen("Quận Hà Đông",0));
-        data.add(new QuanHuyen("Quận Hoàng Mai",0));
-        data.add(new QuanHuyen("Quận Long Biên",0));
-        data.add(new QuanHuyen("Quận Thanh Xuân",0));
-        data.add(new QuanHuyen("Quận Tây Hồ",0));
-        data.add(new QuanHuyen("Quận Nam Từ Liêm",0));
+        data.add(new QuanHuyen("Quận Bắc Từ Liêm", 0));
+        data.add(new QuanHuyen("Quận Ba Đình", 0));
+        data.add(new QuanHuyen("Quận Cầu Giấy", 0));
+        data.add(new QuanHuyen("Quận Đống Đa", 0));
+        data.add(new QuanHuyen("Quận Hai Bà Trưng", 0));
+        data.add(new QuanHuyen("Quận Hoàn Kiếm", 0));
+        data.add(new QuanHuyen("Quận Hà Đông", 0));
+        data.add(new QuanHuyen("Quận Hoàng Mai", 0));
+        data.add(new QuanHuyen("Quận Long Biên", 0));
+        data.add(new QuanHuyen("Quận Thanh Xuân", 0));
+        data.add(new QuanHuyen("Quận Tây Hồ", 0));
+        data.add(new QuanHuyen("Quận Nam Từ Liêm", 0));
 
         //Các Huyện của Đà Nẵng
-        data.add(new QuanHuyen("Quận Ngũ Hành Sơn",2));
-        data.add(new QuanHuyen("Huyện Hòa Vang",2));
-        data.add(new QuanHuyen("Huyện Hoàng Sa",2));
-        data.add(new QuanHuyen("Quận Thanh Khê",2));
-        data.add(new QuanHuyen("Quận Sơn Trà",2));
-        data.add(new QuanHuyen("Quận Liên Chiểu",2));
-        data.add(new QuanHuyen("Quận Hải Châu",2));
-        data.add(new QuanHuyen("Quận Cẩm Lệ",2));
+        data.add(new QuanHuyen("Quận Ngũ Hành Sơn", 2));
+        data.add(new QuanHuyen("Huyện Hòa Vang", 2));
+        data.add(new QuanHuyen("Huyện Hoàng Sa", 2));
+        data.add(new QuanHuyen("Quận Thanh Khê", 2));
+        data.add(new QuanHuyen("Quận Sơn Trà", 2));
+        data.add(new QuanHuyen("Quận Liên Chiểu", 2));
+        data.add(new QuanHuyen("Quận Hải Châu", 2));
+        data.add(new QuanHuyen("Quận Cẩm Lệ", 2));
 
         return data;
-
 
     }
 
@@ -238,72 +227,72 @@ public class ThayDoiThongTin extends AppCompatActivity {
         data.clear();
 
         //Phường Xã của Quận 1
-        data.add(new PhuongXa("Phường Bến Nghé",1,0));
-        data.add(new PhuongXa("Phường Bến Thành",1,0));
-        data.add(new PhuongXa("Phường Cô Giang",1,0));
-        data.add(new PhuongXa("Phường Cầu Kho",1,0));
-        data.add(new PhuongXa("Phường Cầu Ông Lãnh",1,0));
-        data.add(new PhuongXa("Phường Đa Kao",1,0));
-        data.add(new PhuongXa("Phường Nguyễn Cư Trinh",1,0));
-        data.add(new PhuongXa("Phường Nguyễn Thái Bình",1,0));
-        data.add(new PhuongXa("Phường Phạm Ngũ Lão",1,0));
-        data.add(new PhuongXa("Phường Tân Định",1,0));
-        data.add(new PhuongXa("Phường An Khánh",1,0));
+        data.add(new PhuongXa("Phường Bến Nghé", 1, 0));
+        data.add(new PhuongXa("Phường Bến Thành", 1, 0));
+        data.add(new PhuongXa("Phường Cô Giang", 1, 0));
+        data.add(new PhuongXa("Phường Cầu Kho", 1, 0));
+        data.add(new PhuongXa("Phường Cầu Ông Lãnh", 1, 0));
+        data.add(new PhuongXa("Phường Đa Kao", 1, 0));
+        data.add(new PhuongXa("Phường Nguyễn Cư Trinh", 1, 0));
+        data.add(new PhuongXa("Phường Nguyễn Thái Bình", 1, 0));
+        data.add(new PhuongXa("Phường Phạm Ngũ Lão", 1, 0));
+        data.add(new PhuongXa("Phường Tân Định", 1, 0));
+        data.add(new PhuongXa("Phường An Khánh", 1, 0));
 
         //Phường Xã của Quận 2
-        data.add(new PhuongXa("Phường An Khánh",1,1));
-        data.add(new PhuongXa("Phường An Lợi Đông",1,1));
-        data.add(new PhuongXa("Phường An Phú",1,1));
-        data.add(new PhuongXa("Phường Bình An",1,1));
-        data.add(new PhuongXa("Phường Bình Khánh",1,1));
-        data.add(new PhuongXa("Phường Bình Trưng Đông",1,1));
-        data.add(new PhuongXa("Phường Bình Trưng Tây",1,1));
-        data.add(new PhuongXa("Phường Cát Lái",1,1));
-        data.add(new PhuongXa("Phường Thạch Mỹ Lợi",1,1));
-        data.add(new PhuongXa("Phường Thảo Điền",1,1));
-        data.add(new PhuongXa("Phường Thủ Khiêm",1,1));
+        data.add(new PhuongXa("Phường An Khánh", 1, 1));
+        data.add(new PhuongXa("Phường An Lợi Đông", 1, 1));
+        data.add(new PhuongXa("Phường An Phú", 1, 1));
+        data.add(new PhuongXa("Phường Bình An", 1, 1));
+        data.add(new PhuongXa("Phường Bình Khánh", 1, 1));
+        data.add(new PhuongXa("Phường Bình Trưng Đông", 1, 1));
+        data.add(new PhuongXa("Phường Bình Trưng Tây", 1, 1));
+        data.add(new PhuongXa("Phường Cát Lái", 1, 1));
+        data.add(new PhuongXa("Phường Thạch Mỹ Lợi", 1, 1));
+        data.add(new PhuongXa("Phường Thảo Điền", 1, 1));
+        data.add(new PhuongXa("Phường Thủ Khiêm", 1, 1));
 
         //Phường Xã của Quận Bắc Từ Liêm
-        data.add(new PhuongXa("Phường Cổ Nhuế 1",0,0));
-        data.add(new PhuongXa("Phường Cổ Nhuế 2",0,0));
-        data.add(new PhuongXa("Phường Đức Thắng",0,0));
-        data.add(new PhuongXa("Phường Đông Ngạc",0,0));
-        data.add(new PhuongXa("Phường Thụy Phương",0,0));
-        data.add(new PhuongXa("Phường Liên Mạc",0,0));
-        data.add(new PhuongXa("Phường Thượng Cát",0,0));
-        data.add(new PhuongXa("Phường Tây Tựu",0,0));
-        data.add(new PhuongXa("Phường Minh Khai",0,0));
-        data.add(new PhuongXa("Phường Phú Diễn",0,0));
-        data.add(new PhuongXa("Phường Xuân Đỉnh",0,0));
-        data.add(new PhuongXa("Phường Xuân Tảo",0,0));
+        data.add(new PhuongXa("Phường Cổ Nhuế 1", 0, 0));
+        data.add(new PhuongXa("Phường Cổ Nhuế 2", 0, 0));
+        data.add(new PhuongXa("Phường Đức Thắng", 0, 0));
+        data.add(new PhuongXa("Phường Đông Ngạc", 0, 0));
+        data.add(new PhuongXa("Phường Thụy Phương", 0, 0));
+        data.add(new PhuongXa("Phường Liên Mạc", 0, 0));
+        data.add(new PhuongXa("Phường Thượng Cát", 0, 0));
+        data.add(new PhuongXa("Phường Tây Tựu", 0, 0));
+        data.add(new PhuongXa("Phường Minh Khai", 0, 0));
+        data.add(new PhuongXa("Phường Phú Diễn", 0, 0));
+        data.add(new PhuongXa("Phường Xuân Đỉnh", 0, 0));
+        data.add(new PhuongXa("Phường Xuân Tảo", 0, 0));
 
         // Phường Xã của Quận Ba Đình
-        data.add(new PhuongXa("Phường Cống Vị",0,1));
-        data.add(new PhuongXa("Phường Điện Biên",0,1));
-        data.add(new PhuongXa("Phường Đội Cấn",0,1));
-        data.add(new PhuongXa("Phường Giảng Võ",0,1));
-        data.add(new PhuongXa("Phường Kim Mã",0,1));
-        data.add(new PhuongXa("Phường Liễu Giai",0,1));
-        data.add(new PhuongXa("Phường Ngọc Hà",0,1));
-        data.add(new PhuongXa("Phường Ngọc Khánh",0,1));
-        data.add(new PhuongXa("Phường Nguyễn Trung Trực",0,1));
-        data.add(new PhuongXa("Phường Phúc Xá",0,1));
-        data.add(new PhuongXa("Phường Quán Thánh",0,1));
-        data.add(new PhuongXa("Phường Thành Công",0,1));
-        data.add(new PhuongXa("Phường Trúc Bạch",0,1));
-        data.add(new PhuongXa("Phường Vĩnh Phúc",0,1));
+        data.add(new PhuongXa("Phường Cống Vị", 0, 1));
+        data.add(new PhuongXa("Phường Điện Biên", 0, 1));
+        data.add(new PhuongXa("Phường Đội Cấn", 0, 1));
+        data.add(new PhuongXa("Phường Giảng Võ", 0, 1));
+        data.add(new PhuongXa("Phường Kim Mã", 0, 1));
+        data.add(new PhuongXa("Phường Liễu Giai", 0, 1));
+        data.add(new PhuongXa("Phường Ngọc Hà", 0, 1));
+        data.add(new PhuongXa("Phường Ngọc Khánh", 0, 1));
+        data.add(new PhuongXa("Phường Nguyễn Trung Trực", 0, 1));
+        data.add(new PhuongXa("Phường Phúc Xá", 0, 1));
+        data.add(new PhuongXa("Phường Quán Thánh", 0, 1));
+        data.add(new PhuongXa("Phường Thành Công", 0, 1));
+        data.add(new PhuongXa("Phường Trúc Bạch", 0, 1));
+        data.add(new PhuongXa("Phường Vĩnh Phúc", 0, 1));
 
         //Phường Xã của Quận Ngũ Hành Sơn
-        data.add(new PhuongXa("Phường Hòa Hải",2,0));
-        data.add(new PhuongXa("Phường Hòa Quý",2,0));
-        data.add(new PhuongXa("Phường Hòa Khuê Mỹ",2,0));
-        data.add(new PhuongXa("Phường Mỹ An",2,0));
+        data.add(new PhuongXa("Phường Hòa Hải", 2, 0));
+        data.add(new PhuongXa("Phường Hòa Quý", 2, 0));
+        data.add(new PhuongXa("Phường Hòa Khuê Mỹ", 2, 0));
+        data.add(new PhuongXa("Phường Mỹ An", 2, 0));
 
         //Phường Xã của Quận Hòa Vang
-        data.add(new PhuongXa("Phường Hòa Châu",2,1));
-        data.add(new PhuongXa("Phường Hòa Tiến",2,1));
-        data.add(new PhuongXa("Phường Hòa Phước",2,1));
-        data.add(new PhuongXa("Phường Hòa Phong",2,1));
+        data.add(new PhuongXa("Phường Hòa Châu", 2, 1));
+        data.add(new PhuongXa("Phường Hòa Tiến", 2, 1));
+        data.add(new PhuongXa("Phường Hòa Phước", 2, 1));
+        data.add(new PhuongXa("Phường Hòa Phong", 2, 1));
 
         return data;
     }
@@ -312,13 +301,13 @@ public class ThayDoiThongTin extends AppCompatActivity {
     public void getSelectedQuanHuyen(int IDThanhPho) {
         ArrayList<QuanHuyen> quanHuyens = new ArrayList<>();
         for (QuanHuyen quanHuyen : getQuanHuyenList()) {
-            if(quanHuyen.getIDThanhPhoTinh() == IDThanhPho) {
+            if (quanHuyen.getIDThanhPhoTinh() == IDThanhPho) {
                 quanHuyens.add(quanHuyen);
 
             }
         }
 
-        spinnerListArrayAdapterQuanHuyen = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,quanHuyens);
+        spinnerListArrayAdapterQuanHuyen = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, quanHuyens);
 
         spnHuyenQuan.setAdapter(spinnerListArrayAdapterQuanHuyen);
     }
@@ -330,27 +319,27 @@ public class ThayDoiThongTin extends AppCompatActivity {
 
 
         for (PhuongXa phuongXa : getXaPhuongList()) {
-            if(phuongXa.getIDQuanHuyen()== IDQuanHuyen && phuongXa.getIDThanhPhoTinh() == IDThanhPhoTinh) {
+            if (phuongXa.getIDQuanHuyen() == IDQuanHuyen && phuongXa.getIDThanhPhoTinh() == IDThanhPhoTinh) {
                 phuongXas.add(phuongXa);
             }
         }
-        spinnerListArrayAdapterPhuongXa = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,phuongXas);
+        spinnerListArrayAdapterPhuongXa = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, phuongXas);
 
         spnXaPhuong.setAdapter(spinnerListArrayAdapterPhuongXa);
     }
 
 
     //Chọn ngày sinh
-    private void ChonNgaySinh(){
+    private void ChonNgaySinh() {
         DatePickerDialog.OnDateSetListener dateSetListener = new DatePickerDialog.OnDateSetListener() {
 
             @Override
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                 int thang = month + 1;
-                if(dayOfMonth > 9)
-                    editTextNgaySinh.setText(year +"-" + thang + "-" + dayOfMonth);
+                if (dayOfMonth > 9)
+                    editTextNgaySinh.setText(year + "-" + thang + "-" + dayOfMonth);
                 else
-                    editTextNgaySinh.setText( year + "-" + thang+ "-" + "0" + dayOfMonth);
+                    editTextNgaySinh.setText(year + "-" + thang + "-" + "0" + dayOfMonth);
                 lastSelectedYear = year;
                 lastSelectedMonth = month;
                 lastSelectedDayOfMonth = dayOfMonth;
@@ -398,19 +387,15 @@ public class ThayDoiThongTin extends AppCompatActivity {
 
     //Nút Lưu thay đổi
     public void LuuThayDoi() {
-        if(editTextHoVaTen.getText().toString().equals("") || editTextNgaySinh.getText().toString().equals("") || editTextSDT.getText().toString().equals("")) {
-            Toast.makeText(this,"Bạn chưa nhập đủ thông tin !",Toast.LENGTH_SHORT).show();
-        }
-        else if (editTextHoVaTen.getText().length()<3) {
-            Toast.makeText(this,"Họ và tên phải từ ít nhất 3 ký tự, tối đa 20 ký tự !",Toast.LENGTH_SHORT).show();
-        }
-        else if (editTextHoVaTen.getText().length()>20) {
-            Toast.makeText(this,"Họ và tên phải từ ít nhất 3 ký tự, tối đa 20 ký tự !",Toast.LENGTH_SHORT).show();
-        }
-        else if (editTextSDT.getText().length()<10 || editTextSDT.getText().length()>10) {
-            Toast.makeText(this,"Số điện thoại phải đúng 10 ký tự !",Toast.LENGTH_SHORT).show();
-        }
-        else {
+        if (editTextHoVaTen.getText().toString().equals("") || editTextNgaySinh.getText().toString().equals("") || editTextSDT.getText().toString().equals("")) {
+            Toast.makeText(this, "Bạn chưa nhập đủ thông tin !", Toast.LENGTH_SHORT).show();
+        } else if (editTextHoVaTen.getText().length() < 3) {
+            Toast.makeText(this, "Họ và tên phải từ ít nhất 3 ký tự, tối đa 20 ký tự !", Toast.LENGTH_SHORT).show();
+        } else if (editTextHoVaTen.getText().length() > 20) {
+            Toast.makeText(this, "Họ và tên phải từ ít nhất 3 ký tự, tối đa 20 ký tự !", Toast.LENGTH_SHORT).show();
+        } else if (editTextSDT.getText().length() < 10 || editTextSDT.getText().length() > 10) {
+            Toast.makeText(this, "Số điện thoại phải đúng 10 ký tự !", Toast.LENGTH_SHORT).show();
+        } else {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setTitle("Thông Báo");
 
@@ -433,9 +418,9 @@ public class ThayDoiThongTin extends AppCompatActivity {
                     txtHoTen.setText(editTextHoVaTen.getText().toString());
                     txtSDT.setText(editTextSDT.getText().toString());
                     txtNgaySinh.setText(editTextNgaySinh.getText().toString());
-                    txtDiaChi.setText(spnXaPhuong.getSelectedItem().toString() + ", " +spnHuyenQuan.getSelectedItem().toString()+ ", " + spnTinhTp.getSelectedItem().toString());
+                    txtDiaChi.setText(spnXaPhuong.getSelectedItem().toString() + ", " + spnHuyenQuan.getSelectedItem().toString() + ", " + spnTinhTp.getSelectedItem().toString());
 
-                    Toast.makeText(ThayDoiThongTin.this,"Thay đổi thành công !",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ThayDoiThongTin.this, "Thay đổi thành công !", Toast.LENGTH_SHORT).show();
                     finish();
 
                 }
@@ -456,18 +441,17 @@ public class ThayDoiThongTin extends AppCompatActivity {
     }
 
     //Click đổi ảnh
-    private void pickImage()
-    {
+    private void pickImage() {
         Intent intent = new Intent();
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
-        startActivityForResult(Intent.createChooser(intent, "Select a file to Upload"),PICK_IMAGE_REQUEST);
+        startActivityForResult(Intent.createChooser(intent, "Select a file to Upload"), PICK_IMAGE_REQUEST);
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null){
+        if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null) {
             Uri uri = data.getData();
             imageViewDoiAnh.setImageURI(uri);
         }
@@ -511,7 +495,7 @@ public class ThayDoiThongTin extends AppCompatActivity {
                     }
                 }
 
-            }catch (Exception e) {
+            } catch (Exception e) {
                 e.printStackTrace();
             }
             return current;
@@ -523,7 +507,7 @@ public class ThayDoiThongTin extends AppCompatActivity {
                 JSONObject jsonObject = new JSONObject(s);
                 JSONArray jsonArray = jsonObject.getJSONArray("DanhSach");
 
-                for(int i = 0; i<jsonArray.length(); i++) {
+                for (int i = 0; i < jsonArray.length(); i++) {
                     JSONObject jsonObject1 = jsonArray.getJSONObject(i);
                     String Hinh = jsonObject1.getString("Hinh");
                     String HoTen = jsonObject1.getString("HoTen");
@@ -531,8 +515,6 @@ public class ThayDoiThongTin extends AppCompatActivity {
                     String SDT = jsonObject1.getString("SDT");
 
                     Picasso.get().load("http://0306181355.pixelcent.com/rapphim/public/images/" + Hinh).into(imageViewDoiAnh);
-                    //int resID =getResources().getIdentifier(Hinh,"drawable",getPackageName());
-                    //imageButtonDoiAnh.setImageResource(resID);
                     editTextHoVaTen.setText(HoTen);
                     editTextSDT.setText(SDT);
                     editTextNgaySinh.setText(NgaySinh);
@@ -542,7 +524,6 @@ public class ThayDoiThongTin extends AppCompatActivity {
             }
         }
     }
-
 
 
     //ThayDoiThongTinThanhVien
@@ -556,7 +537,7 @@ public class ThayDoiThongTin extends AppCompatActivity {
                 URL url;
                 HttpURLConnection urlConnection = null;
 
-                DiaChi = spnXaPhuong.getSelectedItem().toString() + ", " +spnHuyenQuan.getSelectedItem().toString() + ", " + spnTinhTp.getSelectedItem().toString();
+                DiaChi = spnXaPhuong.getSelectedItem().toString() + ", " + spnHuyenQuan.getSelectedItem().toString() + ", " + spnTinhTp.getSelectedItem().toString();
 
                 try {
                     UpdateTT = URLUpdateTTTK + editTextHoVaTen.getText().toString() +
@@ -589,7 +570,7 @@ public class ThayDoiThongTin extends AppCompatActivity {
                     }
                 }
 
-            }catch (Exception e) {
+            } catch (Exception e) {
                 e.printStackTrace();
             }
             return current;
@@ -599,7 +580,6 @@ public class ThayDoiThongTin extends AppCompatActivity {
         protected void onPostExecute(String s) {
         }
     }
-
 
 
 }

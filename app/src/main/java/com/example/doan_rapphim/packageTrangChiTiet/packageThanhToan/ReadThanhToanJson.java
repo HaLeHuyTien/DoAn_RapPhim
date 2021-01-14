@@ -1,9 +1,9 @@
 package com.example.doan_rapphim.packageTrangChiTiet.packageThanhToan;
+
 import android.content.Context;
 
 import com.example.doan_rapphim.R;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -11,10 +11,11 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+
 public class ReadThanhToanJson {
-     public static ThanhToanJson readThanhToanJsonFile(Context context) throws IOException, JSONException{
-       ThanhToanJson thanhToanJson = new ThanhToanJson();
-        String jsonText = readText(context,R.raw.thanhtoan);
+    public static ThanhToanJson readThanhToanJsonFile(Context context) throws IOException, JSONException {
+        ThanhToanJson thanhToanJson = new ThanhToanJson();
+        String jsonText = readText(context, R.raw.thanhtoan);
         JSONObject jsonRoot = new JSONObject(jsonText);
         Integer idPhim = jsonRoot.getInt("ID");
         String tenPhim = jsonRoot.getString("TenPhim");
@@ -39,12 +40,12 @@ public class ReadThanhToanJson {
         return thanhToanJson;
     }
 
-    private static String readText(Context context,int resId) throws IOException{
+    private static String readText(Context context, int resId) throws IOException {
         InputStream is = context.getResources().openRawResource(resId);
         BufferedReader br = new BufferedReader(new InputStreamReader(is));
         StringBuilder sb = new StringBuilder();
         String s = null;
-        while ((s = br.readLine()) != null){
+        while ((s = br.readLine()) != null) {
             sb.append(s);
             sb.append("\n");
         }

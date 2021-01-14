@@ -17,19 +17,20 @@ import java.util.LinkedList;
 
 public class BinhLuanListAdapter extends RecyclerView.Adapter<BinhLuanListAdapter.BinhLuanViewHolder> {
     private final LinkedList<BinhLuan_Json> mBinhLuanList;
-    private LayoutInflater layoutInflater;
-    private Context context;
+    private final LayoutInflater layoutInflater;
+    private final Context context;
 
-    public BinhLuanListAdapter(Context context, LinkedList<BinhLuan_Json> wordList){
+    public BinhLuanListAdapter(Context context, LinkedList<BinhLuan_Json> wordList) {
         layoutInflater = LayoutInflater.from(context);
         this.mBinhLuanList = wordList;
         this.context = context;
     }
+
     @NonNull
     @Override
     public BinhLuanListAdapter.BinhLuanViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View mItemView = layoutInflater.inflate(R.layout.recyclerview_binhluan,parent,false);
-        return new BinhLuanViewHolder(mItemView,this);
+        View mItemView = layoutInflater.inflate(R.layout.recyclerview_binhluan, parent, false);
+        return new BinhLuanViewHolder(mItemView, this);
     }
 
     @Override
@@ -40,8 +41,6 @@ public class BinhLuanListAdapter extends RecyclerView.Adapter<BinhLuanListAdapte
         holder.txtNgayBinhLuan.setText(mCurrent.getNgayBinhLuan());
         holder.txtGioBinhLuan.setText(mCurrent.getGioBinhLuan());
         Picasso.get().load("http://0306181355.pixelcent.com/rapphim/public/images/" + mCurrent.getAnhNguoiBinhLuan()).into(holder.imgNguoiBinhLuan);
-        //int resID = this.context.getResources().getIdentifier(mCurrent.getAnhNguoiBinhLuan(),"drawable",this.context.getPackageName());
-        //holder.imgNguoiBinhLuan.setImageResource(resID);
     }
 
     @Override
@@ -56,7 +55,8 @@ public class BinhLuanListAdapter extends RecyclerView.Adapter<BinhLuanListAdapte
         public final ImageView imgNguoiBinhLuan;
         public final TextView txtGioBinhLuan;
         final BinhLuanListAdapter mAdapter;
-        public BinhLuanViewHolder(View itemView, BinhLuanListAdapter adapter){
+
+        public BinhLuanViewHolder(View itemView, BinhLuanListAdapter adapter) {
             super(itemView);
             txtTenNguoiBinhLuan = itemView.findViewById(R.id.txtTenNguoiBinhLuan);
             txtNoiDungBinhLuan = itemView.findViewById(R.id.txtNoiDungBinhLuan);

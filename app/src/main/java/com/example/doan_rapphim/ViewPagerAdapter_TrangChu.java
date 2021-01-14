@@ -5,11 +5,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 
-import com.example.doan_rapphim.packageDangKyDangNhap.packageDangNhap.DangNhapFragment;
 import com.example.doan_rapphim.packageDangKyDangNhap.packageDangNhap.Frame_Layout_Fragment;
-import com.example.doan_rapphim.packageDangKyDangNhap.packageDangNhap.IDUser;
-import com.example.doan_rapphim.packageDangKyDangNhap.packageDangNhap.packageThongTinUser.TabTaiKhoan_Fragment;
-import com.example.doan_rapphim.packageDangKyDangNhap.packageDangNhap.packageThongTinUser.TaiKhoan_ThongTinFragment;
 
 public class ViewPagerAdapter_TrangChu extends FragmentStatePagerAdapter {
     public ViewPagerAdapter_TrangChu(@NonNull FragmentManager fm, int behavior) {
@@ -19,7 +15,7 @@ public class ViewPagerAdapter_TrangChu extends FragmentStatePagerAdapter {
     @NonNull
     @Override
     public Fragment getItem(int position) {
-        switch (position){
+        switch (position) {
             case 0:
                 return new TrangChuFragment();
             case 1:

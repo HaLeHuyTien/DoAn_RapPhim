@@ -1,26 +1,25 @@
 package com.example.doan_rapphim;
 
+import android.content.SharedPreferences;
+import android.os.Bundle;
+import android.preference.PreferenceManager;
+import android.view.MenuItem;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
-import android.content.Intent;
-import android.content.SharedPreferences;
-import android.os.Bundle;
-import android.preference.PreferenceManager;
-import android.view.MenuItem;
-import android.view.View;
-
 import com.example.doan_rapphim.packageDangKyDangNhap.packageDangNhap.IDUser;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
-    public   BottomNavigationView navigationView;
+    public BottomNavigationView navigationView;
     public ViewPager viewPager;
 
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,11 +27,10 @@ public class MainActivity extends AppCompatActivity {
 
         initPreferences();
 
-        int savedID = sharedPreferences.getInt("DATA1",-1);
-        String savedHinh = sharedPreferences.getString("DATA2","dienvien");
+        int savedID = sharedPreferences.getInt("DATA1", -1);
+        String savedHinh = sharedPreferences.getString("DATA2", "dienvien");
         IDUser.idUser = savedID;
         IDUser.HinhUser = savedHinh;
-
 
 
         viewPager = findViewById(R.id.view_pager);
@@ -42,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
         navigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId()){
+                switch (item.getItemId()) {
                     case R.id.button_home:
                         viewPager.setCurrentItem(0);
                         break;
@@ -62,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    public void setup_view_pager(){
+    public void setup_view_pager() {
         ViewPagerAdapter_TrangChu viewPagerAdapter_trangChu = new ViewPagerAdapter_TrangChu(getSupportFragmentManager(), FragmentStatePagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
         viewPager.setAdapter(viewPagerAdapter_trangChu);
 
@@ -74,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onPageSelected(int position) {
-                switch (position){
+                switch (position) {
                     case 0:
                         navigationView.getMenu().findItem(R.id.button_home).setChecked(true);
                         break;
@@ -98,7 +96,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void initPreferences(){
+    private void initPreferences() {
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         editor = sharedPreferences.edit();
     }

@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.os.AsyncTask;
 import android.os.Bundle;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,8 +12,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
-
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -43,25 +40,23 @@ import java.util.LinkedList;
 
 public class BinhLuanFragment extends Fragment {
 
-
-    private  String jsonURLBL;
-    private  String value= "http://0306181355.pixelcent.com/Cinema/BinhLuanTheoPhim.php?IDPhim=";
-    private  String jsonURLDangBL;
-    private  String valueDangBL = "http://0306181355.pixelcent.com/Cinema/DangBinhLuan.php?IDNguoiBinhLuan=";
+    private String jsonURLBL;
+    private final String value = "http://0306181355.pixelcent.com/Cinema/BinhLuanTheoPhim.php?IDPhim=";
+    private String jsonURLDangBL;
+    private final String valueDangBL = "http://0306181355.pixelcent.com/Cinema/DangBinhLuan.php?IDNguoiBinhLuan=";
     private EditText txtNDBinhLuan;
     private Button btnBinhLuan;
     private TextView txtThongBaoBL;
     private ImageView imgNguoiDangBinhLuan;
-    //RecyclerView
     private final LinkedList<BinhLuan_Json> mWordList = new LinkedList<>();
     private RecyclerView recyclerView;
     private BinhLuanListAdapter adapter;
     private TrangChiTiet mtrangChiTiet;
 
 
-    public static BinhLuanFragment getInstance(){
+    public static BinhLuanFragment getInstance() {
         BinhLuanFragment binhLuanFragment = new BinhLuanFragment();
-        return  binhLuanFragment;
+        return binhLuanFragment;
     }
 
     @Override
@@ -72,7 +67,7 @@ public class BinhLuanFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.binhluan, container,false);
+        View view = inflater.inflate(R.layout.binhluan, container, false);
         recyclerView = view.findViewById(R.id.recycler_view_binh_luan);
         btnBinhLuan = view.findViewById(R.id.btnDangBinhLuan);
         txtNDBinhLuan = view.findViewById(R.id.editTextBinhLuan);
@@ -80,18 +75,13 @@ public class BinhLuanFragment extends Fragment {
         imgNguoiDangBinhLuan = view.findViewById(R.id.imgNguoiDangBinhLuan);
         mtrangChiTiet = (TrangChiTiet) getActivity();
         jsonURLBL = value + mtrangChiTiet.getIdPhim().toString();
-        if(IDUser.idUser < 0) {
+        if (IDUser.idUser < 0) {
             txtNDBinhLuan.setEnabled(false);
             txtNDBinhLuan.setHint("Đăng nhập để bình luận phim !!");
-        }
-        else
-        {
+        } else {
             String a = IDUser.HinhUser;
             Picasso.get().load("http://0306181355.pixelcent.com/rapphim/public/images/" + IDUser.HinhUser).into(imgNguoiDangBinhLuan);
-            //int ResID = getContext().getResources().getIdentifier(IDUser.HinhUser,"drawable",getContext().getPackageName());
-            //imgNguoiDangBinhLuan.setImageResource(ResID);
         }
-
 
 
         GetBinhLuan getBinhLuan = new GetBinhLuan();
@@ -100,8 +90,7 @@ public class BinhLuanFragment extends Fragment {
         btnBinhLuan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(IDUser.idUser < 0)
-                {
+                if (IDUser.idUser < 0) {
 
                     AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 
@@ -124,7 +113,7 @@ public class BinhLuanFragment extends Fragment {
                     AlertDialog dialog = builder.create();
                     // Display the alert dialog on interface
                     dialog.show();
-                }else {
+                } else {
 
                     if (txtNDBinhLuan.getText().toString().replace(" ", "").equals("")) {
                         txtThongBaoBL.setText("Bạn phải nhập bình luận");
@@ -149,23 +138,6 @@ public class BinhLuanFragment extends Fragment {
 
     }
 
-    public void HiennThiDanhSach(){
-        try {
-            Integer soluongBinhLuan =ReadBinhLuanJson.SoLuongBinhLuan(getActivity());
-            mWordList.clear();
-            for(Integer i = 0; i < soluongBinhLuan; i++){
-                BinhLuan_Json binhLuan_json = ReadBinhLuanJson.readBinhLuanJsonFile(getActivity(),i);
-                if(binhLuan_json.getIDPhim() == mtrangChiTiet.getIdPhim())
-                mWordList.addLast(binhLuan_json);
-            }
-            adapter = new BinhLuanListAdapter(getActivity(),mWordList);
-            recyclerView.setAdapter(adapter);
-            recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        }catch (Exception e){
-            btnBinhLuan.setText("Lỗi");
-        }
-
-    }
 
     private class GetBinhLuan extends AsyncTask<String, String, String> {
 
@@ -204,7 +176,7 @@ public class BinhLuanFragment extends Fragment {
                     }
                 }
 
-            }catch (Exception e) {
+            } catch (Exception e) {
                 e.printStackTrace();
             }
             return current;
@@ -219,8 +191,7 @@ public class BinhLuanFragment extends Fragment {
                 JSONObject jsonObject = new JSONObject(s);
                 JSONArray jsonArray = jsonObject.getJSONArray("DanhSach");
 
-                for (int i = 0; i < jsonArray.length(); i++)
-                {
+                for (int i = 0; i < jsonArray.length(); i++) {
                     JSONObject jsonObject1 = jsonArray.getJSONObject(i);
                     String HoTen = jsonObject1.getString("HoTen");
                     String NoiDung = jsonObject1.getString("NoiDung");
@@ -237,7 +208,7 @@ public class BinhLuanFragment extends Fragment {
 
                     mWordList.addLast(binhLuan_json);
                 }
-                adapter = new BinhLuanListAdapter(getActivity(),mWordList);
+                adapter = new BinhLuanListAdapter(getActivity(), mWordList);
                 recyclerView.setAdapter(adapter);
                 recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
@@ -246,6 +217,7 @@ public class BinhLuanFragment extends Fragment {
             }
         }
     }
+
 
     private class DangBinhLuan extends AsyncTask<String, String, String> {
 
@@ -284,7 +256,7 @@ public class BinhLuanFragment extends Fragment {
                     }
                 }
 
-            }catch (Exception e) {
+            } catch (Exception e) {
                 e.printStackTrace();
             }
             return current;

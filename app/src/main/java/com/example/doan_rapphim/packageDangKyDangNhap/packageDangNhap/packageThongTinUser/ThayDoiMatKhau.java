@@ -1,9 +1,5 @@
 package com.example.doan_rapphim.packageDangKyDangNhap.packageDangNhap.packageThongTinUser;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.AsyncTask;
@@ -15,10 +11,10 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.doan_rapphim.R;
 import com.example.doan_rapphim.packageDangKyDangNhap.packageDangNhap.IDUser;
-import com.example.doan_rapphim.packageTrangChiTiet.DienVienJson;
-import com.example.doan_rapphim.packageTrangChiTiet.DienVienListAdapter;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -34,9 +30,9 @@ import java.net.URL;
 public class ThayDoiMatKhau extends AppCompatActivity {
     //URL API
     private String jsonUpdateMKURL;
-    private String updateMKURL = "http://0306181355.pixelcent.com/Cinema/ThayDoiMatKhau.php?MatKhau=";
+    private final String updateMKURL = "http://0306181355.pixelcent.com/Cinema/ThayDoiMatKhau.php?MatKhau=";
     private String jsonMKURL;
-    private String matkhauURL = "http://0306181355.pixelcent.com/Cinema/ThongTinKhachHang.php?ID=";
+    private final String matkhauURL = "http://0306181355.pixelcent.com/Cinema/ThongTinKhachHang.php?ID=";
 
     private EditText editTextMKC;
     private EditText editTextMKM;
@@ -48,6 +44,7 @@ public class ThayDoiMatKhau extends AppCompatActivity {
     //Bien hien an password
     private Integer x = 0;
     private Integer y = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,15 +59,13 @@ public class ThayDoiMatKhau extends AppCompatActivity {
     }
 
     public void LuuThayDoi(View view) {
-        if(editTextMKC.getText().toString().equals("") || editTextMKM.getText().toString().equals("") || editTextNLMK.getText().toString().equals("")) {
-            Toast.makeText(this,"Vui lòng nhập đủ thông tin thay đổi !",Toast.LENGTH_SHORT).show();}
-        else if(editTextMKM.getText().length()<6){
-            Toast.makeText(this,"Mật khẩu mới phải nhiều hơn 6 ký tự !",Toast.LENGTH_SHORT).show();
-        }
-        else if (editTextMKC.getText().toString().equals(editTextMKM.getText().toString())) {
-            Toast.makeText(this,"Mật khẩu mới đã trùng với mật khẩu cũ !",Toast.LENGTH_SHORT).show();
-        }
-        else if (editTextMKM.getText().toString().equals(editTextNLMK.getText().toString())){
+        if (editTextMKC.getText().toString().equals("") || editTextMKM.getText().toString().equals("") || editTextNLMK.getText().toString().equals("")) {
+            Toast.makeText(this, "Vui lòng nhập đủ thông tin thay đổi !", Toast.LENGTH_SHORT).show();
+        } else if (editTextMKM.getText().length() < 6) {
+            Toast.makeText(this, "Mật khẩu mới phải nhiều hơn 6 ký tự !", Toast.LENGTH_SHORT).show();
+        } else if (editTextMKC.getText().toString().equals(editTextMKM.getText().toString())) {
+            Toast.makeText(this, "Mật khẩu mới đã trùng với mật khẩu cũ !", Toast.LENGTH_SHORT).show();
+        } else if (editTextMKM.getText().toString().equals(editTextNLMK.getText().toString())) {
             if (editTextMKC.getText().toString().equals(matKhau)) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
                 builder.setTitle("Thông Báo");
@@ -87,7 +82,7 @@ public class ThayDoiMatKhau extends AppCompatActivity {
                         getThayDoiMatKhau getThayDoiMatKhau = new getThayDoiMatKhau();
                         getThayDoiMatKhau.execute();
                         finish();
-                        Toast.makeText(ThayDoiMatKhau.this,"Thay đổi mật khẩu thành công !",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(ThayDoiMatKhau.this, "Thay đổi mật khẩu thành công !", Toast.LENGTH_SHORT).show();
                     }
                 });
 
@@ -106,9 +101,9 @@ public class ThayDoiMatKhau extends AppCompatActivity {
             } else {
                 Toast.makeText(this, "Mật khẩu cũ không chính xác !", Toast.LENGTH_SHORT).show();
             }
+        } else {
+            Toast.makeText(this, "Nhập lại mật khẩu không chính xác, vui lòng nhập lại !", Toast.LENGTH_SHORT).show();
         }
-        else {
-            Toast.makeText(this,"Nhập lại mật khẩu không chính xác, vui lòng nhập lại !",Toast.LENGTH_SHORT).show();}
     }
 
 
@@ -144,13 +139,10 @@ public class ThayDoiMatKhau extends AppCompatActivity {
     }
 
     public void HideAndShowMKC(View view) {
-        if(x == 0)
-        {
+        if (x == 0) {
             editTextMKC.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
             x = 1;
-        }
-        else
-        {
+        } else {
             editTextMKC.setTransformationMethod(PasswordTransformationMethod.getInstance());
 
             x = 0;
@@ -158,13 +150,10 @@ public class ThayDoiMatKhau extends AppCompatActivity {
     }
 
     public void HideAndShowMKM(View view) {
-        if(y == 0)
-        {
+        if (y == 0) {
             editTextMKM.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
             y = 1;
-        }
-        else
-        {
+        } else {
             editTextMKM.setTransformationMethod(PasswordTransformationMethod.getInstance());
 
             y = 0;
@@ -184,8 +173,8 @@ public class ThayDoiMatKhau extends AppCompatActivity {
 
 
                 try {
-                     jsonUpdateMKURL = updateMKURL + editTextMKM.getText().toString() + "&id=" + IDUser.idUser.toString();
-                     url = new URL(jsonUpdateMKURL);
+                    jsonUpdateMKURL = updateMKURL + editTextMKM.getText().toString() + "&id=" + IDUser.idUser.toString();
+                    url = new URL(jsonUpdateMKURL);
 
                     urlConnection = (HttpURLConnection) url.openConnection();
 
@@ -210,7 +199,7 @@ public class ThayDoiMatKhau extends AppCompatActivity {
                     }
                 }
 
-            }catch (Exception e) {
+            } catch (Exception e) {
                 e.printStackTrace();
             }
             return current;
@@ -220,6 +209,7 @@ public class ThayDoiMatKhau extends AppCompatActivity {
         protected void onPostExecute(String s) {
         }
     }
+
     private class GetMatKhau extends AsyncTask<String, String, String> {
 
 
@@ -258,7 +248,7 @@ public class ThayDoiMatKhau extends AppCompatActivity {
                     }
                 }
 
-            }catch (Exception e) {
+            } catch (Exception e) {
                 e.printStackTrace();
             }
             return current;
@@ -270,7 +260,7 @@ public class ThayDoiMatKhau extends AppCompatActivity {
                 JSONObject jsonObject = new JSONObject(s);
                 JSONArray jsonArray = jsonObject.getJSONArray("DanhSach");
 
-                for(int i = 0; i<jsonArray.length(); i++) {
+                for (int i = 0; i < jsonArray.length(); i++) {
                     JSONObject jsonObject1 = jsonArray.getJSONObject(i);
                     String MatKhau = jsonObject1.getString("MatKhau");
 

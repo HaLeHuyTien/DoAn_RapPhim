@@ -3,9 +3,6 @@ package com.example.doan_rapphim.packageDangKyDangNhap.packageDangNhap.packageTh
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +11,8 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
+
+import androidx.fragment.app.Fragment;
 
 import com.example.doan_rapphim.R;
 import com.example.doan_rapphim.packageDangKyDangNhap.packageDangNhap.IDUser;
@@ -28,13 +27,10 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.ArrayList;
-import java.util.Currency;
 import java.util.List;
 import java.util.Locale;
-import java.util.Timer;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -58,9 +54,9 @@ public class GiaoDichFragment extends Fragment {
     private TextView txtTTThang;
 
     private String URLTongTienTN;
-    private String URLValueNam = "http://0306181355.pixelcent.com/Cinema/TongTienTheoNam.php?IDKhachHang=";
+    private final String URLValueNam = "http://0306181355.pixelcent.com/Cinema/TongTienTheoNam.php?IDKhachHang=";
     private String URLTongTienTT;
-    private String URLValueThang = "http://0306181355.pixelcent.com/Cinema/TongTienTheoThang.php?IDKhachHang=";
+    private final String URLValueThang = "http://0306181355.pixelcent.com/Cinema/TongTienTheoThang.php?IDKhachHang=";
     private Integer Thang = 0;
 
     public GiaoDichFragment() {
@@ -117,7 +113,7 @@ public class GiaoDichFragment extends Fragment {
         spnThang.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                Thang = position+1;
+                Thang = position + 1;
                 txtTTThang.setText("0 đ");
                 GetTongTienTheoThang getTongTienTheoThang = new GetTongTienTheoThang();
                 getTongTienTheoThang.execute();
@@ -137,15 +133,15 @@ public class GiaoDichFragment extends Fragment {
 
     //Chuyen trang Xem Lich su dat ve
     public void ChuyenTrangDSLSDatVe() {
-        Intent intent = new Intent(getActivity(),DSLichSuDatVeActivity.class);
+        Intent intent = new Intent(getActivity(), DSLichSuDatVeActivity.class);
         startActivity(intent);
     }
 
     //List thangs
     public void chonThang() {
         List<String> list = new ArrayList<>();
-        for(int i = 1;i<13;i++) {
-            list.add("T "+ i);
+        for (int i = 1; i < 13; i++) {
+            list.add("T " + i);
         }
         ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_item, list);
         adapter.setDropDownViewResource(android.R.layout.simple_list_item_single_choice);
@@ -191,7 +187,7 @@ public class GiaoDichFragment extends Fragment {
                     }
                 }
 
-            }catch (Exception e) {
+            } catch (Exception e) {
                 e.printStackTrace();
             }
             return current;
@@ -203,13 +199,13 @@ public class GiaoDichFragment extends Fragment {
                 JSONObject jsonObject = new JSONObject(s);
                 JSONArray jsonArray = jsonObject.getJSONArray("DanhSach");
 
-                for(int i = 0; i<jsonArray.length(); i++) {
+                for (int i = 0; i < jsonArray.length(); i++) {
                     JSONObject jsonObject1 = jsonArray.getJSONObject(i);
                     String TongTien = jsonObject1.getString("TongTien");
 
-                    Integer tongTien = Integer.parseInt(TongTien.toString());
+                    Integer tongTien = Integer.parseInt(TongTien);
 
-                    Locale localeVN = new Locale("vi","VN");
+                    Locale localeVN = new Locale("vi", "VN");
                     NumberFormat currencyVN = NumberFormat.getCurrencyInstance(localeVN);
                     String kq = currencyVN.format(tongTien);
                     txtTTNam.setText(kq);
@@ -221,7 +217,6 @@ public class GiaoDichFragment extends Fragment {
             }
         }
     }
-
 
 
     //Lay danh sach Tong Tien theo Thang
@@ -238,7 +233,7 @@ public class GiaoDichFragment extends Fragment {
 
 
                 try {
-                    URLTongTienTT = URLValueThang + IDUser.idUser +"&Thang=" + Thang;
+                    URLTongTienTT = URLValueThang + IDUser.idUser + "&Thang=" + Thang;
                     url = new URL(URLTongTienTT);
                     urlConnection = (HttpURLConnection) url.openConnection();
 
@@ -263,7 +258,7 @@ public class GiaoDichFragment extends Fragment {
                     }
                 }
 
-            }catch (Exception e) {
+            } catch (Exception e) {
                 e.printStackTrace();
             }
             return current;
@@ -275,13 +270,13 @@ public class GiaoDichFragment extends Fragment {
                 JSONObject jsonObject = new JSONObject(s);
                 JSONArray jsonArray = jsonObject.getJSONArray("DanhSach");
 
-                for(int i = 0; i<jsonArray.length(); i++) {
+                for (int i = 0; i < jsonArray.length(); i++) {
                     JSONObject jsonObject1 = jsonArray.getJSONObject(i);
                     String TongTien = jsonObject1.getString("TongTien");
 
-                    Integer tongTien = Integer.parseInt(TongTien.toString());
+                    Integer tongTien = Integer.parseInt(TongTien);
 
-                    Locale localeVN = new Locale("vi","VN");
+                    Locale localeVN = new Locale("vi", "VN");
                     NumberFormat currencyVN = NumberFormat.getCurrencyInstance(localeVN);
                     String kq = currencyVN.format(tongTien);
 

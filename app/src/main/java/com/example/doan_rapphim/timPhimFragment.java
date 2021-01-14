@@ -2,28 +2,21 @@ package com.example.doan_rapphim;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.Toast;
 
-import com.example.doan_rapphim.packageTrangChiTiet.BinhLuanListAdapter;
-import com.example.doan_rapphim.packageTrangChiTiet.BinhLuan_Json;
-import com.example.doan_rapphim.packageTrangChiTiet.ReadBinhLuanJson;
-import com.example.doan_rapphim.packageTrangChiTiet.ReadThongTinJson;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.example.doan_rapphim.packageTrangChiTiet.ThongTinJson;
 
 import org.json.JSONArray;
@@ -36,9 +29,6 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.LinkedList;
 
 /**
@@ -49,9 +39,9 @@ import java.util.LinkedList;
 public class timPhimFragment extends Fragment implements AdapterView.OnItemSelectedListener {
 
 
-    private  String jsonURLDangChieu= "http://0306181355.pixelcent.com/Cinema/PhimDangChieu.php";
-    private  String jsonURLSapChieu= "http://0306181355.pixelcent.com/Cinema/PhimSapChieu.php";
-    private final LinkedList<ThongTinJson> mWordList=new LinkedList<>();
+    private final String jsonURLDangChieu = "http://0306181355.pixelcent.com/Cinema/PhimDangChieu.php";
+    private final String jsonURLSapChieu = "http://0306181355.pixelcent.com/Cinema/PhimSapChieu.php";
+    private final LinkedList<ThongTinJson> mWordList = new LinkedList<>();
     private RecyclerView mRecyclerview;
     private AdapterListPhimItem mAdapter;
     private EditText txtTim;
@@ -99,35 +89,30 @@ public class timPhimFragment extends Fragment implements AdapterView.OnItemSelec
     }
 
 
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.fragment_tim_phim,container,false);
-        ArrayAdapter<CharSequence> adapter= ArrayAdapter.createFromResource(getActivity(),R.array.lables_array, android.R.layout.simple_spinner_item);
+        View view = inflater.inflate(R.layout.fragment_tim_phim, container, false);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity(), R.array.lables_array, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        Spinner spinner=view.findViewById(R.id.spinner);
+        Spinner spinner = view.findViewById(R.id.spinner);
         btnTimKiem = view.findViewById(R.id.btnTim);
-        mRecyclerview=view.findViewById(R.id.recylerview);
+        mRecyclerview = view.findViewById(R.id.recylerview);
         txtTim = view.findViewById(R.id.txtTim);
 
-        if(spinner!=null){
+        if (spinner != null) {
             spinner.setOnItemSelectedListener(this);
             spinner.setAdapter(adapter);
         }
 
-       GetPhim getPhim = new GetPhim();
+        GetPhim getPhim = new GetPhim();
         getPhim.execute();
 
         btnTimKiem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(txtTim.isEnabled() == true)
-                    txtTim.setEnabled(false);
-                else
-                    txtTim.setEnabled(true);
+                txtTim.setEnabled(txtTim.isEnabled() != true);
             }
         });
 
@@ -149,40 +134,9 @@ public class timPhimFragment extends Fragment implements AdapterView.OnItemSelec
             }
         });
 
-
-
-        // Inflate the layout for this fragment
         return view;
     }
 
-    void HienthiDanhSach(View view)
-    {
-        try {
-            LinkedList<ThongTinJson> result=new LinkedList<>();
-            Integer soluongphim = ReadThongTinJson.SoLuongPhim(getActivity());
-            mWordList.clear();
-
-            for(Integer i = 0; i < soluongphim; i++){
-                ThongTinJson thongTinJson = ReadThongTinJson.readThongTinJsonFile(getActivity(),i);
-                mWordList.addLast(thongTinJson);
-            }
-
-
-
-
-
-            mAdapter=new AdapterListPhimItem(getContext(),getActivity(),mWordList);
-
-
-            mRecyclerview.setAdapter(mAdapter);
-
-            mRecyclerview.setLayoutManager(new LinearLayoutManager(getActivity()));
-
-
-        }catch (Exception e){
-            Toast.makeText(getActivity(),"sai",Toast.LENGTH_LONG).show();
-        }
-    }
 
     private class GetPhim extends AsyncTask<String, String, String> {
 
@@ -197,8 +151,8 @@ public class timPhimFragment extends Fragment implements AdapterView.OnItemSelec
 
 
                 try {
-                    if(Trangthai.equals("dangchieu"))
-                    url = new URL(jsonURLDangChieu);
+                    if (Trangthai.equals("dangchieu"))
+                        url = new URL(jsonURLDangChieu);
                     else
                         url = new URL(jsonURLSapChieu);
                     urlConnection = (HttpURLConnection) url.openConnection();
@@ -224,7 +178,7 @@ public class timPhimFragment extends Fragment implements AdapterView.OnItemSelec
                     }
                 }
 
-            }catch (Exception e) {
+            } catch (Exception e) {
                 e.printStackTrace();
             }
             return current;
@@ -239,7 +193,7 @@ public class timPhimFragment extends Fragment implements AdapterView.OnItemSelec
                 JSONObject jsonObject = new JSONObject(s);
                 JSONArray jsonArray = jsonObject.getJSONArray("DanhSach");
 
-                for(int i = 0; i < jsonArray.length(); i++) {
+                for (int i = 0; i < jsonArray.length(); i++) {
                     JSONObject jsonObject1 = jsonArray.getJSONObject(i);
                     String id = jsonObject1.getString("id");
                     String TenPhim = jsonObject1.getString("TenPhim");
@@ -261,25 +215,15 @@ public class timPhimFragment extends Fragment implements AdapterView.OnItemSelec
 
 
                     try {
-//                        SimpleDateFormat sdf = new SimpleDateFormat("d-MM-yyyy");
-//                        Date strDate = sdf.parse(Phim.getNgayKhoiChieu());
-//                        String currentTime = sdf.format(Calendar.getInstance().getTime());
-//
-//
-//                        Date currentDay = sdf.parse(currentTime);
+                        if (txtTim.getText().toString().replace(" ", "").equals("") || Phim.getTenPhim().toLowerCase().indexOf(txtTim.getText().toString().toLowerCase()) > -1)
+                            mWordList.addLast(Phim);
 
-                            //if (strDate.before(currentDay) || currentTime.equals(Phim.getNgayKhoiChieu()))
-                            //if (strDate.after(currentDay))
-                                if(txtTim.getText().toString().replace(" ","").equals("") || Phim.getTenPhim().toLowerCase().indexOf(txtTim.getText().toString().toLowerCase()) > -1)
-                                mWordList.addLast(Phim);
-
-                    }catch (Exception e)
-                    {
+                    } catch (Exception e) {
                         e.printStackTrace();
                     }
 
                 }
-                mAdapter = new AdapterListPhimItem(getContext(),getActivity(),mWordList);
+                mAdapter = new AdapterListPhimItem(getContext(), getActivity(), mWordList);
                 mRecyclerview.setAdapter(mAdapter);
                 mRecyclerview.setLayoutManager(new LinearLayoutManager(getActivity()));
 
@@ -291,14 +235,12 @@ public class timPhimFragment extends Fragment implements AdapterView.OnItemSelec
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        String s=parent.getItemAtPosition(position).toString();
-        if(s.equals("Phim Đang Chiếu")) {
+        String s = parent.getItemAtPosition(position).toString();
+        if (s.equals("Phim Đang Chiếu")) {
             Trangthai = "dangchieu";
             GetPhim getPhim = new GetPhim();
             getPhim.execute();
-        }
-
-        else {
+        } else {
             Trangthai = "sapchieu";
             GetPhim getPhim = new GetPhim();
             getPhim.execute();
@@ -310,5 +252,5 @@ public class timPhimFragment extends Fragment implements AdapterView.OnItemSelec
     public void onNothingSelected(AdapterView<?> parent) {
 
     }
-    
+
 }

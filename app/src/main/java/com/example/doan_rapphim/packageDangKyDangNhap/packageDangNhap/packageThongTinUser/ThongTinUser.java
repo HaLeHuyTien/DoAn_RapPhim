@@ -21,37 +21,86 @@ public class ThongTinUser {
         TrangThai = trangThai;
     }
 
-    public void setID(int id) { this.ID = id;}
-    public int getID(){return this.ID;}
+    public void setID(int id) {
+        this.ID = id;
+    }
 
-    public void setHoVaTen(String hoVaTen) { this.HoVaTen = hoVaTen;}
-    public String getHoVaTen(){return this.HoVaTen;}
+    public int getID() {
+        return this.ID;
+    }
 
-    public void setEmail(String email) { this.Email = email;}
-    public String getEmail(){return this.Email;}
+    public void setHoVaTen(String hoVaTen) {
+        this.HoVaTen = hoVaTen;
+    }
 
-    public void setSDT(String sdt) { this.SDT = sdt;}
-    public String getSDT(){return this.SDT;}
+    public String getHoVaTen() {
+        return this.HoVaTen;
+    }
 
-    public void setXaPhuong(String xaPhuong) { this.XaPhuong = xaPhuong;}
-    public String getXaPhuong(){return this.XaPhuong;}
+    public void setEmail(String email) {
+        this.Email = email;
+    }
 
-    public void setHuyenQuan(String huyenQuan) { this.HuyenQuan = huyenQuan;}
-    public String getHuyenQuan(){return this.HuyenQuan;}
+    public String getEmail() {
+        return this.Email;
+    }
 
-    public void setTinhTP(String tinhTP) { this.TinhTP = tinhTP;}
-    public String getTinhTP(){return this.TinhTP;}
+    public void setSDT(String sdt) {
+        this.SDT = sdt;
+    }
 
-    public void setNgaySinh(String ngaySinh) { this.NgaySinh = ngaySinh;}
-    public String getNgaySinh(){return this.NgaySinh;}
+    public String getSDT() {
+        return this.SDT;
+    }
 
-    public String setMatKhau(String matKhau) { this.MatKhau = matKhau;
+    public void setXaPhuong(String xaPhuong) {
+        this.XaPhuong = xaPhuong;
+    }
+
+    public String getXaPhuong() {
+        return this.XaPhuong;
+    }
+
+    public void setHuyenQuan(String huyenQuan) {
+        this.HuyenQuan = huyenQuan;
+    }
+
+    public String getHuyenQuan() {
+        return this.HuyenQuan;
+    }
+
+    public void setTinhTP(String tinhTP) {
+        this.TinhTP = tinhTP;
+    }
+
+    public String getTinhTP() {
+        return this.TinhTP;
+    }
+
+    public void setNgaySinh(String ngaySinh) {
+        this.NgaySinh = ngaySinh;
+    }
+
+    public String getNgaySinh() {
+        return this.NgaySinh;
+    }
+
+    public String setMatKhau(String matKhau) {
+        this.MatKhau = matKhau;
         return matKhau;
     }
-    public String getMatKhau(){return this.MatKhau;}
 
-    public void setAnh(String anh) { this.Anh = anh;}
-    public String getAnh(){return this.Anh;}
+    public String getMatKhau() {
+        return this.MatKhau;
+    }
+
+    public void setAnh(String anh) {
+        this.Anh = anh;
+    }
+
+    public String getAnh() {
+        return this.Anh;
+    }
 
 
 }

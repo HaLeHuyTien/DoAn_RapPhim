@@ -1,18 +1,16 @@
 package com.example.doan_rapphim.packageDangKyDangNhap.packageDangNhap.packageThongTinUser;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.example.doan_rapphim.R;
 import com.example.doan_rapphim.packageDangKyDangNhap.packageDangNhap.IDUser;
-import com.example.doan_rapphim.packageTrangChiTiet.BinhLuanListAdapter;
-import com.example.doan_rapphim.packageTrangChiTiet.BinhLuan_Json;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -28,7 +26,7 @@ import java.util.LinkedList;
 
 public class DSLichSuDatVeActivity extends AppCompatActivity {
     private String jsonURL;
-    private String URLDSLSDatVe = "http://0306181355.pixelcent.com/Cinema/DanhSachDonDatVe.php?IDKhachHang=";
+    private final String URLDSLSDatVe = "http://0306181355.pixelcent.com/Cinema/DanhSachDonDatVe.php?IDKhachHang=";
 
     private final LinkedList<ThongTinGiaoDich_Json> mWordList = new LinkedList<>();
     private GiaoDichAdapter giaoDichAdapter;
@@ -38,6 +36,7 @@ public class DSLichSuDatVeActivity extends AppCompatActivity {
     private TextView txtNgayDatVe;
     private TextView txtTongTien;
     private RecyclerView recyclerView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,11 +53,12 @@ public class DSLichSuDatVeActivity extends AppCompatActivity {
         getDanhSachLichSuDatVe.execute();
     }
 
+
     private class GetDanhSachLichSuDatVe extends AsyncTask<String, String, String> {
 
         Context context;
 
-        public  GetDanhSachLichSuDatVe(Context context){
+        public GetDanhSachLichSuDatVe(Context context) {
             this.context = context;
         }
 
@@ -96,7 +96,7 @@ public class DSLichSuDatVeActivity extends AppCompatActivity {
                     }
                 }
 
-            }catch (Exception e) {
+            } catch (Exception e) {
                 e.printStackTrace();
             }
             return current;
@@ -111,8 +111,7 @@ public class DSLichSuDatVeActivity extends AppCompatActivity {
                 JSONObject jsonObject = new JSONObject(s);
                 JSONArray jsonArray = jsonObject.getJSONArray("DanhSach");
 
-                for (int i = 0; i < jsonArray.length(); i++)
-                {
+                for (int i = 0; i < jsonArray.length(); i++) {
                     JSONObject jsonObject1 = jsonArray.getJSONObject(i);
                     String TenPhim = jsonObject1.getString("TenPhim");
                     String TenRap = jsonObject1.getString("TenRap");
@@ -129,7 +128,7 @@ public class DSLichSuDatVeActivity extends AppCompatActivity {
 
                     mWordList.addLast(thongTinGiaoDich_json);
                 }
-                giaoDichAdapter = new GiaoDichAdapter(context,mWordList);
+                giaoDichAdapter = new GiaoDichAdapter(context, mWordList);
                 recyclerView.setAdapter(giaoDichAdapter);
                 recyclerView.setLayoutManager(new LinearLayoutManager(context));
 

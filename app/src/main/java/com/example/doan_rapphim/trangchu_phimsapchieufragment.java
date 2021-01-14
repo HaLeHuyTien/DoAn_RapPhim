@@ -2,16 +2,20 @@ package com.example.doan_rapphim;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
+<<<<<<< Updated upstream
 
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
 import android.os.Handler;
 import android.os.Looper;
+=======
+>>>>>>> Stashed changes
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+<<<<<<< Updated upstream
 import com.example.doan_rapphim.packageTrangChiTiet.ThongTinJson;
 
 import org.json.JSONArray;
@@ -31,6 +35,9 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import me.relex.circleindicator.CircleIndicator;
+=======
+import androidx.fragment.app.Fragment;
+>>>>>>> Stashed changes
 
 /**
  * A simple {@link Fragment} subclass.

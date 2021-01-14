@@ -1,7 +1,5 @@
 package com.example.doan_rapphim.packageDangKyDangNhap.packageDangNhap;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.AsyncTask;
@@ -10,6 +8,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.doan_rapphim.R;
 
@@ -27,8 +27,7 @@ import java.net.URL;
 public class QuenMatKhauActivity extends AppCompatActivity {
 
     private String URLQuenMK = "";
-    private String value="http://0306181355.pixelcent.com/Cinema/KiemTraSDTQuenMatKhau.php?SDT=";
-    //private  String value = "http://0306181355.pixelcent.com/Cinema/QuenMatKhau.php?Email=";
+    private final String value = "http://0306181355.pixelcent.com/Cinema/KiemTraSDTQuenMatKhau.php?SDT=";
     private EditText edtQuenMK;
     private Button btnQuenMK;
 
@@ -86,7 +85,7 @@ public class QuenMatKhauActivity extends AppCompatActivity {
                     }
                 }
 
-            }catch (Exception e) {
+            } catch (Exception e) {
                 e.printStackTrace();
             }
             return current;
@@ -100,14 +99,14 @@ public class QuenMatKhauActivity extends AppCompatActivity {
                 JSONArray jsonArray = jsonObject.getJSONArray("DanhSach");
 
 
-                if(jsonArray.length() == 1) {
+                if (jsonArray.length() == 1) {
                     JSONObject jsonObject1 = jsonArray.getJSONObject(0);
                     String MatKhau = jsonObject1.getString("MatKhau");
                     AlertDialog.Builder builder = new AlertDialog.Builder(QuenMatKhauActivity.this);
                     builder.setTitle("Thông Báo");
 
                     // Ask the final question
-                    builder.setMessage("Mật khẩu của bạn là: "+MatKhau);
+                    builder.setMessage("Mật khẩu của bạn là: " + MatKhau);
 
                     // Set the alert dialog yes button click listener
                     builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
@@ -132,11 +131,9 @@ public class QuenMatKhauActivity extends AppCompatActivity {
                     // Display the alert dialog on interface
                     dialog.show();
 
-                    //Toast.makeText(QuenMatKhauActivity.this, "Số điện thoại tồn tại và Mật khẩu của bạn: " + MatKhau, Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(QuenMatKhauActivity.this, "Số điện thoại bạn không tồn tại.", Toast.LENGTH_SHORT).show();
                 }
-                else {
-                    Toast.makeText(QuenMatKhauActivity.this,"Số điện thoại bạn không tồn tại.",Toast.LENGTH_SHORT).show();
-              }
 
             } catch (JSONException e) {
                 e.printStackTrace();

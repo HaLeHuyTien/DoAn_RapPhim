@@ -1,7 +1,6 @@
 package com.example.doan_rapphim.packageTrangChiTiet.packageThanhToan;
 
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -10,21 +9,8 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.doan_rapphim.Phim;
 import com.example.doan_rapphim.R;
-import com.example.doan_rapphim.packageTrangChiTiet.IDPhim;
 import com.squareup.picasso.Picasso;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
 
 public class ThanhToan extends AppCompatActivity {
 
@@ -39,6 +25,7 @@ public class ThanhToan extends AppCompatActivity {
     private TextView txtTT_TTien;
     private TextView txtTT_Sl;
     private String GheDaChon = "";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,7 +41,7 @@ public class ThanhToan extends AppCompatActivity {
         btnThanhToan = findViewById(R.id.btnThanhToan);
         imgTHinh = findViewById(R.id.imgHinhThanhToan);
         Picasso.get().load("http://0306181355.pixelcent.com/rapphim/public/images/" + ThongTinSoDoGhe.tenHinh).into(imgTHinh);
-        if(ThongTinSoDoGhe.sl == 0){
+        if (ThongTinSoDoGhe.sl == 0) {
             ThongTinSoDoGhe.tongTien = 0;
         }
         HiennThiDanhSach();
@@ -69,14 +56,11 @@ public class ThanhToan extends AppCompatActivity {
 
         String[] separated = GheDaChon.split(",");
         GheDaChon = "";
-        for(int i = 0; i < separated.length;i++)
-        {
+        for (int i = 0; i < separated.length; i++) {
             GheDaChon = GheDaChon + separated[i];
-            if(i == separated.length-1)
-            {
+            if (i == separated.length - 1) {
                 GheDaChon = GheDaChon + ".";
-            }
-            else {
+            } else {
                 GheDaChon = GheDaChon + ", ";
             }
         }

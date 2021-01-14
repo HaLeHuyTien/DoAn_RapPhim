@@ -58,5 +58,4 @@ public class Phim {
     private String trangThai;
 
 
-
 }

@@ -17,8 +17,8 @@ import java.util.List;
 
 public class Photo_Slide_Adapter extends PagerAdapter {
 
-    private Context context;
-    private List<Photo> listPhoto;
+    private final Context context;
+    private final List<Photo> listPhoto;
 
     public Photo_Slide_Adapter(Context context, List<Photo> listPhoto) {
         this.context = context;
@@ -28,17 +28,22 @@ public class Photo_Slide_Adapter extends PagerAdapter {
     @NonNull
     @Override
     public Object instantiateItem(@NonNull ViewGroup container, int position) {
-        View view = LayoutInflater.from(container.getContext()).inflate(R.layout.item_photo,container,false);
+        View view = LayoutInflater.from(container.getContext()).inflate(R.layout.item_photo, container, false);
         ImageView imgPhoto = view.findViewById(R.id.slide_img_1);
         TextView txtTenLoai = view.findViewById(R.id.theloaislide);
         TextView txtTuoi = view.findViewById(R.id.Tuoislide);
         TextView txtDanhGia = view.findViewById(R.id.danhgiaslide);
         Photo photo = listPhoto.get(position);
+<<<<<<< Updated upstream
         if(photo != null){
             Picasso.get().load("http://0306181355.pixelcent.com/rapphim/public/images/" + photo.getTenHinh()).into(imgPhoto);
             txtTenLoai.setText(photo.getTenLoai());
             txtDanhGia.setText(photo.getDiem().toString());
             txtTuoi.setText(photo.getTuoi());
+=======
+        if (photo != null) {
+            Glide.with(context).load(photo.getResourceId()).into(imgPhoto);
+>>>>>>> Stashed changes
         }
         container.addView(view);
 
@@ -47,7 +52,7 @@ public class Photo_Slide_Adapter extends PagerAdapter {
 
     @Override
     public int getCount() {
-        if(listPhoto != null)
+        if (listPhoto != null)
             return listPhoto.size();
         return 0;
     }

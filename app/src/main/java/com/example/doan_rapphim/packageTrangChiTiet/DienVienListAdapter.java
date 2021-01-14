@@ -1,7 +1,6 @@
 package com.example.doan_rapphim.packageTrangChiTiet;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,10 +17,10 @@ import java.util.LinkedList;
 
 public class DienVienListAdapter extends RecyclerView.Adapter<DienVienListAdapter.DienVienViewHolder> {
     private final LinkedList<DienVienJson> mDienVienList;
-    private LayoutInflater layoutInflater;
-    private Context context;
+    private final LayoutInflater layoutInflater;
+    private final Context context;
 
-    public DienVienListAdapter(Context context, LinkedList<DienVienJson> wordList){
+    public DienVienListAdapter(Context context, LinkedList<DienVienJson> wordList) {
         layoutInflater = LayoutInflater.from(context);
         this.mDienVienList = wordList;
         this.context = context;
@@ -30,8 +29,8 @@ public class DienVienListAdapter extends RecyclerView.Adapter<DienVienListAdapte
     @NonNull
     @Override
     public DienVienListAdapter.DienVienViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View mItemView = layoutInflater.inflate(R.layout.recyclerview_dienvien,parent,false);
-        return  new DienVienViewHolder(mItemView,this);
+        View mItemView = layoutInflater.inflate(R.layout.recyclerview_dienvien, parent, false);
+        return new DienVienViewHolder(mItemView, this);
     }
 
     @Override
@@ -39,8 +38,6 @@ public class DienVienListAdapter extends RecyclerView.Adapter<DienVienListAdapte
         DienVienJson mCurrent = mDienVienList.get(position);
         holder.txtTenDV.setText(mCurrent.getTenDV());
         Picasso.get().load("http://0306181355.pixelcent.com/rapphim/public/images/" + mCurrent.getHinhDV()).into(holder.imgHinhDV);
-        //int resID = this.context.getResources().getIdentifier(mCurrent.getHinhDV(),"drawable",this.context.getPackageName());
-        //holder.imgHinhDV.setImageResource(resID);
     }
 
     @Override
@@ -52,7 +49,8 @@ public class DienVienListAdapter extends RecyclerView.Adapter<DienVienListAdapte
         public final ImageView imgHinhDV;
         public final TextView txtTenDV;
         final DienVienListAdapter mAdapter;
-        public DienVienViewHolder(View itemView,DienVienListAdapter adapter){
+
+        public DienVienViewHolder(View itemView, DienVienListAdapter adapter) {
             super(itemView);
             imgHinhDV = itemView.findViewById(R.id.HinhDV);
             txtTenDV = itemView.findViewById(R.id.txtTenDV);

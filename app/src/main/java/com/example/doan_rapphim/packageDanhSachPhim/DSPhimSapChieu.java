@@ -2,6 +2,12 @@ package com.example.doan_rapphim.packageDanhSachPhim;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -9,17 +15,8 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.Spinner;
-import android.widget.Toast;
-
 import com.example.doan_rapphim.AdapterListPhimItem;
 import com.example.doan_rapphim.R;
-import com.example.doan_rapphim.packageTrangChiTiet.ReadThongTinJson;
 import com.example.doan_rapphim.packageTrangChiTiet.ThongTinJson;
 
 import org.json.JSONArray;
@@ -32,9 +29,6 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.LinkedList;
 
 /**
@@ -84,14 +78,14 @@ public class DSPhimSapChieu extends Fragment {
         }
     }
 
-    private final LinkedList<ThongTinJson> mWordList=new LinkedList<>();
+    private final LinkedList<ThongTinJson> mWordList = new LinkedList<>();
     private RecyclerView mRecyclerview;
     private AdapterListPhimItem mAdapter;
     private Spinner spinnerSC;
-    private String jsonURLLoaiPhim = "http://0306181355.pixelcent.com/Cinema/LoaiPhim.php";
+    private final String jsonURLLoaiPhim = "http://0306181355.pixelcent.com/Cinema/LoaiPhim.php";
     private String[] ListLoaiPhim;
 
-    private static String jsonURL = "http://0306181355.pixelcent.com/Cinema/PhimSapChieu.php";
+    private static final String jsonURL = "http://0306181355.pixelcent.com/Cinema/PhimSapChieu.php";
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -104,7 +98,7 @@ public class DSPhimSapChieu extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_d_s_phim_sap_chieu, container, false);
-        mRecyclerview=view.findViewById(R.id.RVDSPhimSapChieu);
+        mRecyclerview = view.findViewById(R.id.RVDSPhimSapChieu);
 
         spinnerSC = view.findViewById(R.id.spnDSPhimSC);
 
@@ -127,43 +121,9 @@ public class DSPhimSapChieu extends Fragment {
             }
         });
 
-        //HienthiDanhSach(view);
-        return  view;
+        return view;
     }
 
-    void HienthiDanhSach(View view)
-    {
-        try {
-            LinkedList<ThongTinJson> result=new LinkedList<>();
-            Integer soluongphim = ReadThongTinJson.SoLuongPhim(getActivity());
-            mWordList.clear();
-
-            for(Integer i = 0; i < soluongphim; i++){
-                ThongTinJson thongTinJson = ReadThongTinJson.readThongTinJsonFile(getActivity(),i);
-
-
-                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-                Date strDate = sdf.parse(thongTinJson.getNgayKhoiChieu());
-                String currentTime = sdf.format(Calendar.getInstance().getTime());
-                Date currentDay = sdf.parse(currentTime);
-                if(strDate.after(currentDay))
-                    mWordList.addLast(thongTinJson);
-            }
-
-
-
-            mAdapter=new AdapterListPhimItem(getContext(),getActivity(),mWordList);
-
-
-            mRecyclerview.setAdapter(mAdapter);
-
-            mRecyclerview.setLayoutManager(new LinearLayoutManager(getActivity()));
-
-
-        }catch (Exception e){
-            Toast.makeText(getActivity(),"sai",Toast.LENGTH_LONG).show();
-        }
-    }
 
     private class GetPhim extends AsyncTask<String, String, String> {
 
@@ -202,7 +162,7 @@ public class DSPhimSapChieu extends Fragment {
                     }
                 }
 
-            }catch (Exception e) {
+            } catch (Exception e) {
                 e.printStackTrace();
             }
             return current;
@@ -210,7 +170,7 @@ public class DSPhimSapChieu extends Fragment {
 
         @Override
         protected void onPostExecute(String s) {
-            if(isAdded()) {
+            if (isAdded()) {
                 mWordList.clear();
                 try {
                     JSONObject jsonObject = new JSONObject(s);
@@ -238,14 +198,9 @@ public class DSPhimSapChieu extends Fragment {
 
 
                         try {
-//                            SimpleDateFormat sdf = new SimpleDateFormat("d-MM-yyyy");
-//                            Date strDate = sdf.parse(Phim.getNgayKhoiChieu());
-//                            String currentTime = sdf.format(Calendar.getInstance().getTime());
-//                            Date currentDay = sdf.parse(currentTime);
-//                            if (strDate.after(currentDay))
-                                if(spinnerSC.getSelectedItem().toString().equals("Tất cả") || Phim.getTheLoai().equals(spinnerSC.getSelectedItem().toString())) {
-                                    mWordList.addLast(Phim);
-                                }
+                            if (spinnerSC.getSelectedItem().toString().equals("Tất cả") || Phim.getTheLoai().equals(spinnerSC.getSelectedItem().toString())) {
+                                mWordList.addLast(Phim);
+                            }
 
                         } catch (Exception e) {
                             e.printStackTrace();
@@ -304,7 +259,7 @@ public class DSPhimSapChieu extends Fragment {
                     }
                 }
 
-            }catch (Exception e) {
+            } catch (Exception e) {
                 e.printStackTrace();
             }
             return current;
@@ -312,7 +267,7 @@ public class DSPhimSapChieu extends Fragment {
 
         @Override
         protected void onPostExecute(String s) {
-            if (isAdded()){
+            if (isAdded()) {
                 try {
                     JSONObject jsonObject = new JSONObject(s);
                     JSONArray jsonArray = jsonObject.getJSONArray("DanhSach");
@@ -330,7 +285,6 @@ public class DSPhimSapChieu extends Fragment {
                     adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
                     spinnerSC.setAdapter(adapter);
-
 
                 } catch (JSONException e) {
                     e.printStackTrace();

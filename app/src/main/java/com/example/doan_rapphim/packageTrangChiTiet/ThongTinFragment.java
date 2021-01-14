@@ -3,13 +3,11 @@ package com.example.doan_rapphim.packageTrangChiTiet;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -22,7 +20,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.borjabravo.readmoretextview.ReadMoreTextView;
 import com.example.doan_rapphim.R;
 import com.example.doan_rapphim.packageDangKyDangNhap.packageDangNhap.IDUser;
-import com.example.doan_rapphim.packageTrangChiTiet.packageThanhToan.ThongTinSoDoGhe;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView;
@@ -48,23 +45,22 @@ public class ThongTinFragment extends Fragment {
     private TrangChiTiet trangChiTiet;
 
 
-    private  String jsonURL ;
-    private  String ChiTietPhim = "http://0306181355.pixelcent.com/Cinema/ChiTietPhim.php?IDPhim=";
-    private  String jsonURLDV;
-    private  String value= "http://0306181355.pixelcent.com/Cinema/DienVienTheoPhim.php?idphim=";
+    private String jsonURL;
+    private final String ChiTietPhim = "http://0306181355.pixelcent.com/Cinema/ChiTietPhim.php?IDPhim=";
+    private String jsonURLDV;
+    private final String value = "http://0306181355.pixelcent.com/Cinema/DienVienTheoPhim.php?idphim=";
     private String jsonURLDanhGia;
-    private  String DanhGia = "http://0306181355.pixelcent.com/Cinema/DanhGiaTheoUser.php?IDPhim=";
+    private final String DanhGia = "http://0306181355.pixelcent.com/Cinema/DanhGiaTheoUser.php?IDPhim=";
     private String jsonURLDangDanhGia;
 
-    private String InsertDanhGia = "http://0306181355.pixelcent.com/Cinema/DangDanhGia.php?IDPhim=";
-    private String UpdateDanhGia = "http://0306181355.pixelcent.com/Cinema/CapNhatDanhGia.php?Ngay=";
+    private final String InsertDanhGia = "http://0306181355.pixelcent.com/Cinema/DangDanhGia.php?IDPhim=";
+    private final String UpdateDanhGia = "http://0306181355.pixelcent.com/Cinema/CapNhatDanhGia.php?Ngay=";
 
     private TextView txtDanhGiaNguoiDung;
 
 
-
     private ImageView imgHinhPhim;
-    private  TextView txtTenPhim;
+    private TextView txtTenPhim;
     private ReadMoreTextView txtTomTat;
     private TextView txtNgayKhoiChieu;
     private TextView txtThoiLuong;
@@ -93,9 +89,9 @@ public class ThongTinFragment extends Fragment {
     private String Diem;
 
 
-    public static ThongTinFragment getInstance(){
+    public static ThongTinFragment getInstance() {
         ThongTinFragment thongTinFragment = new ThongTinFragment();
-        return  thongTinFragment;
+        return thongTinFragment;
     }
 
     @Override
@@ -106,7 +102,7 @@ public class ThongTinFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.thongtin, container,false);
+        View view = inflater.inflate(R.layout.thongtin, container, false);
 
         trangChiTiet = (TrangChiTiet) getActivity();
 
@@ -114,7 +110,7 @@ public class ThongTinFragment extends Fragment {
 
         jsonURL = ChiTietPhim + trangChiTiet.getIdPhim().toString();
 
-        jsonURLDanhGia = DanhGia + trangChiTiet.getIdPhim().toString() +"&IDKhachHang=" + IDUser.idUser;
+        jsonURLDanhGia = DanhGia + trangChiTiet.getIdPhim().toString() + "&IDKhachHang=" + IDUser.idUser;
 
         txtDanhGiaNguoiDung = view.findViewById(R.id.txtDanhGiaNguoiDung);
 
@@ -147,12 +143,11 @@ public class ThongTinFragment extends Fragment {
         ytbTrailer = view.findViewById(R.id.youtube_player_view);
         rvDienVien = view.findViewById(R.id.rvDienVien);
 
-        View.OnClickListener onClickListener = new View.OnClickListener(){
+        View.OnClickListener onClickListener = new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
-                if(IDUser.idUser < 0)
-                {
+                if (IDUser.idUser < 0) {
                     AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 
                     // Set a title for alert dialog
@@ -176,8 +171,7 @@ public class ThongTinFragment extends Fragment {
                     AlertDialog dialog = builder.create();
                     // Display the alert dialog on interface
                     dialog.show();
-                }
-                else {
+                } else {
 
                     String a = getResources().getResourceEntryName(v.getId()).substring(5);
 
@@ -235,60 +229,12 @@ public class ThongTinFragment extends Fragment {
         imgXH10.setOnClickListener(onClickListener);
 
 
-        //Gan vao` Trang Chi Tiet
-       /* try {
-            ThongTinJson thongTinJson = ReadThongTinJson.readThongTinJsonFile(getActivity(),trangChiTiet.getIdPhim());
-            int resId = this.getContext().getResources().getIdentifier(thongTinJson.getHinhPhim(),"drawable",getContext().getPackageName());
-            imgHinhPhim.setImageResource(resId);
-            txtTenPhim.setText(thongTinJson.getTenPhim());
-            txtTomTat.setText(thongTinJson.getTomTat());
-            txtNgayKhoiChieu.setText(thongTinJson.getNgayKhoiChieu());
-            txtThoiLuong.setText(thongTinJson.getThoiLuong());
-            txtTheLoai.setText(thongTinJson.getTheLoai());
-            txtNhaSanXuat.setText(thongTinJson.getNhaSanXuat());
-            txtDiem.setText(thongTinJson.getDiem().toString());
-            txtDoTuoi.setText(thongTinJson.getDoTuoi());
-            ytbTrailer.addYouTubePlayerListener(new AbstractYouTubePlayerListener() {
-                @Override
-                public void onReady(YouTubePlayer youTubePlayer) {
-                    youTubePlayer.loadVideo(thongTinJson.getTrailer(),0);
-                    youTubePlayer.pause();
-                }
-
-
-            });
-            DienVienJson daodien = new DienVienJson();
-            daodien.setTenDV(thongTinJson.getDaoDien());
-            daodien.setHinhDV(thongTinJson.getHinhDaoDien());
-            mWordList.addLast(daodien);
-
-            int soluongDV = ReadDienVienJson.SoLuongDienVien(getActivity(),thongTinJson.getIDPhim());
-            for (int i = 0; i< soluongDV ; i++) {
-                DienVienJson dienVienJson = ReadDienVienJson.readDienVienJsonFile(getActivity(), thongTinJson.getIDPhim(),i);
-                mWordList.addLast(dienVienJson);
-            }
-            adapter = new DienVienListAdapter(getActivity(),mWordList);
-           rvDienVien.setAdapter(adapter);
-            RecyclerView.LayoutManager manager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL,false);
-           rvDienVien.setLayoutManager(manager);
-        }catch (Exception e)
-        {
-            txtTenPhim.setText("Lỗi");
-        }*/
-
         GetTrangChiTet getTrangChiTet = new GetTrangChiTet();
         getTrangChiTet.execute();
         GetDienVien getDienVien = new GetDienVien();
         getDienVien.execute();
         GetDanhGia getDanhGia = new GetDanhGia();
         getDanhGia.execute();
-
-
-
-        //DanhGiaDiem();
-        String a = imgXH1.getResources().getResourceEntryName(imgXH1.getId());
-
-
 
         return view;
 
@@ -331,7 +277,7 @@ public class ThongTinFragment extends Fragment {
                     }
                 }
 
-            }catch (Exception e) {
+            } catch (Exception e) {
                 e.printStackTrace();
             }
             return current;
@@ -345,51 +291,46 @@ public class ThongTinFragment extends Fragment {
                 JSONArray jsonArray = jsonObject.getJSONArray("DanhSach");
 
 
-                    JSONObject jsonObject1 = jsonArray.getJSONObject(0);
-                    String id = jsonObject1.getString("id");
-                    String TenPhim = jsonObject1.getString("TenPhim");
-                    String LoaiPhim = jsonObject1.getString("LoaiPhim");
-                    String DaoDien = jsonObject1.getString("DaoDien");
-                    String HinhDaoDien = jsonObject1.getString("HinhDaoDien");
-                    String ThoiLuong = jsonObject1.getString("ThoiLuong");
-                    String GioiHanTuoi = jsonObject1.getString("GioiHanTuoi");
-                    String VideoTrailer = jsonObject1.getString("VideoTrailer");
-                    String NoiDung = jsonObject1.getString("NoiDung");
-                    String Hinh = jsonObject1.getString("Hinh");
-                    String NhaSanXuat = jsonObject1.getString("NhaSanXuat");
-                    Double Diem = jsonObject1.getDouble("Diem");
-                    String NgayKhoiChieu = jsonObject1.getString("NgayKhoiChieu");
+                JSONObject jsonObject1 = jsonArray.getJSONObject(0);
+                String id = jsonObject1.getString("id");
+                String TenPhim = jsonObject1.getString("TenPhim");
+                String LoaiPhim = jsonObject1.getString("LoaiPhim");
+                String DaoDien = jsonObject1.getString("DaoDien");
+                String HinhDaoDien = jsonObject1.getString("HinhDaoDien");
+                String ThoiLuong = jsonObject1.getString("ThoiLuong");
+                String GioiHanTuoi = jsonObject1.getString("GioiHanTuoi");
+                String VideoTrailer = jsonObject1.getString("VideoTrailer");
+                String NoiDung = jsonObject1.getString("NoiDung");
+                String Hinh = jsonObject1.getString("Hinh");
+                String NhaSanXuat = jsonObject1.getString("NhaSanXuat");
+                Double Diem = jsonObject1.getDouble("Diem");
+                String NgayKhoiChieu = jsonObject1.getString("NgayKhoiChieu");
 
 
-                    Picasso.get().load("http://0306181355.pixelcent.com/rapphim/public/images/" + Hinh).into(imgHinhPhim);
-                    //int resId = getContext().getResources().getIdentifier(Hinh,"drawable",getContext().getPackageName());
-                    //imgHinhPhim.setImageResource(resId);
-                    txtTenPhim.setText(TenPhim);
-                    txtTomTat.setText(NoiDung);
-                    txtNgayKhoiChieu.setText(NgayKhoiChieu);
-                    txtThoiLuong.setText(ThoiLuong);
-                    txtTheLoai.setText(LoaiPhim);
-                    txtNhaSanXuat.setText(NhaSanXuat);
-                    txtDiem.setText(Diem.toString());
-                    txtDoTuoi.setText(GioiHanTuoi + "+");
-                    ytbTrailer.addYouTubePlayerListener(new AbstractYouTubePlayerListener() {
-                        @Override
-                        public void onReady(YouTubePlayer youTubePlayer) {
-                            youTubePlayer.loadVideo(VideoTrailer,0);
-                            youTubePlayer.pause();
-                        }
+                Picasso.get().load("http://0306181355.pixelcent.com/rapphim/public/images/" + Hinh).into(imgHinhPhim);
+                txtTenPhim.setText(TenPhim);
+                txtTomTat.setText(NoiDung);
+                txtNgayKhoiChieu.setText(NgayKhoiChieu);
+                txtThoiLuong.setText(ThoiLuong);
+                txtTheLoai.setText(LoaiPhim);
+                txtNhaSanXuat.setText(NhaSanXuat);
+                txtDiem.setText(Diem.toString());
+                txtDoTuoi.setText(GioiHanTuoi + "+");
+                ytbTrailer.addYouTubePlayerListener(new AbstractYouTubePlayerListener() {
+                    @Override
+                    public void onReady(YouTubePlayer youTubePlayer) {
+                        youTubePlayer.loadVideo(VideoTrailer, 0);
+                        youTubePlayer.pause();
+                    }
 
 
-                    });
+                });
                 int x = 0;
-                    if(Double.parseDouble(txtDiem.getText().toString()) < 10)
-                    {
-                      x   = Integer.parseInt(txtDiem.getText().toString().substring(0,1));
-                    }
-                    else
-                    {
-                        x   = Integer.parseInt(txtDiem.getText().toString().substring(0,2));
-                    }
+                if (Double.parseDouble(txtDiem.getText().toString()) < 10) {
+                    x = Integer.parseInt(txtDiem.getText().toString().substring(0, 1));
+                } else {
+                    x = Integer.parseInt(txtDiem.getText().toString().substring(0, 2));
+                }
 
                 DanhGiaDiem(x);
                 DienVienJson daodien = new DienVienJson();
@@ -403,6 +344,7 @@ public class ThongTinFragment extends Fragment {
             }
         }
     }
+
 
     private class GetDienVien extends AsyncTask<String, String, String> {
 
@@ -441,7 +383,7 @@ public class ThongTinFragment extends Fragment {
                     }
                 }
 
-            }catch (Exception e) {
+            } catch (Exception e) {
                 e.printStackTrace();
             }
             return current;
@@ -465,9 +407,9 @@ public class ThongTinFragment extends Fragment {
                     daodien.setHinhDV(Hinh);
                     mWordList.addLast(daodien);
                 }
-                adapter = new DienVienListAdapter(getActivity(),mWordList);
+                adapter = new DienVienListAdapter(getActivity(), mWordList);
                 rvDienVien.setAdapter(adapter);
-                RecyclerView.LayoutManager manager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL,false);
+                RecyclerView.LayoutManager manager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
                 rvDienVien.setLayoutManager(manager);
 
             } catch (JSONException e) {
@@ -476,8 +418,8 @@ public class ThongTinFragment extends Fragment {
         }
     }
 
-    private void DanhGiaDiem(int a){
-        switch (a){
+    private void DanhGiaDiem(int a) {
+        switch (a) {
             case 10:
                 imgXH10.setImageResource(R.drawable.yellowstar);
             case 9:
@@ -499,7 +441,7 @@ public class ThongTinFragment extends Fragment {
             case 1:
                 imgXH1.setImageResource(R.drawable.yellowstar);
         }
-        switch (a){
+        switch (a) {
             case 0:
                 imgXH1.setImageResource(R.drawable.blackstar);
             case 1:
@@ -561,7 +503,7 @@ public class ThongTinFragment extends Fragment {
                     }
                 }
 
-            }catch (Exception e) {
+            } catch (Exception e) {
                 e.printStackTrace();
             }
             return current;
@@ -569,11 +511,9 @@ public class ThongTinFragment extends Fragment {
 
         @Override
         protected void onPostExecute(String s) {
-            if (IDUser.idUser < 0)
-            {
+            if (IDUser.idUser < 0) {
 
-            }
-            else {
+            } else {
                 try {
 
                     JSONObject jsonObject = new JSONObject(s);
@@ -583,7 +523,7 @@ public class ThongTinFragment extends Fragment {
                     JSONObject jsonObject1 = jsonArray.getJSONObject(0);
                     String Diem = jsonObject1.getString("Diem");
 
-                    txtDanhGiaNguoiDung.setText("Bạn đã đánh giá phim này " + Diem  +" Điểm");
+                    txtDanhGiaNguoiDung.setText("Bạn đã đánh giá phim này " + Diem + " Điểm");
 
                 } catch (JSONException e) {
 
@@ -605,12 +545,11 @@ public class ThongTinFragment extends Fragment {
 
 
                 try {
-                    if(txtDanhGiaNguoiDung.getText().toString().equals("")) {
-                        jsonURLDangDanhGia = InsertDanhGia + trangChiTiet.getIdPhim().toString() +"&IDNguoiDanhGia=" + IDUser.idUser.toString()+"&Ngay=" + date +"&Gio=" + time +"&Diem=" + Diem;
+                    if (txtDanhGiaNguoiDung.getText().toString().equals("")) {
+                        jsonURLDangDanhGia = InsertDanhGia + trangChiTiet.getIdPhim().toString() + "&IDNguoiDanhGia=" + IDUser.idUser.toString() + "&Ngay=" + date + "&Gio=" + time + "&Diem=" + Diem;
                         url = new URL(jsonURLDangDanhGia);
-                    }
-                    else {
-                        jsonURLDangDanhGia = UpdateDanhGia + date+"&Gio=" + time+"&Diem=" + Diem+"&IDPhim=" + trangChiTiet.getIdPhim().toString()+ "&IDNguoiDanhGia=" + IDUser.idUser.toString();
+                    } else {
+                        jsonURLDangDanhGia = UpdateDanhGia + date + "&Gio=" + time + "&Diem=" + Diem + "&IDPhim=" + trangChiTiet.getIdPhim().toString() + "&IDNguoiDanhGia=" + IDUser.idUser.toString();
                         url = new URL(jsonURLDangDanhGia);
                     }
                     urlConnection = (HttpURLConnection) url.openConnection();
@@ -636,7 +575,7 @@ public class ThongTinFragment extends Fragment {
                     }
                 }
 
-            }catch (Exception e) {
+            } catch (Exception e) {
                 e.printStackTrace();
             }
             return current;

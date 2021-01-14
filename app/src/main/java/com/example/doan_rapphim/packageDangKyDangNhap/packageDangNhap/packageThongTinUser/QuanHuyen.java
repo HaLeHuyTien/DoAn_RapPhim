@@ -4,21 +4,14 @@ import androidx.annotation.NonNull;
 
 public class QuanHuyen {
 
-
-
-
-
-
     private String QuanHuyen;
     private int IDThanhPhoTinh;
 
-    public QuanHuyen(String quanHuyen,int IDThanhPhoTinh) {
+    public QuanHuyen(String quanHuyen, int IDThanhPhoTinh) {
         this.QuanHuyen = quanHuyen;
         this.IDThanhPhoTinh = IDThanhPhoTinh;
 
     }
-
-
 
     public String getQuanHuyen() {
         return QuanHuyen;

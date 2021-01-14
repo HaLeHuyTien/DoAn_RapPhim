@@ -1,7 +1,5 @@
 package com.example.doan_rapphim.packageDanhSachPhim;
 
-import android.widget.Spinner;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -11,7 +9,6 @@ import androidx.fragment.app.FragmentStatePagerAdapter;
 public class DSPhimAdapter extends FragmentStatePagerAdapter {
 
 
-
     public DSPhimAdapter(@NonNull FragmentManager fm, int behavior) {
         super(fm, behavior);
     }
@@ -19,7 +16,7 @@ public class DSPhimAdapter extends FragmentStatePagerAdapter {
     @NonNull
     @Override
     public Fragment getItem(int position) {
-        switch (position){
+        switch (position) {
             case 0:
                 return new DSPhimDangChieu();
             case 1:
@@ -38,14 +35,13 @@ public class DSPhimAdapter extends FragmentStatePagerAdapter {
     @Nullable
     @Override
     public CharSequence getPageTitle(int position) {
-        String title= "";
-        switch (position)
-        {
+        String title = "";
+        switch (position) {
             case 0:
-                title="Phim Đang Chiếu";
+                title = "Phim Đang Chiếu";
                 break;
             case 1:
-                title="Phim Sắp Chiếu";
+                title = "Phim Sắp Chiếu";
                 break;
         }
         return title;

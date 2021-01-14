@@ -3,7 +3,6 @@ package com.example.doan_rapphim.packageTrangChiTiet;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,38 +15,26 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.doan_rapphim.R;
 import com.example.doan_rapphim.packageTrangChiTiet.packageThanhToan.SoDoGhe;
 import com.example.doan_rapphim.packageTrangChiTiet.packageThanhToan.ThongTinSoDoGhe;
-import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer;
-import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.LinkedList;
 
 public class LichChieuListAdapter extends RecyclerView.Adapter<LichChieuListAdapter.LichChieuViewHolder> {
     private final LinkedList<LichChieu_Json> mLichChieuList;
-    private LayoutInflater mInflater;
+    private final LayoutInflater mInflater;
 
-    private Activity activity;
+    private final Activity activity;
 
 
-
-    public LichChieuListAdapter(Context context,Activity activity ,LinkedList<LichChieu_Json> wordList){
+    public LichChieuListAdapter(Context context, Activity activity, LinkedList<LichChieu_Json> wordList) {
         mInflater = LayoutInflater.from(context);
         this.activity = activity;
         this.mLichChieuList = wordList;
     }
+
     @NonNull
     @Override
     public LichChieuListAdapter.LichChieuViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View mItemView = mInflater.inflate(R.layout.recyclerview_lichchieu,parent,false);
+        View mItemView = mInflater.inflate(R.layout.recyclerview_lichchieu, parent, false);
         return new LichChieuViewHolder(mItemView, this);
     }
 
@@ -55,8 +42,8 @@ public class LichChieuListAdapter extends RecyclerView.Adapter<LichChieuListAdap
     public void onBindViewHolder(@NonNull LichChieuListAdapter.LichChieuViewHolder holder, int position) {
         LichChieu_Json mCurrent = mLichChieuList.get(position);
         holder.txtTenRap.setText(mCurrent.getTenRap());
-        String a[] = mCurrent.getXuatChieu();
-        for(int i =0;i<a.length;i++){
+        String[] a = mCurrent.getXuatChieu();
+        for (int i = 0; i < a.length; i++) {
             String[] XuatChieu = a[i].split("/");
             holder.btnGioChieu[i].setText(XuatChieu[0]);
             int value = i;
@@ -101,9 +88,10 @@ public class LichChieuListAdapter extends RecyclerView.Adapter<LichChieuListAdap
 
     public class LichChieuViewHolder extends RecyclerView.ViewHolder {
         public final TextView txtTenRap;
-        public final Button btnGioChieu[] = new Button[6];
+        public final Button[] btnGioChieu = new Button[6];
         final LichChieuListAdapter mAdapter;
-        public LichChieuViewHolder(View itemView, LichChieuListAdapter adapter){
+
+        public LichChieuViewHolder(View itemView, LichChieuListAdapter adapter) {
             super(itemView);
             txtTenRap = itemView.findViewById(R.id.txtTenRap);
             btnGioChieu[0] = itemView.findViewById(R.id.btnGioChieu1);

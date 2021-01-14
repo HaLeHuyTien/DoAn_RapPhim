@@ -14,7 +14,7 @@ public class TrangChuDSphim_Adapter extends FragmentStatePagerAdapter {
     @NonNull
     @Override
     public Fragment getItem(int position) {
-        switch (position){
+        switch (position) {
             case 0:
                 return new trangchu_phimdangchieufragment();
             case 1:
@@ -33,14 +33,13 @@ public class TrangChuDSphim_Adapter extends FragmentStatePagerAdapter {
     @Nullable
     @Override
     public CharSequence getPageTitle(int position) {
-        String title= "";
-        switch (position)
-        {
+        String title = "";
+        switch (position) {
             case 0:
-            title="Phim Đang Chiếu";
-            break;
+                title = "Phim Đang Chiếu";
+                break;
             case 1:
-                title="Phim Sắp Chiếu";
+                title = "Phim Sắp Chiếu";
                 break;
         }
         return title;

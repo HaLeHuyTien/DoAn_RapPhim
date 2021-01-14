@@ -1,19 +1,11 @@
 package com.example.doan_rapphim.packageDangKyDangNhap.packageDangNhap.packageThongTinUser;
 
-import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.recyclerview.widget.LinearLayoutManager;
-
 import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,13 +15,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.doan_rapphim.AdapterListPhimItem;
-import com.example.doan_rapphim.MainActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+
 import com.example.doan_rapphim.R;
 import com.example.doan_rapphim.packageDangKyDangNhap.packageDangNhap.DangNhapFragment;
 import com.example.doan_rapphim.packageDangKyDangNhap.packageDangNhap.IDUser;
 import com.example.doan_rapphim.packageTrangChiTiet.ThongTinFragment;
-import com.example.doan_rapphim.packageTrangChiTiet.ThongTinJson;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
@@ -42,9 +35,6 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -53,14 +43,9 @@ import java.util.Date;
  */
 public class TaiKhoan_ThongTinFragment extends Fragment {
 
-
-
     private Button ThayDoiThongTin;
     private Button ThayDoiMatKhau;
     private Button DangXuat;
-
-
-
 
     private ImageView txtanhDaiDien;
     private TextView txtHoVaTen;
@@ -115,8 +100,9 @@ public class TaiKhoan_ThongTinFragment extends Fragment {
         }
 
     }
-    public static String jsonURL ;
-    private String iduser;
+
+    public static String jsonURL;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -124,23 +110,16 @@ public class TaiKhoan_ThongTinFragment extends Fragment {
         //mRecyclerView = view.findViewById(R.id.recycler_view_thongtin);
         txtanhDaiDien = view.findViewById(R.id.imgHinhDaiDienTT1);
         txtHoVaTen = view.findViewById(R.id.txtHoVaTenTT);
-        txtEmail =  view.findViewById(R.id.txtEmailTT);
+        txtEmail = view.findViewById(R.id.txtEmailTT);
         txtSDT = view.findViewById(R.id.txtSDTTT);
         txtNgaySinh = view.findViewById(R.id.txtNgaySinhTT);
         txtDiaChi = view.findViewById(R.id.txtDiaChiTT);
 
-
-
-
-        //HienThiUser();
-        // Inflate the layout for this fragment
         ThayDoiThongTin = view.findViewById(R.id.btnThayDoiTT);
         ThayDoiThongTin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 ThongTinContext.context = getContext();
-                //TabTaiKhoan_Fragment tabTaiKhoan_fragment = new TabTaiKhoan_Fragment();
-                //tabTaiKhoan_fragment.getActivity().finish();
                 Intent intent = new Intent(getContext(), com.example.doan_rapphim.packageDangKyDangNhap.packageDangNhap.packageThongTinUser.XacThucMatKhauActivity.class);
                 startActivity(intent);
 
@@ -173,15 +152,13 @@ public class TaiKhoan_ThongTinFragment extends Fragment {
                     public void onClick(DialogInterface dialog, int which) {
                         // Do something when user clicked the Yes button
                         // Set the TextView visibility GONE
-                        editor.putInt("DATA1",-1);
-                        editor.putString("DATA2","dienvien");
+                        editor.putInt("DATA1", -1);
+                        editor.putString("DATA2", "dienvien");
                         IDUser.idUser = -1;
                         IDUser.HinhUser = "dienvien";
                         editor.commit();
-                        //IDUser.idUser = -1;
-                        //IDUser.HinhUser = "dienvien";
                         replaceFragmentContent(new DangNhapFragment());
-                        Toast.makeText(getContext(),"Đăng xuất thành công !",Toast.LENGTH_LONG).show();
+                        Toast.makeText(getContext(), "Đăng xuất thành công !", Toast.LENGTH_LONG).show();
                     }
                 });
 
@@ -240,7 +217,7 @@ public class TaiKhoan_ThongTinFragment extends Fragment {
                     }
                 }
 
-            }catch (Exception e) {
+            } catch (Exception e) {
                 e.printStackTrace();
             }
             return current;
@@ -252,24 +229,21 @@ public class TaiKhoan_ThongTinFragment extends Fragment {
                 JSONObject jsonObject = new JSONObject(s);
                 JSONArray jsonArray = jsonObject.getJSONArray("DanhSach");
 
-                    JSONObject jsonObject1 = jsonArray.getJSONObject(0);
-                    Integer id = jsonObject1.getInt("id");
+                JSONObject jsonObject1 = jsonArray.getJSONObject(0);
+                Integer id = jsonObject1.getInt("id");
 
-                    String HoTen = jsonObject1.getString("HoTen");
-                    String Email = jsonObject1.getString("Email");
-                    String SDT = jsonObject1.getString("SDT");
-                    String NgaySinh = jsonObject1.getString("NgaySinh");
-                    String DiaChi = jsonObject1.getString("DiaChi");
-                    String MatKhau = jsonObject1.getString("MatKhau");
-                    String Hinh = jsonObject1.getString("Hinh");
-                    Integer TrangThai = jsonObject1.getInt("TrangThai");
-
+                String HoTen = jsonObject1.getString("HoTen");
+                String Email = jsonObject1.getString("Email");
+                String SDT = jsonObject1.getString("SDT");
+                String NgaySinh = jsonObject1.getString("NgaySinh");
+                String DiaChi = jsonObject1.getString("DiaChi");
+                String MatKhau = jsonObject1.getString("MatKhau");
+                String Hinh = jsonObject1.getString("Hinh");
+                Integer TrangThai = jsonObject1.getInt("TrangThai");
 
 
                 txtEmail.setText(Email);
                 Picasso.get().load("http://0306181355.pixelcent.com/rapphim/public/images/" + Hinh).into(txtanhDaiDien);
-                //int resID = getContext().getResources().getIdentifier(Hinh,"drawable",getContext().getPackageName());
-                //txtanhDaiDien.setImageResource(resID);
                 txtHoVaTen.setText(HoTen);
                 txtSDT.setText(SDT);
                 txtNgaySinh.setText(NgaySinh);
@@ -279,10 +253,9 @@ public class TaiKhoan_ThongTinFragment extends Fragment {
                 e.printStackTrace();
             }
 
-
-
         }
     }
+
     public void replaceFragmentContent(Fragment fragment) {
 
         if (fragment != null) {
@@ -300,13 +273,9 @@ public class TaiKhoan_ThongTinFragment extends Fragment {
     }
 
 
-    private void initPreferences(){
+    private void initPreferences() {
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
         editor = sharedPreferences.edit();
     }
-
-
-
-
 
 }

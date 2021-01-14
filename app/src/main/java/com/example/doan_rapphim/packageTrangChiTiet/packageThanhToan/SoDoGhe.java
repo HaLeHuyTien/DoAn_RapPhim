@@ -1,10 +1,8 @@
 package com.example.doan_rapphim.packageTrangChiTiet.packageThanhToan;
 
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
@@ -14,7 +12,6 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.doan_rapphim.Phim;
 import com.example.doan_rapphim.R;
 import com.example.doan_rapphim.packageDangKyDangNhap.packageDangNhap.IDUser;
 import com.example.doan_rapphim.packageTrangChiTiet.IDPhim;
@@ -58,10 +55,11 @@ public class SoDoGhe extends AppCompatActivity {
     private Button btnD4;
     private Button btnD5;
 
-   String LayGhe=" http://0306181355.pixelcent.com/Cinema/LayGhe.php?IDPhim="+ IDPhim.ID + "&IDRap="+ThongTinSoDoGhe.IDRap+"&IDPhong="+ThongTinSoDoGhe.IDPhong+"&IDXuatChieu="+ThongTinSoDoGhe.IDXuatChieu;
-    Integer[]Ghe = new Integer[20];
-    private String GiaXuatChieu = "http://0306181355.pixelcent.com/Cinema/LayGiaVe.php?IDPhim=" + IDPhim.ID + "&IDXuatChieu=" + ThongTinSoDoGhe.IDXuatChieu + "&IDGhe=";
-String LayGiaGhe = "http://0306181355.pixelcent.com/Cinema/GiaGhe.php";
+    String LayGhe = " http://0306181355.pixelcent.com/Cinema/LayGhe.php?IDPhim=" + IDPhim.ID + "&IDRap=" + ThongTinSoDoGhe.IDRap + "&IDPhong=" + ThongTinSoDoGhe.IDPhong + "&IDXuatChieu=" + ThongTinSoDoGhe.IDXuatChieu;
+    Integer[] Ghe = new Integer[20];
+    private final String GiaXuatChieu = "http://0306181355.pixelcent.com/Cinema/LayGiaVe.php?IDPhim=" + IDPhim.ID + "&IDXuatChieu=" + ThongTinSoDoGhe.IDXuatChieu + "&IDGhe=";
+    String LayGiaGhe = "http://0306181355.pixelcent.com/Cinema/GiaGhe.php";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -128,49 +126,48 @@ String LayGiaGhe = "http://0306181355.pixelcent.com/Cinema/GiaGhe.php";
                     AlertDialog dialog = builder.create();
                     // Display the alert dialog on interface
                     dialog.show();
-                } else
-                    if(ThongTinSoDoGhe.sl == 0){
-                        AlertDialog.Builder builder = new AlertDialog.Builder(SoDoGhe.this);
-                        // Set a title for alert dialog
-                        builder.setTitle("Thông Báo");
+                } else if (ThongTinSoDoGhe.sl == 0) {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(SoDoGhe.this);
+                    // Set a title for alert dialog
+                    builder.setTitle("Thông Báo");
 
-                        // Ask the final question
-                        builder.setMessage("Vui lòng chọn ghế!!!");
+                    // Ask the final question
+                    builder.setMessage("Vui lòng chọn ghế!!!");
 
-                        // Set the alert dialog yes button click listener
-                        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                // Do something when user clicked the Yes button
-                                // Set the TextView visibility GONE
-                            }
-                        });
-                        // Set the alert dialog no button click listener
+                    // Set the alert dialog yes button click listener
+                    builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            // Do something when user clicked the Yes button
+                            // Set the TextView visibility GONE
+                        }
+                    });
+                    // Set the alert dialog no button click listener
 
 
-                        AlertDialog dialog = builder.create();
-                        // Display the alert dialog on interface
-                        dialog.show();
-                    }else{
+                    AlertDialog dialog = builder.create();
+                    // Display the alert dialog on interface
+                    dialog.show();
+                } else {
                     ThongTinSoDoGhe.tongTien = 0;
-                    for(int i = 0; i < 4; i++){
+                    for (int i = 0; i < 4; i++) {
                         Integer hang = 0;
-                        for(Integer j = 0; j < 5 ; j++){
-                            if(ThongTinSoDoGhe.Ghe[i][j] == true){
+                        for (Integer j = 0; j < 5; j++) {
+                            if (ThongTinSoDoGhe.Ghe[i][j] == true) {
                                 String Hang = "";
-                                if(i == 0) {
+                                if (i == 0) {
                                     Hang = "A";
                                     hang = 0;
                                 }
-                                if(i == 1){
+                                if (i == 1) {
                                     hang = 4;
                                     Hang = "B";
                                 }
-                                if(i == 2) {
+                                if (i == 2) {
                                     Hang = "C";
                                     hang = 10;
                                 }
-                                if(i == 3) {
+                                if (i == 3) {
                                     Hang = "D";
                                     hang = 15;
                                 }
@@ -305,43 +302,36 @@ String LayGiaGhe = "http://0306181355.pixelcent.com/Cinema/GiaGhe.php";
                     Integer idghe = jsonObject1.getInt("id_ghe");
                     Ghe ghe = new Ghe();
                     ghe.setIdGhe(idghe);
-                   if(15<ghe.getIdGhe())
-                   {
-                       Integer g = ghe.getIdGhe() - 15;
-                       String y = "btn" + "D" + g;
-                       int resID = getResources().getIdentifier(y, "id", getPackageName());
-                       Button btn= findViewById(resID);
-                       btn.setText("X");
-                       btn.setEnabled(false);
+                    if (15 < ghe.getIdGhe()) {
+                        Integer g = ghe.getIdGhe() - 15;
+                        String y = "btn" + "D" + g;
+                        int resID = getResources().getIdentifier(y, "id", getPackageName());
+                        Button btn = findViewById(resID);
+                        btn.setText("X");
+                        btn.setEnabled(false);
 
 
-                   }else
-                    if(10<ghe.getIdGhe())
-                    {
+                    } else if (10 < ghe.getIdGhe()) {
                         Integer g = ghe.getIdGhe() - 10;
                         String y = "btn" + "C" + g;
                         int resID = getResources().getIdentifier(y, "id", getPackageName());
-                        Button btn= findViewById(resID);
+                        Button btn = findViewById(resID);
                         btn.setText("X");
                         btn.setEnabled(false);
 
-                    }else
-                    if(5<ghe.getIdGhe())
-                    {
+                    } else if (5 < ghe.getIdGhe()) {
                         Integer g = ghe.getIdGhe() - 5;
                         String y = "btn" + "B" + g;
                         int resID = getResources().getIdentifier(y, "id", getPackageName());
-                        Button btn= findViewById(resID);
+                        Button btn = findViewById(resID);
                         btn.setText("X");
                         btn.setEnabled(false);
 
-                    }else
-                    if(0<ghe.getIdGhe())
-                    {
+                    } else if (0 < ghe.getIdGhe()) {
                         Integer g = ghe.getIdGhe();
                         String y = "btn" + "A" + g;
                         int resID = getResources().getIdentifier(y, "id", getPackageName());
-                        Button btn= findViewById(resID);
+                        Button btn = findViewById(resID);
                         btn.setText("X");
                         btn.setEnabled(false);
 
@@ -353,6 +343,7 @@ String LayGiaGhe = "http://0306181355.pixelcent.com/Cinema/GiaGhe.php";
             }
         }
     }
+
     private class GetGia extends AsyncTask<String, String, String> {
         @Override
         protected String doInBackground(String... strings) {
@@ -455,7 +446,7 @@ String LayGiaGhe = "http://0306181355.pixelcent.com/Cinema/GiaGhe.php";
         @Override
         protected void onPostExecute(String s) {
             try {
-                Integer x=0;
+                Integer x = 0;
                 JSONObject jsonObject = new JSONObject(s);
                 JSONArray jsonArray = jsonObject.getJSONArray("DanhSach");
                 for (int i = 0; i < jsonArray.length(); i++) {
@@ -469,4 +460,4 @@ String LayGiaGhe = "http://0306181355.pixelcent.com/Cinema/GiaGhe.php";
             }
         }
     }
-        }
+}

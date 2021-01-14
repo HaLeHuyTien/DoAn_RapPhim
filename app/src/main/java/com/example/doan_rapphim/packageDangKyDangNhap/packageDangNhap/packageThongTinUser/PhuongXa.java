@@ -11,11 +11,6 @@ public class PhuongXa {
         this.IDThanhPhoTinh = IDThanhPhoTinh;
     }
 
-    public PhuongXa() {
-        this.PhuongXa = getPhuongXa();
-        this.IDQuanHuyen = getIDQuanHuyen();
-    }
-
     public String getPhuongXa() {
         return PhuongXa;
     }
@@ -41,11 +36,9 @@ public class PhuongXa {
     }
 
 
-
     private String PhuongXa;
     private int IDThanhPhoTinh;
     private int IDQuanHuyen;
-
 
 
     @NonNull
@@ -53,8 +46,6 @@ public class PhuongXa {
     public String toString() {
         return PhuongXa;
     }
-
-
 
 
 }

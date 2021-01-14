@@ -1,23 +1,18 @@
 package com.example.doan_rapphim.packageDangKyDangNhap.packageDangNhap.packageThongTinUser;
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
-
 import com.example.doan_rapphim.R;
-import com.example.doan_rapphim.packageDangKyDangNhap.packageDangNhap.IDUser;
 import com.google.android.material.tabs.TabItem;
 import com.google.android.material.tabs.TabLayout;
-
-import java.util.Objects;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -65,7 +60,6 @@ public class TabTaiKhoan_Fragment extends Fragment {
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
-    private Button btnThayDoiThongTin;
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -87,8 +81,6 @@ public class TabTaiKhoan_Fragment extends Fragment {
         TaiKhoan_Adapter pagerAdapter = new TaiKhoan_Adapter(getChildFragmentManager(), tabLayout.getTabCount());
         viewPager.setAdapter(pagerAdapter);
         tabLayout.setupWithViewPager(viewPager);
-
-
 
 
 //        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {

@@ -3,13 +3,12 @@ package com.example.doan_rapphim.packageTrangChiTiet.packageThanhToan;
 public class ThanhToanJson {
 
 
-
-  private String TenPhim;
-  private String LuuY;
-  private String Ngay;
-  private String KhungGio;
-  private String Rap;
-  private String Ghe;
+    private String TenPhim;
+    private String LuuY;
+    private String Ngay;
+    private String KhungGio;
+    private String Rap;
+    private String Ghe;
     private Integer ID;
 
     public Integer getID() {
@@ -37,7 +36,7 @@ public class ThanhToanJson {
     }
 
     private Integer Tong;
-  private Integer Sl;
+    private Integer Sl;
 
     public String getTenPhim() {
         return TenPhim;
@@ -86,9 +85,6 @@ public class ThanhToanJson {
     public void setGhe(String ghe) {
         Ghe = ghe;
     }
-
-
-
 
 
 }

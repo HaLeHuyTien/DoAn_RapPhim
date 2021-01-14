@@ -86,7 +86,7 @@ public class DangKyActivity extends AppCompatActivity {
     private String HinhBase64;
     private Integer EmailKT=0;
     private Integer SDTKT=0;
-    private String jsonURLEmail="http://0306181355.pixelcent.com/Cinema/KiemTraEmailSDT.php?Email=";
+    private String jsonURLEmail="http://0306181355.pixelcent.com/Cinema/KiemTraEmailDangKy.php?Email=";
     private String jsonURLSDT="http://0306181355.pixelcent.com/Cinema/KiemTraSDTDangKy.php?SDT=";
     private String URLKTEmailDK;
     private String URLKTSDTDK;
@@ -551,6 +551,7 @@ public class DangKyActivity extends AppCompatActivity {
                     insert_khachhang.execute();
                     UploadHinh(this.view);
                     finish();
+                    Toast.makeText(activity,"Đăng ký tài khoản thành công.",Toast.LENGTH_SHORT).show();
                 }
                 else
                 {

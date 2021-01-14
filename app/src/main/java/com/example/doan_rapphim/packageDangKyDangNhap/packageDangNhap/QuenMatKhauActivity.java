@@ -2,26 +2,21 @@ package com.example.doan_rapphim.packageDangKyDangNhap.packageDangNhap;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.Activity;
-import android.content.Intent;
-import android.net.Uri;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.doan_rapphim.R;
-import com.example.doan_rapphim.packageDangKyDangNhap.packageDangKy.DangKyActivity;
-import com.example.doan_rapphim.packageDangKyDangNhap.packageDangNhap.packageThongTinUser.TabTaiKhoan_Fragment;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -41,7 +36,7 @@ public class QuenMatKhauActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quen_mat_khau);
-        edtQuenMK = findViewById(R.id.edtNhapEmailQuenMK);
+        edtQuenMK = findViewById(R.id.edtNhapSDTQuenMK);
         btnQuenMK = findViewById(R.id.btnTimTKQuenMK);
         btnQuenMK.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -105,15 +100,43 @@ public class QuenMatKhauActivity extends AppCompatActivity {
                 JSONArray jsonArray = jsonObject.getJSONArray("DanhSach");
 
 
-                JSONObject jsonObject1 = jsonArray.getJSONObject(0);
-                String MatKhau = jsonObject1.getString("MatKhau");
-                if(MatKhau == edtQuenMK.getText().toString())
-                {
-                    Toast.makeText(QuenMatKhauActivity.this,"Số điện thoại tồn tại và Mật khẩu của bạn: "+MatKhau,Toast.LENGTH_SHORT).show();
+                if(jsonArray.length() == 1) {
+                    JSONObject jsonObject1 = jsonArray.getJSONObject(0);
+                    String MatKhau = jsonObject1.getString("MatKhau");
+                    AlertDialog.Builder builder = new AlertDialog.Builder(QuenMatKhauActivity.this);
+                    builder.setTitle("Thông Báo");
+
+                    // Ask the final question
+                    builder.setMessage("Mật khẩu của bạn là: "+MatKhau);
+
+                    // Set the alert dialog yes button click listener
+                    builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            // Do something when user clicked the Yes button
+                            // Set the TextView visibility GONE
+                            finish();
+                        }
+                    });
+
+                    // Set the alert dialog no button click listener
+                    builder.setNegativeButton("Không", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            // Do something when No button clicked
+
+                        }
+                    });
+
+                    AlertDialog dialog = builder.create();
+                    // Display the alert dialog on interface
+                    dialog.show();
+
+                    //Toast.makeText(QuenMatKhauActivity.this, "Số điện thoại tồn tại và Mật khẩu của bạn: " + MatKhau, Toast.LENGTH_SHORT).show();
                 }
                 else {
                     Toast.makeText(QuenMatKhauActivity.this,"Số điện thoại bạn không tồn tại.",Toast.LENGTH_SHORT).show();
-                }
+              }
 
             } catch (JSONException e) {
                 e.printStackTrace();

@@ -33,6 +33,8 @@ import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Currency;
 import java.util.List;
+import java.util.Locale;
+import java.util.Timer;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -116,7 +118,7 @@ public class GiaoDichFragment extends Fragment {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 Thang = position+1;
-                txtTTThang.setText("0 VND");
+                txtTTThang.setText("0 đ");
                 GetTongTienTheoThang getTongTienTheoThang = new GetTongTienTheoThang();
                 getTongTienTheoThang.execute();
             }
@@ -205,7 +207,12 @@ public class GiaoDichFragment extends Fragment {
                     JSONObject jsonObject1 = jsonArray.getJSONObject(i);
                     String TongTien = jsonObject1.getString("TongTien");
 
-                    txtTTNam.setText(TongTien + " VND");
+                    Integer tongTien = Integer.parseInt(TongTien.toString());
+
+                    Locale localeVN = new Locale("vi","VN");
+                    NumberFormat currencyVN = NumberFormat.getCurrencyInstance(localeVN);
+                    String kq = currencyVN.format(tongTien);
+                    txtTTNam.setText(kq);
 
                 }
 
@@ -272,13 +279,13 @@ public class GiaoDichFragment extends Fragment {
                     JSONObject jsonObject1 = jsonArray.getJSONObject(i);
                     String TongTien = jsonObject1.getString("TongTien");
 
-                    Integer tongTien = Integer.parseInt(TongTien);
-                    if(tongTien>0){
-                    txtTTThang.setText(TongTien + " VND");}
-                    else {
-                        txtTTThang.setText("0 VND");
-                    }
+                    Integer tongTien = Integer.parseInt(TongTien.toString());
 
+                    Locale localeVN = new Locale("vi","VN");
+                    NumberFormat currencyVN = NumberFormat.getCurrencyInstance(localeVN);
+                    String kq = currencyVN.format(tongTien);
+
+                    txtTTThang.setText(kq);
                 }
 
             } catch (JSONException e) {

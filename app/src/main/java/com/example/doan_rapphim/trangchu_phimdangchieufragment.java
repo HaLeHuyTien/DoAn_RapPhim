@@ -2,15 +2,12 @@ package com.example.doan_rapphim;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
-<<<<<<< Updated upstream
 
 import androidx.fragment.app.Fragment;
 
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
-=======
->>>>>>> Stashed changes
 import android.view.LayoutInflater;
 import android.view.TouchDelegate;
 import android.view.View;
@@ -45,8 +42,6 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import me.relex.circleindicator.CircleIndicator;
-
-import androidx.fragment.app.Fragment;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -113,7 +108,6 @@ public class trangchu_phimdangchieufragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-<<<<<<< Updated upstream
         View view = inflater.inflate(R.layout.fragment_trangchu_phimdangchieufragment,container,false);
         viewPager = view.findViewById(R.id.view_pager_slide);
         circleIndicator = view.findViewById(R.id.circle_slide);
@@ -124,10 +118,6 @@ public class trangchu_phimdangchieufragment extends Fragment {
 
         autoImage();
         return  view;
-=======
-        View view = inflater.inflate(R.layout.fragment_trangchu_phimdangchieufragment, container, false);
-        return view;
->>>>>>> Stashed changes
     }
 
     private void autoImage(){

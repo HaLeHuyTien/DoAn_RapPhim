@@ -96,6 +96,7 @@ String LayGiaGhe = "http://0306181355.pixelcent.com/Cinema/GiaGhe.php";
         btnD3 = findViewById(R.id.btnD3);
         btnD4 = findViewById(R.id.btnD4);
         btnD5 = findViewById(R.id.btnD5);
+        ThongTinSoDoGhe.sl = 0;
         Picasso.get().load("http://0306181355.pixelcent.com/rapphim/public/images/" + ThongTinSoDoGhe.tenHinh).into(imgTenHinh);
         GetGia getGia = new GetGia();
         getGia.execute();
@@ -127,7 +128,31 @@ String LayGiaGhe = "http://0306181355.pixelcent.com/Cinema/GiaGhe.php";
                     AlertDialog dialog = builder.create();
                     // Display the alert dialog on interface
                     dialog.show();
-                } else {
+                } else
+                    if(ThongTinSoDoGhe.sl == 0){
+                        AlertDialog.Builder builder = new AlertDialog.Builder(SoDoGhe.this);
+                        // Set a title for alert dialog
+                        builder.setTitle("Thông Báo");
+
+                        // Ask the final question
+                        builder.setMessage("Vui lòng chọn ghế!!!");
+
+                        // Set the alert dialog yes button click listener
+                        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                // Do something when user clicked the Yes button
+                                // Set the TextView visibility GONE
+                            }
+                        });
+                        // Set the alert dialog no button click listener
+
+
+                        AlertDialog dialog = builder.create();
+                        // Display the alert dialog on interface
+                        dialog.show();
+                    }else{
+                    ThongTinSoDoGhe.tongTien = 0;
                     for(int i = 0; i < 4; i++){
                         Integer hang = 0;
                         for(Integer j = 0; j < 5 ; j++){
@@ -151,7 +176,7 @@ String LayGiaGhe = "http://0306181355.pixelcent.com/Cinema/GiaGhe.php";
                                 }
                                 Integer Cot = j + 1;
                                 Integer idGhe = Cot + hang;
-                                ThongTinSoDoGhe.tongTien += ThongTinSoDoGhe.GiaGhe[idGhe];
+                                ThongTinSoDoGhe.tongTien += ThongTinSoDoGhe.GiaGhe[idGhe] + ThongTinSoDoGhe.DonGia;
                             }
                         }
                     }
@@ -162,7 +187,7 @@ String LayGiaGhe = "http://0306181355.pixelcent.com/Cinema/GiaGhe.php";
             }
         });
 
-        ThongTinSoDoGhe.sl = 0;
+
         ThongTinSoDoGhe.tongTien = 0;
         ThongTinSoDoGhe.DonGia = 0;
         for (int i = 0; i < 4; i++) {

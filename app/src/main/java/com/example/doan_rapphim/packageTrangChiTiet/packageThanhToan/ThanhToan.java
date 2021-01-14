@@ -54,9 +54,7 @@ public class ThanhToan extends AppCompatActivity {
         btnThanhToan = findViewById(R.id.btnThanhToan);
         imgTHinh = findViewById(R.id.imgHinhThanhToan);
         Picasso.get().load("http://0306181355.pixelcent.com/rapphim/public/images/" + ThongTinSoDoGhe.tenHinh).into(imgTHinh);
-        if(ThongTinSoDoGhe.sl > 0){
-        ThongTinSoDoGhe.tongTien += ThongTinSoDoGhe.DonGia;}
-        else {
+        if(ThongTinSoDoGhe.sl == 0){
             ThongTinSoDoGhe.tongTien = 0;
         }
         HiennThiDanhSach();

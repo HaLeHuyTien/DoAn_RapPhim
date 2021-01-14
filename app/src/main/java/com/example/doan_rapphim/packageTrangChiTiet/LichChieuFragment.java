@@ -238,6 +238,7 @@ public class LichChieuFragment extends Fragment {
                         for(int j = (i*6); j < (i+1)*6;j++) {
                             JSONObject jsonObject2 = jsonArray.getJSONObject(j);
                             XuatChieu[a] = jsonObject2.getString("GioChieu");
+                            XuatChieu[a] = XuatChieu[a] + "/" + jsonObject2.getString("TenPhong");
                             a++;
                         }
                         LichChieu_Json lichChieu_json = new LichChieu_Json();

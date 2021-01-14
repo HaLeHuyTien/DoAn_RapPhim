@@ -57,14 +57,15 @@ public class LichChieuListAdapter extends RecyclerView.Adapter<LichChieuListAdap
         holder.txtTenRap.setText(mCurrent.getTenRap());
         String a[] = mCurrent.getXuatChieu();
         for(int i =0;i<a.length;i++){
-            holder.btnGioChieu[i].setText(a[i]);
+            String[] XuatChieu = a[i].split("/");
+            holder.btnGioChieu[i].setText(XuatChieu[0]);
             int value = i;
             holder.btnGioChieu[i].setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     ThongTinSoDoGhe.suatChieu = a[value];
                     ThongTinSoDoGhe.IDPhong = mCurrent.getIDPhong();
-                    ThongTinSoDoGhe.TenPhong = mCurrent.getTenPhong();
+                    ThongTinSoDoGhe.TenPhong = XuatChieu[1];
                     ThongTinSoDoGhe.IDRap = mCurrent.getIDRap();
                     switch (v.getId()) {
                         case R.id.btnGioChieu1:

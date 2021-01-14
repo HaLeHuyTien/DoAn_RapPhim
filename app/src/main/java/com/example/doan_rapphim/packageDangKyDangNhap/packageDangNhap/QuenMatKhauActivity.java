@@ -2,6 +2,7 @@ package com.example.doan_rapphim.packageDangKyDangNhap.packageDangNhap;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -13,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.doan_rapphim.R;
+import com.example.doan_rapphim.packageDangKyDangNhap.packageDangKy.DangKyActivity;
 import com.example.doan_rapphim.packageDangKyDangNhap.packageDangNhap.packageThongTinUser.TabTaiKhoan_Fragment;
 
 import org.json.JSONArray;
@@ -30,7 +32,8 @@ import java.net.URL;
 public class QuenMatKhauActivity extends AppCompatActivity {
 
     private String URLQuenMK = "";
-    private  String value = "http://0306181355.pixelcent.com/Cinema/QuenMatKhau.php?Email=";
+    private String value="http://0306181355.pixelcent.com/Cinema/KiemTraSDTQuenMatKhau.php?SDT=";
+    //private  String value = "http://0306181355.pixelcent.com/Cinema/QuenMatKhau.php?Email=";
     private EditText edtQuenMK;
     private Button btnQuenMK;
 
@@ -43,7 +46,7 @@ public class QuenMatKhauActivity extends AppCompatActivity {
         btnQuenMK.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                URLQuenMK = value + edtQuenMK.getText().toString();
+
                 QuenMK quenMK = new QuenMK();
                 quenMK.execute();
             }
@@ -63,6 +66,7 @@ public class QuenMatKhauActivity extends AppCompatActivity {
 
 
                 try {
+                    URLQuenMK = value + edtQuenMK.getText().toString();
                     url = new URL(URLQuenMK);
                     urlConnection = (HttpURLConnection) url.openConnection();
 
@@ -99,42 +103,21 @@ public class QuenMatKhauActivity extends AppCompatActivity {
 
                 JSONObject jsonObject = new JSONObject(s);
                 JSONArray jsonArray = jsonObject.getJSONArray("DanhSach");
-                int a = 0;
+
 
                 JSONObject jsonObject1 = jsonArray.getJSONObject(0);
-                int KetQua = jsonObject1.getInt("KetQua");
-                if(KetQua == 1)
+                String MatKhau = jsonObject1.getString("MatKhau");
+                if(MatKhau == edtQuenMK.getText().toString())
                 {
-                    Toast.makeText(QuenMatKhauActivity.this,"Email tồn tại",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(QuenMatKhauActivity.this,"Số điện thoại tồn tại và Mật khẩu của bạn: "+MatKhau,Toast.LENGTH_SHORT).show();
                 }
                 else {
-                    Toast.makeText(QuenMatKhauActivity.this,"Email không tồn tại",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(QuenMatKhauActivity.this,"Số điện thoại bạn không tồn tại.",Toast.LENGTH_SHORT).show();
                 }
 
             } catch (JSONException e) {
                 e.printStackTrace();
             }
         }
-    }
-
-    protected void sendEmail(){
-        String  TO = edtQuenMK.getText().toString();
-        String CC = "halehuytien2024@gmail.com";
-        Intent emailIntent = new Intent(Intent.ACTION_SEND);
-        emailIntent.setData(Uri.parse("mailto:"));
-        emailIntent.setType("text/plain");
-
-        emailIntent.putExtra(Intent.EXTRA_EMAIL, TO);
-        emailIntent.putExtra(Intent.EXTRA_CC, CC);
-        emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Your Subject");
-        emailIntent.putExtra(Intent.EXTRA_TEXT, "Hello");
-        try {
-            startActivity(Intent.createChooser(emailIntent,"Send email..."));
-            finish();
-            Toast.makeText(QuenMatKhauActivity.this,"Kiểm tra email",Toast.LENGTH_SHORT).show();
-        }catch (Exception e){
-            Toast.makeText(QuenMatKhauActivity.this,"Gửi email thất bại",Toast.LENGTH_SHORT).show();
-        }
-
     }
 }

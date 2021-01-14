@@ -29,8 +29,15 @@ import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.doan_rapphim.R;
+import com.example.doan_rapphim.packageDangKyDangNhap.packageDangNhap.IDUser;
 import com.example.doan_rapphim.packageDangKyDangNhap.packageDangNhap.packageThongTinUser.PhuongXa;
 import com.example.doan_rapphim.packageDangKyDangNhap.packageDangNhap.packageThongTinUser.QuanHuyen;
+import com.example.doan_rapphim.packageDangKyDangNhap.packageDangNhap.packageThongTinUser.TaiKhoan_ThongTinFragment;
+import com.example.doan_rapphim.packageDangKyDangNhap.packageDangNhap.packageThongTinUser.ThayDoiThongTin;
+import com.example.doan_rapphim.packageDangKyDangNhap.packageDangNhap.packageThongTinUser.ThongTinUser;
+import com.example.doan_rapphim.packageTrangChiTiet.IDPhim;
+import com.example.doan_rapphim.packageTrangChiTiet.packageThanhToan.ThongTinSoDoGhe;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -47,6 +54,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Pattern;
@@ -61,13 +69,10 @@ public class DangKyActivity extends AppCompatActivity {
     public int IDThanhPhoTinh;
     public int IDThanhPhoQuanHuyen;
     public int IDThanhPhoPhuongXa;
-
-
     private Button btnDangKy;
     private EditText edtHoTenDK;
     private EditText edtEmailDK;
     private EditText edtSDTDangKy;
-
     private EditText edtMatKhauDK;
     private EditText edtNhapLaiMatKhauDK;
     private EditText edtNgaySinh;
@@ -79,12 +84,12 @@ public class DangKyActivity extends AppCompatActivity {
     private Button btnTaiHinhDK;
     private ImageView imgDK;
     private String HinhBase64;
-
     private Integer EmailKT=0;
     private Integer SDTKT=0;
-
-    private String jsonURL="http://0306181355.pixelcent.com/Cinema/KiemTraEmailSDT.php?Email=";
-    private String URLKTDK;
+    private String jsonURLEmail="http://0306181355.pixelcent.com/Cinema/KiemTraEmailSDT.php?Email=";
+    private String jsonURLSDT="http://0306181355.pixelcent.com/Cinema/KiemTraSDTDangKy.php?SDT=";
+    private String URLKTEmailDK;
+    private String URLKTSDTDK;
     public final static int PICK_IMAGE_REQUEST = 1;
     private static final Pattern EMAIL_PATTERN = Pattern
             .compile("^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
@@ -98,7 +103,6 @@ public class DangKyActivity extends AppCompatActivity {
         spnTinhTp = findViewById(R.id.spinnerThanhPhoDK);
         spnHuyenQuan = findViewById(R.id.spinnerQuanHuyenDK);
         spnXaPhuong = findViewById(R.id.spinnerXaPhuongDK);
-
         btnDangKy = findViewById(R.id.btnDangKyFormDK);
         edtHoTenDK = findViewById(R.id.txtHoTenDK);
         edtNgaySinh=findViewById(R.id.editTextDateTT);
@@ -107,18 +111,14 @@ public class DangKyActivity extends AppCompatActivity {
         edtMatKhauDK=findViewById(R.id.txtMatKhauDK);
         edtNhapLaiMatKhauDK=findViewById(R.id.txtNhapLaiMatKhauDK);
         btnTaiHinhDK=findViewById(R.id.btnTaiHinh);
-
         imgDK=findViewById(R.id.imgDK);
         imgDK.setImageResource(R.drawable.admin);
-
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.admin);
         bitmap.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream);
         byte[] imageBytes = byteArrayOutputStream.toByteArray();
         String imageString = Base64.encodeToString(imageBytes, Base64.DEFAULT);
         HinhBase64 = imageString;
-
-
         btnTaiHinhDK.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -136,26 +136,17 @@ public class DangKyActivity extends AppCompatActivity {
         this.lastSelectedYear = c.get(Calendar.YEAR);
         this.lastSelectedMonth = c.get(Calendar.MONTH);
         this.lastSelectedDayOfMonth = c.get(Calendar.DAY_OF_MONTH);
-
         DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
         String date = df.format(Calendar.getInstance().getTime());
         edtNgaySinh.setText(date);
-
         SpinnerView();
         btnDangKy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 DangKy(v);
-
-
             }
         });
-
-
     }
-
-
 
     public void ChonNgaySinh(){
         DatePickerDialog.OnDateSetListener dateSetListener = new DatePickerDialog.OnDateSetListener() {
@@ -191,14 +182,11 @@ public class DangKyActivity extends AppCompatActivity {
                     getSelectedQuanHuyen(position);
                 }
             }
-
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
 
             }
         });
-
-
 
         //Load Dữ liệu và spinner QuanHuyen
         spnHuyenQuan.setAdapter(new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,getQuanHuyenList()));
@@ -209,16 +197,13 @@ public class DangKyActivity extends AppCompatActivity {
                     getSelectedXaPhuong(position);
                 }
             }
-
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
 
             }
         });
-
         // Loat dữ liệu XaPhuong
         spnXaPhuong.setAdapter(new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,getXaPhuongList()));
-
     }
 
     //Dữ liệu của QuanHuyen
@@ -372,7 +357,6 @@ public class DangKyActivity extends AppCompatActivity {
         spnHuyenQuan.setAdapter(spinnerListArrayAdapterQuanHuyen);
     }
 
-
     //Add DL vào spinner XaPhuong,,,
     public void getSelectedXaPhuong(int IDQuanHuyen) {
         ArrayList<PhuongXa> phuongXas = new ArrayList<>();
@@ -391,8 +375,6 @@ public class DangKyActivity extends AppCompatActivity {
 
         return EMAIL_PATTERN.matcher(sEmailId).matches();
     }
-
-
     public void DangKy(View view){
         String HoTen=edtHoTenDK.getText().toString();
         String Email=edtEmailDK.getText().toString();
@@ -400,9 +382,6 @@ public class DangKyActivity extends AppCompatActivity {
         String DiaChi=spnXaPhuong.getSelectedItem().toString() + ", " +spnHuyenQuan.getSelectedItem().toString() + ", " + spnTinhTp.getSelectedItem().toString();
         String MatKhau=edtMatKhauDK.getText().toString();
         String NhapLaiMatKhau=edtNhapLaiMatKhauDK.getText().toString();
-
-
-
         if(HoTen.equals("")){
             Toast.makeText(this,"Bạn chưa nhập Họ và Tên cho form Đăng ký!",Toast.LENGTH_SHORT).show();
         }
@@ -414,16 +393,12 @@ public class DangKyActivity extends AppCompatActivity {
         }
         else if(!CheckEmail(Email)){
             Toast.makeText(this, "Bạn nhập Email chưa đúng định dạng!", Toast.LENGTH_SHORT).show();
-        }else if(EmailKT==1){
-            Toast.makeText(this, "Email đã sử dụng, bạn hãy dùng Email khác !", Toast.LENGTH_SHORT).show();
         }
         else if(SDT.equals("")){
             Toast.makeText(this,"Bạn chưa nhập Số điện thoại cho form Đăng ký!",Toast.LENGTH_SHORT).show();
         }
         else if(SDT.length()<10){
             Toast.makeText(this,"Số điện thoại phải 10 ký tự!",Toast.LENGTH_SHORT).show();
-        }else if(SDTKT==1){
-            Toast.makeText(this,"Số điện thoại đã sử dụng, bạn hãy dùng số điện thoại khác !",Toast.LENGTH_SHORT).show();
         }
         else if(MatKhau.equals("")){
             Toast.makeText(this,"Bạn chưa nhập Mật khẩu cho form Đăng ký!",Toast.LENGTH_SHORT).show();
@@ -432,14 +407,12 @@ public class DangKyActivity extends AppCompatActivity {
             Toast.makeText(this,"Bạn chưa Nhập lại Mật khẩu cho form Đăng ký!",Toast.LENGTH_SHORT).show();
         }
         else if(NhapLaiMatKhau.equals(MatKhau)){
-                    KiemTraEmail kiemTraEmail = new KiemTraEmail(view,this);
-                    kiemTraEmail.execute();
+            KiemTraEmail kiemTraEmail = new KiemTraEmail(view,this);
+            kiemTraEmail.execute();
         }
         else {
             Toast.makeText(this,"Nhập lại mật khẩu phải trùng với Mật khẩu vừa nhập!",Toast.LENGTH_SHORT).show();
         }
-
-
     }
 
     //Click đổi ảnh
@@ -457,7 +430,6 @@ public class DangKyActivity extends AppCompatActivity {
         if(requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null){
             Uri uri = data.getData();
             imgDK.setImageURI(uri);
-
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             imgDK.setDrawingCacheEnabled(true);
             Bitmap bitmap = imgDK.getDrawingCache();
@@ -465,37 +437,27 @@ public class DangKyActivity extends AppCompatActivity {
             byte[] imageBytes = byteArrayOutputStream.toByteArray();
             String imageString = Base64.encodeToString(imageBytes, Base64.DEFAULT);
             HinhBase64 = imageString;
-
         }
     }
     private class INSERT_KHACHHANG extends AsyncTask<String, String, String> {
         @Override
         protected String doInBackground(String... strings) {
             String current = "";
-
             try {
                 URL url;
                 HttpURLConnection urlConnection = null;
-
-
                 try {
                     InsertKhachHang = "http://0306181355.pixelcent.com/rapphim/public/api/themkhachhang/"+edtHoTenDK.getText().toString()+"/"+edtEmailDK.getText().toString()+"/"+edtSDTDangKy.getText().toString()+"/"+edtNgaySinh.getText().toString()+"/"+spnXaPhuong.getSelectedItem().toString()+","+spnHuyenQuan.getSelectedItem().toString()+","+spnTinhTp.getSelectedItem().toString()+"/"+edtMatKhauDK.getText().toString()+"/"+edtSDTDangKy.getText().toString()+".png";
-                     url = new URL(InsertKhachHang);
+                    url = new URL(InsertKhachHang);
                     urlConnection = (HttpURLConnection) url.openConnection();
-
                     InputStream in = urlConnection.getInputStream();
                     InputStreamReader isr = new InputStreamReader(in);
-
                     int data = isr.read();
                     while (data != -1) {
                         current += (char) data;
                         data = isr.read();
                     }
-
-
-
                     return current;
-
                 } catch (MalformedURLException e) {
                     e.printStackTrace();
                 } catch (IOException e) {
@@ -511,10 +473,8 @@ public class DangKyActivity extends AppCompatActivity {
             }
             return current;
         }
-
         @Override
         protected void onPostExecute(String s) {
-
         }
     }
 
@@ -531,22 +491,16 @@ public class DangKyActivity extends AppCompatActivity {
                 return params;
             }
         };
-
-
         //stringRequest.setRetryPolicy(new DefaultRetryPolicy(MY_SOCKET_TIMEOUT_MS, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         requestQueue.add(stringRequest);
     }
-
-    public class KiemTraEmail extends AsyncTask<String, String, String> {
-
+    public class KiemTraSDT extends AsyncTask<String, String, String> {
         private View view;
         private Activity activity;
-
-        public KiemTraEmail(View view, Activity activity){
+        public KiemTraSDT(View view, Activity activity){
             this.view = view;
             this.activity = activity;
         }
-
         @Override
         protected String doInBackground(String... strings) {
             String current = "";
@@ -554,24 +508,19 @@ public class DangKyActivity extends AppCompatActivity {
             try {
                 URL url;
                 HttpURLConnection urlConnection = null;
-
-
                 try {
-                    URLKTDK = jsonURL +edtEmailDK.getText().toString();
-                    url = new URL(URLKTDK);
-                    urlConnection = (HttpURLConnection) url.openConnection();
 
+                    URLKTSDTDK = jsonURLSDT +edtSDTDangKy.getText().toString();
+                    url = new URL(URLKTSDTDK);
+                    urlConnection = (HttpURLConnection) url.openConnection();
                     InputStream in = urlConnection.getInputStream();
                     InputStreamReader isr = new InputStreamReader(in);
-
                     int data = isr.read();
                     while (data != -1) {
                         current += (char) data;
                         data = isr.read();
                     }
-
                     return current;
-
                 } catch (MalformedURLException e) {
                     e.printStackTrace();
                 } catch (IOException e) {
@@ -595,12 +544,9 @@ public class DangKyActivity extends AppCompatActivity {
                 JSONArray jsonArray = jsonObject.getJSONArray("DanhSach");
 
                 JSONObject jsonObject1 = jsonArray.getJSONObject(0);
-                String KetQuaEmail = jsonObject1.getString("KetQuaEmail");
-                //String KetQuaSDT = jsonObject1.getString("KetQuaSDT");
-
-                EmailKT = Integer.parseInt(KetQuaEmail);
-
-                if(EmailKT == 0) {
+                String KetQuaSDT = jsonObject1.getString("KetQuaSDT");
+                SDTKT = Integer.parseInt(KetQuaSDT);
+                if(SDTKT == 0) {
                     INSERT_KHACHHANG insert_khachhang = new INSERT_KHACHHANG();
                     insert_khachhang.execute();
                     UploadHinh(this.view);
@@ -608,18 +554,79 @@ public class DangKyActivity extends AppCompatActivity {
                 }
                 else
                 {
-                    Toast.makeText(activity,"Email đã tồn tại !!!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(activity,"Số điện thoại đã tồn tại, Bạn hãy nhập Số điện thoại khác!!!", Toast.LENGTH_SHORT).show();
                 }
 
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-
-
-
         }
     }
+    public class KiemTraEmail extends AsyncTask<String, String, String> {
+        private View view;
+        private Activity activity;
+        public KiemTraEmail(View view, Activity activity){
+            this.view = view;
+            this.activity = activity;
+        }
+        @Override
+        protected String doInBackground(String... strings) {
+            String current = "";
+            try {
+                URL url;
+                HttpURLConnection urlConnection = null;
+                try {
+                    URLKTEmailDK = jsonURLEmail +edtEmailDK.getText().toString();
+                    url = new URL(URLKTEmailDK);
+                    urlConnection = (HttpURLConnection) url.openConnection();
 
+                    InputStream in = urlConnection.getInputStream();
+                    InputStreamReader isr = new InputStreamReader(in);
 
+                    int data = isr.read();
+                    while (data != -1) {
+                        current += (char) data;
+                        data = isr.read();
+                    }
+
+                    return current;
+
+                } catch (MalformedURLException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } finally {
+                    if (urlConnection != null) {
+                        urlConnection.disconnect();
+                    }
+                }
+
+            }catch (Exception e) {
+                e.printStackTrace();
+            }
+            return current;
+        }
+        @Override
+        protected void onPostExecute(String s) {
+            try {
+                JSONObject jsonObject = new JSONObject(s);
+                JSONArray jsonArray = jsonObject.getJSONArray("DanhSach");
+
+                JSONObject jsonObject1 = jsonArray.getJSONObject(0);
+                String KetQuaEmail = jsonObject1.getString("KetQuaEmail");
+                EmailKT = Integer.parseInt(KetQuaEmail);
+                if(EmailKT == 0) {
+                    KiemTraSDT kiemTraSDT = new KiemTraSDT(view,activity);
+                    kiemTraSDT.execute();
+                }
+                else
+                {
+                    Toast.makeText(activity,"Email đã tồn tại, Bạn hãy nhập Email khác!!!", Toast.LENGTH_SHORT).show();
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 }
 

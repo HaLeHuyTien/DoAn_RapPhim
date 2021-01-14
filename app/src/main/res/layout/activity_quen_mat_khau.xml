@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="36dp"
-        android:text="Nhập email của bạn"
+        android:text="Nhập Số điện thoại của bạn"
         android:textAlignment="center"
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -22,15 +22,16 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/edtNhapEmailQuenMK"
+        android:id="@+id/edtNhapSDTQuenMK"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="56dp"
         android:ems="10"
-        android:hint="Email"
-        android:inputType="textPersonName"
-        app:layout_constraintTop_toBottomOf="@+id/txtTieuDeQuenMK"
-        tools:layout_editor_absoluteX="0dp" />
+        android:hint="Số điện thoại"
+        android:inputType="textPersonName|phone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtTieuDeQuenMK" />
 
     <Button
         android:id="@+id/btnTimTKQuenMK"
@@ -42,6 +43,6 @@
         android:textAllCaps="false"
         android:textColor="#FFFFFF"
         android:textSize="18sp"
-        app:layout_constraintTop_toBottomOf="@+id/edtNhapEmailQuenMK"
+        app:layout_constraintTop_toBottomOf="@+id/edtNhapSDTQuenMK"
         tools:layout_editor_absoluteX="16dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

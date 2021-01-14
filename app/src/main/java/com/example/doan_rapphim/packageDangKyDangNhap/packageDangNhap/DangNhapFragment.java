@@ -25,9 +25,11 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.example.doan_rapphim.MainActivity;
 import com.example.doan_rapphim.R;
+import com.example.doan_rapphim.TrangChuFragment;
 import com.example.doan_rapphim.packageDangKyDangNhap.packageDangKy.DangKyActivity;
 import com.example.doan_rapphim.packageDangKyDangNhap.packageDangNhap.packageThongTinUser.TabTaiKhoan_Fragment;
 import com.example.doan_rapphim.packageDangKyDangNhap.packageDangNhap.packageThongTinUser.ThongTinUser;
+import com.example.doan_rapphim.trangchu_phimsapchieufragment;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -45,7 +47,6 @@ public class DangNhapFragment extends Fragment {
     private Button btnDN, btnDK;
     private EditText edtEmail, edtMatKhau;
     private ImageButton imgHidePass;
-    private String Email, MatKhau;
     private TextView txtQuenMatKhau;
     private Integer x = 0;
     private MainActivity mainActivity;

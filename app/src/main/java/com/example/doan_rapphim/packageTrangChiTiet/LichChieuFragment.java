@@ -181,7 +181,7 @@ public class LichChieuFragment extends Fragment {
                         XuatChieu[a] = jsonObject2.getString("GioChieu");
                         XuatChieu[a] = XuatChieu[a] + "/" + jsonObject2.getString("TenPhong");
                         IDXuatChieu[a] = jsonObject2.getInt("idxuatchieu");
-                        IDPhong[a] = jsonObject1.getInt("idphong");
+                        IDPhong[a] = jsonObject2.getInt("idphong");
                         a++;
                     }
                     LichChieu_Json lichChieu_json = new LichChieu_Json();

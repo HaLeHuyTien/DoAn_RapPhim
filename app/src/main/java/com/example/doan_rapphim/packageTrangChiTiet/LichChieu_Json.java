@@ -26,15 +26,17 @@ public class LichChieu_Json {
         this.IDXuatChieu = IDXuatChieu;
     }
 
-    public Integer getIDPhong() {
+
+
+    private Integer[] IDPhong;
+
+    public Integer[] getIDPhong() {
         return IDPhong;
     }
 
-    public void setIDPhong(Integer IDPhong) {
+    public void setIDPhong(Integer[] IDPhong) {
         this.IDPhong = IDPhong;
     }
-
-    private Integer IDPhong;
 
     private Integer IDRap;
 

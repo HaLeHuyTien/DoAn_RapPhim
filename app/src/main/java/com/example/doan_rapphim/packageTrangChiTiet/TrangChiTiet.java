@@ -52,8 +52,8 @@ public class TrangChiTiet extends AppCompatActivity {
             @Override
             public void run() {
                 ViewPagerAdapter_TrangChiTiet viewPagerAdapter = new ViewPagerAdapter_TrangChiTiet(getSupportFragmentManager(), FragmentStatePagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
-                viewPagerAdapter.addFragment(LichChieuFragment.getInstance(), "Lịch chiếu");
                 viewPagerAdapter.addFragment(ThongTinFragment.getInstance(), "Thông tin");
+                viewPagerAdapter.addFragment(LichChieuFragment.getInstance(), "Đặt vé");
                 viewPagerAdapter.addFragment(BinhLuanFragment.getInstance(), "Bình luận");
                 viewPager.setAdapter(viewPagerAdapter);
 

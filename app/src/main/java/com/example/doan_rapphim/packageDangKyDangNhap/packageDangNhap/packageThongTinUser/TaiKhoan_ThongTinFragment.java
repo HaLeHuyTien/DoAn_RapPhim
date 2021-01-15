@@ -114,7 +114,8 @@ public class TaiKhoan_ThongTinFragment extends Fragment {
         txtSDT = view.findViewById(R.id.txtSDTTT);
         txtNgaySinh = view.findViewById(R.id.txtNgaySinhTT);
         txtDiaChi = view.findViewById(R.id.txtDiaChiTT);
-
+        String x = IDUser.HinhUser;
+        Picasso.get().load("http://0306181355.pixelcent.com/rapphim/public/images/" + x).into(txtanhDaiDien);
         ThayDoiThongTin = view.findViewById(R.id.btnThayDoiTT);
         ThayDoiThongTin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -155,7 +156,7 @@ public class TaiKhoan_ThongTinFragment extends Fragment {
                         editor.putInt("DATA1", -1);
                         editor.putString("DATA2", "dienvien");
                         IDUser.idUser = -1;
-                        IDUser.HinhUser = "dienvien";
+
                         editor.commit();
                         replaceFragmentContent(new DangNhapFragment());
                         Toast.makeText(getContext(), "Đăng xuất thành công !", Toast.LENGTH_LONG).show();

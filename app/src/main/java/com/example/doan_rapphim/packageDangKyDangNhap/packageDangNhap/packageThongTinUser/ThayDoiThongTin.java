@@ -5,9 +5,13 @@ import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
+import android.util.Base64;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -23,6 +27,11 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.doan_rapphim.R;
 import com.example.doan_rapphim.packageDangKyDangNhap.packageDangNhap.IDUser;
 import com.squareup.picasso.Picasso;
@@ -31,6 +40,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -38,6 +48,8 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class ThayDoiThongTin extends AppCompatActivity {
     private Spinner spnTinhTp;
@@ -47,15 +59,18 @@ public class ThayDoiThongTin extends AppCompatActivity {
     private ArrayAdapter<PhuongXa> spinnerListArrayAdapterPhuongXa;
     private final String[] categories = {"TP Hà Nội", "TP Hồ Chí Minh", "TP Đà Nẵng"};
     public int IDThanhPhoTinh;
+    SharedPreferences sharedPreferences;
+    SharedPreferences.Editor editor;
 
     private ImageView imageViewDoiAnh;
     private ImageButton imageButtonDate;
     private EditText editTextHoVaTen;
-    private EditText editTextSDT;
     private EditText editTextNgaySinh;
     private Button btnThoat;
     private Button btnLuu;
     private Button btnDoiAnh;
+    private String HinhBase64;
+    private ImageView imgHinhKH;
 
     private int lastSelectedYear;
     private int lastSelectedMonth;
@@ -79,10 +94,11 @@ public class ThayDoiThongTin extends AppCompatActivity {
         spnXaPhuong = findViewById(R.id.spinnerXaPhuong);
         imageViewDoiAnh = findViewById(R.id.imageViewDoiAnh);
         editTextHoVaTen = findViewById(R.id.editTextHVT);
-        editTextSDT = findViewById(R.id.editTextSDTTT);
         editTextNgaySinh = findViewById(R.id.editTextDateTT);
         btnLuu = findViewById(R.id.btnLuuTD);
+        imgHinhKH = ((Activity) ThongTinContext.context).findViewById(R.id.imgHinhDaiDienTT1);
 
+        initPreferences();
         btnLuu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -387,14 +403,12 @@ public class ThayDoiThongTin extends AppCompatActivity {
 
     //Nút Lưu thay đổi
     public void LuuThayDoi() {
-        if (editTextHoVaTen.getText().toString().equals("") || editTextNgaySinh.getText().toString().equals("") || editTextSDT.getText().toString().equals("")) {
+        if (editTextHoVaTen.getText().toString().equals("") || editTextNgaySinh.getText().toString().equals("")) {
             Toast.makeText(this, "Bạn chưa nhập đủ thông tin !", Toast.LENGTH_SHORT).show();
         } else if (editTextHoVaTen.getText().length() < 3) {
             Toast.makeText(this, "Họ và tên phải từ ít nhất 3 ký tự, tối đa 20 ký tự !", Toast.LENGTH_SHORT).show();
         } else if (editTextHoVaTen.getText().length() > 20) {
             Toast.makeText(this, "Họ và tên phải từ ít nhất 3 ký tự, tối đa 20 ký tự !", Toast.LENGTH_SHORT).show();
-        } else if (editTextSDT.getText().length() < 10 || editTextSDT.getText().length() > 10) {
-            Toast.makeText(this, "Số điện thoại phải đúng 10 ký tự !", Toast.LENGTH_SHORT).show();
         } else {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setTitle("Thông Báo");
@@ -410,13 +424,19 @@ public class ThayDoiThongTin extends AppCompatActivity {
                     // Set the TextView visibility GONE
                     getThayDoiThongTin getThayDoiThongTin = new getThayDoiThongTin();
                     getThayDoiThongTin.execute();
+                    ChangeHinh();
+
+                    editor.putInt("DATA1", IDUser.idUser);
+                    editor.putString("DATA2", IDUser.HinhUser);
+                   IDUser.idUser = IDUser.idUser;
+                   IDUser.HinhUser = IDUser.HinhUser;
+                    editor.commit();
+
 
                     TextView txtHoTen = ((Activity) ThongTinContext.context).findViewById(R.id.txtHoVaTenTT);
-                    TextView txtSDT = ((Activity) ThongTinContext.context).findViewById(R.id.txtSDTTT);
                     TextView txtNgaySinh = ((Activity) ThongTinContext.context).findViewById(R.id.txtNgaySinhTT);
                     TextView txtDiaChi = ((Activity) ThongTinContext.context).findViewById(R.id.txtDiaChiTT);
                     txtHoTen.setText(editTextHoVaTen.getText().toString());
-                    txtSDT.setText(editTextSDT.getText().toString());
                     txtNgaySinh.setText(editTextNgaySinh.getText().toString());
                     txtDiaChi.setText(spnXaPhuong.getSelectedItem().toString() + ", " + spnHuyenQuan.getSelectedItem().toString() + ", " + spnTinhTp.getSelectedItem().toString());
 
@@ -454,6 +474,14 @@ public class ThayDoiThongTin extends AppCompatActivity {
         if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null) {
             Uri uri = data.getData();
             imageViewDoiAnh.setImageURI(uri);
+            imgHinhKH.setImageURI(uri);
+            ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+            imageViewDoiAnh.setDrawingCacheEnabled(true);
+            Bitmap bitmap = imageViewDoiAnh.getDrawingCache();
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream);
+            byte[] imageBytes = byteArrayOutputStream.toByteArray();
+            String imageString = Base64.encodeToString(imageBytes, Base64.DEFAULT);
+            HinhBase64 = imageString;
         }
     }
 
@@ -514,9 +542,8 @@ public class ThayDoiThongTin extends AppCompatActivity {
                     String NgaySinh = jsonObject1.getString("NgaySinh");
                     String SDT = jsonObject1.getString("SDT");
 
-                    Picasso.get().load("http://0306181355.pixelcent.com/rapphim/public/images/" + Hinh).into(imageViewDoiAnh);
+                    Picasso.get().load("http://0306181355.pixelcent.com/rapphim/public/images/" + Hinh+"1").into(imageViewDoiAnh);
                     editTextHoVaTen.setText(HoTen);
-                    editTextSDT.setText(SDT);
                     editTextNgaySinh.setText(NgaySinh);
                 }
             } catch (JSONException e) {
@@ -541,7 +568,6 @@ public class ThayDoiThongTin extends AppCompatActivity {
 
                 try {
                     UpdateTT = URLUpdateTTTK + editTextHoVaTen.getText().toString() +
-                            "/" + editTextSDT.getText().toString() +
                             "/" + editTextNgaySinh.getText().toString() +
                             "/" + DiaChi +
                             "/" + IDUser.idUser.toString();
@@ -581,5 +607,30 @@ public class ThayDoiThongTin extends AppCompatActivity {
         }
     }
 
+    public void ChangeHinh() {
+        RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
+        StringRequest stringRequest = new StringRequest(Request.Method.POST,
+                "http://0306181355.pixelcent.com/rapphim/public/api/addhinh",
+                response -> {
+                }, error -> {
+        }) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put("hinh", HinhBase64);
+                TextView txtSDT = ((Activity) ThongTinContext.context).findViewById(R.id.txtSDTTT);
+                String a = txtSDT.getText().toString();
+                params.put("TenHinh",a);
+                return params;
+            }
+        };
+        //stringRequest.setRetryPolicy(new DefaultRetryPolicy(MY_SOCKET_TIMEOUT_MS, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        requestQueue.add(stringRequest);
+    }
+
+    private void initPreferences() {
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        editor = sharedPreferences.edit();
+    }
 
 }

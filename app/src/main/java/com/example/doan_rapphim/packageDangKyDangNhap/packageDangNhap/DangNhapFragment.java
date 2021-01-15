@@ -184,17 +184,19 @@ public class DangNhapFragment extends Fragment {
                 JSONArray jsonArray = jsonObject.getJSONArray("DanhSach");
                 int a = 0;
 
-                for (int i = 0; i < jsonArray.length(); i++) {
-                    JSONObject jsonObject1 = jsonArray.getJSONObject(i);
-                    Integer KiemTra = jsonObject1.getInt("KiemTra");
+                if(jsonArray.length()>0) {
 
-                    if (KiemTra == 1) {
-                        a = 1;
-                        Integer ID = jsonObject1.getInt("id");
-                        String Hinh = jsonObject1.getString("Hinh");
-                        replaceFragmentContent(new TabTaiKhoan_Fragment(), ID, Hinh);
-                        break;
-                    }
+                        JSONObject jsonObject1 = jsonArray.getJSONObject(0);
+                        Integer KiemTra = jsonObject1.getInt("KiemTra");
+
+                        if (KiemTra == 1) {
+                            a = 1;
+                            Integer ID = jsonObject1.getInt("id");
+                            String Hinh = jsonObject1.getString("Hinh");
+                            replaceFragmentContent(new TabTaiKhoan_Fragment(), ID, Hinh);
+
+                        }
+
                 }
                 if (a == 0) {
                     AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());

@@ -6,6 +6,7 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
+
         android:allowBackup="true"
         android:hardwareAccelerated="true"
         android:icon="@mipmap/ic_launcher"
@@ -14,25 +15,26 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.DoAn_RapPhim">
-        <activity android:name=".packageDangKyDangNhap.packageDangNhap.packageThongTinUser.DSLichSuDatVeActivity"></activity>
-        <activity android:name=".packageTrangChiTiet.packageThanhToan.ThongTinGiaoDich" />
-        <activity android:name=".packageDangKyDangNhap.packageDangNhap.packageThongTinUser.XacThucMatKhauActivity" />
-        <activity android:name=".MainActivity"  android:windowSoftInputMode="adjustPan"/>
-        <activity android:name=".packageDangKyDangNhap.packageDangNhap.QuenMatKhauActivity" />
-        <activity android:name=".packageDangKyDangNhap.packageDangKy.DangKyActivity" />
-        <activity android:name=".packageTrangChiTiet.TrangChiTiet" />
-        <activity android:name=".packageDangKyDangNhap.packageDangNhap.packageThongTinUser.ThayDoiThongTin" />
-        <activity android:name=".packageDangKyDangNhap.packageDangNhap.packageThongTinUser.ThayDoiMatKhau" />
+        <activity android:name=".packageDangKyDangNhap.packageDangNhap.packageThongTinUser.DSLichSuDatVeActivity" android:screenOrientation="portrait"></activity>
+        <activity android:name=".packageTrangChiTiet.packageThanhToan.ThongTinGiaoDich" android:screenOrientation="portrait" />
+        <activity android:name=".packageDangKyDangNhap.packageDangNhap.packageThongTinUser.XacThucMatKhauActivity" android:screenOrientation="portrait" />
+        <activity android:name=".MainActivity"  android:windowSoftInputMode="adjustPan" android:screenOrientation="portrait"/>
+        <activity android:name=".packageDangKyDangNhap.packageDangNhap.QuenMatKhauActivity"  android:screenOrientation="portrait"/>
+        <activity android:name=".packageDangKyDangNhap.packageDangKy.DangKyActivity"  android:screenOrientation="portrait"/>
+        <activity android:name=".packageTrangChiTiet.TrangChiTiet"  android:screenOrientation="portrait"/>
+        <activity android:name=".packageDangKyDangNhap.packageDangNhap.packageThongTinUser.ThayDoiThongTin" android:screenOrientation="portrait" />
+        <activity android:name=".packageDangKyDangNhap.packageDangNhap.packageThongTinUser.ThayDoiMatKhau" android:screenOrientation="portrait" />
         <activity android:name=".packageTrangChiTiet.packageThanhToan.SoDoGhe" />
         <activity
             android:name=".packageTrangChiTiet.packageThanhToan.ThanhToan"
             android:label="THANH TOÁN"
+            android:screenOrientation="portrait"
             android:parentActivityName=".packageTrangChiTiet.TrangChiTiet">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".packageTrangChiTiet.TrangChiTiet" />
         </activity>
-        <activity android:name=".SplashActivity">
+        <activity android:name=".SplashActivity" android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

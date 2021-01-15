@@ -19,6 +19,8 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.doan_rapphim.R;
 import com.example.doan_rapphim.packageDangKyDangNhap.packageDangNhap.DangNhapFragment;
 import com.example.doan_rapphim.packageDangKyDangNhap.packageDangNhap.IDUser;
@@ -53,6 +55,7 @@ public class TaiKhoan_ThongTinFragment extends Fragment {
     private TextView txtSDT;
     private TextView txtNgaySinh;
     private TextView txtDiaChi;
+
 
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
@@ -114,8 +117,8 @@ public class TaiKhoan_ThongTinFragment extends Fragment {
         txtSDT = view.findViewById(R.id.txtSDTTT);
         txtNgaySinh = view.findViewById(R.id.txtNgaySinhTT);
         txtDiaChi = view.findViewById(R.id.txtDiaChiTT);
-        String x = IDUser.HinhUser;
-        Picasso.get().load("http://0306181355.pixelcent.com/rapphim/public/images/" + x).into(txtanhDaiDien);
+
+
         ThayDoiThongTin = view.findViewById(R.id.btnThayDoiTT);
         ThayDoiThongTin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -190,8 +193,6 @@ public class TaiKhoan_ThongTinFragment extends Fragment {
             try {
                 URL url;
                 HttpURLConnection urlConnection = null;
-
-
                 try {
                     jsonURL = "http://0306181355.pixelcent.com/rapphim/public/api/ThongTinKhachHang/" + IDUser.idUser.toString();
                     url = new URL(jsonURL);
@@ -244,7 +245,10 @@ public class TaiKhoan_ThongTinFragment extends Fragment {
 
 
                 txtEmail.setText(Email);
-                Picasso.get().load("http://0306181355.pixelcent.com/rapphim/public/images/" + Hinh).into(txtanhDaiDien);
+                txtanhDaiDien.setImageResource(0);
+                Glide.with(getActivity()).load("http://0306181355.pixelcent.com/rapphim/public/images/" + Hinh).diskCacheStrategy(DiskCacheStrategy.NONE).skipMemoryCache(true).into(txtanhDaiDien);
+                //Picasso.get().load("http://0306181355.pixelcent.com/rapphim/public/images/" + Hinh).into(txtanhDaiDien);
+
                 txtHoVaTen.setText(HoTen);
                 txtSDT.setText(SDT);
                 txtNgaySinh.setText(NgaySinh);

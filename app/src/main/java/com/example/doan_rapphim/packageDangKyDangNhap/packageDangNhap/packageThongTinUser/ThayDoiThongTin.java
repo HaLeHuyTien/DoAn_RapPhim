@@ -59,8 +59,7 @@ public class ThayDoiThongTin extends AppCompatActivity {
     private ArrayAdapter<PhuongXa> spinnerListArrayAdapterPhuongXa;
     private final String[] categories = {"TP Hà Nội", "TP Hồ Chí Minh", "TP Đà Nẵng"};
     public int IDThanhPhoTinh;
-    SharedPreferences sharedPreferences;
-    SharedPreferences.Editor editor;
+
 
     private ImageView imageViewDoiAnh;
     private ImageButton imageButtonDate;
@@ -98,7 +97,7 @@ public class ThayDoiThongTin extends AppCompatActivity {
         btnLuu = findViewById(R.id.btnLuuTD);
         imgHinhKH = ((Activity) ThongTinContext.context).findViewById(R.id.imgHinhDaiDienTT1);
 
-        initPreferences();
+
         btnLuu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -426,11 +425,7 @@ public class ThayDoiThongTin extends AppCompatActivity {
                     getThayDoiThongTin.execute();
                     ChangeHinh();
 
-                    editor.putInt("DATA1", IDUser.idUser);
-                    editor.putString("DATA2", IDUser.HinhUser);
-                   IDUser.idUser = IDUser.idUser;
-                   IDUser.HinhUser = IDUser.HinhUser;
-                    editor.commit();
+
 
 
                     TextView txtHoTen = ((Activity) ThongTinContext.context).findViewById(R.id.txtHoVaTenTT);
@@ -542,7 +537,7 @@ public class ThayDoiThongTin extends AppCompatActivity {
                     String NgaySinh = jsonObject1.getString("NgaySinh");
                     String SDT = jsonObject1.getString("SDT");
 
-                    Picasso.get().load("http://0306181355.pixelcent.com/rapphim/public/images/" + Hinh+"1").into(imageViewDoiAnh);
+                    Picasso.get().load("http://0306181355.pixelcent.com/rapphim/public/images/" + Hinh).into(imageViewDoiAnh);
                     editTextHoVaTen.setText(HoTen);
                     editTextNgaySinh.setText(NgaySinh);
                 }
@@ -628,9 +623,6 @@ public class ThayDoiThongTin extends AppCompatActivity {
         requestQueue.add(stringRequest);
     }
 
-    private void initPreferences() {
-        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        editor = sharedPreferences.edit();
-    }
+
 
 }

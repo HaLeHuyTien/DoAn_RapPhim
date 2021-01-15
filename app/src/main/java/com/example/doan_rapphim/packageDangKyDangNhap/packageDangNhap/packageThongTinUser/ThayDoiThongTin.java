@@ -32,6 +32,8 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.doan_rapphim.R;
 import com.example.doan_rapphim.packageDangKyDangNhap.packageDangNhap.IDUser;
 import com.squareup.picasso.Picasso;
@@ -127,7 +129,8 @@ public class ThayDoiThongTin extends AppCompatActivity {
         });
 
         //HienThiThongTinUser();
-        HienThiThongTin hienThiThongTin = new HienThiThongTin();
+        Glide.with(this).load("http://0306181355.pixelcent.com/rapphim/public/images/" + IDUser.HinhUser).diskCacheStrategy(DiskCacheStrategy.NONE).skipMemoryCache(true).into(imageViewDoiAnh);
+        HienThiThongTin hienThiThongTin = new HienThiThongTin(this);
         hienThiThongTin.execute();
 
         SpinnerView();
@@ -484,6 +487,12 @@ public class ThayDoiThongTin extends AppCompatActivity {
     //Hiển thị thông tin Thành Viên
     private class HienThiThongTin extends AsyncTask<String, String, String> {
 
+        Activity activity;
+
+        public HienThiThongTin(Activity activity){
+            this.activity = activity;
+        }
+
         @Override
         protected String doInBackground(String... strings) {
             String current = "";
@@ -537,7 +546,8 @@ public class ThayDoiThongTin extends AppCompatActivity {
                     String NgaySinh = jsonObject1.getString("NgaySinh");
                     String SDT = jsonObject1.getString("SDT");
 
-                    Picasso.get().load("http://0306181355.pixelcent.com/rapphim/public/images/" + Hinh).into(imageViewDoiAnh);
+                    //Picasso.get().load("http://0306181355.pixelcent.com/rapphim/public/images/" + Hinh).into(imageViewDoiAnh);
+                    //Glide.with(activity).load("http://0306181355.pixelcent.com/rapphim/public/images/" + Hinh).diskCacheStrategy(DiskCacheStrategy.NONE).skipMemoryCache(true).into(imageViewDoiAnh);
                     editTextHoVaTen.setText(HoTen);
                     editTextNgaySinh.setText(NgaySinh);
                 }

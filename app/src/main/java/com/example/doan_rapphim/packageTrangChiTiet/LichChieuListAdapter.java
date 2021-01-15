@@ -50,7 +50,7 @@ public class LichChieuListAdapter extends RecyclerView.Adapter<LichChieuListAdap
             holder.btnGioChieu[i].setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    ThongTinSoDoGhe.suatChieu = a[value];
+                    ThongTinSoDoGhe.suatChieu = XuatChieu[0].toString();
                     ThongTinSoDoGhe.IDPhong = mCurrent.getIDPhong();
                     ThongTinSoDoGhe.TenPhong = XuatChieu[1];
                     ThongTinSoDoGhe.IDRap = mCurrent.getIDRap();

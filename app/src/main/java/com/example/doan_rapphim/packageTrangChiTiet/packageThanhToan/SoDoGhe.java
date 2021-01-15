@@ -57,7 +57,7 @@ public class SoDoGhe extends AppCompatActivity {
 
     String LayGhe = "http://0306181355.pixelcent.com/rapphim/public/api/LayGhe/" + IDPhim.ID + "/" + ThongTinSoDoGhe.IDRap + "/" + ThongTinSoDoGhe.IDPhong + "/" + ThongTinSoDoGhe.IDXuatChieu;
     Integer[] Ghe = new Integer[20];
-    private final String GiaXuatChieu = "http://0306181355.pixelcent.com/rapphim/public/api/LayGiaVe/" + IDPhim.ID + "/" + ThongTinSoDoGhe.IDXuatChieu + "/";
+    private final String GiaXuatChieu = "http://0306181355.pixelcent.com/rapphim/public/api/LayGiaVe/" + IDPhim.ID + "/" + ThongTinSoDoGhe.IDXuatChieu;
     String LayGiaGhe = "http://0306181355.pixelcent.com/rapphim/public/api/GiaGhe";
 
     @Override
@@ -154,26 +154,25 @@ public class SoDoGhe extends AppCompatActivity {
                         Integer hang = 0;
                         for (Integer j = 0; j < 5; j++) {
                             if (ThongTinSoDoGhe.Ghe[i][j] == true) {
-                                String Hang = "";
                                 if (i == 0) {
-                                    Hang = "A";
+
                                     hang = 0;
                                 }
                                 if (i == 1) {
                                     hang = 4;
-                                    Hang = "B";
+
                                 }
                                 if (i == 2) {
-                                    Hang = "C";
+
                                     hang = 10;
                                 }
                                 if (i == 3) {
-                                    Hang = "D";
+
                                     hang = 15;
                                 }
                                 Integer Cot = j + 1;
                                 Integer idGhe = Cot + hang;
-                                ThongTinSoDoGhe.tongTien += ThongTinSoDoGhe.GiaGhe[idGhe] + ThongTinSoDoGhe.DonGia;
+                                ThongTinSoDoGhe.tongTien += ThongTinSoDoGhe.GiaGhe[idGhe] +  ThongTinSoDoGhe.DonGia;
                             }
                         }
                     }
@@ -184,7 +183,7 @@ public class SoDoGhe extends AppCompatActivity {
             }
         });
 
-
+        int x = ThongTinSoDoGhe.IDXuatChieu;
         ThongTinSoDoGhe.tongTien = 0;
         ThongTinSoDoGhe.DonGia = 0;
         for (int i = 0; i < 4; i++) {
@@ -446,7 +445,7 @@ public class SoDoGhe extends AppCompatActivity {
         @Override
         protected void onPostExecute(String s) {
             try {
-                Integer x = 0;
+                Integer x = 1;ThongTinSoDoGhe.GiaGhe[0]=0;
                 JSONObject jsonObject = new JSONObject(s);
                 JSONArray jsonArray = jsonObject.getJSONArray("DanhSach");
                 for (int i = 0; i < jsonArray.length(); i++) {

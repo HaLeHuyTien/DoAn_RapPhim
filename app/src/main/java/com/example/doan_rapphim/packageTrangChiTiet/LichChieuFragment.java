@@ -172,13 +172,15 @@ public class LichChieuFragment extends Fragment {
                     String TenRap = jsonObject1.getString("TenRap");
                     Integer IDPhong = jsonObject1.getInt("idphong");
                     Integer IDRap = jsonObject1.getInt("idrap");
-                    Integer IDXuatChieu = jsonObject1.getInt("idxuatchieu");
+
                     String[] XuatChieu = new String[6];
+                    Integer[] IDXuatChieu = new Integer[6];
                     int a = 0;
                     for (int j = (i * 6); j < (i + 1) * 6; j++) {
                         JSONObject jsonObject2 = jsonArray.getJSONObject(j);
                         XuatChieu[a] = jsonObject2.getString("GioChieu");
                         XuatChieu[a] = XuatChieu[a] + "/" + jsonObject2.getString("TenPhong");
+                        IDXuatChieu[a] = jsonObject2.getInt("idxuatchieu");
                         a++;
                     }
                     LichChieu_Json lichChieu_json = new LichChieu_Json();

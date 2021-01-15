@@ -43,7 +43,8 @@ public class LichChieuListAdapter extends RecyclerView.Adapter<LichChieuListAdap
         LichChieu_Json mCurrent = mLichChieuList.get(position);
         holder.txtTenRap.setText(mCurrent.getTenRap());
         String[] a = mCurrent.getXuatChieu();
-        for (int i = 0; i < a.length; i++) {
+        Integer[] b = mCurrent.getIDXuatChieu();
+         for (int i = 0; i < a.length; i++) {
             String[] XuatChieu = a[i].split("/");
             holder.btnGioChieu[i].setText(XuatChieu[0]);
             int value = i;
@@ -54,7 +55,7 @@ public class LichChieuListAdapter extends RecyclerView.Adapter<LichChieuListAdap
                     ThongTinSoDoGhe.IDPhong = mCurrent.getIDPhong();
                     ThongTinSoDoGhe.TenPhong = XuatChieu[1];
                     ThongTinSoDoGhe.IDRap = mCurrent.getIDRap();
-                    ThongTinSoDoGhe.IDXuatChieu = mCurrent.getIDXuatChieu();
+                    ThongTinSoDoGhe.IDXuatChieu = b[value];
                     Intent intent = new Intent(activity, SoDoGhe.class);
                     activity.startActivity(intent);
                 }

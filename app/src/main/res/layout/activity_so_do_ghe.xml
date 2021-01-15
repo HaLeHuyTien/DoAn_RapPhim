@@ -351,7 +351,7 @@
         android:layout_width="265dp"
         android:layout_height="42dp"
         android:layout_marginTop="16dp"
-        android:background="#F62B2B"
+        android:background="@drawable/custom_button"
         android:text="Tiếp Tục"
         android:textColor="#F8F5F5"
         android:textSize="18sp"

@@ -54,6 +54,32 @@ public class ThanhToan extends AppCompatActivity {
         });
 
 
+        for (int i = 0; i < 4; i++) {
+            Integer hang = 0;
+            for (Integer j = 0; j < 5; j++) {
+                if (ThongTinSoDoGhe.Ghe[i][j] == true) {
+                    String Hang = "";
+                    if (i == 0) {
+                        Hang = "A";
+                        hang = 0;
+                    }
+                    if (i == 1) {
+                        hang = 5;
+                        Hang = "B";
+                    }
+                    if (i == 2) {
+                        Hang = "C";
+                        hang = 10;
+                    }
+                    if (i == 3) {
+                        Hang = "D";
+                        hang = 15;
+                    }
+                    Integer Cot = j + 1;
+                    GheDaChon = GheDaChon + Hang + Cot.toString() + ",";
+                }
+            }
+        }
         String[] separated = GheDaChon.split(",");
         GheDaChon = "";
         for (int i = 0; i < separated.length; i++) {
@@ -66,7 +92,6 @@ public class ThanhToan extends AppCompatActivity {
         }
         txtTT_Ghe.setText("");
         txtTT_Ghe.setText(GheDaChon);
-
     }
 
     public void HiennThiDanhSach() {
@@ -75,8 +100,8 @@ public class ThanhToan extends AppCompatActivity {
             txtTT_TenPhim.setText(ThongTinSoDoGhe.tenPhim);
             txtTT_LuuY.setText(thanhToanJson.getLuuY());
             txtTT_Ngay.setText(ThongTinSoDoGhe.NgayChieuPhim);
-            txtTT_KhungGio.setText(thanhToanJson.getKhungGio());
-            txtTT_Rap.setText(thanhToanJson.getRap());
+            txtTT_KhungGio.setText(ThongTinSoDoGhe.suatChieu.toString());
+            txtTT_Rap.setText("CINEMAX");
             txtTT_TTien.setText(ThongTinSoDoGhe.tongTien.toString());
             txtTT_Sl.setText(ThongTinSoDoGhe.sl.toString());
 

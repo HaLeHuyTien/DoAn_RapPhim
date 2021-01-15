@@ -16,6 +16,15 @@ public class LichChieu_Json {
     private String[] XuatChieu;
     private String NgayChieu;
     private String TenPhong;
+    private Integer IDXuatChieu;
+
+    public Integer getIDXuatChieu() {
+        return IDXuatChieu;
+    }
+
+    public void setIDXuatChieu(Integer IDXuatChieu) {
+        this.IDXuatChieu = IDXuatChieu;
+    }
 
     public Integer getIDPhong() {
         return IDPhong;

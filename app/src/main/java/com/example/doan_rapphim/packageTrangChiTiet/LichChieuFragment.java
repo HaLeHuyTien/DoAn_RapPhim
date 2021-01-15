@@ -172,6 +172,7 @@ public class LichChieuFragment extends Fragment {
                     String TenRap = jsonObject1.getString("TenRap");
                     Integer IDPhong = jsonObject1.getInt("idphong");
                     Integer IDRap = jsonObject1.getInt("idrap");
+                    Integer IDXuatChieu = jsonObject1.getInt("idxuatchieu");
                     String[] XuatChieu = new String[6];
                     int a = 0;
                     for (int j = (i * 6); j < (i + 1) * 6; j++) {
@@ -187,6 +188,7 @@ public class LichChieuFragment extends Fragment {
                     lichChieu_json.setXuatChieu(XuatChieu);
                     lichChieu_json.setTenPhong(TenPhong);
                     lichChieu_json.setTenRap(TenRap);
+                    lichChieu_json.setIDXuatChieu(IDXuatChieu);
                     if (lichChieu_json.getNgayChieu().equals(EditNgay.getText().toString())) {
                         mWordList.addLast(lichChieu_json);
                     }

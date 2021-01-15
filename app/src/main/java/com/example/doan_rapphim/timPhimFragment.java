@@ -39,8 +39,8 @@ import java.util.LinkedList;
 public class timPhimFragment extends Fragment implements AdapterView.OnItemSelectedListener {
 
 
-    private final String jsonURLDangChieu = "http://0306181355.pixelcent.com/Cinema/PhimDangChieu.php";
-    private final String jsonURLSapChieu = "http://0306181355.pixelcent.com/Cinema/PhimSapChieu.php";
+    private final String jsonURLDangChieu = "http://0306181355.pixelcent.com/rapphim/public/api/danhsachphimdangchieu";
+    private final String jsonURLSapChieu = "http://0306181355.pixelcent.com/rapphim/public/api/danhsachphimsapchieu";
     private final LinkedList<ThongTinJson> mWordList = new LinkedList<>();
     private RecyclerView mRecyclerview;
     private AdapterListPhimItem mAdapter;
@@ -197,8 +197,8 @@ public class timPhimFragment extends Fragment implements AdapterView.OnItemSelec
                     JSONObject jsonObject1 = jsonArray.getJSONObject(i);
                     String id = jsonObject1.getString("id");
                     String TenPhim = jsonObject1.getString("TenPhim");
-                    String LoaiPhim = jsonObject1.getString("LoaiPhim");
-                    String DaoDien = jsonObject1.getString("DaoDien");
+                    String LoaiPhim = jsonObject1.getString("TenLoai");
+                    String DaoDien = jsonObject1.getString("TenDaoDien");
                     String GioiHanTuoi = jsonObject1.getString("GioiHanTuoi");
                     String Hinh = jsonObject1.getString("Hinh");
                     String NgayKhoiChieu = jsonObject1.getString("NgayKhoiChieu");

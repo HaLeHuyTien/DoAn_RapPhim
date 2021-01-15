@@ -27,7 +27,7 @@ import java.net.URL;
 public class QuenMatKhauActivity extends AppCompatActivity {
 
     private String URLQuenMK = "";
-    private final String value = "http://0306181355.pixelcent.com/Cinema/KiemTraSDTQuenMatKhau.php?SDT=";
+    private final String value = "http://0306181355.pixelcent.com/rapphim/public/api/KiemTraSDTQuenMatKhau/";
     private EditText edtQuenMK;
     private Button btnQuenMK;
 

@@ -26,7 +26,7 @@ import java.util.LinkedList;
 
 public class DSLichSuDatVeActivity extends AppCompatActivity {
     private String jsonURL;
-    private final String URLDSLSDatVe = "http://0306181355.pixelcent.com/Cinema/DanhSachDonDatVe.php?IDKhachHang=";
+    private final String URLDSLSDatVe = "http://0306181355.pixelcent.com/rapphim/public/api/DanhSachDonDatVe/";
 
     private final LinkedList<ThongTinGiaoDich_Json> mWordList = new LinkedList<>();
     private GiaoDichAdapter giaoDichAdapter;

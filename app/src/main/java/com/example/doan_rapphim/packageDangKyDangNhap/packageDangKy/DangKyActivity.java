@@ -76,8 +76,8 @@ public class DangKyActivity extends AppCompatActivity {
     private String HinhBase64;
     private Integer EmailKT = 0;
     private Integer SDTKT = 0;
-    private final String jsonURLEmail = "http://0306181355.pixelcent.com/Cinema/KiemTraEmailDangKy.php?Email=";
-    private final String jsonURLSDT = "http://0306181355.pixelcent.com/Cinema/KiemTraSDTDangKy.php?SDT=";
+    private final String jsonURLEmail = "http://0306181355.pixelcent.com/rapphim/public/api/KiemTraEmailDangKy/";
+    private final String jsonURLSDT = "http://0306181355.pixelcent.com/rapphim/public/api/KiemTraSDTDangKy/";
     private String URLKTEmailDK;
     private String URLKTSDTDK;
     public final static int PICK_IMAGE_REQUEST = 1;

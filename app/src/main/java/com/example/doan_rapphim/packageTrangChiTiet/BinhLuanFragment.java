@@ -41,9 +41,9 @@ import java.util.LinkedList;
 public class BinhLuanFragment extends Fragment {
 
     private String jsonURLBL;
-    private final String value = "http://0306181355.pixelcent.com/Cinema/BinhLuanTheoPhim.php?IDPhim=";
+    private final String value = "http://0306181355.pixelcent.com/rapphim/public/api/BinhLuanTheoPhim/";
     private String jsonURLDangBL;
-    private final String valueDangBL = "http://0306181355.pixelcent.com/Cinema/DangBinhLuan.php?IDNguoiBinhLuan=";
+    private final String valueDangBL = "http://0306181355.pixelcent.com/rapphim/public/api/DangBinhLuan/";
     private EditText txtNDBinhLuan;
     private Button btnBinhLuan;
     private TextView txtThongBaoBL;
@@ -120,9 +120,9 @@ public class BinhLuanFragment extends Fragment {
                     } else {
                         DateFormat df = new SimpleDateFormat("yyyy-MM-d");
                         String date = df.format(Calendar.getInstance().getTime());
-                        DateFormat df2 = new SimpleDateFormat("HH:mm");
+                        DateFormat df2 = new SimpleDateFormat("HH:mm:ss");
                         String time = df2.format(Calendar.getInstance().getTime());
-                        jsonURLDangBL = valueDangBL + IDUser.idUser + "&IDPhim=" + mtrangChiTiet.getIdPhim() + "&Ngay=" + date + "&Gio=" + time + "&NoiDung=" + txtNDBinhLuan.getText().toString();
+                        jsonURLDangBL = valueDangBL + IDUser.idUser + "/" + mtrangChiTiet.getIdPhim() + "/" + date + "/" + time + "/" + txtNDBinhLuan.getText().toString();
                         DangBinhLuan dangBinhLuan = new DangBinhLuan();
                         dangBinhLuan.execute();
                         GetBinhLuan getBinhLuan1 = new GetBinhLuan();

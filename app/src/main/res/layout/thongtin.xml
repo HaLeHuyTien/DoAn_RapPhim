@@ -283,6 +283,18 @@
                     app:trimLength="200"
                     app:trimMode="trimModeLength" />
 
+                <TextView
+                    android:id="@+id/txtXoaDanhGia"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="25dp"
+                    android:text="Xóa Đánh Giá"
+                    android:textColor="#FF0000"
+                    android:visibility="invisible"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/txtDiem" />
+
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <TextView

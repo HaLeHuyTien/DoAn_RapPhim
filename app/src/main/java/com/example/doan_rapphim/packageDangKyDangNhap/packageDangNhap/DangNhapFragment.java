@@ -51,7 +51,7 @@ public class DangNhapFragment extends Fragment {
     private Integer x = 0;
     private MainActivity mainActivity;
     private String URLDangNhap;
-    private final String value = "http://0306181355.pixelcent.com/Cinema/KiemTraDangNhap.php?Email=";
+    private final String value = "http://0306181355.pixelcent.com/rapphim/public/api/KiemTraDangNhap/";
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
 
@@ -145,7 +145,7 @@ public class DangNhapFragment extends Fragment {
 
 
                 try {
-                    URLDangNhap = value + edtEmail.getText().toString() + "&MatKhau=" + edtMatKhau.getText().toString();
+                    URLDangNhap = value + edtEmail.getText().toString() + "/" + edtMatKhau.getText().toString();
                     url = new URL(URLDangNhap);
                     urlConnection = (HttpURLConnection) url.openConnection();
 

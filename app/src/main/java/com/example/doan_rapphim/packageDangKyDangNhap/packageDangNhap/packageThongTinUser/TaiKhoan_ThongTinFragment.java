@@ -192,7 +192,7 @@ public class TaiKhoan_ThongTinFragment extends Fragment {
 
 
                 try {
-                    jsonURL = "http://0306181355.pixelcent.com/Cinema/ThongTinKhachHang.php?ID=" + IDUser.idUser.toString();
+                    jsonURL = "http://0306181355.pixelcent.com/rapphim/public/api/ThongTinKhachHang/" + IDUser.idUser.toString();
                     url = new URL(jsonURL);
                     urlConnection = (HttpURLConnection) url.openConnection();
 

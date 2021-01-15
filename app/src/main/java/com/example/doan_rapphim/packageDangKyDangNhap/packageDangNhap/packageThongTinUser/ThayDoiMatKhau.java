@@ -30,9 +30,9 @@ import java.net.URL;
 public class ThayDoiMatKhau extends AppCompatActivity {
     //URL API
     private String jsonUpdateMKURL;
-    private final String updateMKURL = "http://0306181355.pixelcent.com/Cinema/ThayDoiMatKhau.php?MatKhau=";
+    private final String updateMKURL = "http://0306181355.pixelcent.com/rapphim/public/api/ThayDoiMatKhau/";
     private String jsonMKURL;
-    private final String matkhauURL = "http://0306181355.pixelcent.com/Cinema/ThongTinKhachHang.php?ID=";
+    private final String matkhauURL = "http://0306181355.pixelcent.com/rapphim/public/api/ThongTinKhachHang/";
 
     private EditText editTextMKC;
     private EditText editTextMKM;
@@ -173,7 +173,7 @@ public class ThayDoiMatKhau extends AppCompatActivity {
 
 
                 try {
-                    jsonUpdateMKURL = updateMKURL + editTextMKM.getText().toString() + "&id=" + IDUser.idUser.toString();
+                    jsonUpdateMKURL = updateMKURL + editTextMKM.getText().toString() + "/" + IDUser.idUser.toString();
                     url = new URL(jsonUpdateMKURL);
 
                     urlConnection = (HttpURLConnection) url.openConnection();

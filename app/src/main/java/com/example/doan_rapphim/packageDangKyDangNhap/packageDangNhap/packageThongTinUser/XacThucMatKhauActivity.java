@@ -29,7 +29,7 @@ import java.net.URL;
 public class XacThucMatKhauActivity extends AppCompatActivity {
 
     private String jsonMKURL;
-    private final String matkhauURL = "http://0306181355.pixelcent.com/Cinema/ThongTinKhachHang.php?ID=";
+    private final String matkhauURL = "http://0306181355.pixelcent.com/rapphim/public/api/ThongTinKhachHang/";
 
     private EditText editTextNhapMK;
     private Button btnTiepTheo;

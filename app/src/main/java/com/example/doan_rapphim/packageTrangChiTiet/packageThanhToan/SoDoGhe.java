@@ -55,10 +55,10 @@ public class SoDoGhe extends AppCompatActivity {
     private Button btnD4;
     private Button btnD5;
 
-    String LayGhe = " http://0306181355.pixelcent.com/Cinema/LayGhe.php?IDPhim=" + IDPhim.ID + "&IDRap=" + ThongTinSoDoGhe.IDRap + "&IDPhong=" + ThongTinSoDoGhe.IDPhong + "&IDXuatChieu=" + ThongTinSoDoGhe.IDXuatChieu;
+    String LayGhe = "http://0306181355.pixelcent.com/rapphim/public/api/LayGhe/" + IDPhim.ID + "/" + ThongTinSoDoGhe.IDRap + "/" + ThongTinSoDoGhe.IDPhong + "/" + ThongTinSoDoGhe.IDXuatChieu;
     Integer[] Ghe = new Integer[20];
-    private final String GiaXuatChieu = "http://0306181355.pixelcent.com/Cinema/LayGiaVe.php?IDPhim=" + IDPhim.ID + "&IDXuatChieu=" + ThongTinSoDoGhe.IDXuatChieu + "&IDGhe=";
-    String LayGiaGhe = "http://0306181355.pixelcent.com/Cinema/GiaGhe.php";
+    private final String GiaXuatChieu = "http://0306181355.pixelcent.com/rapphim/public/api/LayGiaVe/" + IDPhim.ID + "/" + ThongTinSoDoGhe.IDXuatChieu + "/";
+    String LayGiaGhe = "http://0306181355.pixelcent.com/rapphim/public/api/GiaGhe";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

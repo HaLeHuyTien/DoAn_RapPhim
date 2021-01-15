@@ -54,9 +54,9 @@ public class GiaoDichFragment extends Fragment {
     private TextView txtTTThang;
 
     private String URLTongTienTN;
-    private final String URLValueNam = "http://0306181355.pixelcent.com/Cinema/TongTienTheoNam.php?IDKhachHang=";
+    private final String URLValueNam = "http://0306181355.pixelcent.com/rapphim/public/api/TongTienTheoNam/";
     private String URLTongTienTT;
-    private final String URLValueThang = "http://0306181355.pixelcent.com/Cinema/TongTienTheoThang.php?IDKhachHang=";
+    private final String URLValueThang = "http://0306181355.pixelcent.com/rapphim/public/api/TongTienTheoThang/";
     private Integer Thang = 0;
 
     public GiaoDichFragment() {
@@ -233,7 +233,7 @@ public class GiaoDichFragment extends Fragment {
 
 
                 try {
-                    URLTongTienTT = URLValueThang + IDUser.idUser + "&Thang=" + Thang;
+                    URLTongTienTT = URLValueThang + IDUser.idUser + "/" + Thang;
                     url = new URL(URLTongTienTT);
                     urlConnection = (HttpURLConnection) url.openConnection();
 

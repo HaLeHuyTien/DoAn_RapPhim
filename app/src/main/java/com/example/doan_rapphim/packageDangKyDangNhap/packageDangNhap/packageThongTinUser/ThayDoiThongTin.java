@@ -66,9 +66,9 @@ public class ThayDoiThongTin extends AppCompatActivity {
 
 
     private String UpdateTT;
-    private final String URLUpdateTTTK = "http://0306181355.pixelcent.com/Cinema/ThayDoiThongTinThanhVien.php?HoTen=";
+    private final String URLUpdateTTTK = "http://0306181355.pixelcent.com/rapphim/public/api/ThayDoiThongTinThanhVien/";
     private String LayTT;
-    private final String URLLayTTTK = "http://0306181355.pixelcent.com/Cinema/ThongTinKhachHang.php?ID=";
+    private final String URLLayTTTK = "http://0306181355.pixelcent.com/rapphim/public/api/ThongTinKhachHang/";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -541,10 +541,10 @@ public class ThayDoiThongTin extends AppCompatActivity {
 
                 try {
                     UpdateTT = URLUpdateTTTK + editTextHoVaTen.getText().toString() +
-                            "&SDT=" + editTextSDT.getText().toString() +
-                            "&NgaySinh=" + editTextNgaySinh.getText().toString() +
-                            "&DiaChi=" + DiaChi +
-                            "&id=" + IDUser.idUser.toString();
+                            "/" + editTextSDT.getText().toString() +
+                            "/" + editTextNgaySinh.getText().toString() +
+                            "/" + DiaChi +
+                            "/" + IDUser.idUser.toString();
                     url = new URL(UpdateTT);
 
                     urlConnection = (HttpURLConnection) url.openConnection();

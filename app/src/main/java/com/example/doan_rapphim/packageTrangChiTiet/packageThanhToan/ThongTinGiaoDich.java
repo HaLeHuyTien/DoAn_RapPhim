@@ -35,7 +35,7 @@ public class ThongTinGiaoDich extends AppCompatActivity {
     private TextView txtSL;
     private TextView txtTTGDtong;
     private String GheDaChon = "";
-    private String InsertVe = "http://0306181355.pixelcent.com/Cinema/VePhim.php?IDKhachHang=";
+    private String InsertVe = "http://0306181355.pixelcent.com/rapphim/public/api/VePhim/";
     public Integer[] GheID = new Integer[ThongTinSoDoGhe.sl];
 
 
@@ -173,7 +173,7 @@ public class ThongTinGiaoDich extends AppCompatActivity {
 
                 try {
                     Integer tb = ThongTinSoDoGhe.tongTien / ThongTinSoDoGhe.sl;
-                    InsertVe = "http://0306181355.pixelcent.com/Cinema/VePhim.php?IDKhachHang=" + ThongTinSoDoGhe.IDKhachHang + "&IDPhim=" + IDPhim.ID + "&IDRap=" + ThongTinSoDoGhe.IDRap + "&IDPhong=" + ThongTinSoDoGhe.IDPhong + "&IDXuatChieu=" + ThongTinSoDoGhe.IDXuatChieu + "&IDGhe=" + idGhe + "&tongtien=" + tb + "&ngaydatve=" + date2 + "&ngaychieuphim=" + ThongTinSoDoGhe.NgayChieuPhim;
+                    InsertVe = "http://0306181355.pixelcent.com/rapphim/public/api/VePhim/" + ThongTinSoDoGhe.IDKhachHang + "/" + IDPhim.ID + "/" + ThongTinSoDoGhe.IDRap + "/" + ThongTinSoDoGhe.IDPhong + "/" + ThongTinSoDoGhe.IDXuatChieu + "/" + idGhe + "/" + tb + "/" + date2 + "/" + ThongTinSoDoGhe.NgayChieuPhim;
 
                     url = new URL(InsertVe);
                     urlConnection = (HttpURLConnection) url.openConnection();

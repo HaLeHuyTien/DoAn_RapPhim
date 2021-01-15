@@ -46,17 +46,22 @@ public class ThongTinFragment extends Fragment {
 
 
     private String jsonURL;
-    private final String ChiTietPhim = "http://0306181355.pixelcent.com/Cinema/ChiTietPhim.php?IDPhim=";
+    private final String ChiTietPhim = "http://0306181355.pixelcent.com/rapphim/public/api/ChiTietPhim/";
     private String jsonURLDV;
-    private final String value = "http://0306181355.pixelcent.com/Cinema/DienVienTheoPhim.php?idphim=";
+    private final String value = "http://0306181355.pixelcent.com/rapphim/public/api/DienVienTheoPhim/";
     private String jsonURLDanhGia;
-    private final String DanhGia = "http://0306181355.pixelcent.com/Cinema/DanhGiaTheoUser.php?IDPhim=";
+    private final String DanhGia = "http://0306181355.pixelcent.com/rapphim/public/api/DanhGiaTheoUser/";
     private String jsonURLDangDanhGia;
 
-    private final String InsertDanhGia = "http://0306181355.pixelcent.com/Cinema/DangDanhGia.php?IDPhim=";
-    private final String UpdateDanhGia = "http://0306181355.pixelcent.com/Cinema/CapNhatDanhGia.php?Ngay=";
+    private final String InsertDanhGia = "http://0306181355.pixelcent.com/rapphim/public/api/DangDanhGia/";
+    private final String UpdateDanhGia = "http://0306181355.pixelcent.com/rapphim/public/api/CapNhatDanhGia/";
+    private String DiemTheoPhim;
+    private String URLDiem = "http://0306181355.pixelcent.com/rapphim/public/api/DiemTheoPhim/";
+
+    private String XoaDanhGia = "http://0306181355.pixelcent.com/rapphim/public/api/XoaDanhGia/";
 
     private TextView txtDanhGiaNguoiDung;
+    private TextView txtXoaDanhGia;
 
 
     private ImageView imgHinhPhim;
@@ -89,6 +94,7 @@ public class ThongTinFragment extends Fragment {
     private String Diem;
 
 
+
     public static ThongTinFragment getInstance() {
         ThongTinFragment thongTinFragment = new ThongTinFragment();
         return thongTinFragment;
@@ -110,9 +116,51 @@ public class ThongTinFragment extends Fragment {
 
         jsonURL = ChiTietPhim + trangChiTiet.getIdPhim().toString();
 
-        jsonURLDanhGia = DanhGia + trangChiTiet.getIdPhim().toString() + "&IDKhachHang=" + IDUser.idUser;
+        jsonURLDanhGia = DanhGia + trangChiTiet.getIdPhim().toString() + "/" + IDUser.idUser;
 
         txtDanhGiaNguoiDung = view.findViewById(R.id.txtDanhGiaNguoiDung);
+        txtXoaDanhGia = view.findViewById(R.id.txtXoaDanhGia);
+
+        txtXoaDanhGia.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String a = getResources().getResourceEntryName(v.getId()).substring(5);
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+
+                // Set a title for alert dialog
+                builder.setTitle("Thông báo");
+
+                // Ask the final question
+                builder.setMessage("Bạn muốn xóa đánh giá phim này ?");
+
+                // Set the alert dialog yes button click listener
+                builder.setPositiveButton("Có", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // Do something when user clicked the Yes button
+                        // Set the TextView visibility GONE
+                        XoaDanhGia xoaDanhGia = new XoaDanhGia();
+                        xoaDanhGia.execute();
+                    }
+                });
+
+                // Set the alert dialog no button click listener
+                builder.setNegativeButton("Không", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // Do something when No button clicked
+
+                    }
+                });
+
+                AlertDialog dialog = builder.create();
+                // Display the alert dialog on interface
+                dialog.show();
+
+            }
+        });
+
 
         DateFormat df = new SimpleDateFormat("yyyy-MM-d");
         date = df.format(Calendar.getInstance().getTime());
@@ -173,46 +221,48 @@ public class ThongTinFragment extends Fragment {
                     dialog.show();
                 } else {
 
-                    String a = getResources().getResourceEntryName(v.getId()).substring(5);
+                        String a = getResources().getResourceEntryName(v.getId()).substring(5);
 
-                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 
-                    // Set a title for alert dialog
-                    builder.setTitle("Đánh Giá");
+                        // Set a title for alert dialog
+                        builder.setTitle("Đánh Giá");
 
-                    // Ask the final question
-                    builder.setMessage("Bạn muốn đánh giá phim này " + a + " điểm");
+                        // Ask the final question
+                        builder.setMessage("Bạn muốn đánh giá phim này " + a + " điểm");
 
-                    // Set the alert dialog yes button click listener
-                    builder.setPositiveButton("Có", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            // Do something when user clicked the Yes button
-                            // Set the TextView visibility GONE
-                            Diem = a;
-                            DangDanhGia dangDanhGia = new DangDanhGia();
-                            dangDanhGia.execute();
+                        // Set the alert dialog yes button click listener
+                        builder.setPositiveButton("Có", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                // Do something when user clicked the Yes button
+                                // Set the TextView visibility GONE
+                                Diem = a;
+                                DangDanhGia dangDanhGia = new DangDanhGia();
+                                dangDanhGia.execute();
 
-                            GetDanhGia getDanhGia = new GetDanhGia();
-                            getDanhGia.execute();
+                                GetDanhGia getDanhGia = new GetDanhGia();
+                                getDanhGia.execute();
 
-                            GetTrangChiTet getTrangChiTet = new GetTrangChiTet();
-                            getTrangChiTet.execute();
-                        }
-                    });
 
-                    // Set the alert dialog no button click listener
-                    builder.setNegativeButton("Không", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            // Do something when No button clicked
 
-                        }
-                    });
+                                txtXoaDanhGia.setVisibility(View.VISIBLE);
+                            }
+                        });
 
-                    AlertDialog dialog = builder.create();
-                    // Display the alert dialog on interface
-                    dialog.show();
+                        // Set the alert dialog no button click listener
+                        builder.setNegativeButton("Không", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                // Do something when No button clicked
+
+                            }
+                        });
+
+                        AlertDialog dialog = builder.create();
+                        // Display the alert dialog on interface
+                        dialog.show();
+
                 }
             }
         };
@@ -227,6 +277,8 @@ public class ThongTinFragment extends Fragment {
         imgXH8.setOnClickListener(onClickListener);
         imgXH9.setOnClickListener(onClickListener);
         imgXH10.setOnClickListener(onClickListener);
+
+
 
 
         GetTrangChiTet getTrangChiTet = new GetTrangChiTet();
@@ -294,15 +346,15 @@ public class ThongTinFragment extends Fragment {
                 JSONObject jsonObject1 = jsonArray.getJSONObject(0);
                 String id = jsonObject1.getString("id");
                 String TenPhim = jsonObject1.getString("TenPhim");
-                String LoaiPhim = jsonObject1.getString("LoaiPhim");
-                String DaoDien = jsonObject1.getString("DaoDien");
+                String LoaiPhim = jsonObject1.getString("TenLoai");
+                String DaoDien = jsonObject1.getString("TenDaoDien");
                 String HinhDaoDien = jsonObject1.getString("HinhDaoDien");
                 String ThoiLuong = jsonObject1.getString("ThoiLuong");
                 String GioiHanTuoi = jsonObject1.getString("GioiHanTuoi");
                 String VideoTrailer = jsonObject1.getString("VideoTrailer");
                 String NoiDung = jsonObject1.getString("NoiDung");
                 String Hinh = jsonObject1.getString("Hinh");
-                String NhaSanXuat = jsonObject1.getString("NhaSanXuat");
+                String NhaSanXuat = jsonObject1.getString("TenNhaSanXuat");
                 Double Diem = jsonObject1.getDouble("Diem");
                 String NgayKhoiChieu = jsonObject1.getString("NgayKhoiChieu");
 
@@ -524,6 +576,7 @@ public class ThongTinFragment extends Fragment {
                     String Diem = jsonObject1.getString("Diem");
 
                     txtDanhGiaNguoiDung.setText("Bạn đã đánh giá phim này " + Diem + " Điểm");
+                    txtXoaDanhGia.setVisibility(View.VISIBLE);
 
                 } catch (JSONException e) {
 
@@ -546,10 +599,10 @@ public class ThongTinFragment extends Fragment {
 
                 try {
                     if (txtDanhGiaNguoiDung.getText().toString().equals("")) {
-                        jsonURLDangDanhGia = InsertDanhGia + trangChiTiet.getIdPhim().toString() + "&IDNguoiDanhGia=" + IDUser.idUser.toString() + "&Ngay=" + date + "&Gio=" + time + "&Diem=" + Diem;
+                        jsonURLDangDanhGia = InsertDanhGia + trangChiTiet.getIdPhim().toString() + "/" + IDUser.idUser.toString() + "/" + date + "/" + time + "/" + Diem;
                         url = new URL(jsonURLDangDanhGia);
                     } else {
-                        jsonURLDangDanhGia = UpdateDanhGia + date + "&Gio=" + time + "&Diem=" + Diem + "&IDPhim=" + trangChiTiet.getIdPhim().toString() + "&IDNguoiDanhGia=" + IDUser.idUser.toString();
+                        jsonURLDangDanhGia = UpdateDanhGia + date + "/" + time + "/" + Diem + "/" + trangChiTiet.getIdPhim().toString() + "/" + IDUser.idUser.toString();
                         url = new URL(jsonURLDangDanhGia);
                     }
                     urlConnection = (HttpURLConnection) url.openConnection();
@@ -583,7 +636,148 @@ public class ThongTinFragment extends Fragment {
 
         @Override
         protected void onPostExecute(String s) {
+            GetDiem getDiem = new GetDiem();
+            getDiem.execute();
+        }
+    }
+
+    private class XoaDanhGia extends AsyncTask<String, String, String> {
+
+
+        @Override
+        protected String doInBackground(String... strings) {
+            String current = "";
+
+            try {
+                URL url;
+                HttpURLConnection urlConnection = null;
+
+
+                try {
+
+                        jsonURLDangDanhGia = XoaDanhGia + trangChiTiet.getIdPhim().toString() + "/" + IDUser.idUser.toString();
+                        url = new URL(jsonURLDangDanhGia);
+
+                    urlConnection = (HttpURLConnection) url.openConnection();
+
+                    InputStream in = urlConnection.getInputStream();
+                    InputStreamReader isr = new InputStreamReader(in);
+
+                    int data = isr.read();
+                    while (data != -1) {
+                        current += (char) data;
+                        data = isr.read();
+                    }
+
+                    return current;
+
+                } catch (MalformedURLException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } finally {
+                    if (urlConnection != null) {
+                        urlConnection.disconnect();
+                    }
+                }
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return current;
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+
+            txtDanhGiaNguoiDung.setText("");
+            txtXoaDanhGia.setVisibility(View.INVISIBLE);
+            GetDanhGia getDanhGia = new GetDanhGia();
+            getDanhGia.execute();
+            GetDiem getDiem = new GetDiem();
+            getDiem.execute();
+        }
+    }
+
+    private class GetDiem extends AsyncTask<String, String, String> {
+
+
+        @Override
+        protected String doInBackground(String... strings) {
+            String current = "";
+
+            try {
+                URL url;
+                HttpURLConnection urlConnection = null;
+
+
+                try {
+
+                    DiemTheoPhim = URLDiem + trangChiTiet.getIdPhim().toString();
+                    url = new URL(DiemTheoPhim);
+
+                    urlConnection = (HttpURLConnection) url.openConnection();
+
+                    InputStream in = urlConnection.getInputStream();
+                    InputStreamReader isr = new InputStreamReader(in);
+
+                    int data = isr.read();
+                    while (data != -1) {
+                        current += (char) data;
+                        data = isr.read();
+                    }
+
+                    return current;
+
+                } catch (MalformedURLException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } finally {
+                    if (urlConnection != null) {
+                        urlConnection.disconnect();
+                    }
+                }
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return current;
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+
+            try {
+
+                JSONObject jsonObject = new JSONObject(s);
+                JSONArray jsonArray = jsonObject.getJSONArray("DanhSach");
+
+
+                JSONObject jsonObject1 = jsonArray.getJSONObject(0);
+
+                Double Diem = jsonObject1.getDouble("Diem");
+
+
+                txtDiem.setText(Diem.toString());
+
+                int x = 0;
+                if (Double.parseDouble(txtDiem.getText().toString()) < 10) {
+                    x = Integer.parseInt(txtDiem.getText().toString().substring(0, 1));
+                } else {
+                    x = Integer.parseInt(txtDiem.getText().toString().substring(0, 2));
+                }
+
+                DanhGiaDiem(x);
+
+
+
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
 
         }
     }
+
 }

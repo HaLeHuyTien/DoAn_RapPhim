@@ -82,7 +82,7 @@ public class DSPhimSapChieu extends Fragment {
     private RecyclerView mRecyclerview;
     private AdapterListPhimItem mAdapter;
     private Spinner spinnerSC;
-    private final String jsonURLLoaiPhim = "http://0306181355.pixelcent.com/Cinema/LoaiPhim.php";
+    private final String jsonURLLoaiPhim = "http://0306181355.pixelcent.com/rapphim/public/api/LoaiPhim";
     private String[] ListLoaiPhim;
 
     private static final String jsonURL = "http://0306181355.pixelcent.com/rapphim/public/api/danhsachphimsapchieu";

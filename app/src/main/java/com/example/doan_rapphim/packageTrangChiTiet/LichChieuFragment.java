@@ -74,7 +74,7 @@ public class LichChieuFragment extends Fragment {
 
         trangChiTiet = (TrangChiTiet) getActivity();
 
-        value = "http://0306181355.pixelcent.com/Cinema/XuatChieuTheoPhim.php?IDPhim=" + trangChiTiet.getIdPhim().toString();
+        value = "http://0306181355.pixelcent.com/rapphim/public/api/XuatChieuTheoPhim/" + trangChiTiet.getIdPhim().toString();
 
 
         EditNgay = view.findViewById(R.id.txtLichChieu);
@@ -104,7 +104,7 @@ public class LichChieuFragment extends Fragment {
         DateFormat df2 = new SimpleDateFormat("yyyy-MM-dd");
         String date2 = df2.format(Calendar.getInstance().getTime());
 
-        jsonURL = value + "&NgayChieu=" + date2;
+        jsonURL = value + "/" + date2;
         ThongTinSoDoGhe.NgayChieuPhim = date2;
 
         GetXuatChieu getXuatChieu = new GetXuatChieu();
@@ -218,17 +218,17 @@ public class LichChieuFragment extends Fragment {
 
                 if (dayOfMonth < 10) {
                     if (thang < 10)
-                        jsonURL = value + "&NgayChieu=" + year + "-" + "0" + thang + "-" + "0" + dayOfMonth;
+                        jsonURL = value + "/" + year + "-" + "0" + thang + "-" + "0" + dayOfMonth;
                     else
-                        jsonURL = value + "&NgayChieu=" + year + "-" + thang + "-" + "0" + dayOfMonth;
+                        jsonURL = value + "/=" + year + "-" + thang + "-" + "0" + dayOfMonth;
 
                     ThongTinSoDoGhe.NgayChieuPhim = year + "-" + "0" + thang + "-" + "0" + dayOfMonth;
 
                 } else {
                     if (thang < 10)
-                        jsonURL = value + "&NgayChieu=" + year + "-" + "0" + thang + "-" + dayOfMonth;
+                        jsonURL = value + "/" + year + "-" + "0" + thang + "-" + dayOfMonth;
                     else
-                        jsonURL = value + "&NgayChieu=" + year + "-" + thang + "-" + dayOfMonth;
+                        jsonURL = value + "/" + year + "-" + thang + "-" + dayOfMonth;
                     ThongTinSoDoGhe.NgayChieuPhim = year + "-" + thang + "-" + dayOfMonth;
                 }
                 GetXuatChieu getXuatChieu = new GetXuatChieu();
